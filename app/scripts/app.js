@@ -22,6 +22,7 @@
         views:{
           'maincontent':{
             templateUrl:'/views/login.html',
+            controller:'LoginCtrl'
           }
         }
       })
