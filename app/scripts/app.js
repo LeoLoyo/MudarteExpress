@@ -26,6 +26,15 @@
           }
         }
       })
+      .state('cotizacion',{
+        url:'/cotizacion',
+        views:{
+          'maincontent':{
+            templateUrl:'/views/cotizacion.html',
+            controller:'CotizacionCtrl'
+          }
+        }
+      })
 
       $urlRouterProvider.otherwise('/');
     });
