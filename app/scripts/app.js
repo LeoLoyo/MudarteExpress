@@ -36,6 +36,15 @@
           }
         }
       })
+      .state('resumen',{
+        url:'/resumen',
+        views:{
+          'maincontent':{
+            templateUrl:'/views/resumen.html',
+            controller:'ResumenCtrl'
+          }
+        }
+      })
 
       $urlRouterProvider.otherwise('/');
     });
