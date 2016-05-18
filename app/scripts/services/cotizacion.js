@@ -9,6 +9,15 @@
         });
       }
     });
+    app.service('Contenedor', function ($http) {
+      var self = this;
+      self.all = function(){
+        // return $http.get("http://192.168.0.114:8000/api/v1/contenedor/?format=json").then(function(data){
+        return $http.get("http://192.168.0.114:8000/api/v1/contenedordescripcion/?format=json").then(function(data){
+          console.log(data.data);
+        });
+      }
+    });
 
 
 })();
