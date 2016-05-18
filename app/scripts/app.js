@@ -1,6 +1,7 @@
 (function() {
   'use strict';
   var app = angular.module('cotizacionExpressApp', [
+    'Express.services',
       'ngAnimate',
       'ngAria',
       'ngCookies',
