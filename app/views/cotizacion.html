@@ -1,30 +1,3 @@
-<style>
-    .btnSeleccion{
-        background: #eee;
-        display: inline-flex;
-        width: 250px;
-        height: 60px;
-        text-align: center;
-        border: 1px solid #dedede;
-    }
-    .btnSeleccion span {
-        flex: 70%;
-        padding: 10px;
-        vertical-align: middle!important;
-    }
-    .btnSeleccion select {
-        flex: 30%;
-        padding: 10px;
-        float: right;
-        border-color: transparent;
-        color: #000!important;
-    }
-    .btnSeleccionado {
-        background: #337ab7;
-        border-color: blue;
-        color: #fff;
-    }
-</style>
         <div class="row">
             <div class="col-md-12">
                 <h1>Cotización express</h1>
@@ -69,40 +42,60 @@
                     </div>
                     <legend></legend>
                     <h2>Contenedores</h2>
-                        <div class="btnSeleccion"  ng-class="btnSeleccionado">
-                            <span>Caja <br>30x40x45</span>
+                        <div ng-repeat="c in contenedores" class="btnSeleccion"  ng-class="{btnSeleccionado:cant>0}">
+                            <span>{{c.contenedor}}</span>
 
-                            <select name="cant" id="cant">
+                            <select ng-model="cant" id="cant{{c}}">
                                 <option selected value="0">0</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                             </select>
                         </div>
+                        <br><br>
                         <legend></legend>
                         <h2>Muebles</h2>
-                        <div class="btnSeleccion"  >
+                        <div class="btnSeleccion" ng-class="{btnSeleccionado:cant2>0}">
                             <span>Biblioteca <br></span>
 
-                            <select name="cant" id="cant">
+                            <select ng-model="cant2" id="cant2">
                                 <option selected value="0">0</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                             </select>
                         </div>
+                        <br><br>
+                        <legend></legend>
+                        <h2>Otros <button class="btn btn-default">+</button></h2>
+                        <div class="row">
+                           <div class="form-group col-md-4">
+                            <label for="">Descripción</label>
+                            <select name="cant" id="" class="form-control">
+                                <option selected value="0">Sofá </option>
+                                <option value="1">Sofá</option>
+                                <option value="2">item 2</option>
+                                <option value="3">item 3</option>
+                            </select>
+                            <input type="text" class="form-control hidden">
+                            </div>
+                            <div class="form-group col-md-4">
+                            <label for="">Cantidad</label>
+                            <select name="cant" id="" class="form-control">
+                                <option selected value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                            <label for="">Dimensiones</label>
+                            <input type="text" class="form-control">
+                            </div>
+                        </div>
+
                     <br><br>
-                    <button type="submit" class="btn btn-success">Submit</button>
+                    <button type="submit" class="btn btn-success verResumen">Ver resumen</button>
                 </form>
             </div>
         </div>
-<script>
-    $('select[name=cant]').on('change', function() {
-        if ($(this).val() === '0') {
-            $(this).parent().removeClass('btnSeleccionado');
-        }else{
-          $(this).parent().addClass('btnSeleccionado');
-        }
-
-    });
-</script>
