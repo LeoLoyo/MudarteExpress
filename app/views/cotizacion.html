@@ -45,25 +45,20 @@
                         <div ng-repeat="c in contenedores" class="btnSeleccion"  ng-class="{btnSeleccionado:cant>0}">
                             <span>{{c.contenedor}}</span>
 
-                            <select ng-model="cant" id="cant{{c}}">
+                            <select ng-model="cant" id="cant{{c}}" ng-change="add_contenedores(c.contenedor,cant)">
                                 <option selected value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
+                                <!-- <option ng-repeat="n in [1,2]">{{n}}</option> -->
                             </select>
                         </div>
                         <br><br>
                         <legend></legend>
                         <h2>Muebles</h2>
                         <div class="btnSeleccion" ng-class="{btnSeleccionado:cant2>0}">
-                            <span>Biblioteca <br></span>
+                            <span>Biblioteca 60cm</span>
 
-                            <select ng-model="cant2" id="cant2">
+                            <select ng-model="cant2" id="cant2" ng-init="cant2 = [0]">
                                 <option selected value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
+                                <option ng-repeat="n in [1,2]">{{n}}</option>                            </select>
                         </div>
                         <br><br>
                         <legend></legend>
@@ -93,9 +88,19 @@
                             <input type="text" class="form-control">
                             </div>
                         </div>
+                        <br><br>
+                        <legend></legend>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <br>
+                                <button type="submit" class="btn btn-success verResumen">Ver resumen</button>
+                            </div>
+                            <div class="col-md-3 col-md-offset-5">
+                                <label for="">Toatl (m<sup>3</sup>)</label>
+                                <input type="number" class="form-control">
+                            </div>
+                        </div>
 
-                    <br><br>
-                    <button type="submit" class="btn btn-success verResumen">Ver resumen</button>
                 </form>
             </div>
         </div>
