@@ -1,6 +1,6 @@
 (function(){
   var app = angular.module('cotizacionExpressApp');
-    app.controller('CotizacionCtrl', function ($scope, Cotizacion, Contenedor, Mueble) {
+    app.controller('CotizacionCtrl', function ($scope, Cotizacion, Contenedor, Mueble, Bulto) {
 
       $scope.contenedores = []
       $scope.contenedores = null;
@@ -14,6 +14,10 @@
 
         Mueble.all().then(function(muebles){
           $scope.muebles = muebles;
+        });
+
+        Bulto.all().then(function(bultos){
+          $scope.bultos = bultos;
         });
       };
 
@@ -35,8 +39,7 @@
 
       };
     // fin
-
-      $scope.contenedores_temp = [{contenedor:"Canasto",unidad:11,punto:0}];
+      $scope.contenedores_temp = [];
 
       function cal_punto(contenedores) {
         var a = contenedores;
