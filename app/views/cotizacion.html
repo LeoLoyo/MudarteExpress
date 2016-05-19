@@ -42,12 +42,11 @@
                     </div>
                     <legend></legend>
                     <h2>Contenedores</h2>
-                        <div ng-repeat="c in contenedores" class="btnSeleccion"  ng-class="{btnSeleccionado:cant>0}">
+                        <!-- <div ng-repeat="c in contenedores" class="btnSeleccion"  ng-class="{btnSeleccionado:cant>0}"> -->
+                            <div ng-repeat="c in [{contenedor:'canasto'}]" class="btnSeleccion"  ng-class="{btnSeleccionado:cant.value>0}">
                             <span>{{c.contenedor}}</span>
 
-                            <select ng-model="cant" id="cant{{c}}" ng-change="add_contenedores(c.contenedor,cant)">
-                                <option selected value="0">0</option>
-                                <!-- <option ng-repeat="n in [1,2]">{{n}}</option> -->
+                            <select ng-model="cant" ng-options="n.num for n in [{num:1},{num:2},{num:3}]" ng-change="add_contenedores(c.contenedor,cant)">
                             </select>
                         </div>
                         <br><br>
