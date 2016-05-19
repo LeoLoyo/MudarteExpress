@@ -12,9 +12,10 @@
     app.service('Contenedor', function ($http) {
       var self = this;
       self.all = function(contenedor){
-        var url = "http://192.168.0.114:8000/api/v1/contenedordescripcion/?format=json"
+        //var url = "http://192.168.0.114:8000/api/v1/contenedordescripcion/?format=json"
+        var url = "http://localhost:8000/api/v1/contenedordescripcion/?format=json"
         if(contenedor !== undefined){
-          url = "http://192.168.0.114:8000/api/v1/contenedor/?format=json&contenedor="+contenedor;
+          url = "http://localhost:8000/api/v1/contenedor/?format=json&contenedor="+contenedor;
         }
         return $http.get(url).then(function(data){
           console.log(data.data);
