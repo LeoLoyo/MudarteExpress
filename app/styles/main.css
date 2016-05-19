@@ -10,10 +10,14 @@ body {
   overflow: hidden;
   background: #eee;
 }
-form {
+form.formulario {
   background: #fff;
   padding: 10px;
   margin-bottom: 30px;
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.26);
+}
+.panel {
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.26);
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -25,6 +29,9 @@ form {
 }
 
 /* Custom page header */
+.header {
+  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, .26);
+}
 .header1 {
   border-bottom: 1px solid #e5e5e5;
   margin-bottom: 10px;
@@ -93,13 +100,13 @@ form {
     .btnSeleccion{
         background: #eee;
         display: inline-flex;
-        width: 200px;
-        height: 60px;
+        width: 205px;
+        height: 70px;
         text-align: center;
         border: 1px solid #dedede;
         margin-right: 20px;
         margin-top: 20px;
-        font-size: 1.2em;
+        font-size: 1em;
     }
     .btnSeleccion span {
         flex: 70%;
@@ -169,6 +176,8 @@ form {
     margin-left: -250px;
     overflow-y: auto;
     background: rgb(63,81,181);
+    border-right: 0px solid #dedede;
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 1);
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;

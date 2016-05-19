@@ -92,6 +92,7 @@
 
           cal_punto($scope.contenedores_temp);
       }
+      angular.element('#nCotizacion').focus();
 
     });
 
