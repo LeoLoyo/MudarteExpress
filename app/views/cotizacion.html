@@ -3,21 +3,20 @@
                 <h1>Cotización express</h1>
                 <form class="formulario">
                     <div class="row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-sm-6 col-md-4">
                         <label for="numerocotizacion">N° cotización:</label>
                         <input ng-focus="scrollAnime($event)" id="nCotizacion" type="text" class="form-control" id="numerocotizacion" placeholder="e.g: 0001">
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="responsable">Nombre del responsable:</label>
+                    <div class="form-group col-sm-6 col-md-4">
+                        <label for="responsable">Responsable:</label>
                         <select ng-focus="scrollAnime($event)" name="" id="responsable" class="form-control">
                             <option value="1">seleccione</option>
                             <option value="2">item 1</option>
                             <option value="3">item 2</option>
                         </select>
                     </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-6">
+
+                        <div class="form-group col-sm-6 col-md-4">
                             <label for="id_cliente">Nombre del cliente:</label>
                             <select ng-focus="scrollAnime($event)" name="" id="id_cliente" class="form-control">
                             <option value="1">seleccione</option>
@@ -25,17 +24,16 @@
                             <option value="3">item 2</option>
                         </select>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-sm-6 col-md-4">
                             <label for="id_telefono">Telefono del cliente:</label>
                             <input ng-focus="scrollAnime($event)" type="number" id="id_telefono" class="form-control" placeholder="e.g: 000000000">
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-6">
+
+                        <div class="form-group col-sm-6 col-md-4">
                             <label for="id_email">Email del cliente:</label>
                             <input ng-focus="scrollAnime($event)" type="email" class="form-control" placeholder="e.g: correo@email.com">
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-sm-6 col-md-4">
                             <label for="id_dieccion">Dirección del cliente:</label>
                             <textarea ng-focus="scrollAnime($event)" name="direccion" id="id_direccion" cols="1" rows="1" class="form-control" placeholder="Dirección del cliente"></textarea>
                         </div>
@@ -51,11 +49,17 @@
                         </div>
                         <br><br>
                         <legend></legend>
-                        <h2>Muebles</h2>
-                        <div ng-repeat="c in muebles | filter: true" class="btnSeleccion" ng-class="{btnSeleccionado:m.num>0}">
+                        <div class="row">
+                            <div class="col-md-12">
+                            <h2>Muebles</h2>
+                        <input type="search" placeholder="Buscar muebles" class="form-control buscarMueble disabled" ng-model="buscarMueble">
+                        </div>
+                        </div>
+
+                        <div ng-repeat="c in muebles | filter: true | filter: buscarMueble" class="btnSeleccion" ng-class="{btnSeleccionado:m.num>0}">
                             <span>{{c.descripcion}}</span>
 
-                            <select ng-focus="scrollAnime($event)" ng-init="m.num = 0" ng-model="m" ng-options="m.num for m in [{num:0},{num:1},{num:2},{num:3}]"></select>
+                            <select ng-focus="scrollAnime($event)" ng-model="m" ng-options="m.num for m in [{num:0},{num:1},{num:2},{num:3}]" ng-change="add_mueble(c,m.num)"></select>
                         </div>
                         <br><br>
                         <legend></legend>
