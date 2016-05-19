@@ -1,7 +1,7 @@
 (function(){
   var app = angular.module('cotizacionExpressApp');
   // var app = angular.module('Express.controllers',[]);
-    app.controller('CotizacionCtrl', function ($scope, Cotizacion, Contenedor, Mueble, Bulto) {
+    app.controller('CotizacionCtrl', function ($scope, Cotizacion, Contenedor, Mueble, Bulto, Cliente) {
 
       $scope.contenedores = []
       $scope.contenedores = null;
@@ -19,6 +19,9 @@
 
         Bulto.all().then(function(bultos){
           $scope.bultos = bultos;
+        });
+        Cliente.all().then(function(cliente){
+          $scope.cliente = cliente;
         });
       };
 
@@ -40,7 +43,9 @@
 
       };
       // fin
+
       $scope.contenedores_temp = [];
+      $scope.muebles_temp = [];
 
       function cal_punto(contenedores) {
         var a = contenedores;
@@ -54,6 +59,22 @@
         }
       };
 
+      function buscar(cs_tmp,cont,attri){
+
+        var l = cs_tmp.length;
+        for(var i=0;i<cs_tmp.length;i++){
+          if(cont.attri === cs_tmp[i].attri ){
+            console.log(cont.unidad);
+            if(cont.unidad>0){
+                cs_tmp[i].unidad = cont.unidad;
+            }else{
+                cs_tmp.splice(cs_tmp.indexOf(cs_tmp[i]),1);
+            }
+            return true;
+          }
+        }
+        return false;
+      }
 
 
       $scope.add_contenedor = function(descripcion,uni) {
@@ -62,30 +83,48 @@
           unidad:uni,
           punto:0
         };
-        function buscar(cs_tmp,cont){
+        // function buscar(cs_tmp,cont){
+        //
+        //   var l = cs_tmp.length;
+        //   for(var i=0;i<cs_tmp.length;i++){
+        //     if(cont.contenedor === cs_tmp[i].contenedor ){
+        //       console.log(cont.unidad);
+        //       if(cont.unidad>0){
+        //           cs_tmp[i].unidad = cont.unidad;
+        //       }else{
+        //           cs_tmp.splice(cs_tmp.indexOf(cs_tmp[i]),1);
+        //       }
+        //       return true;
+        //     }
+        //   }
+        //   return false;
+        // }
 
-          var l = cs_tmp.length;
-          for(var i=0;i<cs_tmp.length;i++){
-            if(cont.contenedor === cs_tmp[i].contenedor ){
-              console.log(cont.unidad);
-              if(cont.unidad>0){
-                  cs_tmp[i].unidad = cont.unidad;
-              }else{
-                  cs_tmp.splice(cs_tmp.indexOf(cs_tmp[i]),1);
-              }
-              return true;
-            }
-          }
-          return false;
-        }
-
-        if(buscar($scope.contenedores_temp, contenedor_temp)!=true){
+        if(buscar($scope.contenedores_temp, contenedor_temp, "contenedor")!=true){
           $scope.contenedores_temp.push(contenedor_temp);
         }
 
       };
 
-      $scope.add_mueble = function() {
+      $scope.add_mueble = function(mueble,uni) {
+        var mueble_temp = {
+            id: 1,
+            cotizacion: 1,
+            mueble: mueble.descripcion,
+            descripcion: "",
+            ancho: Number(mueble.ancho),
+            largo: Number(mueble.largo),
+            alto: Number(mueble.alto),
+            cantidad: uni,
+            punto: 13,
+            total_punto: 0,
+            estado: "activo"
+        };
+
+        if(buscar($scope.muebles_temp, mueble_temp, "descripcion")!=true){
+          $scope.muebles_temp.push(mueble_temp);
+        }
+        console.log($scope.muebles_temp);
       };
 
       $scope.save_cotizacion = function(){
