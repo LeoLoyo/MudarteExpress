@@ -17,7 +17,7 @@
           url = "http://192.168.0.114:8000/api/v1/contenedor/?format=json&contenedor="+contenedor;
         }
         return $http.get(url).then(function(data){
-          console.log("Contenedores :" + data.data.length);
+          // console.log("Contenedores :" + data.data.length);
           return data.data;
         });
       }
