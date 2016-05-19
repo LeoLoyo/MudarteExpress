@@ -1,29 +1,21 @@
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>JQuery Excel</title>
-<script type="text/javascript" src="jquery-1.3.2.min.js"></script>
-<style type="text/css">
-</style>
-</head>
-<body>
 <div class="row">
     <div id="divExportar" class="col-md-12">
-        <h1>Resumen</h1>
+        <h1 style="color:red;">Resumen</h1>
             <h2>Contenedores</h2>
             <legend></legend>
-            <table  border=1 cellpading=10 cellspacing=10 id="tablaContenedor">
+            <table class="table table-striped">
                 <tr>
-                  <td><strong>Contenedor</strong></td>
-                  <td><strong>Cantidad</strong></td>
-                  <td><strong>m<sup>3</sup></strong></td>
+                  <th><strong>Contenedor</strong></th>
+                  <th><strong>Cantidad</strong></th>
+                  <th><strong>m<sup>3</sup></strong></th>
                 </tr>
+                  <tr ng-repeat="item in contenedores">
+                    <td>{{item.contenedores}}</td>
+                    <td>{{item.cantidadesCon}}</td>
+                    <td>{{item.metrosCon}}</td>
 
-                <tr>
-                    <td>{{row.contenedores}}</td>
-                    <td>{{row.cantidadesCon}}</td>
-                    <td>{{row.metrosCon}}</td>
-                </tr>
+                  </tr>
+
             </table>
 
             <h2>Muebles</h2>
@@ -73,9 +65,9 @@
             <br>
     </div>
     <button type="submit" class="btn btn-success" onclick="descargarExcel()">Exportar</button>
+    <!-- <button type="submit" class="btn btn-success" >Exportar</button> -->
 </div>
-</body>
-</html>
+
 <script>
 function descargarExcel(){
         //Creamos un Elemento Temporal en forma de enlace
