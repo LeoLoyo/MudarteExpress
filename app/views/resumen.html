@@ -1,0 +1,94 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>JQuery Excel</title>
+<script type="text/javascript" src="jquery-1.3.2.min.js"></script>
+<style type="text/css">
+</style>
+</head>
+<body>
+<div class="row">
+    <div id="divExportar" class="col-md-12">
+        <h1>Resumen</h1>
+            <h2>Contenedores</h2>
+            <legend></legend>
+            <table  border=1 cellpading=10 cellspacing=10 id="tablaContenedor">
+                <tr>
+                  <td><strong>Contenedor</strong></td>
+                  <td><strong>Cantidad</strong></td>
+                  <td><strong>m<sup>3</sup></strong></td>
+                </tr>
+
+                <tr>
+                    <td>{{row.contenedores}}</td>
+                    <td>{{row.cantidadesCon}}</td>
+                    <td>{{row.metrosCon}}</td>
+                </tr>
+            </table>
+
+            <h2>Muebles</h2>
+            <legend></legend>
+            <table border=1 id="tablaMueble">
+                <tr>
+                  <td><strong>Mueble</strong></td>
+                  <td><strong>Cantidad</strong></td>
+                  <td><strong>m<sup>3</sup></strong></td>
+                </tr>
+
+                <tr>
+                    <td>{{row.muebles}}</td>
+                    <td>{{row.cantidadesMue}}</td>
+                    <td>{{row.metrosMue}}</td>
+                </tr>
+            </table>
+
+            <h2>Otros</h2>
+            <legend></legend>
+            <table border=1 id="tablaOtro">
+                <tr>
+                  <td><strong>Descripción</strong></td>
+                  <td><strong>Cantidad</strong></td>
+                  <td><strong>m<sup>3</sup></strong></td>
+                </tr>
+
+                <tr>
+                    <td>{{row.otros}}</td>
+                    <td>{{row.cantidadesOtr}}</td>
+                    <td>{{row.metrosOtr}}</td>
+                </tr>
+            </table>
+            <br>
+            <legend></legend>
+            <table border=1 id="tablaTotal">
+                <tr>
+                  <td><strong>Total Contenido</strong></td>
+                  <td>{{row.totalCont}}</td>
+                </tr>
+
+                <tr>
+                  <td><strong>Total m<sup>3</sup></strong></td>
+                  <td>{{row.totalMts}}</td>
+                </tr>
+            </table>
+            <br>
+    </div>
+    <button type="submit" class="btn btn-success" onclick="descargarExcel()">Exportar</button>
+</div>
+</body>
+</html>
+<script>
+function descargarExcel(){
+        //Creamos un Elemento Temporal en forma de enlace
+        var tmpElemento = document.createElement('a');
+        // obtenemos la información desde el div que lo contiene en el html
+        // Obtenemos la información de la tabla
+        var data_type = 'data:application/vnd.ms-excel';
+        var tabla_div = document.getElementById('divExportar');
+        var tabla_html = tabla_div.outerHTML.replace(/ /g, '%20');
+        tmpElemento.href = data_type + ', ' + tabla_html;
+        //Asignamos el nombre a nuestro EXCEL
+        tmpElemento.download = 'Resumen.xls';
+        // Simulamos el click al elemento creado para descargarlo
+        tmpElemento.click();
+    }
+</script>
