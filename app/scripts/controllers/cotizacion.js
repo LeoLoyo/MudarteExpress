@@ -77,6 +77,7 @@
         if(buscar!=true){
           $scope.contenedores_temp.push(contenedor_temp);
         }
+        console.log(contenedor_temp);
 
       };
 
