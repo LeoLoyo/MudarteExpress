@@ -1,42 +1,15 @@
-<style>
-    .btnSeleccion{
-        background: #eee;
-        display: inline-flex;
-        width: 250px;
-        height: 60px;
-        text-align: center;
-        border: 1px solid #dedede;
-    }
-    .btnSeleccion span {
-        flex: 70%;
-        padding: 10px;
-        vertical-align: middle!important;
-    }
-    .btnSeleccion select {
-        flex: 30%;
-        padding: 10px;
-        float: right;
-        border-color: transparent;
-        color: #000!important;
-    }
-    .btnSeleccionado {
-        background: #337ab7;
-        border-color: blue;
-        color: #fff;
-    }
-</style>
         <div class="row">
             <div class="col-md-12">
                 <h1>Cotización express</h1>
-                <form>
+                <form class="formulario">
                     <div class="row">
                     <div class="form-group col-md-6">
                         <label for="numerocotizacion">N° cotización:</label>
-                        <input type="text" class="form-control" id="numerocotizacion" placeholder="e.g: 0001">
+                        <input ng-focus="scrollAnime($event)" id="nCotizacion" type="text" class="form-control" id="numerocotizacion" placeholder="e.g: 0001">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="responsable">Nombre del responsable:</label>
-                        <select name="" id="responsable" class="form-control">
+                        <select ng-focus="scrollAnime($event)" name="" id="responsable" class="form-control">
                             <option value="1">seleccione</option>
                             <option value="2">item 1</option>
                             <option value="3">item 2</option>
@@ -46,7 +19,7 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="id_cliente">Nombre del cliente:</label>
-                            <select name="" id="id_cliente" class="form-control">
+                            <select ng-focus="scrollAnime($event)" name="" id="id_cliente" class="form-control">
                             <option value="1">seleccione</option>
                             <option value="2">item 1</option>
                             <option value="3">item 2</option>
@@ -54,55 +27,92 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="id_telefono">Telefono del cliente:</label>
-                            <input type="number" id="id_telefono" class="form-control" placeholder="e.g: 000000000">
+                            <input ng-focus="scrollAnime($event)" type="number" id="id_telefono" class="form-control" placeholder="e.g: 000000000">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="id_email">Email del cliente:</label>
-                            <input type="email" class="form-control" placeholder="e.g: correo@email.com">
+                            <input ng-focus="scrollAnime($event)" type="email" class="form-control" placeholder="e.g: correo@email.com">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="id_dieccion">Dirección del cliente:</label>
-                            <textarea name="direccion" id="id_direccion" cols="1" rows="1" class="form-control" placeholder="Dirección del cliente"></textarea>
+                            <textarea ng-focus="scrollAnime($event)" name="direccion" id="id_direccion" cols="1" rows="1" class="form-control" placeholder="Dirección del cliente"></textarea>
                         </div>
                     </div>
                     <legend></legend>
                     <h2>Contenedores</h2>
-                        <div class="btnSeleccion" ng-class="btnSeleccionado">
-                            <span>Caja <br>30x40x45</span>
+                        <div ng-repeat="c in contenedores" class="btnSeleccion"  ng-class="{btnSeleccionado:n.num>0}">
+                            <!-- <div ng-repeat="c in [{contenedor:'canasto'}]" class="btnSeleccion"  ng-class="{btnSeleccionado:cant.value>0}"> -->
+                            <span>{{c.contenedor}}</span>
 
-                            <select name="cant" id="cant">
-                                <option selected value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
+                            <select ng-focus="scrollAnime($event)" ng-model="n" ng-options="n.num for n in [{num:0},{num:1},{num:2},{num:3}]" ng-change="add_contenedor(c.contenedor,n.num)">
                             </select>
                         </div>
+                        <br><br>
                         <legend></legend>
                         <h2>Muebles</h2>
-                        <div class="btnSeleccion"  >
-                            <span>Biblioteca <br></span>
+                        <div ng-repeat="c in muebles | filter: true" class="btnSeleccion" ng-class="{btnSeleccionado:m.num>0}">
+                            <span>{{c.descripcion}}</span>
 
-                            <select name="cant" id="cant">
+                            <select ng-focus="scrollAnime($event)" ng-init="m.num = 0" ng-model="m" ng-options="m.num for m in [{num:0},{num:1},{num:2},{num:3}]"></select>
+                        </div>
+                        <br><br>
+                        <legend></legend>
+                        <h2>Otros <button class="btn btn-default">+</button></h2>
+                        <div class="row">
+                           <div class="form-group col-md-4">
+                            <label for="">Descripción</label>
+                            <select  name="cant" id="" class="form-control">
+                                <option selected value="0">Sofá </option>
+                                <option value="1">Sofá</option>
+                                <option value="2">item 2</option>
+                                <option value="3">item 3</option>
+                            </select>
+                            <input type="text" class="form-control hidden">
+                            </div>
+                            <div class="form-group col-md-4">
+                            <label for="">Cantidad</label>
+                            <select name="cant" id="" class="form-control">
                                 <option selected value="0">0</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                             </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                            <label for="">Dimensiones</label>
+                            <input type="text" class="form-control">
+                            </div>
                         </div>
-                    <br><br>
-                    <button type="submit" class="btn btn-success">Submit</button>
+                        <br><br>
+                        <legend></legend>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <br>
+                                <button type="submit" class="btn btn-success verResumen">Ver resumen</button>
+                            </div>
+                            <div class="col-md-3 col-md-offset-5">
+                                <label for="">Toatl (m<sup>3</sup>)</label>
+                                <input  type="number" class="form-control">
+                            </div>
+                        </div>
+
                 </form>
             </div>
         </div>
-<script>
-    $('select[name=cant]').on('change', function() {
-        if ($(this).val() === '0') {
-            $(this).parent().removeClass('btnSeleccionado');
-        }else{
-          $(this).parent().addClass('btnSeleccionado');
-        }
+<!-- <script>
+(function(){
+    setTimeout(function(){
+            console.log('inicio jquery');
+    $('select').focus(function() {
+   var pos = $(this).position();
+   var scroll = $(document.getElementById("page-content-wrapper"));
+   $(scroll).animate({ scrollTop: pos.top - 100 }, 250);
+    console.log(pos.top);
+    }, 2000);
 
-    });
-</script>
+ });
+})();
+
+</script> -->

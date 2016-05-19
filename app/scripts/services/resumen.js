@@ -1,6 +1,6 @@
 (function(){
   'use strict';
-  var app = angular.module('Express.services',[]);
+  var app = angular.module('Express.services');
     app.service('Resumen', function ($http) {
       var self = this;
       self.all = function(){
