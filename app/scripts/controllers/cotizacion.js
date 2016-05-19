@@ -1,6 +1,7 @@
 (function(){
   var app = angular.module('cotizacionExpressApp');
-    app.controller('CotizacionCtrl', function ($scope, Cotizacion, Contenedor, Mueble) {
+  // var app = angular.module('Express.controllers',[]);
+    app.controller('CotizacionCtrl', function ($scope, Cotizacion, Contenedor, Mueble, Bulto) {
 
       $scope.contenedores = []
       $scope.contenedores = null;
@@ -14,6 +15,10 @@
 
         Mueble.all().then(function(muebles){
           $scope.muebles = muebles;
+        });
+
+        Bulto.all().then(function(bultos){
+          $scope.bultos = bultos;
         });
       };
 
@@ -34,9 +39,8 @@
         return 0;
 
       };
-    // fin
-
-      $scope.contenedores_temp = [{contenedor:"Canasto",unidad:11,punto:0}];
+      // fin
+      $scope.contenedores_temp = [];
 
       function cal_punto(contenedores) {
         var a = contenedores;
@@ -52,29 +56,32 @@
 
 
 
-      $scope.add_contenedor = function(descripcion,unidad) {
+      $scope.add_contenedor = function(descripcion,uni) {
         var contenedor_temp = {
           contenedor:descripcion,
-          unidad:unidad,
+          unidad:uni,
           punto:0
         };
-        function buscar(){
-          for(var i=0;i<$scope.contenedores_temp.length;i++){
-            if(descripcion === $scope.contenedores_temp[i].contenedor ){
-              if(unidad>0){
-                  $scope.contenedores_temp[i].unidad = unidad;
+        function buscar(cs_tmp,cont){
+
+          var l = cs_tmp.length;
+          for(var i=0;i<cs_tmp.length;i++){
+            if(cont.contenedor === cs_tmp[i].contenedor ){
+              console.log(cont.unidad);
+              if(cont.unidad>0){
+                  cs_tmp[i].unidad = cont.unidad;
               }else{
-                  $scope.contenedores_temp.splice($scope.contenedores_temp.indexOf($scope.contenedores_temp[i]),1);
+                  cs_tmp.splice(cs_tmp.indexOf(cs_tmp[i]),1);
               }
               return true;
             }
           }
           return false;
         }
-        if(buscar!=true){
+
+        if(buscar($scope.contenedores_temp, contenedor_temp)!=true){
           $scope.contenedores_temp.push(contenedor_temp);
         }
-        console.log(contenedor_temp);
 
       };
 
@@ -87,5 +94,20 @@
       }
       angular.element('#nCotizacion').focus();
 
-  });
+    });
+
+    app.controller('ResumenCtrl', function ($scope) {
+        $scope.contenedores = [{
+                                contenedores:"Canasto",
+                                cantidadesCon:"10",
+                                metrosCon:"15"
+                                },
+                                {
+                                  contenedores:"Canasto 2",
+                                  cantidadesCon:"20",
+                                  metrosCon:"25"
+                              }];
+      console.log($scope.contenedores);
+    });
+
 })();
