@@ -55,6 +55,15 @@
       };
     });
 
+    app.service('Cliente', function ($http) {
+      var self = this;
+      self.all = function(){
+        return $http.get("http://192.168.0.114:8000/api/v1/cliente/?format=json").then(function(data){
+          console.log(data.data[0]);
+          return data.data[0];
+        });
+      }
+    });
 
 
 })();
