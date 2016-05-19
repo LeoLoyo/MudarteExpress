@@ -13,6 +13,6 @@
       });
 
     },5000);
-
+    angular.element('#cUsuario').focus();
   });
 })();
