@@ -131,8 +131,8 @@
 
       $scope.add_mueble = function(mueble,uni) {
         var mueble_temp = {
-            id: 1,
-            cotizacion: 1,
+            // id: 1,
+            // cotizacion: 1,
             mueble: mueble.descripcion,
             descripcion: "",
             ancho: Number(mueble.ancho),
@@ -152,6 +152,22 @@
         console.log($scope.muebles_temp);
       };
 
+      $scope.add_otros = function(mueble){
+        var otro_temp = {
+            // id: 1,
+            // cotizacion: 1,
+            mueble: mueble.descripcion,
+            descripcion: "",
+            ancho: Number(mueble.ancho),
+            largo: Number(mueble.largo),
+            alto: Number(mueble.alto),
+            cantidad: Number(uni),
+            punto: Number(mueble.punto),
+            total_punto: Number(uni*mueble.punto),
+            estado: "activo"
+        };
+
+      }
       $scope.save_cotizacion = function(){
 
           cal_punto($scope.contenedores_temp);

@@ -69,13 +69,9 @@
                   <div class="row">
                      <div class="form-group col-md-4">
                       <label for="">Descripción</label>
-                      <select  name="cant" id="" class="form-control">
-                          <option selected value="0">Sofá </option>
-                          <option value="1">Sofá</option>
-                          <option value="2">item 2</option>
-                          <option value="3">item 3</option>
-                      </select>
-                      <input type="text" class="form-control hidden">
+                      <select class="form-control" ng-focus="scrollAnime($event)" ng-model="m" ng-options="m.descripcion for m in muebles|filter: false" ng-change="add_otros(c,m.num)"></select>
+
+                      <input type="text" class="form-control hidden" >
                       </div>
                       <div class="form-group col-md-4">
                       <label for="">Cantidad</label>
