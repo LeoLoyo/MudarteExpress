@@ -176,14 +176,4 @@
 
     });
 
-    // app.controller('ResumenCtrl', function ($scope, Cotizacion) {
-    //
-    //     $scope.contenedores = [];
-    //     $scope.contenedores = null;
-    //     $scope.contenedores = Cotizacion.get();
-    //
-    //
-    //   console.log($scope.contenedores);
-    // });
-
 })();
