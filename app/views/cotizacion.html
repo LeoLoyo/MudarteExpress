@@ -61,28 +61,49 @@
                   </div>
                   <br><br>
                   <legend></legend>
-                  <h2>Otros <button class="btn btn-default">+</button></h2>
-                  <div class="row">
-                      <div class="form-group col-md-4">
-                          <label for="">Descripción</label>
-                          <select class="form-control" ng-focus="scrollAnime($event)" ng-model="m" ng-options="m.descripcion for m in muebles|filter: false" ng-change="add_otros(c,m.num)"></select>
+                  <h2>Otros <button class="btn btn-default" ng-click="add_campo()">+</button></h2>
+                  <div ng-repeat="campo in otros_temp_campo">
+                    <form name="form_otro">
+                      <div class="row">
+                          <div class="form-group col-md-3">
+                              <label for="">Descripción</label>
+                              <select class="form-control"  ng-disabled="cant>0"ng-focus="scrollAnime($event)" ng-model="otro" ng-options="m.descripcion for m in muebles|filter: false"></select>
+                              <input type="text" ng-model="descripcion" class="form-control" ng-class="{hidden:otro.descripcion !='Otros'}">
+                          </div>
 
-                      <input type="text" class="form-control hidden" >
+                          <div class="form-group col-md-2">
+                          <label for="">Ancho</label>
+                          <select class="form-control " ng-disabled="cant>0"ng-model="dimesion.ancho" ng-focus="scrollAnime($event)" ng-options="b.ancho for b in bultos | unique:'ancho' |orderBy:'ancho'"></select>
+                          </div>
+
+                          <div class="form-group col-md-2">
+                          <label for="">Largo</label>
+                          <select class="form-control"  ng-disabled="cant>0"ng-focus="scrollAnime($event)" ng-model="dimesion.largo" ng-options="b.largo for b in bultos | unique:'largo' |orderBy:'largo'"></select>
+                          </div>
+
+                          <div class="form-group col-md-2">
+                          <label for="">Alto</label>
+                          <select class="form-control"  ng-disabled="cant>0"ng-focus="scrollAnime($event)" ng-model="dimesion.alto" ng-options="b.alto for b in bultos | unique:'alto'|orderBy:'alto'"></select>
+                          </div>
+
+                          <div class="form-group col-md-2">
+                          <label for="">Cantidad</label>
+                          <select ng-model="cant" class="form-control" ng-change="add_otros(otro,dimesion,cant,descripcion,campo)" >
+                              <option selected value="0">0</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                          </select>
+                          </div>
+                          <div class="form-group col-md-1">
+                          <a ng-click="delete_campo(campo)">remove</a>
+                          </div>
                       </div>
-                      <div class="form-group col-md-4">
-                      <label for="">Cantidad</label>
-                      <select name="cant" id="" class="form-control">
-                          <option selected value="0">0</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                      </select>
-                      </div>
-                      <div class="form-group col-md-4">
-                      <label for="">Dimensiones</label>
-                      <input type="text" class="form-control">
-                      </div>
+
+                    </form>
+
                   </div>
+
                   <br><br>
                   <legend></legend>
                   <div class="row">

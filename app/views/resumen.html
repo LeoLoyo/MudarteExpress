@@ -45,8 +45,8 @@
               </tr>
               <tr class="active">
                 <td><strong>Total</strong></td>
-                <td><strong>{{unidades}}</strong></td>
-                <td><strong>{{metros3}}</strong></td>
+                <td><strong>{{unidades_contenedores}}</strong></td>
+                <td><strong>{{metros3_contenedores}}</strong></td>
               </tr>
           </table>
 
@@ -64,8 +64,8 @@
             </tr>
             <tr class="active">
               <td><strong>Total</strong></td>
-              <td><strong>25</strong></td>
-              <td><strong>25</strong></td>
+              <td><strong>{{unidades_muebles}}</strong></td>
+              <td><strong>{{metros3_muebles}}</strong></td>
             </tr>
           </table>
 
@@ -76,15 +76,15 @@
               <th style="width:80px; padding:10px;">Cantidad</th>
               <th style="width:80px; padding:10px; padding-left:30px;">m<sup>3</sup></th>
             </tr>
-            <tr ng-repeat="item in otros">
-              <td>{{item.descripcion}}</td>
+            <tr ng-repeat="item in otros_temp">
+              <td><p>{{item.descriocion}}</p>{{item.mueble}}</td>
               <td>{{item.cantidad}}</td>
               <td>{{item.punto/10}}</td>
             </tr>
             <tr class="active">
               <td><strong>Total</strong></td>
-              <td><strong>25</strong></td>
-              <td><strong>25</strong></td>
+              <td><strong>{{unidades_otros}}</strong></td>
+              <td><strong>{{metros3_otros}}</strong></td>
             </tr>
           </table>
 
