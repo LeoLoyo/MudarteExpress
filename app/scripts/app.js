@@ -51,4 +51,5 @@
 
       $urlRouterProvider.otherwise('/cotizacion');
     });
+
 })();

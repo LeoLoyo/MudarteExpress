@@ -1,6 +1,6 @@
 (function(){
   var app = angular.module('cotizacionExpressApp');
-  // var app = angular.module('Express.controllers',[]);
+
     app.controller('CotizacionCtrl', function ($scope, Cotizacion, Contenedor, Mueble, Bulto, Cliente) {
       //variables
       $scope.contenedores = []
@@ -8,14 +8,35 @@
 
       $scope.todoscontenedores = []
       $scope.todoscontenedores = null;
+      $scope.bultos = []
+      $scope.bultos = null;
 
       $scope.mueble = []
       $scope.mueble = null;
 
       $scope.contenedores_temp = Cotizacion.get();
       $scope.muebles_temp = [];
-      $scope.metros3 = 0;
-      $scope.unidades = 0;
+
+      $scope.otros_temp = [];
+      $scope.otros_temp_campo = [];
+
+      //Variables De Totales
+      $scope.metros3_contenedores = 0;
+      $scope.unidades_contenedores = 0;
+      $scope.metros3_muebles = 0;
+      $scope.unidades_muebles = 0;
+      $scope.metros3_otros = 0;
+      $scope.unidades_otros = 0;
+
+    function buscar_punto(mult_dimension,bultos){
+      for(var i = 0;i<bultos.length;i++){
+        if((bultos[i].ancho*bultos[i].largo*bultos[i].alto) ===mult_dimension){
+          return bultos[i].punto;
+        }
+      }
+      return 0;
+
+    }
 
       function recur_punto(a_query,object){
         var punto = 0,resta = 0,l=a_query.length;
@@ -80,6 +101,22 @@
         return false;
       }
 
+      function buscar_otros(ms_tmp,m){
+        var l = ms_tmp.length;
+        for(var i=0;i<l;i++){
+          if((m.mueble === ms_tmp[i].mueble) && (m.descripcion === ms_tmp[i].descripcion) && (m.ancho === ms_tmp[i].ancho) && (m.largo === ms_tmp[i].largo) && (m.alto === ms_tmp[i].alto)){
+            if(m.cantidad>0){
+                ms_tmp[i].cantidad = m.cantidad;
+                ms_tmp[i].total_punto = ms_tmp[i].punto * m.cantidad;
+            }else{
+                ms_tmp.splice(ms_tmp.indexOf(ms_tmp[i]),1);
+            }
+            return true;
+          }
+        }
+        return false;
+      }
+
       function init(contenedor){
         if(contenedor !== undefined){
           return Contenedor.all(contenedor).then(function(contenedores){
@@ -123,8 +160,8 @@
             }
         }
         $scope.contenedores_temp = cal_punto($scope.contenedores_temp, $scope.todoscontenedores);
-        $scope.metros3 = calcular_totales($scope.contenedores_temp,"punto")/10;
-        $scope.unidades = calcular_totales($scope.contenedores_temp,"unidad");
+        $scope.metros3_contenedores = calcular_totales($scope.contenedores_temp,"punto")/10;
+        $scope.unidades_contenedores = calcular_totales($scope.contenedores_temp,"unidad");
         Cotizacion.save_contenedores($scope.contenedores_temp);
         });
       };
@@ -149,31 +186,104 @@
               $scope.muebles_temp.push(mueble_temp);
           }
         }
-        console.log($scope.muebles_temp);
+        $scope.metros3_muebles = calcular_totales($scope.muebles_temp,"punto")/10;
+        $scope.unidades_muebles = calcular_totales($scope.muebles_temp,"cantidad");
       };
 
-      $scope.add_otros = function(mueble){
-        var otro_temp = {
-            // id: 1,
+      $scope.add_otros = function(mueble,dimensiones,cant,descripcion,otro){
+      var otro = {
+            id: otro.id,
             // cotizacion: 1,
             mueble: mueble.descripcion,
             descripcion: "",
-            ancho: Number(mueble.ancho),
-            largo: Number(mueble.largo),
-            alto: Number(mueble.alto),
-            cantidad: Number(uni),
-            punto: Number(mueble.punto),
-            total_punto: Number(uni*mueble.punto),
+            ancho: Number(dimensiones.ancho.ancho),
+            largo: Number(dimensiones.largo.largo),
+            alto: Number(dimensiones.alto.alto),
+            cantidad: Number(cant),
+            punto: 0,
+            total_punto: 0,
             estado: "activo"
         };
+        var mult_dimension=otro.ancho*otro.largo*otro.alto;
+
+        if(mueble.descripcion === 'Otros'){
+          otro.descripcion = descripcion;
+        }else{
+          otro.descripcion = mueble.descripcion;
+        }
+
+        otro.punto = buscar_punto(mult_dimension,$scope.bultos);
+        otro.total_punto = otro.punto * otro.cantidad;
+        if(buscar_otros($scope.otros_temp, otro)!=true){
+          if(otro.cantidad >0){
+              $scope.otros_temp.push(otro);
+          }
+        }
+        console.log($scope.otros_temp);
+        $scope.metros3_otros = calcular_totales($scope.otros_temp,"total_punto")/10;
+        $scope.unidades_otros = calcular_totales($scope.otros_temp,"cantidad");
+
 
       }
-      $scope.save_cotizacion = function(){
 
-          cal_punto($scope.contenedores_temp);
+
+      $scope.add_campo = function(){
+        $scope.otro_temp = {id:Math.floor((Math.random() * 1000) + 1)};
+        $scope.otros_temp_campo.push($scope.otro_temp);
+                // console.log($scope.otros_temp_campo);
+
       }
+      $scope.delete_campo = function(campo){
+        for(var i = 0;i<$scope.otros_temp.length;i++){
+          if($scope.otros_temp[i].id === campo.id){
+            $scope.otros_temp.splice($scope.otros_temp.indexOf($scope.otros_temp[i]),1);
+          }
+        }
+        $scope.otros_temp_campo.splice($scope.otros_temp_campo.indexOf(campo),1);
+        console.log($scope.otros_temp);
+      };
+
       angular.element('#nCotizacion').focus();
 
     });
+
+    app.filter('unique', function () {
+
+        return function (items, filterOn) {
+
+          if (filterOn === false) {
+            return items;
+          }
+
+          if ((filterOn || angular.isUndefined(filterOn)) && angular.isArray(items)) {
+            var hashCheck = {}, newItems = [];
+
+            var extractValueToCompare = function (item) {
+              if (angular.isObject(item) && angular.isString(filterOn)) {
+                return item[filterOn];
+              } else {
+                return item;
+              }
+            };
+
+            angular.forEach(items, function (item) {
+              var valueToCheck, isDuplicate = false;
+
+              for (var i = 0; i < newItems.length; i++) {
+                if (angular.equals(extractValueToCompare(newItems[i]), extractValueToCompare(item))) {
+                  isDuplicate = true;
+                  break;
+                }
+              }
+              if (!isDuplicate) {
+                newItems.push(item);
+              }
+
+            });
+            items = newItems;
+          }
+          return items;
+        };
+      });
 
 })();
