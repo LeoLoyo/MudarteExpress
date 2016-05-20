@@ -2,24 +2,26 @@
   var app = angular.module('cotizacionExpressApp');
   // var app = angular.module('Express.controllers',[]);
     app.controller('CotizacionCtrl', function ($scope, Cotizacion, Contenedor, Mueble, Bulto, Cliente) {
-
+      //variables
       $scope.contenedores = []
       $scope.contenedores = null;
 
       $scope.todoscontenedores = []
       $scope.todoscontenedores = null;
-      // var contenedores_filtro = [];
 
       $scope.mueble = []
       $scope.mueble = null;
 
-      // Function Recursiva
+      $scope.contenedores_temp = Cotizacion.get();
+      $scope.muebles_temp = [];
+      $scope.metros3 = 0;
+      $scope.unidades = 0;
+
       function recur_punto(a_query,object){
-        // console.log(a_query);
         var punto = 0,resta = 0,l=a_query.length;
         if(object.unidad>0){
           for(var j = 0;j<l;j++){
-            if(object.unidad >= a_query[j].unidad && a_query[j].contenedor === object.contenedor){
+            if(object.unidad >= a_query[j].unidad){
               punto += a_query[j].punto;
               resta = object.unidad - a_query[j].unidad;
               return punto += recur_punto(a_query,resta);
@@ -29,25 +31,22 @@
         return 0;
 
       };
-      // fin
-
-      $scope.contenedores_temp = [];
-      $scope.muebles_temp = [];
 
       function cal_punto(contenedores_temp,todos) {
-        var a = contenedores_temp;
-        for(var i = 0;i<a.length;i++){
-            a[i].punto = recur_punto(todos,a[i]);
+        for(var i = 0;i<contenedores_temp.length;i++){
+          if(todos[0].contenedor===contenedores_temp[i].contenedor){
+            contenedores_temp[i].punto = recur_punto(todos,contenedores_temp[i]);
+          }
         }
-        return a;
+        return contenedores_temp;
       };
 
-      function calcular_metro_punto(array, attr){
+      function calcular_totales(array, attr){
         var result = 0;
-        angular.forEach(array,function(value,key){
-            result += value.attr;
-        });
-        return (result/10);
+        for(var i = 0;i<array.length;i++){
+          result += array[i][attr];
+        }
+        return result;
       }
 
       function buscar_contenedor(cs_tmp,cont){
@@ -55,7 +54,6 @@
         var l = cs_tmp.length;
         for(var i=0;i<l;i++){
           if(cont.contenedor === cs_tmp[i].contenedor ){
-            // console.log(cont.unidad);
             if(cont.unidad>0){
                 cs_tmp[i].unidad = cont.unidad;
             }else{
@@ -65,13 +63,12 @@
           }
         }
         return false;
-      }
+      };
 
       function buscar_mueble(ms_tmp,m){
         var l = ms_tmp.length;
         for(var i=0;i<l;i++){
           if(m.mueble === ms_tmp[i].mueble){
-            // console.log(cont.unidad);
             if(m.cantidad>0){
                 ms_tmp[i].cantidad = m.cantidad;
             }else{
@@ -89,8 +86,6 @@
             $scope.todoscontenedores = contenedores;
 
           });
-
-
         }else{
           Contenedor.all().then(function(contenedores){
             $scope.contenedores = contenedores;
@@ -105,6 +100,7 @@
           Cliente.all().then(function(cliente){
             $scope.cliente = cliente;
           });
+
         }
       };
 
@@ -115,24 +111,22 @@
       $scope.add_contenedor = function(descripcion,uni) {
         var contenedor_temp = {
           contenedor:descripcion,
-          unidad:uni
+          unidad:uni,
+          punto : 0
         };
 
         init(descripcion).then(function(r){
 
-          if(buscar_contenedor($scope.contenedores_temp, contenedor_temp)!=true){
+        if(!buscar_contenedor($scope.contenedores_temp, contenedor_temp)){
             if(contenedor_temp.unidad>0){
-                $scope.contenedores_temp.push(contenedor_temp);
-
+              $scope.contenedores_temp.push(contenedor_temp);
             }
-          }
-          $scope.contenedores_temp = cal_punto($scope.contenedores_temp, $scope.todoscontenedores);
-          // $scope.contenedores_temp = cal_punto(array, $scope.todoscontenedores);
-          // console.log(calcular_metro_punto($scope.contenedores_temp,"punto"));
-          console.log($scope.contenedores_temp);
+        }
+        $scope.contenedores_temp = cal_punto($scope.contenedores_temp, $scope.todoscontenedores);
+        $scope.metros3 = calcular_totales($scope.contenedores_temp,"punto")/10;
+        $scope.unidades = calcular_totales($scope.contenedores_temp,"unidad");
+        Cotizacion.save_contenedores($scope.contenedores_temp);
         });
-
-
       };
 
       $scope.add_mueble = function(mueble,uni) {
@@ -166,18 +160,14 @@
 
     });
 
-    app.controller('ResumenCtrl', function ($scope) {
-        $scope.contenedores = [{
-                                contenedores:"Canasto",
-                                cantidadesCon:"10",
-                                metrosCon:"15"
-                                },
-                                {
-                                  contenedores:"Canasto 2",
-                                  cantidadesCon:"20",
-                                  metrosCon:"25"
-                              }];
-      console.log($scope.contenedores);
-    });
+    // app.controller('ResumenCtrl', function ($scope, Cotizacion) {
+    //
+    //     $scope.contenedores = [];
+    //     $scope.contenedores = null;
+    //     $scope.contenedores = Cotizacion.get();
+    //
+    //
+    //   console.log($scope.contenedores);
+    // });
 
 })();

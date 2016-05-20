@@ -14,10 +14,6 @@
     ]);
     app.config(function($stateProvider, $urlRouterProvider){
       $stateProvider
-      .state('app',{
-        url:'/',
-        templateUrl:'index.html'
-      })
       .state('login',{
         url:'/login',
         views:{
@@ -27,6 +23,13 @@
           }
         }
       })
+
+      .state('app', {
+        url: '/',
+        abstract: true,
+        templateUrl: 'index.html'
+      })
+
       .state('cotizacion',{
         url:'/cotizacion',
         views:{
@@ -36,16 +39,16 @@
           }
         }
       })
-      .state('resumen',{
-        url:'/resumen',
-        views:{
-          'maincontent':{
-            templateUrl:'/views/resumen.html',
-            controller:'ResumenCtrl'
-          }
-        }
-      })
+      // .state('resumen',{
+      //   url:'/resumen',
+      //   views:{
+      //     'maincontent':{
+      //       templateUrl:'/views/resumen.html',
+      //       controller:'ResumenCtrl'
+      //     }
+      //   }
+      // })
 
-      $urlRouterProvider.otherwise('/');
+      $urlRouterProvider.otherwise('/cotizacion');
     });
 })();
