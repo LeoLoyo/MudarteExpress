@@ -98,16 +98,40 @@
 
     app.controller('ResumenCtrl', function ($scope) {
         $scope.contenedores = [{
-                                contenedores:"Canasto",
-                                cantidadesCon:"10",
-                                metrosCon:"15"
+                                descripcion:"Canasto",
+                                cantidad:"10",
+                                punto:"15"
                                 },
                                 {
-                                  contenedores:"Canasto 2",
-                                  cantidadesCon:"20",
-                                  metrosCon:"25"
+                                  descripcion:"Canasto 2",
+                                  cantidad:"20",
+                                  punto:"25"
                               }];
       console.log($scope.contenedores);
+      $scope.muebles = [{
+                                descripcion:"Hola",
+                                cantidad:"10",
+                                punto:"15"
+                                },
+                                {
+                                  descripcion:"Chao",
+                                  cantidad:"20",
+                                  punto:"25"
+                              }];
+
+      console.log($scope.muebles);
+      $scope.otros = [{
+                                descripcion:"Otro 1",
+                                cantidad:"10",
+                                punto:"15"
+                                },
+                                {
+                                  descripcion:"Otro 2",
+                                  cantidad:"20",
+                                  punto:"25"
+                              }];
+
+      console.log($scope.otros);
     });
 
 })();
