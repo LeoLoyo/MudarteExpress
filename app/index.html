@@ -58,34 +58,31 @@
 
 <div id="wrapper" class="toggled">
 
-    <!-- Sidebar -->
-    <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <li class="sidebar-brand">
-                <a href="#" tabindex="-1">
-                    App cotización express
-                </a>
-            </li>
-            <li>
-                <a tabindex="-1" href="/#/cotizacion">Cotización</a>
-            </li>
-            <li>
-                <a tabindex="-1" href="/#/resumen">Resumen</a>
-            </li>
-            <li>
-                <a tabindex="-1" href="/#/login">Login</a>
-            </li>
-        </ul>
-        <p class="pie">Derechos reservados @2016</p>
-    </div>
-    <!-- /#sidebar-wrapper -->
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper" ng-init="checked = true">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#" tabindex="-1">
+                        App cotización express
+                    </a>
+                </li>
+                <li>
+                    <a tabindex="-1" ng-click="checked=true" >Cotización</a>
+                </li>
+                <li>
+                    <a tabindex="-1" ng-click="checked=false">Resumen</a>
+                </li>
+                <li>
+                    <a tabindex="-1" href="/#/login">Login</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
 
-    <!-- Page Content -->
-    <div id="page-content-wrapper">
-        <div class="container-fluid">
-            <div ui-view="maincontent">
-
-            </div>
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container">
+                <div ui-view name="maincontent"></div>
         </div>
     </div>
     <!-- /#page-content-wrapper -->
