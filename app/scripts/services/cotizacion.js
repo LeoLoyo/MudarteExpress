@@ -21,11 +21,9 @@
     app.service('Contenedor', function ($http) {
       var self = this;
       self.all = function(contenedor){
-        var url = "http://192.168.0.114:8000/api/v1/contenedordescripcion/?format=json"
-        // var url = "/scripts/contenedores.json";
+        var url = "http://localhost:8000/api/v1/contenedordescripcion/?format=json"
         if(contenedor !== undefined){
-          url = "http://192.168.0.114:8000/api/v1/contenedor/?format=json&contenedor="+contenedor;
-          // url = "/scripts/contenedorestodos.json";
+          url = "http://localhost:8000/api/v1/contenedor/?format=json&contenedor="+contenedor;
         }
         return $http.get(url).then(function(data){
           // console.log("Contenedores :" + data.data.length);
@@ -37,7 +35,7 @@
     app.service('Mueble', function ($http) {
       var self = this;
       self.all = function(){
-        return $http.get("http://192.168.0.114:8000/api/v1/mueble/?format=json").then(function(data){
+        return $http.get("http://localhost:8000/api/v1/mueble/?format=json").then(function(data){
           console.log("Mueble :" + data.data.length);
           return data.data;
         });
@@ -50,7 +48,7 @@
       var object = {};
 
       self.all = function(){
-        return $http.get("http://192.168.0.114:8000/api/v1/bulto/?format=json").then(function(data){
+        return $http.get("http://localhost:8000/api/v1/bulto/?format=json").then(function(data){
           console.log("Bultos :" + data.data.length);
           collection = data.data;
           return collection
@@ -70,7 +68,7 @@
     app.service('Cliente', function ($http) {
       var self = this;
       self.all = function(){
-        return $http.get("http://192.168.0.114:8000/api/v1/cliente/?format=json").then(function(data){
+        return $http.get("http://localhost:8000/api/v1/cliente/?format=json").then(function(data){
           console.log(data.data[0]);
           return data.data[0];
         });
