@@ -1,4 +1,5 @@
-(function() {
+// (function() {
+var session = false;
   'use strict';
   var app = angular.module('cotizacionExpressApp', [
     'Express.services',
@@ -39,17 +40,10 @@
           }
         }
       })
-      // .state('resumen',{
-      //   url:'/resumen',
-      //   views:{
-      //     'maincontent':{
-      //       templateUrl:'/views/resumen.html',
-      //       controller:'ResumenCtrl'
-      //     }
-      //   }
-      // })
-
-      $urlRouterProvider.otherwise('/cotizacion');
+      $urlRouterProvider.otherwise('/login');
+    });
+    app.constant('setting',{
+      "url":"localhost:8000/api/v1/"
     });
 
-})();
+// })();

@@ -2,53 +2,64 @@
   'use strict';
   var app = angular.module('Express.services',[]);
 
+    app.service('Auth', function($http, setting){
+      var self = this;
+      self.valid = function(user){
+        if(user.name === 'admin' && user.pass === 'admin'){
+            return true;
+        }else{
+          return false;
+        }
+      };
+    })
+
     app.service('Cotizacion', function ($http) {
       var contenedores = [];
       var muebles = [];
       var otros = [];
 
-    return{
-      get:function(){
-        return contenedores;
-      },
-      save_contenedores:function(array){
-        contenedores = array;
-        return true;
+      return{
+        get:function(){
+          return contenedores;
+        },
+        save_contenedores:function(array){
+          contenedores = array;
+          return true;
+        }
+
       }
-  }
     });
 
-    app.service('Contenedor', function ($http) {
+    app.service('Contenedor', function ($http, setting) {
       var self = this;
       self.all = function(contenedor){
-        var url = "http://localhost:8000/api/v1/contenedordescripcion/?format=json"
+        var url = setting.url + "contenedordescripcion/?format=json"
         if(contenedor !== undefined){
-          url = "http://localhost:8000/api/v1/contenedor/?format=json&contenedor="+contenedor;
+          url = setting.url +"contenedor/?format=json&contenedor="+contenedor;
         }
         return $http.get(url).then(function(data){
-          // console.log("Contenedores :" + data.data.length);
           return data.data;
         });
       }
     });
 
-    app.service('Mueble', function ($http) {
+    app.service('Mueble', function ($http, setting) {
       var self = this;
       self.all = function(){
-        return $http.get("http://localhost:8000/api/v1/mueble/?format=json").then(function(data){
+        return $http.get(setting.url+"mueble/?format=json").then(function(data){
           console.log("Mueble :" + data.data.length);
           return data.data;
         });
       }
     });
 
-    app.service('Bulto', function ($http) {
+    app.service('Bulto', function ($http, setting) {
       var self = this;
       var collection = [];
       var object = {};
 
       self.all = function(){
-        return $http.get("http://localhost:8000/api/v1/bulto/?format=json").then(function(data){
+        return $http.get(setting.url+"bulto/?format=json").then(function(data){
           console.log("Bultos :" + data.data.length);
           collection = data.data;
           return collection
@@ -65,10 +76,10 @@
         };
       });
 
-    app.service('Cliente', function ($http) {
+    app.service('Cliente', function ($http, setting) {
       var self = this;
       self.all = function(){
-        return $http.get("http://localhost:8000/api/v1/cliente/?format=json").then(function(data){
+        return $http.get(setting.url+"cliente/?format=json").then(function(data){
           console.log(data.data[0]);
           return data.data[0];
         });

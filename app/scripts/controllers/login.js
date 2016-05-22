@@ -1,18 +1,17 @@
 (function(){
   var app = angular.module('cotizacionExpressApp');
-    app.controller('LoginCtrl', function ($scope) {
-      var array = [
-        {codigo:1, descripcion:"Cama KingSize",metros:10},
-        {codigo:2, descripcion:"Cama QueenSize",metros:8}
-      ];
-      $scope.muebles  = array;
-    setTimeout(function(){
-      console.log("funcionando");
-      $scope.$apply(function(){
-        $scope.muebles.push({codigo:3, descripcion:"Cama Prueba",metros:7});
-      });
+    app.controller('LoginCtrl', function ($scope, $state, Auth) {
+      // console.log($state.data.current.session);
+      $scope.ingresar = function(user){
+          if(Auth.valid(user)){
 
-    },5000);
+              $state.go('cotizacion');
+          }else{
+              console.log("usuario invalido");
+          }
+
+      }
+
     angular.element('#cUsuario').focus();
   });
 })();

@@ -69,11 +69,12 @@
                 <li>
                     <a tabindex="-1" href="/#/" >Inicio</a>
                 </li>
-                <li ng-class="{hidden:1=1}">
-                    <a tabindex="-1" ng-click="checked=true" data="{{location.path()}}" ng-model="">Cotización</a>
+                <li >
+                    <!-- <a tabindex="-1" ng-click="checked=true" data="{{location.path()}}" ng-model="">Cotización</a> -->
+                    <a ng-click="checked=true" ui-sref="/cotizacion">Cotización</a>
                 </li>
                 <li>
-                    <a ng-show="{false}" tabindex="-1" ng-click="checked=false">Resumen</a>
+                    <a ng-click="checked=false">Resumen</a>
                 </li>
             </ul>
             <div class="pie">Derechos reservados @2016</div>
@@ -111,7 +112,6 @@
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 <script src="scripts/app.js"></script>
-<script src="scripts/services/userservices.js"></script>
 <script src="scripts/services/cotizacion.js"></script>
 <script src="scripts/controllers/login.js"></script>
 <script src="scripts/controllers/cotizacion.js"></script>
