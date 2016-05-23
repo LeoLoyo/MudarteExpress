@@ -41,11 +41,11 @@
 </ul>
 <ul class="nav navbar-nav navbar-right">
     <li class="dropdown">
-        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" tabindex="-1">Login <span class="caret"></span></a>
+        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" tabindex="-1">Login <span ng-if="session">{{cotizacion.responsable.name}}</span><span class="caret"></span></a>
         <ul class="dropdown-menu">
-            <li><a href="/#/login">Iniciar sección</a></li>
-            <li role="separator" class="divider"></li>
-            <li><button ng-click="logout()">Cerrar sección</button></li>
+            <!-- <li><a href="/#/login">Iniciar sección</a></li> -->
+            <!-- <li role="separator" class="divider"></li> -->
+            <li><a  ng-click="logout()">Cerrar sección</a></li>
         </ul>
     </li>
 </ul>
@@ -71,6 +71,9 @@
                 </li>
                 <li>
                     <a class="btnsCotizacion hidden" ng-click="checked=false">Resumen</a>
+                </li>
+                <li>
+                    <a class="btnsCotizacion hidden" ng-show="checked" ng-click="limpiar()">Limpiar</a>
                 </li>
             </ul>
             <div class="pie">Derechos reservados @2016</div>

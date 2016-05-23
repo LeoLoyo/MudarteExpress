@@ -111,18 +111,19 @@ form.formulario {
 .btnSeleccion:hover {
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.26);
 }
-.btnSeleccion span {
+.btnSeleccion span{
   flex: 70%;
   padding: 3px;
   vertical-align: middle!important;
 }
+
 .btnSeleccion select {
   flex: 30%;
   padding: 3px;
   float: right;
   border-color: transparent;
   color: #777;
-  font-size: 23px;
+  /*font-size: 23px;*/
 }
 .btnSeleccionado {
   background: rgb(63,81,181);
