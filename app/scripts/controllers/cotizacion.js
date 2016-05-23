@@ -15,7 +15,6 @@
       $scope.mueble = null;
 
       $scope.contenedores_temp = [];
-
       $scope.muebles_temp = [];
 
       $scope.otros_temp = [];
