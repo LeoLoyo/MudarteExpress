@@ -1,4 +1,5 @@
-(function() {
+// (function() {
+var session = false;
   'use strict';
   var app = angular.module('cotizacionExpressApp', [
     'Express.services',
@@ -14,10 +15,6 @@
     ]);
     app.config(function($stateProvider, $urlRouterProvider){
       $stateProvider
-      .state('app',{
-        url:'/',
-        templateUrl:'index.html'
-      })
       .state('login',{
         url:'/login',
         views:{
@@ -27,6 +24,12 @@
           }
         }
       })
+
+      .state('app', {
+        url: '/',
+        templateUrl: 'index.html'
+      })
+
       .state('cotizacion',{
         url:'/cotizacion',
         views:{
@@ -36,16 +39,12 @@
           }
         }
       })
-      .state('resumen',{
-        url:'/resumen',
-        views:{
-          'maincontent':{
-            templateUrl:'/views/resumen.html',
-            controller:'ResumenCtrl'
-          }
-        }
-      })
-
-      $urlRouterProvider.otherwise('/');
+      $urlRouterProvider.otherwise('/login');
     });
-})();
+    app.constant('setting',{
+      // "url":"http://localhost:8000/api/v1/"
+      "url":"http://192.168.0.114:8000/api/v1/",
+      "user":{"name":"admin","pass":"admin"}
+    });
+
+// })();

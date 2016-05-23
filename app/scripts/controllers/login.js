@@ -1,18 +1,30 @@
 (function(){
   var app = angular.module('cotizacionExpressApp');
-    app.controller('LoginCtrl', function ($scope) {
-      var array = [
-        {codigo:1, descripcion:"Cama KingSize",metros:10},
-        {codigo:2, descripcion:"Cama QueenSize",metros:8}
-      ];
-      $scope.muebles  = array;
-    setTimeout(function(){
-      console.log("funcionando");
-      $scope.$apply(function(){
-        $scope.muebles.push({codigo:3, descripcion:"Cama Prueba",metros:7});
-      });
+    app.controller('LoginCtrl', function ($rootScope, $scope, $state, Auth,setting) {
+      // console.log($state.data.current.session);
+      $('.btnsCotizacion').addClass('hidden');
+      $rootScope.session = session;
+      $scope.ingresar = function(user,pass){
+          if(Auth.valid(user)){
+            $scope.messages ='Bienvenido';
 
-    },5000);
+              setTimeout(function(){
+                $state.go('cotizacion');
+                session=true;
+                $('.btnsCotizacion').removeClass('hidden');
+                $('.dropdown-toggle').text(setting.user.name).append('<span class="caret"></span>');
+              },1000);
 
+          }else{
+              $scope.messages ='Usuario invalido';
+              // $('.spanErrorUser').removeClass('hidden');
+          }
+      }
+      $rootScope.logout = function(){
+        session=false;
+        $('.dropdown-toggle').text('Login').append('<span class="caret"></span>');
+        $state.go('login');
+      }
+    angular.element('#cUsuario').focus();
   });
 })();

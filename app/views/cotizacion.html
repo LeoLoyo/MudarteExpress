@@ -1,105 +1,121 @@
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Cotización express</h1>
-                <form>
-                    <div class="row">
-                    <div class="form-group col-md-6">
-                        <label for="numerocotizacion">N° cotización:</label>
-                        <input type="text" class="form-control" id="numerocotizacion" placeholder="e.g: 0001">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="responsable">Nombre del responsable:</label>
-                        <select name="" id="responsable" class="form-control">
-                            <option value="1">seleccione</option>
-                            <option value="2">item 1</option>
-                            <option value="3">item 2</option>
-                        </select>
-                    </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label for="id_cliente">Nombre del cliente:</label>
-                            <select name="" id="id_cliente" class="form-control">
-                            <option value="1">seleccione</option>
-                            <option value="2">item 1</option>
-                            <option value="3">item 2</option>
-                        </select>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="id_telefono">Telefono del cliente:</label>
-                            <input type="number" id="id_telefono" class="form-control" placeholder="e.g: 000000000">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label for="id_email">Email del cliente:</label>
-                            <input type="email" class="form-control" placeholder="e.g: correo@email.com">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="id_dieccion">Dirección del cliente:</label>
-                            <textarea name="direccion" id="id_direccion" cols="1" rows="1" class="form-control" placeholder="Dirección del cliente"></textarea>
-                        </div>
-                    </div>
-                    <legend></legend>
-                    <h2>Contenedores</h2>
-                        <div ng-repeat="c in contenedores" class="btnSeleccion"  ng-class="{btnSeleccionado:n.num>0}">
-                            <!-- <div ng-repeat="c in [{contenedor:'canasto'}]" class="btnSeleccion"  ng-class="{btnSeleccionado:cant.value>0}"> -->
-                            <span>{{c.contenedor}}</span>
+<div ng-show="checked">
+  <div class="row">
+      <div class="col-md-12">
+          <h1>Cotización express</h1>
+          <form class="formulario">
+              <div class="row hidden">
+              <div class="form-group col-sm-6 col-md-4">
+                  <label for="numerocotizacion">N° cotización:</label>
+                  <input ng-focus="scrollAnime($event)" ng-model="cotizacion.numero" id="nCotizacion" type="text" class="form-control" id="numerocotizacion" placeholder="e.g: 0001">
+              </div>
+              <div class="form-group col-sm-6 col-md-4">
+                  <label for="responsable">Nombre del responsable:</label>
+                  <select ng-focus="scrollAnime($event)" ng-model="cotizacion.responsable" name="" id="responsable" class="form-control">
+                      <option value="{{cotizacion.responsable}}" selected="selected">{{cotizacion.responsable.name}}</option>
+                  </select>
+              </div>
+                <div class="form-group col-sm-6 col-md-4">
+                 <label for="id_cliente">Nombre del cliente: </label>
+                 <input type="text" ng-model="cliente.nombre" class="form-control" id="id_cliente">
+             </div>
+             <div class="form-group col-sm-6 col-md-4">
+                 <label for="id_telefono">Telefono del cliente:</label>
+                 <input ng-focus="scrollAnime($event)" type="number" id="id_telefono" class="form-control" placeholder="e.g: 000000000" ng-model="cliente.telefono">
+             </div>
 
-                            <select ng-model="n" ng-options="n.num for n in [{num:0},{num:1},{num:2},{num:3}]" ng-change="add_contenedor(c.contenedor,n.num)">
-                            </select>
-                        </div>
-                        <br><br>
-                        <legend></legend>
-                        <h2>Muebles</h2>
-                        <div class="btnSeleccion" ng-class="{btnSeleccionado:cant2>0}">
-                            <span>Biblioteca 60cm</span>
+             <div class="form-group col-sm-6 col-md-4">
+                 <label for="id_email">Email del cliente:</label>
+                 <input ng-focus="scrollAnime($event)" type="email" class="form-control" placeholder="e.g: correo@email.com" id="id_email" ng-model="cliente.email">
+             </div>
+             <div class="form-group col-sm-6 col-md-4">
+                 <label for="id_dieccion">Dirección del cliente:</label>
+                 <textarea ng-focus="scrollAnime($event)" ng-model="cliente.direccion" id="id_direccion" cols="1" rows="1" class="form-control" placeholder="Dirección del cliente"></textarea>
+             </div>
+             <legend></legend>
+              </div>
 
-                            <select ng-model="cant2" id="cant2" ng-init="cant2 = [0]">
-                                <option selected value="0">0</option>
-                                <option ng-repeat="n in [1,2]">{{n}}</option>                            </select>
-                        </div>
-                        <br><br>
-                        <legend></legend>
-                        <h2>Otros <button class="btn btn-default">+</button></h2>
-                        <div class="row">
-                           <div class="form-group col-md-4">
-                            <label for="">Descripción</label>
-                            <select name="cant" id="" class="form-control">
-                                <option selected value="0">Sofá </option>
-                                <option value="1">Sofá</option>
-                                <option value="2">item 2</option>
-                                <option value="3">item 3</option>
-                            </select>
-                            <input type="text" class="form-control hidden">
-                            </div>
-                            <div class="form-group col-md-4">
-                            <label for="">Cantidad</label>
-                            <select name="cant" id="" class="form-control">
-                                <option selected value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
-                            </div>
-                            <div class="form-group col-md-4">
-                            <label for="">Dimensiones</label>
-                            <input type="text" class="form-control">
-                            </div>
-                        </div>
-                        <br><br>
-                        <legend></legend>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <br>
-                                <button type="submit" class="btn btn-success verResumen">Ver resumen</button>
-                            </div>
-                            <div class="col-md-3 col-md-offset-5">
-                                <label for="">Toatl (m<sup>3</sup>)</label>
-                                <input type="number" class="form-control">
-                            </div>
-                        </div>
+              <h2>Contenedores</h2>
+                  <div ng-repeat="c in contenedores" class="btnSeleccion"  ng-class="{btnSeleccionado:n.num>0}">
+                      <span>{{c.contenedor}}</span>
+                      <select ng-focus="scrollAnime($event)" ng-model="n" ng-options="n.num for n in [{num:1},{num:2},{num:3},{num:4},{num:5},{num:6},{num:7},{num:8},{num:9},{num:10},{num:11},{num:12},{num:13},{num:14},{num:15}]" ng-change="add_contenedor(c.contenedor,n.num)">
+                      <!-- <select ng-focus="scrollAnime($event)" ng-model="n" ng-options="n.num for n in cantidades" ng-change="add_contenedor(c.contenedor,n.num)"> -->
+                          <option value="">0</option>
+                      </select>
+                  </div>
+                  <br><br>
+                  <legend></legend>
+                  <div class="row">
+                      <div class="col-md-12">
+                          <h2>Muebles</h2>
+                          <input type="search" placeholder="Buscar muebles" class="form-control buscarMueble hidden" ng-model="buscarMueble">
+                      </div>
+                  </div>
 
-                </form>
-            </div>
-        </div>
+
+                  <div ng-repeat="c in muebles | filter: true | filter: buscarMueble" class="btnSeleccion" ng-class="{btnSeleccionado:m.num>0}">
+                      <span>{{c.descripcion}}</span>
+
+                      <select ng-focus="scrollAnime($event)" ng-model="m" ng-options="m.num for m in [{num:1},{num:2},{num:3},{num:4},{num:5},{num:6},{num:7},{num:8},{num:9},{num:10},{num:11},{num:12},{num:13},{num:14},{num:15}]" ng-change="add_mueble(c,m.num)">
+                          <option value="">0</option>
+                      </select>
+                  </div>
+                  <br><br>
+                  <legend></legend>
+                  <h2>Otros <button class="btn btn-default" ng-click="add_campo()">+</button></h2>
+                  <div ng-repeat="campo in otros_temp_campo">
+                    <form name="form_otro">
+                      <div class="row">
+                          <div class="form-group col-md-3">
+                              <label for="">Descripción</label>
+                              <select class="form-control"  ng-disabled="cant>0"ng-focus="scrollAnime($event)" ng-model="otro" ng-options="m.descripcion for m in muebles|filter: false"></select>
+                              <input type="text" ng-model="descripcion" class="form-control" ng-class="{hidden:otro.descripcion !='Otros'}">
+                          </div>
+
+                          <div class="form-group col-md-2">
+                          <label for="">Ancho</label>
+                          <select class="form-control " ng-disabled="cant>0"ng-model="dimesion.ancho" ng-focus="scrollAnime($event)" ng-options="b.ancho for b in bultos | unique:'ancho' |orderBy:'ancho'"></select>
+                          </div>
+
+                          <div class="form-group col-md-2">
+                          <label for="">Largo</label>
+                          <select class="form-control"  ng-disabled="cant>0"ng-focus="scrollAnime($event)" ng-model="dimesion.largo" ng-options="b.largo for b in bultos | unique:'largo' |orderBy:'largo'"></select>
+                          </div>
+
+                          <div class="form-group col-md-2">
+                          <label for="">Alto</label>
+                          <select class="form-control"  ng-disabled="cant>0"ng-focus="scrollAnime($event)" ng-model="dimesion.alto" ng-options="b.alto for b in bultos | unique:'alto'|orderBy:'alto'"></select>
+                          </div>
+
+                          <div class="form-group col-md-2">
+                          <label for="">Cantidad</label>
+                          <select ng-model="cant" class="form-control" ng-change="add_otros(otro,dimesion,cant.num,descripcion,campo)" ng-options="cant.num for cant in [{num:1},{num:2},{num:3},{num:4},{num:5},{num:6},{num:7},{num:8},{num:9},{num:10},{num:11},{num:12},{num:13},{num:14},{num:15}]">
+                              <option value="">0</option>
+                          </select>
+                          </div>
+                          <div class="form-group col-md-1">
+                          <a ng-click="delete_campo(campo)" class="glyphicon glyphicon-remove" style="font-size:25px;margin-top:30px;cursor:pointer;"></a>
+                          </div>
+                      </div>
+
+                    </form>
+
+                  </div>
+
+                  <br><br>
+                  <legend></legend>
+                  <div class="row">
+                      <div class="col-md-4">
+
+                          <!-- <button type="submit" class="btn btn-success verResumen">Ver resumen</button> -->
+                      </div>
+                      <div class="col-md-3 col-md-offset-5">
+                          <!-- <label for="">Toatl (m<sup>3</sup>)</label>
+                          <input  type="number" class="form-control"> -->
+                      </div>
+                  </div><br><br><br>
+
+          </form>
+      </div>
+  </div>
+</div>
+<div ng-hide="checked" ng-include='"views/resumen.html"'></div>
