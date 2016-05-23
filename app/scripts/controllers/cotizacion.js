@@ -1,7 +1,7 @@
 (function(){
   var app = angular.module('cotizacionExpressApp');
 
-    app.controller('CotizacionCtrl', function ($scope, Cotizacion, Contenedor, Mueble, Bulto, Cliente) {
+    app.controller('CotizacionCtrl', function ($scope, Cotizacion, Contenedor, Mueble, Bulto, Cliente, $http,setting) {
       //variables
       $scope.contenedores = []
       $scope.contenedores = null;
@@ -14,7 +14,8 @@
       $scope.mueble = []
       $scope.mueble = null;
 
-      $scope.contenedores_temp = Cotizacion.get();
+      $scope.contenedores_temp = [];
+
       $scope.muebles_temp = [];
 
       $scope.otros_temp = [];
@@ -152,7 +153,6 @@
         };
 
         init(descripcion).then(function(r){
-
         if(!buscar_contenedor($scope.contenedores_temp, contenedor_temp)){
             if(contenedor_temp.unidad>0){
               $scope.contenedores_temp.push(contenedor_temp);
@@ -161,7 +161,7 @@
         $scope.contenedores_temp = cal_punto($scope.contenedores_temp, $scope.todoscontenedores);
         $scope.metros3_contenedores = calcular_totales($scope.contenedores_temp,"punto")/10;
         $scope.unidades_contenedores = calcular_totales($scope.contenedores_temp,"unidad");
-        Cotizacion.save_contenedores($scope.contenedores_temp);
+        // Cotizacion.save_contenedores($scope.contenedores_temp);
         });
       };
 
@@ -242,11 +242,23 @@
         console.log($scope.otros_temp);
       };
 
-      $scope.save = function(cotizacion, cliente){
-        console.log(cotizacion);
-        console.log(cliente);
-
-        Cotizacion.save($scope.contenedores_temp,$scope.muebles_temp,$scope.otros_temp,cotizacion,cliente);
+      $scope.save = function(cot, cliente){
+        var total_cantidad = $scope.unidades_contenedores + $scope.unidades_muebles + $scope.unidades_otros;
+        var total_m3 = $scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros;
+        var cotizacion = {
+          numero_cotizacion:cot.numero,
+          cliente:1,
+          responsable:cot.responsable,
+          total_cantidad:total_cantidad,
+          total_m3:total_m3,
+          estado:'activo'
+        };
+        Cotizacion.save(cotizacion).then(function(result){
+          var id_cotizacion = result.data.id;
+          Cotizacion.save_contenedores($scope.contenedores_temp,id_cotizacion);
+          },function(e){
+          alert("error");
+        });
 
       }
 
