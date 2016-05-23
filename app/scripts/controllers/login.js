@@ -9,6 +9,7 @@
 
               setTimeout(function(){
                 $state.go('cotizacion');
+                session=true;
                 $('.btnsCotizacion').removeClass('hidden');
                 $('.dropdown-toggle').text(user.name).append('<span class="caret"></span>');
               },1000);
@@ -17,6 +18,10 @@
               $scope.messages ='Usuario invalido';
               // $('.spanErrorUser').removeClass('hidden');
           }
+      }
+      $scope.logout = function(){
+        session=false;
+        $state.go('login');
       }
     angular.element('#cUsuario').focus();
   });
