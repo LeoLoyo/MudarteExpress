@@ -5,7 +5,8 @@
     app.service('Auth', function($http, setting){
       var self = this;
       self.valid = function(user){
-        if(user.name === 'admin' && user.pass === 'admin'){
+        // $http.get(setting.url).then(function(){}).catch(function(){})
+        if(user.name === setting.user.name && user.pass === setting.user.pass){
             return true;
         }else{
           return false;

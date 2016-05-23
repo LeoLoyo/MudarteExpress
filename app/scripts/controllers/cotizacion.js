@@ -3,9 +3,10 @@
 
     app.controller('CotizacionCtrl', function ($scope, Cotizacion, Contenedor, Mueble, Bulto, Cliente, $http,setting) {
       //variables
+
       $scope.cotizacion = {
         numero:'123456',
-        responsable:1
+        responsable:{id:1,name:setting.user.name}
       };
       $scope.contenedores = []
       $scope.contenedores = null;
@@ -249,7 +250,7 @@
           var cotizacion = {
             numero_cotizacion:cot.numero,
             cliente:1,
-            responsable:cot.responsable,
+            responsable:cot.responsable.id,
             total_cantidad:total_cantidad,
             total_m3:total_m3,
             estado:'activo'

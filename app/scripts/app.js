@@ -45,7 +45,8 @@ var session = false;
     });
     app.constant('setting',{
       // "url":"http://localhost:8000/api/v1/"
-      "url":"http://192.168.0.114:8000/api/v1/"
+      "url":"http://192.168.0.114:8000/api/v1/",
+      "user":{"name":"admin","pass":"admin"}
     });
 
 // })();

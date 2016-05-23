@@ -3,7 +3,7 @@
       <div class="col-md-12">
           <h1>Cotización express</h1>
           <form class="formulario">
-              <div class="row">
+              <div class="row hidden">
               <div class="form-group col-sm-6 col-md-4">
                   <label for="numerocotizacion">N° cotización:</label>
                   <input ng-focus="scrollAnime($event)" ng-model="cotizacion.numero" id="nCotizacion" type="text" class="form-control" id="numerocotizacion" placeholder="e.g: 0001">
@@ -11,8 +11,7 @@
               <div class="form-group col-sm-6 col-md-4">
                   <label for="responsable">Nombre del responsable:</label>
                   <select ng-focus="scrollAnime($event)" ng-model="cotizacion.responsable" name="" id="responsable" class="form-control">
-                      <option value="0">seleccione</option>
-                      <option value="1">Carlos Carmona</option>
+                      <option value="{{cotizacion.responsable}}" selected="selected">{{cotizacion.responsable.name}}</option>
                   </select>
               </div>
                 <div class="form-group col-sm-6 col-md-4">
@@ -32,8 +31,9 @@
                  <label for="id_dieccion">Dirección del cliente:</label>
                  <textarea ng-focus="scrollAnime($event)" ng-model="cliente.direccion" id="id_direccion" cols="1" rows="1" class="form-control" placeholder="Dirección del cliente"></textarea>
              </div>
+             <legend></legend>
               </div>
-              <legend></legend>
+
               <h2>Contenedores</h2>
                   <div ng-repeat="c in contenedores" class="btnSeleccion"  ng-class="{btnSeleccionado:n.num>0}">
                       <span>{{c.contenedor}}</span>

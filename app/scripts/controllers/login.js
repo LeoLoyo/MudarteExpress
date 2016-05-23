@@ -5,13 +5,17 @@
       $('.btnsCotizacion').addClass('hidden');
       $scope.ingresar = function(user,pass){
           if(Auth.valid(user)){
+            $scope.messages ='Bienvenido';
 
-              $state.go('cotizacion');
-              $('.btnsCotizacion').removeClass('hidden');
-              $('.dropdown-toggle').text(user.name).append('<span class="caret"></span>');
+              setTimeout(function(){
+                $state.go('cotizacion');
+                $('.btnsCotizacion').removeClass('hidden');
+                $('.dropdown-toggle').text(user.name).append('<span class="caret"></span>');
+              },1000);
+
           }else{
-              console.log('Usuario invalido');
-              $('.spanErrorUser').removeClass('hidden');
+              $scope.messages ='Usuario invalido';
+              // $('.spanErrorUser').removeClass('hidden');
           }
       }
     angular.element('#cUsuario').focus();
