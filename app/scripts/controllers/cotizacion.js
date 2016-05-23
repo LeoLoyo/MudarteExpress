@@ -14,7 +14,7 @@
       $scope.mueble = []
       $scope.mueble = null;
 
-      $scope.contenedores_temp = Cotizacion.get();
+      //$scope.contenedores_temp = Cotizacion.get();
       $scope.muebles_temp = [];
 
       $scope.otros_temp = [];
