@@ -20,6 +20,7 @@
           }
       }
       $scope.logout = function(){
+        alert("asdasd");
         session=false;
         $state.go('login');
       }

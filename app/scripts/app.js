@@ -27,8 +27,9 @@ var session = false;
 
       .state('app', {
         url: '/',
-        abstract: true,
-        templateUrl: 'index.html'
+        // abstract: true,
+        templateUrl: 'index.html',
+        controller:'LoginCtrl'
       })
 
       .state('cotizacion',{

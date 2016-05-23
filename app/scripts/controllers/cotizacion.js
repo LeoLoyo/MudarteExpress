@@ -44,13 +44,11 @@
 
       function recur_punto(a_query,object){
         var punto = 0,resta = angular.copy(object),l=a_query.length;
-        // console.log(object.unidad);
         if(object.unidad>0){
           for(var j = 0;j<l;j++){
             if(object.unidad >= a_query[j].unidad){
               punto += a_query[j].punto;
               resta.unidad = object.unidad - a_query[j].unidad;
-              console.log(resta);
               return punto += recur_punto(a_query,resta);
             }
 
