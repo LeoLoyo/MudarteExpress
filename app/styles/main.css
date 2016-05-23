@@ -119,6 +119,7 @@ form.formulario {
   float: right;
   border-color: transparent;
   color: #777;
+  font-size: 23px;
 }
 .btnSeleccionado {
   background: rgb(63,81,181);
