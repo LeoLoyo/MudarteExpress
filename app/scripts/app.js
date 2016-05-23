@@ -43,7 +43,8 @@ var session = false;
       $urlRouterProvider.otherwise('/login');
     });
     app.constant('setting',{
-      "url":"localhost:8000/api/v1/"
+      // "url":"http://localhost:8000/api/v1/"
+      "url":"http://192.168.0.114:8000/api/v1/"
     });
 
 // })();
