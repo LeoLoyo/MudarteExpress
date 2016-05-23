@@ -2,28 +2,23 @@
   <div class="panel panel-info">
     <div class="panel-heading">Inicio de Sesión</div>
     <div class="panel-body">
-      <!-- <form action="/cotizacion" name="formLogin" method="post"> -->
         <div class="form-group">
-          <span class="spanErrorUser hidden" style="color:red;">Usuario o contraseña invalido</span><br>
+          <span class="spanErrorUser" style="color:red;">{{messages}}</span><br>
           <label for="" class="control-label">Usuario:</label>
           <input type="text" id="cUsuario" ng-model="user.name" placeholder="e.g: Juan01" class="form-control" required>
 
-          <!-- <input type="text"  name="cUsuario" class="form-control" placeholder="e.g: Juan01" required
-          ng-class="{ error: formLogin.cUsuario.$error.required && !formLogin.$pristine, warning: formLogin.cUsuario.$error.cUsuario }" ng-model="cUsuario">
-          <span ng-show="formLogin.cUsuario.$error.required && !formLogin.$pristine">Usuario es requerido.</span> -->
+
         </div>
         <div class="form-group">
           <label for="" class="control-label">Contraseña:</label>
           <input type="password" ng-model="user.pass" placeholder="e.g: xxxxx" class="form-control" required>
           <span class="spanErrorPass hidden">Contraseña invalida</span>
-          <!-- <input type="password" class="form-control" name="Contrasena" placeholder="e.g: xxxxx" required
-          ng-class="{ error: formLogin.Contrasena.$error.required && !formLogin.$pristine, warning: formLogin.Contrasena.$error.Contrasena }" ng-model="Contrasena">
-          <span ng-show="formLogin.Contrasena.$error.required && !formLogin.$pristine">Contraseña es requerido.</span> -->
+
         </div>
+
         <a href="">Recuperar Contraseña</a>
-        <!-- <button class="btn btn-default btn-success" style="float:right;" type="submit" ng-disabled="!formLogin.$valid">Ingresar</button> -->
         <button class="btn btn-default btn-success" style="float:right;" ng-click="ingresar(user,user.pass)">Ingresar</button>
-      <!-- </form> -->
+
     </div>
   </div>
 </div>

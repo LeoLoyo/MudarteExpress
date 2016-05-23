@@ -1,17 +1,19 @@
 <div class="row">
     <div class="col-md-12">
       <h1>Resumen</h1>
-      <div class="panel panel-default">
+      <div class="panel panel-default hidden">
+        <div class="col-md-12"><h2>{{cliente.nombre}}</h2></div>
         <div class="panel-body">
 
+<<<<<<< HEAD
         <h3>{{cliente.nombre}}</h3>
+=======
+>>>>>>> d4b8e1f967dbd921481b7a9376e17a1050b57997
           <div class="col-md-12 col-lg-4">
-            <p>
-              <small><strong>Email:</strong></small>
+            <p><strong>Email:</strong>
               {{cliente.email}}
             </p>
-            <p>
-              <small><strong>Telefono:</strong></small>
+            <p><strong>Telefono:</strong>
                {{cliente.telefono}}
             </p>
 
@@ -100,7 +102,7 @@
               <td><strong>{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}</strong></td>
             </tr>
           </table>
-          <button type="submit" class="btn btn-success" onclick="descargarExcel()" ng-click="save(cotizacion,cliente)">Exportar</button>
+          <button type="submit" ng-disabled="otros_temp.length === 0 && contenedores_temp.length === 0 && muebles_temp.length === 0" class="btn btn-success" onclick="descargarExcel()" ng-click="save(cotizacion,cliente)">Exportar</button>
         </form>
     </div>
 

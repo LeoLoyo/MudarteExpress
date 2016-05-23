@@ -5,7 +5,8 @@
     app.service('Auth', function($http, setting){
       var self = this;
       self.valid = function(user){
-        if(user.name === 'admin' && user.pass === 'admin'){
+        // $http.get(setting.url).then(function(){}).catch(function(){})
+        if(user.name === setting.user.name && user.pass === setting.user.pass){
             return true;
         }else{
           return false;
@@ -23,24 +24,41 @@
         });
       }
 
-      self.save_contenedores = function(contenedores,id_cotizacion){
+      self.save_contenedores = function(contenedor,id_cotizacion){
         var data = {};
-        var respuesta = true
-        for(var i =0;i<contenedores.length;i++){
           data.cotizacion = id_cotizacion;
-          data.descripcion = contenedores[i].contenedor;
-          data.cantidad = contenedores[i].unidad;
-          data.punto = contenedores[i].punto;
+          data.descripcion = contenedor.contenedor;
+          data.cantidad = contenedor.unidad;
+          data.punto = contenedor.punto;
           data.estado ='activo';
-          $http.post(setting.url+"contenedorcotizacion/", data).success(function(result){
-            respuesta = true;
-            console.log(result);
+          return $http.post(setting.url+"contenedorcotizacion/", data).success(function(result){
+            return true;
           }).error(function(e){
-            respuesta = false;
+            return false;
+          });
+
+      }
+      self.save_muebles = function(muebles,id_cotizacion){
+        var data = {};
+
+          data.cotizacion = id_cotizacion;
+          data.mueble = muebles.mueble;
+          data.descripcion = muebles.descripcion;
+          data.alto = muebles.alto;
+          data.ancho = muebles.ancho;
+          data.largo = muebles.largo;
+          data.cantidad = muebles.cantidad;
+          data.punto = muebles.punto;
+          data.total_punto = muebles.total_punto;
+          data.estado ='activo';
+
+          return $http.post(setting.url+"mueblecotizacion/", data).success(function(result){
+            return true;
+          }).error(function(e){
+            return false;
           });
         }
-        return respuesta;
-      }
+
 
       return self;
     });
@@ -79,7 +97,7 @@
 
       self.all = function(){
         return $http.get(setting.url+"bulto/?format=json").then(function(data){
-          console.log("Bultos :" + data.data.length);
+          // console.log("Bultos :" + data.data.length);
           collection = data.data;
           return collection
         });
@@ -99,7 +117,7 @@
       var self = this;
       self.all = function(){
         return $http.get(setting.url+"cliente/?format=json").then(function(data){
-          console.log(data.data[0]);
+          // console.log(data.data[0]);
           return data.data[0];
         });
       }

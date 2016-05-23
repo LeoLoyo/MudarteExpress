@@ -3,6 +3,11 @@
 
     app.controller('CotizacionCtrl', function ($scope, Cotizacion, Contenedor, Mueble, Bulto, Cliente, $http,setting) {
       //variables
+
+      $scope.cotizacion = {
+        numero:'123456',
+        responsable:{id:1,name:setting.user.name}
+      };
       $scope.contenedores = []
       $scope.contenedores = null;
 
@@ -38,17 +43,18 @@
       }
 
       function recur_punto(a_query,object){
-        var punto = 0,resta = 0,l=a_query.length;
+        var punto = 0,resta = angular.copy(object),l=a_query.length;
         if(object.unidad>0){
           for(var j = 0;j<l;j++){
             if(object.unidad >= a_query[j].unidad){
               punto += a_query[j].punto;
-              resta = object.unidad - a_query[j].unidad;
+              resta.unidad = object.unidad - a_query[j].unidad;
               return punto += recur_punto(a_query,resta);
             }
+
           }
         }
-        return 0;
+        return punto;
 
       };
 
@@ -117,6 +123,7 @@
       }
 
       function init(contenedor){
+        $('.btnsCotizacion').removeClass('hidden');
         if(contenedor !== undefined){
           return Contenedor.all(contenedor).then(function(contenedores){
             $scope.todoscontenedores = contenedores;
@@ -161,7 +168,9 @@
         $scope.metros3_contenedores = calcular_totales($scope.contenedores_temp,"punto")/10;
         $scope.unidades_contenedores = calcular_totales($scope.contenedores_temp,"unidad");
         // Cotizacion.save_contenedores($scope.contenedores_temp);
+                console.log($scope.contenedores_temp);
         });
+
       };
 
       $scope.add_mueble = function(mueble,uni) {
@@ -191,7 +200,6 @@
       $scope.add_otros = function(mueble,dimensiones,cant,descripcion,otro){
        var otro = {
             id: otro.id,
-            // cotizacion: 1,
             mueble: mueble.descripcion,
             descripcion: "",
             ancho: Number(dimensiones.ancho.ancho),
@@ -220,8 +228,6 @@
         console.log($scope.otros_temp);
         $scope.metros3_otros = calcular_totales($scope.otros_temp,"total_punto")/10;
         $scope.unidades_otros = calcular_totales($scope.otros_temp,"cantidad");
-
-
       }
 
       $scope.add_campo = function(){
@@ -243,21 +249,32 @@
 
       $scope.save = function(cot, cliente){
         var total_cantidad = $scope.unidades_contenedores + $scope.unidades_muebles + $scope.unidades_otros;
-        var total_m3 = $scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros;
-        var cotizacion = {
-          numero_cotizacion:cot.numero,
-          cliente:1,
-          responsable:cot.responsable,
-          total_cantidad:total_cantidad,
-          total_m3:total_m3,
-          estado:'activo'
-        };
-        Cotizacion.save(cotizacion).then(function(result){
-          var id_cotizacion = result.data.id;
-          Cotizacion.save_contenedores($scope.contenedores_temp,id_cotizacion);
-          },function(e){
-          alert("error");
-        });
+          var total_m3 = $scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros;
+          var cotizacion = {
+            numero_cotizacion:cot.numero,
+            cliente:1,
+            responsable:cot.responsable.id,
+            total_cantidad:total_cantidad,
+            total_m3:total_m3,
+            estado:'activo'
+          };
+          Cotizacion.save(cotizacion).then(function(result){
+            var id_cotizacion = result.data.id;
+            for(var i=0;i<$scope.contenedores_temp.length;i++){
+                Cotizacion.save_contenedores($scope.contenedores_temp[i],id_cotizacion);
+            }
+            for(var i=0;i<$scope.muebles_temp.length;i++){
+                Cotizacion.save_muebles($scope.muebles_temp[i],id_cotizacion);
+            }
+            for(var i=0;i<$scope.otros_temp.length;i++){
+                Cotizacion.save_muebles($scope.otros_temp[i],id_cotizacion);
+            }
+
+            },function(e){
+            alert("error");
+          });
+
+
 
       }
 

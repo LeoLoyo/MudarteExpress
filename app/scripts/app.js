@@ -27,8 +27,9 @@ var session = false;
 
       .state('app', {
         url: '/',
-        abstract: true,
-        templateUrl: 'index.html'
+        // abstract: true,
+        templateUrl: 'index.html',
+        controller:'LoginCtrl'
       })
 
       .state('cotizacion',{
@@ -41,10 +42,12 @@ var session = false;
         }
       })
       $urlRouterProvider.otherwise('/login');
+      $urlRouterProvider.otherwise('/cotizacion');
     });
     app.constant('setting',{
       // "url":"http://localhost:8000/api/v1/"
-      "url":"http://192.168.0.114:8000/api/v1/"
+      "url":"http://192.168.0.114:8000/api/v1/",
+      "user":{"name":"admin","pass":"admin"}
     });
 
 // })();
