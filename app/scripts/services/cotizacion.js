@@ -13,21 +13,12 @@
       };
     })
 
-    app.service('Cotizacion', function ($http) {
-      var contenedores = [];
-      var muebles = [];
-      var otros = [];
-
-      return{
-        get:function(){
-          return contenedores;
-        },
-        save_contenedores:function(array){
-          contenedores = array;
-          return true;
-        }
-
+    app.service('Cotizacion', function ($http, setting) {
+      var self = this;
+      self.save = function(){
+        return $http.post(setting.url+"cotizacion,",{})
       }
+      return self;
     });
 
     app.service('Contenedor', function ($http, setting) {

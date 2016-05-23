@@ -28,15 +28,14 @@
       $scope.metros3_otros = 0;
       $scope.unidades_otros = 0;
 
-    function buscar_punto(mult_dimension,bultos){
-      for(var i = 0;i<bultos.length;i++){
-        if((bultos[i].ancho*bultos[i].largo*bultos[i].alto) ===mult_dimension){
-          return bultos[i].punto;
+      function buscar_punto(mult_dimension,bultos){
+        for(var i = 0;i<bultos.length;i++){
+          if((bultos[i].ancho*bultos[i].largo*bultos[i].alto) ===mult_dimension){
+            return bultos[i].punto;
+          }
         }
+        return 0;
       }
-      return 0;
-
-    }
 
       function recur_punto(a_query,object){
         var punto = 0,resta = 0,l=a_query.length;
@@ -191,7 +190,7 @@
       };
 
       $scope.add_otros = function(mueble,dimensiones,cant,descripcion,otro){
-      var otro = {
+       var otro = {
             id: otro.id,
             // cotizacion: 1,
             mueble: mueble.descripcion,
@@ -226,13 +225,13 @@
 
       }
 
-
       $scope.add_campo = function(){
         $scope.otro_temp = {id:Math.floor((Math.random() * 1000) + 1)};
         $scope.otros_temp_campo.push($scope.otro_temp);
                 // console.log($scope.otros_temp_campo);
 
       }
+
       $scope.delete_campo = function(campo){
         for(var i = 0;i<$scope.otros_temp.length;i++){
           if($scope.otros_temp[i].id === campo.id){
@@ -242,6 +241,14 @@
         $scope.otros_temp_campo.splice($scope.otros_temp_campo.indexOf(campo),1);
         console.log($scope.otros_temp);
       };
+
+      $scope.save = function(cotizacion, cliente){
+        console.log(cotizacion);
+        console.log(cliente);
+
+        Cotizacion.save($scope.contenedores_temp,$scope.muebles_temp,$scope.otros_temp,cotizacion,cliente);
+
+      }
 
       angular.element('#nCotizacion').focus();
 
