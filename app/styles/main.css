@@ -108,6 +108,9 @@ form.formulario {
   margin-top: 10px;
   font-size: 1em;
 }
+.btnSeleccion:hover {
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.26);
+}
 .btnSeleccion span {
   flex: 70%;
   padding: 3px;
@@ -124,6 +127,7 @@ form.formulario {
 .btnSeleccionado {
   background: rgb(63,81,181);
   color: #fff;
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.26);
 }
 .verResumen {
   margin-bottom: 10px;

@@ -88,11 +88,8 @@
 
                           <div class="form-group col-md-2">
                           <label for="">Cantidad</label>
-                          <select ng-model="cant" class="form-control" ng-change="add_otros(otro,dimesion,cant,descripcion,campo)" >
-                              <option selected value="0">0</option>
-                              <option value="1">1</option>
-                              <option value="2">2</option>
-                              <option value="3">3</option>
+                          <select ng-model="can" class="form-control" ng-change="add_otros(otro,dimesion,cant,descripcion,campo)" ng-options="can.num for can in [{num:1},{num:2},{num:3},{num:4},{num:5},{num:6},{num:7},{num:8},{num:9},{num:10},{num:11},{num:12},{num:13},{num:14},{num:15}]">
+                              <option value="">0</option>
                           </select>
                           </div>
                           <div class="form-group col-md-1">

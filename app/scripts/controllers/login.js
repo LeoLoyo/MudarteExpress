@@ -8,12 +8,12 @@
 
               $state.go('cotizacion');
               $('.btnsCotizacion').removeClass('hidden');
+              $('.dropdown-toggle').text(user.name).append('<span class="caret"></span>');
           }else{
-              console.log("usuario invalido");
+              console.log('Usuario invalido');
               $('.spanErrorUser').removeClass('hidden');
           }
       }
-
     angular.element('#cUsuario').focus();
   });
 })();
