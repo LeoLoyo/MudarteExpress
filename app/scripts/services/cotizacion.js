@@ -41,6 +41,32 @@
         }
         return respuesta;
       }
+      self.save_muebles = function(muebles,id_cotizacion){
+        var data = {};
+        var respuesta = true;
+        console.log(muebles[0]);
+        for(var i =0;i<muebles.length;i++){
+
+          data.cotizacion = id_cotizacion;
+          data.mueble = muebles[i].mueble;
+          data.descripcion = muebles[i].descripcion;
+          data.alto = muebles[i].alto;
+          data.ancho = muebles[i].ancho;
+          data.largo = muebles[i].largo;
+          data.cantidad = muebles[i].cantidad;
+          data.punto = muebles[i].punto;
+          data.total_punto = muebles[i].total_punto;
+          data.estado ='activo';
+
+          $http.post(setting.url+"mueblecotizacion/", data).success(function(result){
+            respuesta = true;
+            console.log(result);
+          }).error(function(e){
+            respuesta = false;
+          });
+        }
+        return respuesta;
+      }
 
       return self;
     });
@@ -79,7 +105,7 @@
 
       self.all = function(){
         return $http.get(setting.url+"bulto/?format=json").then(function(data){
-          console.log("Bultos :" + data.data.length);
+          // console.log("Bultos :" + data.data.length);
           collection = data.data;
           return collection
         });
@@ -99,7 +125,7 @@
       var self = this;
       self.all = function(){
         return $http.get(setting.url+"cliente/?format=json").then(function(data){
-          console.log(data.data[0]);
+          // console.log(data.data[0]);
           return data.data[0];
         });
       }

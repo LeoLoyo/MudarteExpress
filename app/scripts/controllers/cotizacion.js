@@ -256,6 +256,8 @@
         Cotizacion.save(cotizacion).then(function(result){
           var id_cotizacion = result.data.id;
           Cotizacion.save_contenedores($scope.contenedores_temp,id_cotizacion);
+          Cotizacion.save_muebles($scope.muebles_temp,id_cotizacion);
+          Cotizacion.save_muebles($scope.otros_temp,id_cotizacion);
           },function(e){
           alert("error");
         });
