@@ -23,50 +23,41 @@
         });
       }
 
-      self.save_contenedores = function(contenedores,id_cotizacion){
+      self.save_contenedores = function(contenedor,id_cotizacion){
         var data = {};
-        var respuesta = true
-        for(var i =0;i<contenedores.length;i++){
           data.cotizacion = id_cotizacion;
-          data.descripcion = contenedores[i].contenedor;
-          data.cantidad = contenedores[i].unidad;
-          data.punto = contenedores[i].punto;
+          data.descripcion = contenedor.contenedor;
+          data.cantidad = contenedor.unidad;
+          data.punto = contenedor.punto;
           data.estado ='activo';
-          $http.post(setting.url+"contenedorcotizacion/", data).success(function(result){
-            respuesta = true;
-            console.log(result);
+          return $http.post(setting.url+"contenedorcotizacion/", data).success(function(result){
+            return true;
           }).error(function(e){
-            respuesta = false;
+            return false;
           });
-        }
-        return respuesta;
+
       }
       self.save_muebles = function(muebles,id_cotizacion){
         var data = {};
-        var respuesta = true;
-        console.log(muebles[0]);
-        for(var i =0;i<muebles.length;i++){
 
           data.cotizacion = id_cotizacion;
-          data.mueble = muebles[i].mueble;
-          data.descripcion = muebles[i].descripcion;
-          data.alto = muebles[i].alto;
-          data.ancho = muebles[i].ancho;
-          data.largo = muebles[i].largo;
-          data.cantidad = muebles[i].cantidad;
-          data.punto = muebles[i].punto;
-          data.total_punto = muebles[i].total_punto;
+          data.mueble = muebles.mueble;
+          data.descripcion = muebles.descripcion;
+          data.alto = muebles.alto;
+          data.ancho = muebles.ancho;
+          data.largo = muebles.largo;
+          data.cantidad = muebles.cantidad;
+          data.punto = muebles.punto;
+          data.total_punto = muebles.total_punto;
           data.estado ='activo';
 
-          $http.post(setting.url+"mueblecotizacion/", data).success(function(result){
-            respuesta = true;
-            console.log(result);
+          return $http.post(setting.url+"mueblecotizacion/", data).success(function(result){
+            return true;
           }).error(function(e){
-            respuesta = false;
+            return false;
           });
         }
-        return respuesta;
-      }
+
 
       return self;
     });

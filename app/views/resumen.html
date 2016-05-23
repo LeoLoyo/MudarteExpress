@@ -100,7 +100,7 @@
               <td><strong>{{metros3_contenedores+metros3_muebles+metros3_otros}}</strong></td>
             </tr>
           </table>
-          <button type="submit" class="btn btn-success" onclick="descargarExcel()" ng-click="save(cotizacion,cliente)">Exportar</button>
+          <button type="submit" ng-disabled="otros_temp.length === 0 && contenedores_temp.length === 0 && muebles_temp.length === 0" class="btn btn-success" onclick="descargarExcel()" ng-click="save(cotizacion,cliente)">Exportar</button>
         </form>
     </div>
 

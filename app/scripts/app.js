@@ -41,6 +41,7 @@ var session = false;
         }
       })
       $urlRouterProvider.otherwise('/login');
+      $urlRouterProvider.otherwise('/cotizacion');
     });
     app.constant('setting',{
       // "url":"http://localhost:8000/api/v1/"
