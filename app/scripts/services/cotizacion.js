@@ -13,21 +13,36 @@
       };
     })
 
-    app.service('Cotizacion', function ($http) {
-      var contenedores = [];
-      var muebles = [];
-      var otros = [];
-
-      return{
-        get:function(){
-          return contenedores;
-        },
-        save_contenedores:function(array){
-          contenedores = array;
-          return true;
-        }
-
+    app.service('Cotizacion', function ($http, setting) {
+      var self = this;
+      self.save = function(cotizacion){
+        return $http.post(setting.url+"cotizacion/",cotizacion).success(function(responde){
+          return responde.id;
+        }).error(function(e){
+          return e;
+        });
       }
+
+      self.save_contenedores = function(contenedores,id_cotizacion){
+        var data = {};
+        var respuesta = true
+        for(var i =0;i<contenedores.length;i++){
+          data.cotizacion = id_cotizacion;
+          data.descripcion = contenedores[i].contenedor;
+          data.cantidad = contenedores[i].unidad;
+          data.punto = contenedores[i].punto;
+          data.estado ='activo';
+          $http.post(setting.url+"contenedorcotizacion/", data).success(function(result){
+            respuesta = true;
+            console.log(result);
+          }).error(function(e){
+            respuesta = false;
+          });
+        }
+        return respuesta;
+      }
+
+      return self;
     });
 
     app.service('Contenedor', function ($http, setting) {
@@ -39,6 +54,8 @@
         }
         return $http.get(url).then(function(data){
           return data.data;
+        }).catch(function(e){
+          return null;
         });
       }
     });
@@ -49,6 +66,8 @@
         return $http.get(setting.url+"mueble/?format=json").then(function(data){
           console.log("Mueble :" + data.data.length);
           return data.data;
+        }).catch(function(e){
+          return null;
         });
       }
     });
