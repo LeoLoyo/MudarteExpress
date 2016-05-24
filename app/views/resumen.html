@@ -5,6 +5,7 @@
         <div class="col-md-12"><h2>{{cliente.nombre}}</h2></div>
         <div class="panel-body">
 
+        <h3>{{cliente.nombre}}</h3>
           <div class="col-md-12 col-lg-4">
             <p><strong>Email:</strong>
               {{cliente.email}}
@@ -38,13 +39,13 @@
               </tr>
               <tr ng-repeat="item in contenedores_temp">
                 <td>{{item.contenedor}}</td>
-                <td>{{item.unidad}}</td>
-                <td>{{item.punto/10}}</td>
+                <td align="center">{{item.unidad}}</td>
+                <td align="center">{{item.punto/10|number:2}}</td>
               </tr>
               <tr class="active">
                 <td><strong>Total</strong></td>
-                <td><strong>{{unidades_contenedores}}</strong></td>
-                <td><strong>{{metros3_contenedores}}</strong></td>
+                <td align="center"><strong>{{unidades_contenedores}}</strong></td>
+                <td align="center"><strong>{{metros3_contenedores|number:2}}</strong></td>
               </tr>
           </table>
 
@@ -57,45 +58,47 @@
             </tr>
             <tr ng-repeat="item in muebles_temp">
               <td>{{item.mueble}}</td>
-              <td>{{item.cantidad}}</td>
-              <td>{{item.total_punto/10}}</td>
+              <td align="center">{{item.cantidad}}</td>
+              <td align="center">{{item.total_punto/10|number:2}}</td>
             </tr>
             <tr class="active">
               <td><strong>Total</strong></td>
-              <td><strong>{{unidades_muebles}}</strong></td>
-              <td><strong>{{metros3_muebles}}</strong></td>
+              <td align="center"><strong>{{unidades_muebles}}</strong></td>
+              <td align="center"><strong>{{metros3_muebles|number:2}}</strong></td>
             </tr>
           </table>
 
           <h2>Otros</h2>
           <table class="table table-bordered">
             <tr class="info">
-              <th>Descripcion</th>
+              <th>Descripción</th>
+              <th style="width:80px; padding:10px;">Dimension</th>
               <th style="width:80px; padding:10px;">Cantidad</th>
               <th style="width:80px; padding:10px; padding-left:30px;">m<sup>3</sup></th>
             </tr>
             <tr ng-repeat="item in otros_temp">
               <td ng-if="item.mueble == 'Otros'">Otros-{{item.descripcion}}</td>
               <td ng-if="item.mueble != 'Otros'">{{item.mueble}}</td>
-              <td>{{item.cantidad}}</td>
-              <td>{{item.total_punto/10}}</td>
+              <td align="center">{{item.ancho}}x{{item.largo}}x{{item.alto}}</td>
+              <td align="center">{{item.cantidad}}</td>
+              <td align="center">{{item.total_punto/10|number:2}}</td>
             </tr>
             <tr class="active">
-              <td><strong>Total</strong></td>
-              <td><strong>{{unidades_otros}}</strong></td>
-              <td><strong>{{metros3_otros}}</strong></td>
+              <td colspan="2"><strong>Total</strong></td>
+              <td align="center"><strong>{{unidades_otros}}</strong></td>
+              <td align="center"><strong>{{metros3_otros|number:2}}</strong></td>
             </tr>
           </table>
 
           <h2>Totales</h2>
           <table style="width:200px;" class="table table-bordered">
             <tr>
-              <th style="padding:10px; padding-left:30px;" class="info">Total Contenido</th>
-              <td><strong>{{unidades_contenedores+unidades_muebles+unidades_otros}}</strong></td>
+              <th class="info">Total Contenido</th>
+              <td align="center"><strong>{{unidades_contenedores+unidades_muebles+unidades_otros}}</strong></td>
             </tr>
             <tr>
-              <th style="padding:10px; padding-left:30px;" class="info">Total m<sup>3</sup></th>
-              <td><strong>{{metros3_contenedores+metros3_muebles+metros3_otros}}</strong></td>
+              <th class="info">Total m<sup>3</sup></th>
+              <td align="center"><strong>{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}</strong></td>
             </tr>
           </table>
           <button type="submit" ng-disabled="otros_temp.length === 0 && contenedores_temp.length === 0 && muebles_temp.length === 0" class="btn btn-success" onclick="descargarExcel()" ng-click="save(cotizacion,cliente)">Exportar</button>
@@ -104,7 +107,7 @@
 
     <div id="divExportar" class="col-md-12 hidden">
         <h1>Resumen</h1>
-            <table border=1 id="tablaTotal">
+            <!-- <table border=1 id="tablaTotal" class="hidden">
               <tr>
                 <th style="background-color: #d9edf7">Nro. Cotizacion</th>
                 <td>{{cotizacion.numero}}</td>
@@ -117,7 +120,7 @@
                 <th style="background-color: #d9edf7">Responsable</th>
                 <td>{{cliente.responsable}}</td>
               </tr>
-            </table>
+            </table> -->
 
           <h2>Contenedores</h2>
             <legend></legend>
@@ -130,12 +133,12 @@
               <tr ng-repeat="item in contenedores_temp">
                 <td>{{item.contenedor}}</td>
                 <td>{{item.unidad}}</td>
-                <td>{{item.punto/10}}</td>
+                <td>{{item.punto/10|number:2}}</td>
               </tr>
               <tr style="background-color: #f5f5f5">
                 <th class="estiloUno">Total</th>
                 <td><strong>{{unidades_contenedores}}</strong></td>
-                <td><strong>{{metros3_contenedores}}</strong></td>
+                <td><strong>{{metros3_contenedores|number:2}}</strong></td>
               </tr>
             </table>
 
@@ -150,12 +153,12 @@
               <tr ng-repeat="item in muebles_temp">
                 <td>{{item.mueble}}</td>
                 <td>{{item.cantidad}}</td>
-                <td>{{item.total_punto/10}}</td>
+                <td>{{item.total_punto/10|number:2}}</td>
               </tr>
               <tr style="background-color: #f5f5f5">
                 <th class="estiloUno">Total</th>
               <td><strong>{{unidades_muebles}}</strong></td>
-              <td><strong>{{metros3_muebles}}</strong></td>
+              <td><strong>{{metros3_muebles|number:2}}</strong></td>
               </tr>
             </table>
 
@@ -164,19 +167,21 @@
             <table border=1 id="tablaOtro">
               <tr>
                 <th style="background-color: #d9edf7">Descripcion</th>
+                <th style="background-color: #d9edf7">Dimension</th>
                 <th style="background-color: #d9edf7">Cantidad</th>
                 <th style="background-color: #d9edf7">m<sup>3</sup></th>
               </tr>
               <tr ng-repeat="item in otros_temp">
                 <td ng-if="item.mueble == 'Otros'">Otros-{{item.descripcion}}
                 <td ng-if="item.mueble != 'Otros'">{{item.mueble}}</td>
+                <td>{{item.ancho}}x{{item.largo}}x{{item.alto}}</td>
                 <td>{{item.cantidad}}</td>
-                <td>{{item.total_punto/10}}</td>
+                <td>{{item.total_punto/10|number:2}}</td>
               </tr>
               <tr style="background-color: #f5f5f5">
-              <th class="estiloUno">Total</th>
+              <th colspan="2" class="estiloUno">Total</th>
               <td><strong>{{unidades_otros}}</strong></td>
-              <td><strong>{{metros3_otros}}</strong></td>
+              <td><strong>{{metros3_otros|number:2}}</strong></td>
               </tr>
             </table>
 
@@ -189,7 +194,7 @@
               </tr>
               <tr>
                 <th style="background-color: #d9edf7">Total m<sup>3</sup></th>
-                <th style="float:right"><strong>{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}</strong></th>
+                <th><strong>{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}</strong></th>
               </tr>
             </table>
     </div>
@@ -198,7 +203,7 @@
 <script>
 function descargarExcel(){
         var tmpElemento = document.createElement('a');
-        var data_type = 'data:application/vnd.ms-excel';
+        var data_type = 'data:application/vnd.ms-excel; charset=utf-8';
         var tabla_div = document.getElementById('divExportar');
         var tabla_html = tabla_div.outerHTML.replace(/ /g, '%20');
         tmpElemento.href = data_type + ', ' + tabla_html;
