@@ -1,11 +1,16 @@
 (function(){
   var app = angular.module('cotizacionExpressApp');
 
-    app.controller('CotizacionCtrl', function ($rootScope, $state, $scope, Cotizacion, Contenedor, Mueble, Bulto, Cliente, $http,setting) {
+    app.controller('CotizacionCtrl', function ($interval,$rootScope, $state, $scope, Cotizacion, Contenedor, Mueble, Bulto, Cliente, $http,setting) {
       //variables
+      $interval(
+        function handleInterval() {
+            $rootScope.$broadcast( "change" );
+        },0);
       if(!session){
         $state.go('login');
       }
+
       $scope.cantidades = [];
       function numeros(){
 
@@ -156,6 +161,13 @@
           });
 
         }
+        $rootScope.$on('change',function(event){
+          if($scope.contenedores_temp.length===0 && $scope.otros_temp.length===0 && $scope.muebles_temp.length===0){
+            $rootScope.resumen = false;
+          }else{
+            $rootScope.resumen = true;
+          }
+        })
       };
 
       init();
