@@ -16,7 +16,7 @@
               },1000);
 
           }else{
-              $scope.messages ='Usuario invalido';
+              $scope.messages ='Usuario o contraseña invalido';
               // $('.spanErrorUser').removeClass('hidden');
           }
       }
