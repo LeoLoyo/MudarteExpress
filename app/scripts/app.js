@@ -27,9 +27,7 @@ var session = false;
 
       .state('app', {
         url: '/',
-        // abstract: true,
-        templateUrl: 'index.html',
-        controller:'LoginCtrl'
+        templateUrl: 'index.html'
       })
 
       .state('cotizacion',{
@@ -42,7 +40,6 @@ var session = false;
         }
       })
       $urlRouterProvider.otherwise('/login');
-      $urlRouterProvider.otherwise('/cotizacion');
     });
     app.constant('setting',{
       // "url":"http://localhost:8000/api/v1/"

@@ -38,6 +38,7 @@
                   <div ng-repeat="c in contenedores" class="btnSeleccion"  ng-class="{btnSeleccionado:n.num>0}">
                       <span>{{c.contenedor}}</span>
                       <select ng-focus="scrollAnime($event)" ng-model="n" ng-options="n.num for n in [{num:1},{num:2},{num:3},{num:4},{num:5},{num:6},{num:7},{num:8},{num:9},{num:10},{num:11},{num:12},{num:13},{num:14},{num:15}]" ng-change="add_contenedor(c.contenedor,n.num)">
+                      <!-- <select ng-focus="scrollAnime($event)" ng-model="n" ng-options="n.num for n in cantidades" ng-change="add_contenedor(c.contenedor,n.num)"> -->
                           <option value="">0</option>
                       </select>
                   </div>
@@ -46,7 +47,7 @@
                   <div class="row">
                       <div class="col-md-12">
                           <h2>Muebles</h2>
-                          <input type="search" placeholder="Buscar muebles" class="form-control buscarMueble disabled" ng-model="buscarMueble">
+                          <input type="search" placeholder="Buscar muebles" class="form-control buscarMueble hidden" ng-model="buscarMueble">
                       </div>
                   </div>
 

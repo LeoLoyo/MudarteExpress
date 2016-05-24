@@ -1,9 +1,19 @@
 (function(){
   var app = angular.module('cotizacionExpressApp');
 
-    app.controller('CotizacionCtrl', function ($scope, Cotizacion, Contenedor, Mueble, Bulto, Cliente, $http,setting) {
+    app.controller('CotizacionCtrl', function ($rootScope, $state, $scope, Cotizacion, Contenedor, Mueble, Bulto, Cliente, $http,setting) {
       //variables
+      if(!session){
+        $state.go('login');
+      }
+      $scope.cantidades = [];
+      function numeros(){
 
+        for(var i =1;i<100;i++){
+            $scope.cantidades.push({num:i});
+        }
+        return $scope.cantidades;
+      }
       $scope.cotizacion = {
         numero:'123456',
         responsable:{id:1,name:setting.user.name}
@@ -123,6 +133,7 @@
       }
 
       function init(contenedor){
+        numeros();
         $('.btnsCotizacion').removeClass('hidden');
         if(contenedor !== undefined){
           return Contenedor.all(contenedor).then(function(contenedores){
@@ -168,11 +179,26 @@
         $scope.metros3_contenedores = calcular_totales($scope.contenedores_temp,"punto")/10;
         $scope.unidades_contenedores = calcular_totales($scope.contenedores_temp,"unidad");
         // Cotizacion.save_contenedores($scope.contenedores_temp);
-                console.log($scope.contenedores_temp);
+                // console.log($scope.contenedores_temp);
         });
 
       };
+      $rootScope.limpiar = function(){
+        init();
+        $scope.contenedores_temp = [];
+        $scope.muebles_temp = [];
 
+        $scope.otros_temp = [];
+        $scope.otros_temp_campo = [];
+
+        //Variables De Totales
+        $scope.metros3_contenedores = 0;
+        $scope.unidades_contenedores = 0;
+        $scope.metros3_muebles = 0;
+        $scope.unidades_muebles = 0;
+        $scope.metros3_otros = 0;
+        $scope.unidades_otros = 0;
+      }
       $scope.add_mueble = function(mueble,uni) {
         var mueble_temp = {
             // id: 1,
@@ -193,7 +219,7 @@
               $scope.muebles_temp.push(mueble_temp);
           }
         }
-        $scope.metros3_muebles = calcular_totales($scope.muebles_temp,"punto")/10;
+        $scope.metros3_muebles = calcular_totales($scope.muebles_temp,"total_punto")/10;
         $scope.unidades_muebles = calcular_totales($scope.muebles_temp,"cantidad");
       };
 
@@ -269,6 +295,7 @@
             for(var i=0;i<$scope.otros_temp.length;i++){
                 Cotizacion.save_muebles($scope.otros_temp[i],id_cotizacion);
             }
+            $scope.limpiar();
 
             },function(e){
             alert("error");

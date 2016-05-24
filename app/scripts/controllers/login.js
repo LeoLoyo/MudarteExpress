@@ -1,8 +1,9 @@
 (function(){
   var app = angular.module('cotizacionExpressApp');
-    app.controller('LoginCtrl', function ($scope, $state, Auth) {
+    app.controller('LoginCtrl', function ($rootScope, $scope, $state, Auth,setting) {
       // console.log($state.data.current.session);
       $('.btnsCotizacion').addClass('hidden');
+      $rootScope.session = session;
       $scope.ingresar = function(user,pass){
           if(Auth.valid(user)){
             $scope.messages ='Bienvenido';
@@ -11,7 +12,7 @@
                 $state.go('cotizacion');
                 session=true;
                 $('.btnsCotizacion').removeClass('hidden');
-                $('.dropdown-toggle').text(user.name).append('<span class="caret"></span>');
+                $('.dropdown-toggle').text(setting.user.name).append('<span class="caret"></span>');
               },1000);
 
           }else{
@@ -19,9 +20,9 @@
               // $('.spanErrorUser').removeClass('hidden');
           }
       }
-      $scope.logout = function(){
-        alert("asdasd");
+      $rootScope.logout = function(){
         session=false;
+        $('.dropdown-toggle').text('Login').append('<span class="caret"></span>');
         $state.go('login');
       }
     angular.element('#cUsuario').focus();
