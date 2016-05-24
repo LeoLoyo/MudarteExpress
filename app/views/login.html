@@ -1,0 +1,24 @@
+<div class="col-md-4 col-md-offset-4"><br><br><br><br>
+  <div class="panel panel-info">
+    <div class="panel-heading">Inicio de Sesión</div>
+    <div class="panel-body">
+        <div class="form-group">
+          <span class="spanErrorUser" style="color:red;">{{messages}}</span><br>
+          <label for="" class="control-label">Usuario:</label>
+          <input type="text" id="cUsuario" ng-model="user.name" placeholder="e.g: Juan01" class="form-control" required>
+
+
+        </div>
+        <div class="form-group">
+          <label for="" class="control-label">Contraseña:</label>
+          <input type="password" ng-model="user.pass" placeholder="e.g: xxxxx" class="form-control" required>
+          <span class="spanErrorPass hidden">Contraseña invalida</span>
+
+        </div>
+
+        <a href="" class="hidden">Recuperar Contraseña</a>
+        <button class="btn btn-default btn-success" style="float:right;" ng-click="ingresar(user,user.pass)">Ingresar</button>
+
+    </div>
+  </div>
+</div>
