@@ -5,6 +5,7 @@
         <div class="col-md-12"><h2>{{cliente.nombre}}</h2></div>
         <div class="panel-body">
 
+        <h3>{{cliente.nombre}}</h3>
           <div class="col-md-12 col-lg-4">
             <p><strong>Email:</strong>
               {{cliente.email}}
@@ -78,12 +79,12 @@
             <tr ng-repeat="item in otros_temp">
               <td ng-if="item.mueble == 'Otros'">Otros-{{item.descripcion}}</td>
               <td ng-if="item.mueble != 'Otros'">{{item.mueble}}</td>
-              <td>{{item.ancho}}X{{item.largo}}X{{item.alto}}</td>
+              <td>{{item.ancho}}x{{item.largo}}x{{item.alto}}</td>
               <td>{{item.cantidad}}</td>
               <td>{{item.total_punto/10}}</td>
             </tr>
             <tr class="active">
-              <td  colspan="2"><strong>Total</strong></td>
+              <td colspan="2"><strong>Total</strong></td>
               <td><strong>{{unidades_otros}}</strong></td>
               <td><strong>{{metros3_otros}}</strong></td>
             </tr>
@@ -97,7 +98,7 @@
             </tr>
             <tr>
               <th style="padding:10px; padding-left:30px;" class="info">Total m<sup>3</sup></th>
-              <td><strong>{{metros3_contenedores+metros3_muebles+metros3_otros}}</strong></td>
+              <td><strong>{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}</strong></td>
             </tr>
           </table>
           <button type="submit" ng-disabled="otros_temp.length === 0 && contenedores_temp.length === 0 && muebles_temp.length === 0" class="btn btn-success" onclick="descargarExcel()" ng-click="save(cotizacion,cliente)">Exportar</button>
@@ -165,7 +166,7 @@
             <legend></legend>
             <table border=1 id="tablaOtro">
               <tr>
-                <th style="background-color: #d9edf7">Descripci&oacuten</th>
+                <th style="background-color: #d9edf7">Descripción</th>
                 <th style="background-color: #d9edf7">Dimension</th>
                 <th style="background-color: #d9edf7">Cantidad</th>
                 <th style="background-color: #d9edf7">m<sup>3</sup></th>
@@ -173,7 +174,7 @@
               <tr ng-repeat="item in otros_temp">
                 <td ng-if="item.mueble == 'Otros'">Otros-{{item.descripcion}}
                 <td ng-if="item.mueble != 'Otros'">{{item.mueble}}</td>
-                <td>{{item.ancho}}X{{item.largo}}X{{item.alto}}</td>
+                <td>{{item.ancho}}x{{item.largo}}x{{item.alto}}</td>
                 <td>{{item.cantidad}}</td>
                 <td>{{item.total_punto/10}}</td>
               </tr>
@@ -193,7 +194,7 @@
               </tr>
               <tr>
                 <th style="background-color: #d9edf7">Total m<sup>3</sup></th>
-                <th style="float:right"><strong>{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}</strong></th>
+                <th><strong>{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}</strong></th>
               </tr>
             </table>
     </div>
