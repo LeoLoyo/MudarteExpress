@@ -113,14 +113,18 @@ form.formulario {
 }
 .btnSeleccion span{
   flex: 70%;
-  padding: 3px;
-  vertical-align: middle!important;
+  padding: 4px;
+  margin: 8px;
+  line-height: 15px;
+}
+.btnSeleccion span.classContenedores {
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .btnSeleccion select {
   flex: 30%;
   padding: 3px;
-  float: right;
   border-color: transparent;
   color: #777;
   /*font-size: 23px;*/
