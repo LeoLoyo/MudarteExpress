@@ -235,37 +235,41 @@
         $scope.unidades_muebles = calcular_totales($scope.muebles_temp,"cantidad");
       };
 
-      $scope.add_otros = function(mueble,dimensiones,cant,descripcion,otro){
-       var otro = {
-            id: otro.id,
-            mueble: mueble.descripcion,
-            descripcion: "",
-            ancho: Number(dimensiones.ancho.ancho),
-            largo: Number(dimensiones.largo.largo),
-            alto: Number(dimensiones.alto.alto),
-            cantidad: Number(cant),
-            punto: 0,
-            total_punto: 0,
-            estado: "activo"
-        };
-        var mult_dimension=otro.ancho*otro.largo*otro.alto;
+      $scope.add_otros = function(mueble,ancho,largo,alto,cant,descripcion,otro){
+        if(ancho!=undefined && largo!=undefined && alto!=undefined){
+         var otro = {
+              id: otro.id,
+              mueble: mueble.descripcion,
+              descripcion: "",
+              ancho: Number(ancho),
+              largo: Number(largo),
+              alto: Number(alto),
+              cantidad: Number(cant),
+              punto: 0,
+              total_punto: 0,
+              estado: "activo"
+          };
+          var mult_dimension=otro.ancho*otro.largo*otro.alto;
 
-        if(mueble.descripcion === 'Otros'){
-          otro.descripcion = descripcion;
-        }else{
-          otro.descripcion = mueble.descripcion;
-        }
-
-        otro.punto = buscar_punto(mult_dimension,$scope.bultos);
-        otro.total_punto = otro.punto * otro.cantidad;
-        if(buscar_otros($scope.otros_temp, otro)!=true){
-          if(otro.cantidad >0){
-              $scope.otros_temp.push(otro);
+          if(mueble.descripcion === 'Otros'){
+            otro.descripcion = descripcion;
+          }else{
+            otro.descripcion = mueble.descripcion;
           }
+
+          otro.punto = buscar_punto(mult_dimension,$scope.bultos);
+          otro.total_punto = otro.punto * otro.cantidad;
+          if(buscar_otros($scope.otros_temp, otro)!=true){
+            if(otro.cantidad >0){
+                $scope.otros_temp.push(otro);
+            }
+          }
+          console.log($scope.otros_temp);
+          $scope.metros3_otros = calcular_totales($scope.otros_temp,"total_punto")/10;
+          $scope.unidades_otros = calcular_totales($scope.otros_temp,"cantidad");
+        }else{
+          alert('Falta Definir Las Dimensiones');
         }
-        console.log($scope.otros_temp);
-        $scope.metros3_otros = calcular_totales($scope.otros_temp,"total_punto")/10;
-        $scope.unidades_otros = calcular_totales($scope.otros_temp,"cantidad");
       }
 
       $scope.add_campo = function(){

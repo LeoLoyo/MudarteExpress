@@ -59,7 +59,7 @@
             <tr ng-repeat="item in muebles_temp">
               <td>{{item.mueble}}</td>
               <td align="center">{{item.cantidad}}</td>
-              <td align="center">{{item.punto/10|number:2}}</td>
+              <td align="center">{{item.total_punto/10|number:2}}</td>
             </tr>
             <tr class="active">
               <td><strong>Total</strong></td>
@@ -81,7 +81,7 @@
               <td ng-if="item.mueble != 'Otros'">{{item.mueble}}</td>
               <td align="center">{{item.ancho}}x{{item.largo}}x{{item.alto}}</td>
               <td align="center">{{item.cantidad}}</td>
-              <td align="center">{{item.punto/10|number:2}}</td>
+              <td align="center">{{item.total_punto/10|number:2}}</td>
             </tr>
             <tr class="active">
               <td colspan="2"><strong>Total</strong></td>
@@ -153,7 +153,7 @@
               <tr ng-repeat="item in muebles_temp">
                 <td>{{item.mueble}}</td>
                 <td>{{item.cantidad}}</td>
-                <td>{{item.punto/10|number:2}}</td>
+                <td>{{item.total_punto/10|number:2}}</td>
               </tr>
               <tr style="background-color: #f5f5f5">
                 <th class="estiloUno">Total</th>
@@ -166,11 +166,7 @@
             <legend></legend>
             <table border=1 id="tablaOtro">
               <tr>
-<<<<<<< HEAD
-                <th style="background-color: #d9edf7">Descripción</th>
-=======
                 <th style="background-color: #d9edf7">Descripcion</th>
->>>>>>> 4b4316ef10d5c8ff1fea883a357725ffc3e9ad23
                 <th style="background-color: #d9edf7">Dimension</th>
                 <th style="background-color: #d9edf7">Cantidad</th>
                 <th style="background-color: #d9edf7">m<sup>3</sup></th>
@@ -180,7 +176,7 @@
                 <td ng-if="item.mueble != 'Otros'">{{item.mueble}}</td>
                 <td>{{item.ancho}}x{{item.largo}}x{{item.alto}}</td>
                 <td>{{item.cantidad}}</td>
-                <td>{{item.punto/10|number:2}}</td>
+                <td>{{item.total_punto/10|number:2}}</td>
               </tr>
               <tr style="background-color: #f5f5f5">
               <th colspan="2" class="estiloUno">Total</th>

@@ -72,22 +72,22 @@
 
                           <div class="form-group col-md-2">
                           <label for="">Ancho</label>
-                          <select class="form-control " ng-disabled="cant.num>0"ng-model="dimesion.ancho" ng-focus="scrollAnime($event)" ng-options="b.ancho for b in bultos | unique:'ancho' |orderBy:'ancho'"></select>
+                          <select class="form-control " ng-disabled="cant.num>0"ng-model="ancho" ng-focus="scrollAnime($event)" ng-options="b.ancho for b in bultos | unique:'ancho' |orderBy:'ancho'"></select>
                           </div>
 
                           <div class="form-group col-md-2">
                           <label for="">Largo</label>
-                          <select class="form-control"  ng-disabled="cant.num>0"ng-focus="scrollAnime($event)" ng-model="dimesion.largo" ng-options="b.largo for b in bultos | unique:'largo' |orderBy:'largo'"></select>
+                          <select class="form-control"  ng-disabled="cant.num>0"ng-focus="scrollAnime($event)" ng-model="largo" ng-options="b.largo for b in bultos | unique:'largo' |orderBy:'largo'"></select>
                           </div>
 
                           <div class="form-group col-md-2">
                           <label for="">Alto</label>
-                          <select class="form-control"  ng-disabled="cant.num>0"ng-focus="scrollAnime($event)" ng-model="dimesion.alto" ng-options="b.alto for b in bultos | unique:'alto'|orderBy:'alto'"></select>
+                          <select class="form-control"  ng-disabled="cant.num>0"ng-focus="scrollAnime($event)" ng-model="alto" ng-options="b.alto for b in bultos | unique:'alto'|orderBy:'alto'"></select>
                           </div>
 
                           <div class="form-group col-md-2">
                           <label for="">Cantidad</label>
-                          <select ng-model="cant" class="form-control" ng-change="add_otros(otro,dimesion,cant.num,descripcion,campo)" ng-options="cant.num for cant in [{num:1},{num:2},{num:3},{num:4},{num:5},{num:6},{num:7},{num:8},{num:9},{num:10},{num:11},{num:12},{num:13},{num:14},{num:15}]">
+                          <select ng-model="cant" ng-show="ancho.ancho && otro && largo.largo && alto.alto" class="form-control" ng-change="add_otros(otro,ancho.ancho,largo.largo,alto.alto,cant.num,descripcion,campo)" ng-options="cant.num for cant in [{num:1},{num:2},{num:3},{num:4},{num:5},{num:6},{num:7},{num:8},{num:9},{num:10},{num:11},{num:12},{num:13},{num:14},{num:15}]">
                               <option value="">0</option>
                           </select>
                           </div>
