@@ -82,7 +82,8 @@
 
                           <div class="form-group col-md-2">
                           <label for="">Alto</label>
-                          <select class="form-control"  ng-disabled="cant.num>0"ng-focus="scrollAnime($event)" ng-model="alto" ng-options="b.alto for b in bultos | unique:'alto'|orderBy:'alto'"></select>
+                          <select class="form-control"  ng-disabled="cant.num>0"ng-focus="scrollAnime($event)" ng-model="alto" ng-options="b.alto for b in cant_otros "></select>
+                          <!-- <select class="form-control"  ng-disabled="cant.num>0"ng-focus="scrollAnime($event)" ng-model="alto" ng-options="b.alto for b in bultos | unique:'alto'|orderBy:'alto'"></select> -->
                           </div>
 
                           <div class="form-group col-md-2">

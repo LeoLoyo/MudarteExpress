@@ -19,6 +19,15 @@
         }
         return $scope.cantidades;
       }
+      $scope.cant_otros = [];
+      function numeros(){
+
+        for(var i =30;i<=300;i+10){
+            $scope.cant_otros.push({num:i});
+        }
+        return $scope.cant_otros;
+      }
+
       $scope.cotizacion = {
         numero:'123456',
         responsable:{id:1,name:setting.user.name}
