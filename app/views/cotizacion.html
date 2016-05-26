@@ -3,6 +3,7 @@
       <div class="col-md-12">
           <h1>Cotización express</h1>
           <form class="formulario">
+          <!-- cabecera -->
             <div class="row hidden">
               <div class="form-group col-sm-6 col-md-4">
                   <label for="numerocotizacion">N° cotización:</label>
@@ -33,7 +34,9 @@
              </div>
              <legend></legend>
             </div>
+          <!-- fin de cabecera -->
 
+          <!-- Muebles y contenedores -->
               <h2>Contenedores</h2>
                   <div ng-repeat="c in contenedores" class="btnSeleccion" ng-init="n.num=0" ng-class="{btnSeleccionado:n.num>0}">
                       <span class="classContenedores" ng-click="add_contenedor(c.contenedor,n.num)">{{c.contenedor}}</span>
@@ -50,14 +53,20 @@
                       </div>
                   </div>
 
-
-                  <div ng-repeat="c in muebles | filter: true | filter: buscarMueble" class="btnSeleccion" ng-class="{btnSeleccionado:m.num>0}">
-                      <span>{{c.descripcion}}</span>
+                  <div ng-repeat="group in muebles_group"></br><p><strong>{{group.descripcion}}</strong></p>
+                    <!-- Repeat de Muebles por descripcion -->
+                    <div ng-repeat="c in muebles | filter: group.descripcion | filter: buscarMueble" class="btnSeleccion" ng-class="{btnSeleccionado:m.num>0}">
+                      <span>{{c.especificacion}}</span>
 
                       <select ng-focus="scrollAnime($event)" ng-model="m" ng-options="m.num for m in cantidades" ng-change="add_mueble(c,m.num)">
                           <option value="">0</option>
                       </select>
                   </div>
+                    <!-- fin Repeat de Muebles por descripcion -->
+                  </div>
+
+
+
                   <br><br>
                   <legend></legend>
                   <h2>Otros <button class="btn btn-default" ng-click="add_campo()">+</button></h2>
@@ -106,6 +115,7 @@
                   <br><br>
                   <legend></legend>
                   <br><br><br>
+          <!-- fin Muebles y contenedores -->
           </form>
       </div>
   </div>

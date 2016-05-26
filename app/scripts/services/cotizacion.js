@@ -40,7 +40,7 @@
       }
       self.save_muebles = function(muebles,id_cotizacion){
         var data = {};
-
+        var url = setting.url+"mueblecotizacion/";
           data.cotizacion = id_cotizacion;
           data.mueble = muebles.mueble;
           data.descripcion = muebles.descripcion;
@@ -52,7 +52,7 @@
           data.total_punto = muebles.total_punto;
           data.estado ='activo';
 
-          return $http.post(setting.url+"mueblecotizacion/", data).success(function(result){
+          return $http.post(url, data).success(function(result){
             return true;
           }).error(function(e){
             return false;
@@ -82,8 +82,15 @@
 
     app.service('Mueble', function ($http, setting) {
       var self = this;
-      self.all = function(){
-        return $http.get(setting.url+"mueble/?format=json").then(function(data){
+      self.all = function(group){
+        console.log(group);
+        // var url = setting.url+"mueble/?format=json";
+        var url = 'scripts/json/mueble.json';
+        if(group !== undefined){
+          // url = setting.url+'muebledescripcion/?format=json';
+          url = 'scripts/json/muebledescripcion.json';
+        }
+        return $http.get(url).then(function(data){
           console.log("Mueble :" + data.data.length);
           return data.data;
         }).catch(function(e){

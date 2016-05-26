@@ -49,6 +49,9 @@
       $scope.mueble = []
       $scope.mueble = null;
 
+      $scope.muebles_group = []
+      $scope.muebles_group = null;
+
       $scope.contenedores_temp = [];
       $scope.muebles_temp = [];
 
@@ -170,6 +173,10 @@
         }else{
           Contenedor.all().then(function(contenedores){
             $scope.contenedores = contenedores;
+          });
+          Mueble.all('filtrado').then(function(groups){
+            $scope.muebles_group = groups;
+            console.log(groups);
           });
           Mueble.all().then(function(muebles){
             $scope.muebles = muebles;
