@@ -53,7 +53,7 @@
                       </div>
                   </div>
 
-                  <div ng-repeat="group in muebles_group"></br><p><strong>{{group.descripcion}}</strong></p>
+                  <div ng-repeat="group in muebles_group"></br><p><button style="border:none;background-color: #fff;width:100%;text-align: left;">{{group.descripcion}}</button></p>
                     <!-- Repeat de Muebles por descripcion -->
                     <div ng-repeat="c in muebles | filter: group.descripcion | filter: buscarMueble" class="btnSeleccion" ng-class="{btnSeleccionado:m.num>0}">
                       <span>{{c.especificacion}}</span>
