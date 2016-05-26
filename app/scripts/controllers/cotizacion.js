@@ -1,4 +1,5 @@
 (function(){
+  'use strict';
   var app = angular.module('cotizacionExpressApp');
 
     app.controller('CotizacionCtrl', function ($interval,$rootScope, $state, $scope, Cotizacion, Contenedor, Mueble, Bulto, Cliente, $http,setting) {
@@ -19,6 +20,17 @@
         }
         return $scope.cantidades;
       }
+
+      $scope.cant_otros = [];
+      function numeros_otros(){
+        var i=40;
+        while(i<=300){
+            $scope.cant_otros.push({num:i});
+            i+=10;
+        }
+        return $scope.cant_otros;
+      }
+
       $scope.cotizacion = {
         numero:'123456',
         responsable:{id:1,name:setting.user.name}
@@ -124,10 +136,14 @@
       function buscar_otros(ms_tmp,m){
         var l = ms_tmp.length;
         for(var i=0;i<l;i++){
-          if((m.mueble === ms_tmp[i].mueble) && (m.descripcion === ms_tmp[i].descripcion) && (m.ancho === ms_tmp[i].ancho) && (m.largo === ms_tmp[i].largo) && (m.alto === ms_tmp[i].alto)){
+          if((m.id === ms_tmp[i].id)){
             if(m.cantidad>0){
+                ms_tmp[i].mueble = m.mueble;
+                ms_tmp[i].ancho = m.ancho;
+                ms_tmp[i].largo = m.largo;
+                ms_tmp[i].alto = m.alto;
                 ms_tmp[i].cantidad = m.cantidad;
-                ms_tmp[i].total_punto = ms_tmp[i].punto * m.cantidad;
+                ms_tmp[i].total_punto = m.punto * m.cantidad;
             }else{
                 ms_tmp.splice(ms_tmp.indexOf(ms_tmp[i]),1);
             }
@@ -139,6 +155,7 @@
 
       function init(contenedor){
         numeros();
+        numeros_otros();
         $('.btnsCotizacion').removeClass('hidden');
         if(contenedor !== undefined){
           return Contenedor.all(contenedor).then(function(contenedores){
@@ -151,10 +168,6 @@
           });
           Mueble.all().then(function(muebles){
             $scope.muebles = muebles;
-          });
-
-          Bulto.all().then(function(bultos){
-            $scope.bultos = bultos;
           });
           Cliente.all().then(function(cliente){
             $scope.cliente = cliente;
@@ -226,7 +239,7 @@
             estado: "activo"
         };
 
-        if(buscar_mueble($scope.muebles_temp, mueble_temp)!=true){
+        if(buscar_mueble($scope.muebles_temp, mueble_temp)!==true){
           if(mueble_temp.cantidad >0){
               $scope.muebles_temp.push(mueble_temp);
           }
@@ -235,10 +248,16 @@
         $scope.unidades_muebles = calcular_totales($scope.muebles_temp,"cantidad");
       };
 
-      $scope.add_otros = function(mueble,ancho,largo,alto,cant,descripcion,otro){
-        if(ancho!=undefined && largo!=undefined && alto!=undefined){
+      $scope.add_otros = function(campo,mueble,ancho,largo,alto,cant,descripcion,otro){
+        // console.log(ancho);
+        // console.log(largo);
+        // console.log(alto);
+        // console.log(mueble);
+        console.log(cant);
+        console.log("--" +campo.id);
+        if(ancho!==undefined && largo!==undefined && alto!==undefined){
          var otro = {
-              id: otro.id,
+              id: campo.id,
               mueble: mueble.descripcion,
               descripcion: "",
               ancho: Number(ancho),
@@ -257,14 +276,14 @@
             otro.descripcion = mueble.descripcion;
           }
 
-          otro.punto = buscar_punto(mult_dimension,$scope.bultos);
+          otro.punto = Math.round(otro.ancho*otro.largo*otro.alto/100000);
           otro.total_punto = otro.punto * otro.cantidad;
-          if(buscar_otros($scope.otros_temp, otro)!=true){
+          if(buscar_otros($scope.otros_temp, otro)!==true){
             if(otro.cantidad >0){
                 $scope.otros_temp.push(otro);
             }
           }
-          console.log($scope.otros_temp);
+          // console.log($scope.otros_temp);
           $scope.metros3_otros = calcular_totales($scope.otros_temp,"total_punto")/10;
           $scope.unidades_otros = calcular_totales($scope.otros_temp,"cantidad");
         }else{
@@ -311,7 +330,7 @@
             for(var i=0;i<$scope.otros_temp.length;i++){
                 Cotizacion.save_muebles($scope.otros_temp[i],id_cotizacion);
             }
-            $scope.limpiar();
+            // $scope.limpiar();
 
             },function(e){
             alert("error");
