@@ -3,7 +3,7 @@
       <div class="col-md-12">
           <h1>Cotización express</h1>
           <form class="formulario">
-              <div class="row hidden">
+            <div class="row hidden">
               <div class="form-group col-sm-6 col-md-4">
                   <label for="numerocotizacion">N° cotización:</label>
                   <input ng-focus="scrollAnime($event)" ng-model="cotizacion.numero" id="nCotizacion" type="text" class="form-control" id="numerocotizacion" placeholder="e.g: 0001">
@@ -32,13 +32,13 @@
                  <textarea ng-focus="scrollAnime($event)" ng-model="cliente.direccion" id="id_direccion" cols="1" rows="1" class="form-control" placeholder="Dirección del cliente"></textarea>
              </div>
              <legend></legend>
-              </div>
+            </div>
 
               <h2>Contenedores</h2>
-                  <div ng-repeat="c in contenedores" class="btnSeleccion"  ng-class="{btnSeleccionado:n.num>0}">
-                      <span class="classContenedores">{{c.contenedor}}</span>
+                  <div ng-repeat="c in contenedores" class="btnSeleccion" ng-init="n.num=0" ng-class="{btnSeleccionado:n.num>0}">
+                      <span class="classContenedores" ng-click="add_contenedor(c.contenedor,n.num)">{{c.contenedor}}</span>
                       <select ng-focus="scrollAnime($event)" ng-model="n" ng-options="n.num for n in cantidades" ng-change="add_contenedor(c.contenedor,n.num)">
-                        <option value="">0</option>
+                        <option ng-value="">0</option>
                       </select>
                   </div>
                   <br><br>

@@ -35,13 +35,16 @@
         numero:'123456',
         responsable:{id:1,name:setting.user.name}
       };
+
       $scope.contenedores = []
+
       $scope.contenedores = null;
 
       $scope.todoscontenedores = []
       $scope.todoscontenedores = null;
-      $scope.bultos = []
-      $scope.bultos = null;
+
+      // $scope.bultos = []
+      // $scope.bultos = null;
 
       $scope.mueble = []
       $scope.mueble = null;
@@ -55,8 +58,10 @@
       //Variables De Totales
       $scope.metros3_contenedores = 0;
       $scope.unidades_contenedores = 0;
+
       $scope.metros3_muebles = 0;
       $scope.unidades_muebles = 0;
+
       $scope.metros3_otros = 0;
       $scope.unidades_otros = 0;
 
@@ -185,7 +190,7 @@
 
       init();
 
-
+      //Methods
 
       $scope.add_contenedor = function(descripcion,uni) {
         var contenedor_temp = {
@@ -193,6 +198,7 @@
           unidad:uni,
           punto : 0
         };
+
 
         init(descripcion).then(function(r){
         if(!buscar_contenedor($scope.contenedores_temp, contenedor_temp)){
@@ -204,10 +210,10 @@
         $scope.metros3_contenedores = calcular_totales($scope.contenedores_temp,"punto")/10;
         $scope.unidades_contenedores = calcular_totales($scope.contenedores_temp,"unidad");
         // Cotizacion.save_contenedores($scope.contenedores_temp);
-                // console.log($scope.contenedores_temp);
         });
 
       };
+
       $rootScope.limpiar = function(){
         init();
         $scope.contenedores_temp = [];
@@ -224,6 +230,7 @@
         $scope.metros3_otros = 0;
         $scope.unidades_otros = 0;
       }
+
       $scope.add_mueble = function(mueble,uni) {
         var mueble_temp = {
             // id: 1,
@@ -249,12 +256,6 @@
       };
 
       $scope.add_otros = function(campo,mueble,ancho,largo,alto,cant,descripcion,otro){
-        // console.log(ancho);
-        // console.log(largo);
-        // console.log(alto);
-        // console.log(mueble);
-        console.log(cant);
-        console.log("--" +campo.id);
         if(ancho!==undefined && largo!==undefined && alto!==undefined){
          var otro = {
               id: campo.id,
@@ -283,7 +284,6 @@
                 $scope.otros_temp.push(otro);
             }
           }
-          // console.log($scope.otros_temp);
           $scope.metros3_otros = calcular_totales($scope.otros_temp,"total_punto")/10;
           $scope.unidades_otros = calcular_totales($scope.otros_temp,"cantidad");
         }else{
@@ -294,7 +294,6 @@
       $scope.add_campo = function(){
         $scope.otro_temp = {id:Math.floor((Math.random() * 1000) + 1)};
         $scope.otros_temp_campo.push($scope.otro_temp);
-                // console.log($scope.otros_temp_campo);
 
       }
 
@@ -305,7 +304,6 @@
           }
         }
         $scope.otros_temp_campo.splice($scope.otros_temp_campo.indexOf(campo),1);
-        console.log($scope.otros_temp);
       };
 
       $scope.save = function(cot, cliente){
