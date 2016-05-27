@@ -51,11 +51,11 @@
                   <div class="row">
                       <div class="col-md-12">
                           <h2>Muebles</h2>
-                          <input type="search" placeholder="Buscar muebles" class="form-control buscarMueble" ng-model="buscarMueble">
+                          <input type="search" placeholder="Buscar muebles" class="form-control hidden" ng-model="buscarMueble">
                       </div>
                   </div>
 
-                  <div  ng-repeat="group in muebles_group | filter: buscarMueble"></br><p><button style="border:none;background-color: #fff;width:100%;text-align: left;">{{group.descripcion}}</button></p>
+                  <div ng-repeat="group in muebles_group | filter: buscarMueble"></br><p><button style="border:none;background-color: #fff;width:100%;text-align: left;">{{group.descripcion}}</button></p>
                     <!-- Repeat de Muebles por descripcion -->
                     <div ng-repeat="c in muebles | filter: group.descripcion " class="btnSeleccion" ng-class="{btnSeleccionado:m.num>0}">
                       <span>{{c.especificacion}}</span>
