@@ -6213,7 +6213,7 @@ button.close {
     display: none !important; } }
 @font-face {
   font-family: Roboto;
-  src: url(../../bower_components/bootstrap-sass/assets/fonts/bootstrap/Roboto-Light.ttf); }
+  src: url(Roboto-Light.ttf); }
 body {
   overflow: hidden;
   padding: 0;
