@@ -17,12 +17,14 @@
               <select ng-focus="scrollAnime($event)" ng-model="cantidad" ng-options="m.num for m in cantidades" ng-change="add_material(item,cantidad.num, item.precio)">
               <option value="">0</option>
               </select>
-            <td align="center"><input type="text" ng-show="cantidad.num!=undefined" ng-model="item.precio" ng-change="add_material(item,cantidad.num, item.precio)"></td>
-            <td align="center"><input type="text" ng-show="cantidad.num!=undefined" value="{{item.precio * cantidad.num}}" disabled></td>
+            <td align="center">
+              <input type="number" ng-show="cantidad.num!=undefined" ng-model="item.precio" ng-change="add_material(item,cantidad.num, item.precio)">
+            </td>
+            <td align="center">{{item.precio * cantidad.num|currency}}</td>
           </tr>
           <tr class="active">
             <td colspan="3"><strong>Total</strong></td>
-            <td align="center"><strong>{{total_materiales}}</strong></td>
+            <td align="center"><strong>{{total_materiales|currency}}</strong></td>
           </tr>
         </table>
     </div>
