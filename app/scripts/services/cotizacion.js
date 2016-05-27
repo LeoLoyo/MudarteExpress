@@ -34,19 +34,12 @@
       var response;
 
       self.valid = function(user){
-        // $http.get(setting.url).then(function(){}).catch(function(){})
         for(var i=0;i<users.length;i++){
-          // console.log(users[i]);
             if(user.name === users[i]['user'] && user.pass === users[i]['pass']){
               return response =[{user:users[i],status:true}];
             }
           }
         return response =[{user:null,status:false}];
-        // if(user.name === setting.user.name && user.pass === setting.user.pass){
-        //     return true;
-        // }else{
-        //   return false;
-        // }
       };
     })
 
@@ -115,6 +108,19 @@
         });
       }
     });
+    app.service('Material', function ($http, setting) {
+      var self = this;
+      self.all = function(){
+          // url = setting.url + "/material/?format=json";
+          var url = "scripts/json/material.json";
+        return $http.get(url).then(function(data){
+          return data.data;
+        }).catch(function(e){
+          return null;
+        });
+      }
+    });
+
 
     app.service('Mueble', function ($http, setting) {
       var self = this;
