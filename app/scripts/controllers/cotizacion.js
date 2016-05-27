@@ -21,6 +21,7 @@
         return $scope.cantidades;
       }
 
+
       $scope.cant_otros = [];
       function numeros_otros(){
         var i=40;
