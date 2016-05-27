@@ -19,7 +19,7 @@ var session = false;
         url:'/login',
         views:{
           'maincontent':{
-            templateUrl:'/views/login.html',
+            templateUrl:'views/login.html',
             controller:'LoginCtrl'
           }
         }
@@ -34,7 +34,7 @@ var session = false;
         url:'/cotizacion',
         views:{
           'maincontent':{
-            templateUrl:'/views/cotizacion.html',
+            templateUrl:'views/cotizacion.html',
             controller:'CotizacionCtrl'
           }
         }
