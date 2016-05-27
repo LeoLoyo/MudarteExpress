@@ -3,7 +3,7 @@
       <div class="col-md-12">
           <h1>Cotización express</h1>
           <form class="formulario">
-              <div class="row hidden">
+            <div class="row hidden">
               <div class="form-group col-sm-6 col-md-4">
                   <label for="numerocotizacion">N° cotización:</label>
                   <input ng-focus="scrollAnime($event)" ng-model="cotizacion.numero" id="nCotizacion" type="text" class="form-control" id="numerocotizacion" placeholder="e.g: 0001">
@@ -32,13 +32,13 @@
                  <textarea ng-focus="scrollAnime($event)" ng-model="cliente.direccion" id="id_direccion" cols="1" rows="1" class="form-control" placeholder="Dirección del cliente"></textarea>
              </div>
              <legend></legend>
-              </div>
+            </div>
 
               <h2>Contenedores</h2>
-                  <div ng-repeat="c in contenedores" class="btnSeleccion"  ng-class="{btnSeleccionado:n.num>0}">
-                      <span class="classContenedores">{{c.contenedor}}</span>
+                  <div ng-repeat="c in contenedores" class="btnSeleccion" ng-init="n.num=0" ng-class="{btnSeleccionado:n.num>0}">
+                      <span class="classContenedores" ng-click="add_contenedor(c.contenedor,n.num)">{{c.contenedor}}</span>
                       <select ng-focus="scrollAnime($event)" ng-model="n" ng-options="n.num for n in cantidades" ng-change="add_contenedor(c.contenedor,n.num)">
-                        <option value="">0</option>
+                        <option ng-value="">0</option>
                       </select>
                   </div>
                   <br><br>
@@ -66,29 +66,33 @@
                       <div class="row">
                           <div class="form-group col-md-3">
                               <label for="">Descripción</label>
-                              <select class="form-control"  ng-disabled="cant.num>0"ng-focus="scrollAnime($event)" ng-model="otro" ng-options="m.descripcion for m in muebles|filter: false"></select></br>
+                              <select class="form-control"  ng-focus="scrollAnime($event)" ng-model="otro" ng-options="m.descripcion for m in muebles|filter: false" ng-change="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion,campo)"></select></br>
                               <input type="text"  placeholder="Descripción requerida" ng-model="descripcion" ng-disabled="cant.num>0" class="form-control" ng-class="{hidden:otro.descripcion !='Otros',error:!descripcion}">
                           </div>
 
                           <div class="form-group col-md-2">
                           <label for="">Ancho</label>
-                          <select class="form-control " ng-disabled="cant.num>0"ng-model="dimesion.ancho" ng-focus="scrollAnime($event)" ng-options="b.ancho for b in bultos | unique:'ancho' |orderBy:'ancho'"></select>
+                          <!-- <select class="form-control " ng-disabled="cant.num>0"ng-model="ancho" ng-focus="scrollAnime($event)" ng-options="b.ancho for b in bultos | unique:'ancho' |orderBy:'ancho'"></select> -->
+                          <select class="form-control " ng-model="ancho" ng-focus="scrollAnime($event)" ng-init="ancho.num =30" ng-options="b.num for b in cant_otros" ng-change="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion,campo)"><option value="">30</option></select>
                           </div>
 
                           <div class="form-group col-md-2">
                           <label for="">Largo</label>
-                          <select class="form-control"  ng-disabled="cant.num>0"ng-focus="scrollAnime($event)" ng-model="dimesion.largo" ng-options="b.largo for b in bultos | unique:'largo' |orderBy:'largo'"></select>
+                          <select class="form-control"  ng-focus="scrollAnime($event)" ng-model="largo" ng-init="largo.num =30"ng-options="b.num for b in cant_otros" ng-change="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion,campo)"><option value="">30</option></select>
+                          <!-- <select class="form-control"  ng-disabled="cant.num>0"ng-focus="scrollAnime($event)" ng-model="largo" ng-options="b.largo for b in bultos | unique:'largo' |orderBy:'largo'"><option value="">30</option></select> -->
                           </div>
 
                           <div class="form-group col-md-2">
                           <label for="">Alto</label>
-                          <select class="form-control"  ng-disabled="cant.num>0"ng-focus="scrollAnime($event)" ng-model="dimesion.alto" ng-options="b.alto for b in bultos | unique:'alto'|orderBy:'alto'"></select>
+                          <select class="form-control"  ng-focus="scrollAnime($event)" ng-model="alto" ng-init="alto.num =30" ng-options="b.num for b in cant_otros" ng-change="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion,campo)"><option value="">30</option></select>
+
+                          <!-- <select class="form-control"  ng-disabled="cant.num>0"ng-focus="scrollAnime($event)" ng-model="alto" ng-options="b.alto for b in bultos | unique:'alto'|orderBy:'alto'"></select> -->
                           </div>
 
                           <div class="form-group col-md-2">
                           <label for="">Cantidad</label>
-                          <select ng-model="cant" class="form-control" ng-change="add_otros(otro,dimesion,cant.num,descripcion,campo)" ng-options="cant.num for cant in [{num:1},{num:2},{num:3},{num:4},{num:5},{num:6},{num:7},{num:8},{num:9},{num:10},{num:11},{num:12},{num:13},{num:14},{num:15}]">
-                              <option value="">0</option>
+                          <select ng-model="cant" ng-disabled="!(ancho.num && otro && largo.num && alto.num)" class="form-control" ng-init="cant.num=1" ng-change="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion,campo)" ng-options="cant.num for cant in [{num:2},{num:3},{num:4},{num:5},{num:6},{num:7},{num:8},{num:9},{num:10},{num:11},{num:12},{num:13},{num:14},{num:15}]">
+                              <option value="">1</option>
                           </select>
                           </div>
                           <div class="form-group col-md-1">
