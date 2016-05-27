@@ -57,7 +57,7 @@
               <th style="width:80px; padding:10px; padding-left:30px;">m<sup>3</sup></th>
             </tr>
             <tr ng-repeat="item in muebles_temp">
-              <td>{{item.mueble}}</td>
+              <td>{{item.mueble}} {{item.espeficicacion}}</td><!-- cambio leo -->
               <td align="center">{{item.cantidad}}</td>
               <td align="center">{{item.total_punto/10|number:2}}</td>
             </tr>
