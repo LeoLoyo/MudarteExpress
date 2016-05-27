@@ -1,0 +1,32 @@
+<div class="demo-card-square mdl-card mdl-shadow--2dp">
+  <div class="mdl-card__title mdl-card--expand">
+    <h2 class="mdl-card__title-text">Materiales</h2>
+  </div>
+  <div class="panel-body">
+    <div class="col-md-12">
+      <form class="formulario">
+        <table class="table table-bordered">
+          <tr class="info">
+            <th>Material</th>
+            <th style="width:80px; padding:10px;">Cantidad</th>
+            <th style="width:80px; padding:10px;">Precio unit.</th>
+            <th style="width:80px; padding:10px;">Totales</th>
+          </tr>
+          <tr ng-repeat="item in materiales">
+            <td>{{item.material}}</td>
+            <td align="center">
+              <select ng-focus="scrollAnime($event)" ng-model="cantidad" ng-options="m.num for m in cantidades" ng-change="">
+                <option value="">0</option>
+              </select>
+            <td align="center"><input type="precio"></td>
+          </tr>
+          <tr class="active">
+            <td><strong>Total</strong></td>
+            <td align="center"><strong>{{unidades_contenedores}}</strong></td>
+            <td align="center"><strong>{{metros3_contenedores|number:2}}</strong></td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>

@@ -102,11 +102,11 @@
     app.service('Contenedor', function ($http, setting) {
       var self = this;
       self.all = function(contenedor){
-        // var url = setting.url + "contenedordescripcion/?format=json"
-        var url = 'scripts/json/contenedordescripcion.json'
+        var url = setting.url + "contenedordescripcion/?format=json"
+        // var url = 'scripts/json/contenedordescripcion.json'
         if(contenedor !== undefined){
-          // url = setting.url +"contenedor/?format=json&contenedor="+contenedor;
-          url = 'scripts/json/contenedor.json';
+          url = setting.url +"contenedor/?format=json&contenedor="+contenedor;
+          // url = 'scripts/json/contenedor.json';
         }
         return $http.get(url).then(function(data){
           return data.data;
@@ -120,11 +120,11 @@
       var self = this;
       self.all = function(group){
         // console.log(group);
-        // var url = setting.url+"mueble/?format=json";
-        var url = 'scripts/json/mueble.json';
+        var url = setting.url+"mueble/?format=json";
+        // var url = 'scripts/json/mueble.json';
         if(group !== undefined){
-          // url = setting.url+'muebledescripcion/?format=json';
-          url = 'scripts/json/muebledescripcion.json';
+          url = setting.url+'muebledescripcion/?format=json';
+          //url = 'scripts/json/muebledescripcion.json';
         }
         return $http.get(url).then(function(data){
           // console.log("Mueble :" + data.data.length);
