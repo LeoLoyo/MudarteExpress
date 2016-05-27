@@ -354,6 +354,46 @@
 
       angular.element('#nCotizacion').focus();
 
+      //temploral de material
+      $scope.materiales_temp = [];
+      $scope.add_material = function(material,uni, precio) {
+        var material_temp = {
+            // id: 1,
+            // cotizacion: 1,
+            material: material.descripcion,
+            cantidad: Number(uni),
+            precio_unitario: Number(precio),
+            total: Number(uni*precio),
+            estado: "activo"
+        };
+
+        if(buscar_material($scope.materiales_temp, material_temp)!==true){
+          if(material_temp.cantidad >0){
+              $scope.materiales_temp.push(material_temp);
+          }
+        }
+        $scope.total_materiales = calcular_totales($scope.materiales_temp,"total");
+        console.log($scope.materiales_temp);
+      };
+
+      function buscar_material(ms_tmp,m){
+        var l = ms_tmp.length;
+        for(var i=0;i<l;i++){
+          if(m.material === ms_tmp[i].material){
+            if(m.cantidad>0){
+                ms_tmp[i].cantidad = m.cantidad;
+                ms_tmp[i].precio_unitario = m.precio_unitario;
+                ms_tmp[i].total = m.total;
+            }else{
+                ms_tmp.splice(ms_tmp.indexOf(ms_tmp[i]),1);
+            }
+            return true;
+          }
+        }
+        return false;
+      }
+
+
     });
 
     app.filter('unique', function () {
