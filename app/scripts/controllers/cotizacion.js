@@ -2,7 +2,7 @@
   'use strict';
   var app = angular.module('cotizacionExpressApp');
 
-    app.controller('CotizacionCtrl', function ($interval,$rootScope, $state, $scope, Cotizacion, Contenedor, Mueble, Bulto, Cliente, $http,setting) {
+    app.controller('CotizacionCtrl', function ($interval,$rootScope, $state, $scope, Material,Cotizacion, Contenedor, Mueble, Bulto, Cliente, $http,setting) {
       //variables
       $interval(
         function handleInterval() {
@@ -36,9 +36,10 @@
         numero:'123456',
         responsable:{id:1,name:setting.user.name}
       };
+      $scope.materiales = []
+      $scope.materiales = null;
 
       $scope.contenedores = []
-
       $scope.contenedores = null;
 
       $scope.todoscontenedores = []
@@ -173,6 +174,9 @@
           numeros_otros();
           $('.btnsCotizacion').removeClass('hidden');
 
+          Material.all().then(function(materiales){
+            $scope.materiales = materiales;
+          });
           Contenedor.all().then(function(contenedores){
             $scope.contenedores = contenedores;
           });
