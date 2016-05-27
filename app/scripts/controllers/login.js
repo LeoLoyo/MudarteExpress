@@ -5,14 +5,16 @@
       $('.btnsCotizacion').addClass('hidden');
       $rootScope.session = session;
       $scope.ingresar = function(user,pass){
-          if(Auth.valid(user)){
+        var response;
+        response = Auth.valid(user);
+          if(response[0].status){
             $scope.messages ='Bienvenido';
 
               setTimeout(function(){
                 $state.go('cotizacion');
                 session=true;
                 $('.btnsCotizacion').removeClass('hidden');
-                $('.dropdown-toggle').text(setting.user.name).append('<span class="caret"></span>');
+                $('.dropdown-toggle').text(response[0].user.name).append('<span class="caret"></span>');
               },1000);
 
           }else{

@@ -129,7 +129,7 @@
       function buscar_mueble(ms_tmp,m){
         var l = ms_tmp.length;
         for(var i=0;i<l;i++){
-          if(m.mueble === ms_tmp[i].mueble){
+          if(m.mueble === ms_tmp[i].mueble && m.espeficicacion === ms_tmp[i].espeficicacion){
             if(m.cantidad>0){
                 ms_tmp[i].cantidad = m.cantidad;
             }else{
@@ -162,21 +162,22 @@
       }
 
       function init(contenedor){
-        numeros();
-        numeros_otros();
-        $('.btnsCotizacion').removeClass('hidden');
         if(contenedor !== undefined){
           return Contenedor.all(contenedor).then(function(contenedores){
             $scope.todoscontenedores = contenedores;
 
           });
         }else{
+          numeros();
+          numeros_otros();
+          $('.btnsCotizacion').removeClass('hidden');
+
           Contenedor.all().then(function(contenedores){
             $scope.contenedores = contenedores;
           });
           Mueble.all('filtrado').then(function(groups){
             $scope.muebles_group = groups;
-            console.log(groups);
+            // console.log(groups);
           });
           Mueble.all().then(function(muebles){
             $scope.muebles = muebles;
@@ -207,7 +208,7 @@
         };
 
 
-        init(descripcion).then(function(r){
+        init(descripcion).then(function(){
         if(!buscar_contenedor($scope.contenedores_temp, contenedor_temp)){
             if(contenedor_temp.unidad>0){
               $scope.contenedores_temp.push(contenedor_temp);
@@ -243,6 +244,7 @@
             // id: 1,
             // cotizacion: 1,
             mueble: mueble.descripcion,
+            espeficicacion: mueble.especificacion,
             descripcion: "",
             ancho: Number(mueble.ancho),
             largo: Number(mueble.largo),
@@ -313,37 +315,37 @@
         $scope.otros_temp_campo.splice($scope.otros_temp_campo.indexOf(campo),1);
       };
 
-      $scope.save = function(cot, cliente){
-        var total_cantidad = $scope.unidades_contenedores + $scope.unidades_muebles + $scope.unidades_otros;
-          var total_m3 = $scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros;
-          var cotizacion = {
-            numero_cotizacion:cot.numero,
-            cliente:1,
-            responsable:cot.responsable.id,
-            total_cantidad:total_cantidad,
-            total_m3:total_m3,
-            estado:'activo'
-          };
-          Cotizacion.save(cotizacion).then(function(result){
-            var id_cotizacion = result.data.id;
-            for(var i=0;i<$scope.contenedores_temp.length;i++){
-                Cotizacion.save_contenedores($scope.contenedores_temp[i],id_cotizacion);
-            }
-            for(var i=0;i<$scope.muebles_temp.length;i++){
-                Cotizacion.save_muebles($scope.muebles_temp[i],id_cotizacion);
-            }
-            for(var i=0;i<$scope.otros_temp.length;i++){
-                Cotizacion.save_muebles($scope.otros_temp[i],id_cotizacion);
-            }
-            // $scope.limpiar();
-
-            },function(e){
-            alert("error");
-          });
-
-
-
-      }
+      // $scope.save = function(cot, cliente){
+      //   var total_cantidad = $scope.unidades_contenedores + $scope.unidades_muebles + $scope.unidades_otros;
+      //     var total_m3 = $scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros;
+      //     var cotizacion = {
+      //       numero_cotizacion:cot.numero,
+      //       cliente:1,
+      //       responsable:cot.responsable.id,
+      //       total_cantidad:total_cantidad,
+      //       total_m3:total_m3,
+      //       estado:'activo'
+      //     };
+      //     Cotizacion.save(cotizacion).then(function(result){
+      //       var id_cotizacion = result.data.id;
+      //       for(var i=0;i<$scope.contenedores_temp.length;i++){
+      //           Cotizacion.save_contenedores($scope.contenedores_temp[i],id_cotizacion);
+      //       }
+      //       for(var i=0;i<$scope.muebles_temp.length;i++){
+      //           Cotizacion.save_muebles($scope.muebles_temp[i],id_cotizacion);
+      //       }
+      //       for(var i=0;i<$scope.otros_temp.length;i++){
+      //           Cotizacion.save_muebles($scope.otros_temp[i],id_cotizacion);
+      //       }
+      //       // $scope.limpiar();
+      //
+      //       },function(e){
+      //       alert("error");
+      //     });
+      //
+      //
+      //
+      // }
 
       angular.element('#nCotizacion').focus();
 

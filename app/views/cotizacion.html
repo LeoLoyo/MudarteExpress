@@ -1,8 +1,10 @@
+</br><div ng-include='"views/cliente.html"'></div>
 <div ng-show="checked">
   <div class="row">
       <div class="col-md-12">
           <h1>Cotización express</h1>
           <form class="formulario">
+
           <!-- cabecera -->
             <div class="row hidden">
               <div class="form-group col-sm-6 col-md-4">
@@ -49,13 +51,13 @@
                   <div class="row">
                       <div class="col-md-12">
                           <h2>Muebles</h2>
-                          <input type="search" placeholder="Buscar muebles" class="form-control buscarMueble hidden" ng-model="buscarMueble">
+                          <input type="search" placeholder="Buscar muebles" class="form-control buscarMueble" ng-model="buscarMueble">
                       </div>
                   </div>
 
-                  <div ng-repeat="group in muebles_group"></br><p><button style="border:none;background-color: #fff;width:100%;text-align: left;">{{group.descripcion}}</button></p>
+                  <div  ng-repeat="group in muebles_group | filter: buscarMueble"></br><p><button style="border:none;background-color: #fff;width:100%;text-align: left;">{{group.descripcion}}</button></p>
                     <!-- Repeat de Muebles por descripcion -->
-                    <div ng-repeat="c in muebles | filter: group.descripcion | filter: buscarMueble" class="btnSeleccion" ng-class="{btnSeleccionado:m.num>0}">
+                    <div ng-repeat="c in muebles | filter: group.descripcion " class="btnSeleccion" ng-class="{btnSeleccionado:m.num>0}">
                       <span>{{c.especificacion}}</span>
 
                       <select ng-focus="scrollAnime($event)" ng-model="m" ng-options="m.num for m in cantidades" ng-change="add_mueble(c,m.num)">
@@ -75,7 +77,7 @@
                       <div class="row">
                           <div class="form-group col-md-3">
                               <label for="">Descripción</label>
-                              <select class="form-control"  ng-focus="scrollAnime($event)" ng-model="otro" ng-options="m.descripcion for m in muebles|filter: false" ng-change="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion,campo)"></select></br>
+                              <select class="form-control"  ng-focus="scrollAnime($event)" ng-init="otro = 'Otros'" ng-model="otro" ng-options="m.descripcion for m in muebles|filter: false" ng-change="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion,campo)"></select></br>
                               <input type="text"  placeholder="Descripción requerida" ng-model="descripcion" ng-disabled="cant.num>0" class="form-control" ng-class="{hidden:otro.descripcion !='Otros',error:!descripcion}">
                           </div>
 

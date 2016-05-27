@@ -4,13 +4,49 @@
 
     app.service('Auth', function($http, setting){
       var self = this;
+      var users = [
+        {
+          name:"Leonardo Loyo",
+          user:"leo",
+          pass:"0000"
+        },
+        {
+          name:"Administrador",
+          user:"admin",
+          pass:"admin"
+        },
+        {
+          name:"Yusnelvy Arrieche",
+          user:"yusnelvy",
+          pass:"1234"
+        },
+        {
+          name:"Yohandri",
+          user:"yohandri",
+          pass:"1234"
+        },
+        {
+          name:"Jessica Rivero",
+          user:"jessica",
+          pass:"1234"
+        }
+      ];
+      var response;
+
       self.valid = function(user){
         // $http.get(setting.url).then(function(){}).catch(function(){})
-        if(user.name === setting.user.name && user.pass === setting.user.pass){
-            return true;
-        }else{
-          return false;
-        }
+        for(var i=0;i<users.length;i++){
+          // console.log(users[i]);
+            if(user.name === users[i]['user'] && user.pass === users[i]['pass']){
+              return response =[{user:users[i],status:true}];
+            }
+          }
+        return response =[{user:null,status:false}];
+        // if(user.name === setting.user.name && user.pass === setting.user.pass){
+        //     return true;
+        // }else{
+        //   return false;
+        // }
       };
     })
 
@@ -83,7 +119,7 @@
     app.service('Mueble', function ($http, setting) {
       var self = this;
       self.all = function(group){
-        console.log(group);
+        // console.log(group);
         // var url = setting.url+"mueble/?format=json";
         var url = 'scripts/json/mueble.json';
         if(group !== undefined){
@@ -91,7 +127,7 @@
           url = 'scripts/json/muebledescripcion.json';
         }
         return $http.get(url).then(function(data){
-          console.log("Mueble :" + data.data.length);
+          // console.log("Mueble :" + data.data.length);
           return data.data;
         }).catch(function(e){
           return null;
