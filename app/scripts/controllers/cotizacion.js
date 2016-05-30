@@ -455,7 +455,6 @@
           }
         }
         $scope.total_materiales = calcular_totales($scope.materiales_temp,"total");
-        console.log($scope.materiales_temp);
       };
 
       function buscar_material(ms_tmp,m){
@@ -481,20 +480,19 @@
       $scope.parcial1_temp = {
                 // id: 1,
                 // cotizacion: 1,
-                recorrido_km: Number(km),
-                precio_km: Number(precio),
-                monto_km: Number(km*precio),
-                tiempo_de_carga: cotizacion.cotizacion,
-                tiempo_de_descarga: cotizacion.tiempo_de_descarga,
-                numero_camion: cotizacion.numero_camion,
-                numero_ayudante: cotizacion.numero_ayudante,
-                seguro: cotizacion.seguro,
-                desarme_mueble: cotizacion.desarme_mueble,
-                ambiente: cotizacion.ambiente,
-                rampa: cotizacion.rampa,
+                recorrido_km: Number(km)||0,
+                precio_km: Number(precio)||30,
+                monto_km: Number(km*precio)||0,
+                tiempo_de_carga: Number(cotizacion.tiempo_de_carga.num)||0,
+                tiempo_de_descarga: Number(cotizacion.tiempo_de_descarga.num)||0,
+                numero_camion: Number(cotizacion.numero_camion.num)||0,
+                numero_ayudante: Number(cotizacion.numero_ayudante.num)||0,
+                seguro: cotizacion.seguro||"No",
+                desarme_mueble: cotizacion.desarme_mueble||"No",
+                ambiente: Number(cotizacion.ambiente.num)||0,
+                rampa: cotizacion.rampa||"No",
                 estado: "activo"
               };
-              console.log($scope.parcial1_temp);
             };
     });
 
