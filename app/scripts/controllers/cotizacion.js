@@ -2,7 +2,7 @@
   'use strict';
   var app = angular.module('cotizacionExpressApp');
 
-    app.controller('CotizacionCtrl', function ($interval,$rootScope, $state, $scope, Cotizacion, Contenedor, Mueble, Bulto, Cliente, $http,setting) {
+    app.controller('CotizacionCtrl', function ($interval,$rootScope, $state, $scope,Users, Material,Cotizacion, Contenedor, Mueble, Bulto, Cliente, $http,setting) {
       //variables
       $interval(
         function handleInterval() {
@@ -32,17 +32,93 @@
         return $scope.cant_otros;
       }
 
-      $scope.cotizacion = {
-        numero:'123456',
-        responsable:{id:1,name:setting.user.name}
+      //objecto cliente
+      $scope.cliente ={
+        nombre:'',
+        telefono:'',
+        email:''
       };
 
-      $scope.contenedores = []
+      // objecto direccion
 
+      $scope.cotizacion = {
+        numero_cotizacion:'',
+        cliente:'',
+        cotizador:'',
+        quien_llamo:'',
+        quien_cotizo:'',
+        fecha_registro:'',
+        hora_registro:'',
+        fuente:'',
+        cp_pv:'',
+        particular:'',
+        empresa:'',
+        gobierno:'',
+        cargo:'',
+        forma_pago:'',
+        fecha_de_carga:'',
+        hora_de_carga:'',
+        fecha_estimada_mudanza:'',
+        hora_estimada_mudanza:'',
+        fecha_de_cotizacion:'',
+        hora_de_cotizacion:'',
+        fecha_de_aviso:'',
+        hora_de_aviso:'',
+        fecha_de_cierre:'',
+        hora_de_cierre:'',
+        fecha_real_mudanza:'',
+        hora_real_mudanza:'',
+        direccion_origen:'',
+        barrio_provincia_origen:'',
+        observacion_origen:'',
+        direccion_destino:'',
+        barrio_provincia_destino:'',
+        observacion_destino:'',
+        recorrido_km:'',
+        precio_km:'',
+        monto_km:'',
+        tiempo_de_carga:'',
+        tiempo_de_descarga:'',
+        numero_camion:'',
+        numero_ayudante:'',
+        seguro:'',
+        desarme_mueble:'',
+        ambiente:'',
+        rampa:'',
+        mudanza:'',
+        soga:'',
+        embalaje:'',
+        desembalaje:'',
+        materiales:'',
+        piano_cajafuerte:'',
+        ajuste:'',
+        iva:'',
+        total_monto:'',
+        observacion:'',
+        total_cantidad:'',
+        total_m3:'',
+        porcentaje_margen:'',
+        total_margen:'',
+        estado:''
+      };
+
+      $scope.cotizadores = []
+      $scope.cotizadores = null;
+
+      $scope.telefonistas = []
+      $scope.telefonistas = null;
+
+      $scope.materiales = []
+      $scope.materiales = null;
+
+      $scope.contenedores = []
       $scope.contenedores = null;
 
       $scope.todoscontenedores = []
       $scope.todoscontenedores = null;
+
+      $scope.tipo_muebles = []
+      $scope.tipo_muebles = null;
 
       // $scope.bultos = []
       // $scope.bultos = null;
@@ -152,6 +228,7 @@
                 ms_tmp[i].largo = m.largo;
                 ms_tmp[i].alto = m.alto;
                 ms_tmp[i].cantidad = m.cantidad;
+                ms_tmp[i].descripcion = m.descripcion;
                 ms_tmp[i].total_punto = m.punto * m.cantidad;
             }else{
                 ms_tmp.splice(ms_tmp.indexOf(ms_tmp[i]),1);
@@ -173,6 +250,9 @@
           numeros_otros();
           $('.btnsCotizacion').removeClass('hidden');
 
+          Material.all().then(function(materiales){
+            $scope.materiales = materiales;
+          });
           Contenedor.all().then(function(contenedores){
             $scope.contenedores = contenedores;
           });
@@ -183,8 +263,14 @@
           Mueble.all().then(function(muebles){
             $scope.muebles = muebles;
           });
-          Cliente.all().then(function(cliente){
-            $scope.cliente = cliente;
+          Mueble.tipo_mueble().then(function(muebles){
+            $scope.tipo_muebles = muebles;
+          });
+          Users.all(1).then(function(r){
+            $scope.cotizadores = r;
+          });
+          Users.all(2).then(function(r){
+            $scope.telefonista = r;
           });
 
         }
@@ -269,8 +355,8 @@
         if(ancho!==undefined && largo!==undefined && alto!==undefined){
          var otro = {
               id: campo.id,
-              mueble: mueble.descripcion,
-              descripcion: "",
+              mueble: mueble,
+              descripcion: descripcion,
               ancho: Number(ancho),
               largo: Number(largo),
               alto: Number(alto),
@@ -281,10 +367,10 @@
           };
           var mult_dimension=otro.ancho*otro.largo*otro.alto;
 
-          if(mueble.descripcion === 'Otros'){
+          if(mueble === 'Otros'){
             otro.descripcion = descripcion;
           }else{
-            otro.descripcion = mueble.descripcion;
+            otro.descripcion = mueble;
           }
 
           otro.punto = Math.round(otro.ancho*otro.largo*otro.alto/100000);
