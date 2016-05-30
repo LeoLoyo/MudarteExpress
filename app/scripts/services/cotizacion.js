@@ -108,37 +108,53 @@
         });
       }
     });
+
     app.service('Material', function ($http, setting) {
       var self = this;
       self.all = function(){
           // url = setting.url + "/material/?format=json";
           var url = "scripts/json/material.json";
         return $http.get(url).then(function(data){
-          return data.data;
+          var out =[];
+          angular.forEach(data.data, function(value,key){
+            value.precio =Number(value.precio);
+            out.push(value);
+          },out);
+          // return data.data;
+          console.log(out);
+          return out;
         }).catch(function(e){
           return null;
         });
       }
     });
 
-
     app.service('Mueble', function ($http, setting) {
       var self = this;
       self.all = function(group){
-        // console.log(group);
-        var url = setting.url+"mueble/?format=json";
-        // var url = 'scripts/json/mueble.json';
+       // var url = setting.url+"mueble/?format=json";
+        var url = 'scripts/json/mueble.json';
         if(group !== undefined){
           url = setting.url+'muebledescripcion/?format=json';
           //url = 'scripts/json/muebledescripcion.json';
         }
         return $http.get(url).then(function(data){
-          // console.log("Mueble :" + data.data.length);
           return data.data;
         }).catch(function(e){
           return null;
         });
       }
+      self.tipo_mueble = function(){
+        // var url = setting.url+"tipo_mueble/?format=json";
+        var url = "scripts/json/tipo_mueble.json";
+        return $http.get(url).then(function(data){
+          return data.data;
+        }).catch(function(e){
+          return null;
+        });
+      }
+      return self;
+
     });
 
     app.service('Bulto', function ($http, setting) {
@@ -173,5 +189,31 @@
         });
       }
     });
+
+    app.service('Users', function ($http, setting) {
+      var self = this;
+      self.all = function(param){
+        var url = '';
+        switch(param){
+          case 1:
+            // url = setting.url+"user/?format=json&cotizador=cotizador";
+            url = 'scripts/json/cotizador.json';
+            break;
+
+          case 2:
+            // url = setting.url+"user/?format=json&telefonnista=telefonista";
+            url = 'scripts/json/telefonista.json';
+            break;
+          default:
+            url = 'scripts/json/user.json';
+            break
+        };
+
+        return $http.get(url).then(function(data){
+          return data.data;
+        });
+      }
+    });
+
 
 })();

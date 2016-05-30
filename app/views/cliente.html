@@ -17,21 +17,21 @@
       <div class="col-md-12">
         <div class="form-group col-md-6">
           <div class="col-md-4"><label for="" class="form-label">Nombre y Apellido:</label></div>
-          <div class="col-md-8"><input type="text" class="form-control" placeholder="Nombre y Apellido"></div>
+          <div class="col-md-8"><input type="text" class="form-control" ng-model="cliente.nombre" placeholder="Nombre y Apellido"></div>
         </div>
         <div class="form-group col-md-6">
           <div class="col-md-4"><label for="" class="form-label">Teléfono:</label></div>
-          <div class="col-md-8"><input type="number" min=0 class="form-control" placeholder="Telefono"></div>
+          <div class="col-md-8"><input type="number" ng-model="cliente.telefono" min=0 class="form-control" placeholder="Telefono"></div>
         </div>
       </div>
       <div class="col-md-12">
         <div class="form-group col-md-6">
           <div class="col-md-4"><label for="" class="form-label">Email:</label></div>
-          <div class="col-md-8"><input type="email" class="form-control" placeholder="email"></div>
+          <div class="col-md-8"><input type="email" ng-model="cliente.email" class="form-control" placeholder="email"></div>
         </div>
         <div class="form-group col-md-6">
           <div class="col-md-4"><label for="" class="form-label">Fuente de promocion:</label></div>
-          <div class="col-md-8"><input type="text" class="form-control" placeholder="Fuente De Promocion"></div>
+          <div class="col-md-8"><input type="text" ng-model="cotizacion.fuente" class="form-control" placeholder="Fuente De Promocion"></div>
         </div>
       </div>
       <div class="col-md-12">
@@ -40,13 +40,13 @@
             <label for="" class="form-label">Fecha en que se cargo:</label>
           </div>
           <div class="col-md-3">
-            <input type="date" class="form-control">
+            <input type="date" ng-model="cotizacion.fecha_de_carga" class="form-control">
           </div>
           <div class="col-md-2">
             <label for="" class="form-label">Hora:</label>
           </div>
           <div class="col-md-3">
-            <input type="time" class="form-control">
+            <input type="time" ng-model="cotizacion.hora_de_carga" class="form-control">
           </div>
         </div>
         <div class="form-group col-md-12">
@@ -54,13 +54,13 @@
             <label for="" class="form-label">Fecha estimada de muedanza:</label>
           </div>
           <div class="col-md-3">
-            <input type="date" class="form-control">
+            <input type="date" ng-model="cotizacion.fecha_estimada_mudanza"class="form-control">
           </div>
           <div class="col-md-2">
             <label for="" class="form-label">Hora:</label>
           </div>
           <div class="col-md-3">
-            <input type="time" class="form-control">
+            <input type="time" ng-model="cotizacion.hora_estimada_mudanza" class="form-control">
           </div>
         </div>
         <div class="form-group col-md-12">
@@ -68,13 +68,13 @@
             <label for="" class="form-label">Fecha en que se cotizo:</label>
           </div>
           <div class="col-md-3">
-            <input type="date" class="form-control">
+            <input type="date" ng-model="cotizacion.fecha_de_cotizacion"class="form-control">
           </div>
           <div class="col-md-2">
             <label for="" class="form-label">Hora:</label>
           </div>
           <div class="col-md-3">
-            <input type="time" class="form-control">
+            <input type="time" ng-model="cotizacion.hora_de_cotizacion"class="form-control">
           </div>
         </div>
         <div class="form-group col-md-12">
@@ -82,13 +82,13 @@
             <label for="" class="form-label">Fecha en que se aviso:</label>
           </div>
           <div class="col-md-3">
-            <input type="date" class="form-control">
+            <input type="date" ng-model="cotizacion.fecha_de_aviso" class="form-control">
           </div>
           <div class="col-md-2">
             <label for="" class="form-label">Hora:</label>
           </div>
           <div class="col-md-3">
-            <input type="time" class="form-control">
+            <input type="time" ng-model="cotizacion.hora_de_aviso" class="form-control">
           </div>
         </div>
         <div class="form-group col-md-12">
@@ -96,13 +96,13 @@
             <label for="" class="form-label">Fecha en que se cerro:</label>
           </div>
           <div class="col-md-3">
-            <input type="date" class="form-control">
+            <input type="date" ng-model="cotizacion.fecha_de_cierre" class="form-control">
           </div>
           <div class="col-md-2">
             <label for="" class="form-label">Hora:</label>
           </div>
           <div class="col-md-3">
-            <input type="time" class="form-control">
+            <input type="time" ng-model="cotizacion.hora_de_cierre" class="form-control">
           </div>
         </div>
         <div class="form-group col-md-12">
@@ -110,10 +110,10 @@
             <label for="" class="form-label">Fecha real de mudanza:</label>
           </div>
           <div class="col-md-3">
-            <input type="date" class="form-control">
+            <input type="date" ng-model="cotizacion.fecha_real_mudanza" class="form-control">
           </div>
           <div class="col-md-2">
-            <label for="" class="form-label">Hora:</label>
+            <label for="" ng-model="cotizacion.hora_real_mudanza"class="form-label">Hora:</label>
           </div>
           <div class="col-md-3">
             <input type="time" class="form-control">
@@ -122,11 +122,12 @@
 
         <div class="form-group col-md-6">
           <div class="col-md-4"><label for="" class="form-label">Nombre de quien paso la mudanza:</label></div>
-          <div class="col-md-8"><input type="text" class="form-control" placeholder="Fuente De Promocion"></div>
+          <div class="col-md-8">
+            <select ng-model="cotizacion.quien_cotizo" class="form-control" ng-options="item.first_name for item in telefonistas"></select></div>
         </div>
         <div class="form-group col-md-6">
           <div class="col-md-4"><label for="" class="form-label">Nombre de quien llamo al cliente:</label></div>
-          <div class="col-md-8"><input type="text" class="form-control" placeholder="Fuente De Promocion"></div>
+          <div class="col-md-8"><select class="form-control" ng-model="cotizacion.quien_llamo" ng-options="item.first_name for item in telefonistas"></select></div>
         </div>
       </div>
     </div>
