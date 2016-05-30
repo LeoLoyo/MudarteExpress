@@ -87,6 +87,9 @@
             return false;
           });
         }
+        self.operadores = function () {
+
+        }
 
 
       return self;
