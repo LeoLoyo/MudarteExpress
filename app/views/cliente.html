@@ -127,7 +127,9 @@
         </div>
         <div class="form-group col-md-6">
           <div class="col-md-4"><label for="" class="form-label">Nombre de quien llamo al cliente:</label></div>
-          <div class="col-md-8"><select class="form-control" ng-model="cotizacion.quien_llamo" ng-options="item.first_name for item in telefonistas"></select></div>
+          <div class="col-md-8">
+            <select class="form-control" ng-model="cotizacion.quien_llamo" ng-options="item.first_name for item in telefonista"></select>
+          </div>
         </div>
       </div>
     </div>

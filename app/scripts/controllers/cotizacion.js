@@ -268,6 +268,7 @@
           });
           Users.all(1).then(function(r){
             $scope.cotizadores = r;
+            console.log(r);
           });
           Users.all(2).then(function(r){
             $scope.telefonista = r;
