@@ -9,7 +9,7 @@
             $rootScope.$broadcast( "change" );
         },0);
       if(!session){
-        $state.go('login');
+        $state.go('cotizacion');
       }
 
       $scope.cantidades = [];
