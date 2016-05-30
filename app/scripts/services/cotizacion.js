@@ -98,8 +98,8 @@
         // var url = setting.url + "contenedordescripcion/?format=json"
         var url = 'scripts/json/contenedordescripcion.json'
         if(contenedor !== undefined){
-          // url = setting.url +"contenedor/?format=json&contenedor="+contenedor;
-          url = 'scripts/json/contenedor.json';
+          url = setting.url +"contenedor/?format=json&contenedor="+contenedor;
+          // url = 'scripts/json/contenedor.json';
         }
         return $http.get(url).then(function(data){
           return data.data;
