@@ -392,8 +392,28 @@
         }
         return false;
       }
-
-
+// temporal parcial_1
+    $scope.parcial1_temp = {};
+    $scope.add_parcial1 = function(cotizacion,km, precio) {
+      console.log(cotizacion);
+      $scope.parcial1_temp = {
+                // id: 1,
+                // cotizacion: 1,
+                recorrido_km: Number(km),
+                precio_km: Number(precio),
+                monto_km: Number(km*precio),
+                tiempo_de_carga: cotizacion.cotizacion,
+                tiempo_de_descarga: cotizacion.tiempo_de_descarga,
+                numero_camion: cotizacion.numero_camion,
+                numero_ayudante: cotizacion.numero_ayudante,
+                seguro: cotizacion.seguro,
+                desarme_mueble: cotizacion.desarme_mueble,
+                ambiente: cotizacion.ambiente,
+                rampa: cotizacion.rampa,
+                estado: "activo"
+              };
+              console.log($scope.parcial1_temp);
+            };
     });
 
     app.filter('unique', function () {
