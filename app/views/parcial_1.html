@@ -9,7 +9,7 @@
             <td align="center">km</td>
             <td><input type="number" name"recorrido_km" ng-model="cotizacion.recorrido_km" ng-change="add_parcial1()"></td>
             <td align="center">$
-              <select name="precio_km" id="precio_km" ng-model="cotizacion.precio_km" ng-change="add_parcial1()">
+              <select name="precio_km" id="precio_km" ng-init="cotizacion.precio_km = '30'"ng-model="cotizacion.precio_km" ng-change="add_parcial1()">
                 <option value="30">30</option>
                 <option value="33">33</option>
                 <option value="37">37</option>
