@@ -117,11 +117,10 @@
         return $http.get(url).then(function(data){
           var out =[];
           angular.forEach(data.data, function(value,key){
-            value.precio =Number(value.precio);
+            value.precio = Number(value.precio);
             out.push(value);
           },out);
           // return data.data;
-          console.log(out);
           return out;
         }).catch(function(e){
           return null;
@@ -132,7 +131,7 @@
     app.service('Mueble', function ($http, setting) {
       var self = this;
       self.all = function(group){
-        // var url = setting.url+"mueble/?format=json";
+       // var url = setting.url+"mueble/?format=json";
         var url = 'scripts/json/mueble.json';
         if(group !== undefined){
           // url = setting.url+'muebledescripcion/?format=json';
