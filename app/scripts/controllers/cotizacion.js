@@ -74,26 +74,26 @@
         direccion_destino:'',
         barrio_provincia_destino:'',
         observacion_destino:'',
-        recorrido_km:'',
-        precio_km:'',
-        monto_km:'',
-        tiempo_de_carga:'',
-        tiempo_de_descarga:'',
-        numero_camion:'',
-        numero_ayudante:'',
-        seguro:'',
-        desarme_mueble:'',
-        ambiente:'',
-        rampa:'',
-        mudanza:'',
-        soga:'',
-        embalaje:'',
-        desembalaje:'',
-        materiales:'',
-        piano_cajafuerte:'',
-        ajuste:'',
-        iva:'',
-        total_monto:'',
+        recorrido_km:Number(0),
+        precio_km:Number(30),
+        monto_km:Number(0),
+        tiempo_de_carga:Number(0),
+        tiempo_de_descarga:Number(0),
+        numero_camion:Number(0),
+        numero_ayudante:Number(0),
+        seguro:'No',
+        desarme_mueble:'No',
+        ambiente:Number(0),
+        rampa:'No',
+        mudanza:Number(0),
+        soga:Number(0),
+        embalaje:Number(0),
+        desembalaje:Number(0),
+        materiales:Number(0),
+        piano_cajafuerte:Number(0),
+        ajuste:Number(0),
+        iva:Number(0),
+        total_monto:Number(0),
         observacion:'',
         total_cantidad:'',
         total_m3:'',
@@ -434,6 +434,9 @@
       //
       // }
 
+      $scope.update_presupuesto = function () {
+        $scope.cotizacion.total_monto = Number($scope.cotizacion.mudanza + $scope.cotizacion.soga + $scope.cotizacion.embalaje + $scope.cotizacion.desembalaje + $scope.cotizacion.materiales + $scope.cotizacion.piano_cajafuerte + $scope.cotizacion.ajuste + $scope.cotizacion.iva);
+      }
       angular.element('#nCotizacion').focus();
 
       //temploral de material
@@ -454,7 +457,10 @@
               $scope.materiales_temp.push(material_temp);
           }
         }
-        $scope.total_materiales = calcular_totales($scope.materiales_temp,"total");
+        $scope.cotizacion.materiales = calcular_totales($scope.materiales_temp,"total");
+        console.log($scope.materiales_temp);
+        $scope.cotizacion.total_monto = $scope.cotizacion.mudanza + $scope.cotizacion.soga + $scope.cotizacion.embalaje + $scope.cotizacion.desembalaje + $scope.cotizacion.materiales + $scope.cotizacion.piano_cajafuerte + $scope.cotizacion.ajuste + $scope.cotizacion.iva
+
       };
 
       function buscar_material(ms_tmp,m){
@@ -474,26 +480,12 @@
         return false;
       }
 // temporal parcial_1
-    $scope.parcial1_temp = {};
-    $scope.add_parcial1 = function(cotizacion,km, precio) {
-      console.log(cotizacion);
-      $scope.parcial1_temp = {
-                // id: 1,
-                // cotizacion: 1,
-                recorrido_km: Number(km)||0,
-                precio_km: Number(precio)||30,
-                monto_km: Number(km*precio)||0,
-                tiempo_de_carga: Number(cotizacion.tiempo_de_carga.num)||0,
-                tiempo_de_descarga: Number(cotizacion.tiempo_de_descarga.num)||0,
-                numero_camion: Number(cotizacion.numero_camion.num)||0,
-                numero_ayudante: Number(cotizacion.numero_ayudante.num)||0,
-                seguro: cotizacion.seguro||"No",
-                desarme_mueble: cotizacion.desarme_mueble||"No",
-                ambiente: Number(cotizacion.ambiente.num)||0,
-                rampa: cotizacion.rampa||"No",
-                estado: "activo"
-              };
-            };
+    // $scope.parcial1_temp = {};
+    $scope.add_parcial1 = function() {
+      console.log($scope.cotizacion);
+      $scope.cotizacion.monto_km = Number($scope.cotizacion.recorrido_km * $scope.cotizacion.precio_km);
+    };
+
     });
 
     app.filter('unique', function () {

@@ -7,21 +7,21 @@
         <table class="table table-bordered">
           <tr>
             <td align="center">km</td>
-            <td><input type="number" name"recorrido_km" ng-model="cotizacion.recorrido_km" ng-change="add_parcial1(cotizacion, cotizacion.recorrido_km, cotizacion.precio_km)"></td>
-            <td align="center">
-              <select name="precio_km" id="precio_km" ng-model="cotizacion.precio_km" ng-change="add_parcial1(cotizacion, cotizacion.recorrido_km, cotizacion.precio_km)">
-                <option value="">$30</option>
-                <option value="33">$33</option>
-                <option value="37">$37</option>
-                <option value="41">$41</option>
+            <td><input type="number" name"recorrido_km" ng-model="cotizacion.recorrido_km" ng-change="add_parcial1()"></td>
+            <td align="center">$
+              <select name="precio_km" id="precio_km" ng-init="cotizacion.precio_km = '30'"ng-model="cotizacion.precio_km" ng-change="add_parcial1()">
+                <option value="30">30</option>
+                <option value="33">33</option>
+                <option value="37">37</option>
+                <option value="41">41</option>
               </select>
             </td>
-            <td align="center">{{cotizacion.recorrido_km * cotizacion.precio_km|currency}}</td>
+            <td align="center">{{cotizacion.monto_km|currency}}</td>
           </tr>
           <tr>
             <td align="center">Tiempo de carga</td>
             <td align="center" colspan="2">
-              <select ng-focus="scrollAnime($event)" ng-model="cotizacion.tiempo_de_carga" ng-options="m.num for m in cantidades" ng-change="add_parcial1(cotizacion, cotizacion.recorrido_km, cotizacion.precio_km)" >
+              <select ng-focus="scrollAnime($event)" ng-model="cotizacion.tiempo_de_carga" ng-options="m.num for m in cantidades" >
               <option value="">0</option>
               </select>
             <td></td>
@@ -29,7 +29,7 @@
           <tr>
             <td align="center">Tiempo de descarga</td>
             <td align="center" colspan="2">
-              <select ng-focus="scrollAnime($event)" ng-model="cotizacion.tiempo_de_descarga" ng-options="m.num for m in cantidades" ng-change="add_parcial1(cotizacion, cotizacion.recorrido_km, cotizacion.precio_km)">
+              <select ng-focus="scrollAnime($event)" ng-model="cotizacion.tiempo_de_descarga" ng-options="m.num for m in cantidades" >
               <option value="">0</option>
               </select>
             <td></td>
@@ -37,7 +37,7 @@
           <tr>
             <td align="center">Camión n°</td>
             <td align="center" colspan="2">
-              <select ng-focus="scrollAnime($event)" ng-model="cotizacion.numero_camion" ng-options="m.num for m in cantidades" ng-change="add_parcial1(cotizacion, cotizacion.recorrido_km, cotizacion.precio_km)">
+              <select ng-focus="scrollAnime($event)" ng-model="cotizacion.numero_camion" ng-options="m.num for m in cantidades" >
               <option value="">0</option>
               </select>
             <td></td>
@@ -45,7 +45,7 @@
           <tr>
             <td align="center">Ayudantes</td>
             <td align="center" colspan="2">
-              <select ng-focus="scrollAnime($event)" ng-model="cotizacion.numero_ayudante" ng-options="m.num for m in cantidades" ng-change="add_parcial1(cotizacion, cotizacion.recorrido_km, cotizacion.precio_km)">
+              <select ng-focus="scrollAnime($event)" ng-model="cotizacion.numero_ayudante" ng-options="m.num for m in cantidades" >
               <option value="">0</option>
               </select>
             <td></td>
@@ -53,25 +53,25 @@
           <tr>
             <td align="center">Seguro</td>
             <td align="center" colspan="2">
-              <select name="seguro" id="seguro" ng-model="cotizacion.seguro" ng-change="add_parcial1(cotizacion, cotizacion.recorrido_km, cotizacion.precio_km)">
-                <option value="Si">Si</option>
-                <option value="" selected>No</option>
+              <select name="seguro" id="seguro" ng-model="cotizacion.seguro" >
+                <option value="Si" selected>Si</option>
+                <option value="No">No</option>
               </select>
             <td></td>
           </tr>
           <tr>
             <td align="center">Desarme de Muebles</td>
             <td align="center" colspan="2">
-              <select name="desarme_mueble" id="desarme_mueble" ng-model="cotizacion.desarme_mueble" ng-change="add_parcial1(cotizacion, cotizacion.recorrido_km, cotizacion.precio_km)">
-                <option value="Si">Si</option>
-                <option value="" selected>No</option>
+              <select name="desarme_mueble" id="desarme_mueble" ng-model="cotizacion.desarme_mueble" >
+                <option value="Si" selected>Si</option>
+                <option value="No">No</option>
               </select>
             <td></td>
           </tr>
           <tr>
             <td align="center">Ambiente</td>
             <td align="center" colspan="2">
-              <select ng-focus="scrollAnime($event)" ng-model="cotizacion.ambiente" ng-options="m.num for m in cantidades" ng-change="add_parcial1(cotizacion, cotizacion.recorrido_km, cotizacion.precio_km)">
+              <select ng-focus="scrollAnime($event)" ng-model="cotizacion.ambiente" ng-options="m.num for m in cantidades" >
               <option value="">0</option>
               </select>
             <td></td>
@@ -79,9 +79,9 @@
           <tr>
             <td align="center">Rampa</td>
             <td align="center" colspan="2">
-             <select name="rampa" id="rampa" ng-model="cotizacion.rampa" ng-change="add_parcial1(cotizacion, cotizacion.recorrido_km, cotizacion.precio_km)">
-                <option value="Si">Si</option>
-                <option value="" selected>No</option>
+             <select name="rampa" id="rampa" ng-model="cotizacion.rampa" >
+                 <option value="Si" selected>Si</option>
+                <option value="No">No</option>
               </select>
             <td></td>
           </tr>
