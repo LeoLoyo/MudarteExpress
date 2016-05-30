@@ -85,15 +85,15 @@
         desarme_mueble:'',
         ambiente:'',
         rampa:'',
-        mudanza:'',
-        soga:'',
-        embalaje:'',
-        desembalaje:'',
-        materiales:'',
-        piano_cajafuerte:'',
-        ajuste:'',
-        iva:'',
-        total_monto:'',
+        mudanza:Number(0),
+        soga:Number(0),
+        embalaje:Number(0),
+        desembalaje:Number(0),
+        materiales:Number(0),
+        piano_cajafuerte:Number(0),
+        ajuste:Number(0),
+        iva:Number(0),
+        total_monto:Number(0),
         observacion:'',
         total_cantidad:'',
         total_m3:'',
@@ -434,6 +434,9 @@
       //
       // }
 
+      $scope.update_presupuesto = function () {
+        $scope.cotizacion.total_monto = Number($scope.cotizacion.mudanza + $scope.cotizacion.soga + $scope.cotizacion.embalaje + $scope.cotizacion.desembalaje + $scope.cotizacion.materiales + $scope.cotizacion.piano_cajafuerte + $scope.cotizacion.ajuste + $scope.cotizacion.iva);
+      }
       angular.element('#nCotizacion').focus();
 
       //temploral de material
@@ -454,8 +457,10 @@
               $scope.materiales_temp.push(material_temp);
           }
         }
-        $scope.total_materiales = calcular_totales($scope.materiales_temp,"total");
+        $scope.cotizacion.materiales = calcular_totales($scope.materiales_temp,"total");
         console.log($scope.materiales_temp);
+        $scope.cotizacion.total_monto = $scope.cotizacion.mudanza + $scope.cotizacion.soga + $scope.cotizacion.embalaje + $scope.cotizacion.desembalaje + $scope.cotizacion.materiales + $scope.cotizacion.piano_cajafuerte + $scope.cotizacion.ajuste + $scope.cotizacion.iva
+
       };
 
       function buscar_material(ms_tmp,m){
