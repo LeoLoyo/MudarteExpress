@@ -1,47 +1,11 @@
-</br><div ng-include='"views/cliente.html"'></div>
-</br><div ng-include='"views/parcial_1.html"'></div>
-</br><div ng-include='"views/presupuesto.html"'></div>
-<div ng-show="checked">
-  <div class="row">
-      <div class="col-md-12">
-          <h2>Cotización express</h2>
-          <div class="formulario">
-
-          <!-- cabecera -->
-            <div class="row hidden">
-              <div class="form-group col-sm-6 col-md-4">
-                  <label for="numerocotizacion">N° cotización:</label>
-                  <input ng-focus="scrollAnime($event)" ng-model="cotizacion.numero" id="nCotizacion" type="text" class="form-control" id="numerocotizacion" placeholder="e.g: 0001">
-              </div>
-              <div class="form-group col-sm-6 col-md-4">
-                  <label for="responsable">Nombre del responsable:</label>
-                  <select ng-focus="scrollAnime($event)" ng-model="cotizacion.responsable" name="" id="responsable" class="form-control">
-                      <option value="{{cotizacion.responsable}}" selected="selected">{{cotizacion.responsable.name}}</option>
-                  </select>
-              </div>
-                <div class="form-group col-sm-6 col-md-4">
-                 <label for="id_cliente">Nombre del cliente: </label>
-                 <input type="text" ng-model="cliente.nombre" class="form-control" id="id_cliente">
-             </div>
-             <div class="form-group col-sm-6 col-md-4">
-                 <label for="id_telefono">Telefono del cliente:</label>
-                 <input ng-focus="scrollAnime($event)" type="number" id="id_telefono" class="form-control" placeholder="e.g: 000000000" ng-model="cliente.telefono">
-             </div>
-
-             <div class="form-group col-sm-6 col-md-4">
-                 <label for="id_email">Email del cliente:</label>
-                 <input ng-focus="scrollAnime($event)" type="email" class="form-control" placeholder="e.g: correo@email.com" id="id_email" ng-model="cliente.email">
-             </div>
-             <div class="form-group col-sm-6 col-md-4">
-                 <label for="id_dieccion">Dirección del cliente:</label>
-                 <textarea ng-focus="scrollAnime($event)" ng-model="cliente.direccion" id="id_direccion" cols="1" rows="1" class="form-control" placeholder="Dirección del cliente"></textarea>
-             </div>
-             <legend></legend>
-            </div>
-          <!-- fin de cabecera -->
-
+<div ng-include='"views/cliente.html"'></div>
+<div ng-include='"views/parcial_1.html"'></div>
+<div ng-include='"views/presupuesto.html"'></div>
+<div ng-show="nav==='4'"  class="col-md-12">
           <!-- Muebles y contenedores -->
               <h2>Contenedores</h2>
+              <div class="formulario">
+              <div class="row">
                   <div ng-repeat="c in contenedores" class="btnSeleccion" ng-init="n.num=0" ng-class="{btnSeleccionado:n.num>0}" >
                       <span class="classContenedores" ng-click="add_contenedor(c.contenedor,n.num);select_item(c);">{{c.contenedor}}</span>
                       <select ng-focus="scrollAnime($event)" ng-model="n" ng-options="n.num for n in cantidades" ng-change="add_contenedor(c.contenedor,n.num)">
@@ -50,19 +14,14 @@
                   </div>
                   <br><br>
                   <legend></legend>
-                  <div class="row">
-                      <div class="col-md-12">
-                          <h2>Muebles</h2>
-                          <input type="search" placeholder="Buscar muebles" class="form-control hidden" ng-model="buscarMueble">
-                      </div>
-                  </div>
 
-                  <div ng-repeat="group in muebles_group | filter: buscarMueble"></br>
-                    <p>
+            <h2>Muebles</h2>
+                  <div ng-repeat="group in muebles_group | filter: buscarMueble">
+
                     <!-- <button style="border:none;background-color: #fff;width:100%;text-align: left;">
                     {{group.descripcion}}</button> -->
-                    <h4>{{group.descripcion}}</h4>
-                  </p>
+                    <h3>{{group.descripcion}}</h3>
+
                     <!-- Repeat de Muebles por descripcion -->
                     <div  ng-repeat=" c in muebles | filter: { descripcion:group.descripcion}:true " class="btnSeleccion" ng-class="{btnSeleccionado:m.num>0}">
                       <span class="classContenedores">{{c.especificacion}}</span>
@@ -73,9 +32,6 @@
                   </div>
                     <!-- fin Repeat de Muebles por descripcion -->
                   </div>
-
-
-
                   <br><br>
                   <legend></legend>
                   <h2>Otros <button class="btn btn-default" ng-click="add_campo()">+</button></h2>
@@ -134,17 +90,10 @@
                     </div>
                   </form>
                 </div>
-
-
-
-
-
-
 <legend></legend>
                 <a ng-if="otros_temp_campo!=''" class="glyphicon glyphicon-plus" titulo="Agregar otro" style="right:-94%;font-size: 25px;" ng-click="add_campo()"></a>
           </div>
       </div>
-  </div>
 </div>
-</br><div ng-include='"views/material.html"'></div>
+<div ng-include='"views/material.html"'></div>
 <div ng-hide="checked" ng-include='"views/resumen.html"'></div>

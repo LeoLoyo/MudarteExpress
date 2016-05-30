@@ -1,47 +1,43 @@
-<div class="demo-card-square mdl-card mdl-shadow--2dp">
-  <div class="mdl-card__title mdl-card--expand">
-    <h2 class="mdl-card__title-text"></h2>
-  </div>
-<div class="panel-body">
+<div ng-show="nav==='3'">
     <div class="col-md-12">
-        <table class="table table-bordered">
+      <h2>presupuesto</h2>
+        <table class="tabla">
           <tr>
-            <th>Descripcion</th>
-            <th>Monto$</th>
+            <th style="text-align:center!important;">Descripcion</th>
+            <th style="text-align:center!important;">Monto $</th>
           </tr>
           <tr>
             <td width="80%">Mudanza</td>
-            <td><input type="number" min="0" ng-change="update_presupuesto()" ng-model="cotizacion.mudanza"></td>
+            <td class="paddingNone"><input type="number" min="0" ng-change="update_presupuesto()" ng-model="cotizacion.mudanza"></td>
           </tr>
           <tr>
             <td width="80%">Soga</td>
-            <td><input type="number" min="0" ng-change="update_presupuesto()" ng-model="cotizacion.soga"></td>
+            <td class="paddingNone"><input type="number" min="0" ng-change="update_presupuesto()" ng-model="cotizacion.soga"></td>
           </tr>
           <tr>
             <td width="80%">Desembalaje</td>
-            <td><input type="number" min="0" ng-change="update_presupuesto()" ng-model="cotizacion.desembalaje"></td>
+            <td class="paddingNone"><input type="number" min="0" ng-change="update_presupuesto()" ng-model="cotizacion.desembalaje"></td>
           </tr>
           <tr>
             <td width="80%">Materiales</td>
-            <td><input type="number" min="0" ng-change="update_presupuesto()" ng-model="cotizacion.materiales" disabled></td>
+            <td class="paddingNone"><input type="number" min="0" ng-change="update_presupuesto()" ng-model="cotizacion.materiales" disabled></td>
           </tr>
           <tr>
             <td width="80%">Piano/C.fuerte</td>
-            <td><input type="number" min="0" ng-change="update_presupuesto()" ng-model="cotizacion.piano_cajafuerte"></td>
+            <td class="paddingNone"><input type="number" min="0" ng-change="update_presupuesto()" ng-model="cotizacion.piano_cajafuerte"></td>
           </tr>
           <tr>
             <td width="80%">Ajuste</td>
-            <td><input type="number" ng-change="update_presupuesto()" ng-model="cotizacion.ajuste"></td>
+            <td class="paddingNone"><input type="number" ng-change="update_presupuesto()" ng-model="cotizacion.ajuste"></td>
           </tr>
           <tr>
             <td width="80%">IVA</td>
-            <td><input type="number" min="0" ng-change="update_presupuesto()" ng-model="cotizacion.iva"></td>
+            <td class="paddingNone"><input type="number" min="0" ng-change="update_presupuesto()" ng-model="cotizacion.iva"></td>
           </tr>
-          <tr>
-            <th width="80%">Total</th>
-            <td>{{cotizacion.total_monto|currency}}</td>
+          <tr class="active">
+            <th width="80%"><strong>Total</strong></th>
+            <td style="text-align:right!important;"><strong>{{cotizacion.total_monto|currency}}</strong></td>
           </tr>
         </table>
     </div>
-  </div>
 </div>

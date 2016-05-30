@@ -1,4 +1,35 @@
-<h2>Datos de la cotización</h2>
+<div ng-show="nav==='1'" class="col-md-12">
+  <br>
+  <div class="row">
+    <div class="col-md-4">
+      <h2 style="display:inline;">Datos del cliente</h2>
+
+      </div>
+      <div class="col-md-5">
+        <label>Tipo de cliente: </label>
+    <div class="btn-group" data-toggle="buttons">
+
+                <label class="btn btn-default">
+                    <input type="radio" id="q156" name="quality[25]" value="1" /> Particular
+                </label>
+                <label class="btn btn-default">
+                    <input type="radio" id="q157" name="quality[25]" value="2" /> Empresa
+                </label>
+                <label class="btn btn-default">
+                    <input type="radio" id="q158" name="quality[25]" value="3" /> Gobierno
+                </label>
+              </div>
+      </div>
+      <div class="col-md-3">
+           <div class="form-group">
+      <div class="input-group">
+      <div class="input-group-addon">N° de cotización</div>
+      <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
+    </div>
+  </div>
+      </div>
+  </div>
+
   <form action="" class="formulario">
     <div class="row">
   <div class="col-md-3 form-group">
@@ -101,20 +132,7 @@
     <label for="">Nombre de quien llamo al cliente:</label>
     <select class="form-control"></select>
   </div>
-  <div class="col-md-6">
-    <label for="">Tipo de cliente: </label><br>
-    <div class="btn-group" data-toggle="buttons">
-                <label class="btn btn-default">
-                    <input type="radio" id="q156" name="quality[25]" value="1" /> Particular
-                </label>
-                <label class="btn btn-default">
-                    <input type="radio" id="q157" name="quality[25]" value="2" /> Empresa
-                </label>
-                <label class="btn btn-default">
-                    <input type="radio" id="q158" name="quality[25]" value="3" /> Gobierno
-                </label>
-              </div>
-  </div>
+
 </div>
 <div class="row">
   <legend></legend>
@@ -136,7 +154,7 @@
   </div>
 </div>
 </form>
-
+</div>
 <!--
 <style>
 .demo-card-square.mdl-card {
