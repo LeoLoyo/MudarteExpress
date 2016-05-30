@@ -1,12 +1,169 @@
+<div ng-show="nav==='1'" class="col-md-12">
+  <br>
+  <div class="row">
+    <div class="col-md-4">
+      <h2 style="display:inline;">Datos del cliente</h2>
 
+      </div>
+      <div class="col-md-5">
+        <label>Tipo de cliente: </label>
+    <div class="btn-group" data-toggle="buttons">
+
+                <label class="btn btn-default">
+                    <input type="radio" id="q156" name="quality[25]" value="1" /> Particular
+                </label>
+                <label class="btn btn-default">
+                    <input type="radio" id="q157" name="quality[25]" value="2" /> Empresa
+                </label>
+                <label class="btn btn-default">
+                    <input type="radio" id="q158" name="quality[25]" value="3" /> Gobierno
+                </label>
+              </div>
+      </div>
+      <div class="col-md-3">
+           <div class="form-group">
+      <div class="input-group">
+      <div class="input-group-addon">N° de cotización</div>
+      <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
+    </div>
+  </div>
+      </div>
+  </div>
+
+  <form action="" class="formulario">
+    <div class="row">
+  <div class="col-md-3 form-group">
+    <label for="id_nombre">Nombre del clente: </label>
+    <input type="text" id="id_nombre" class="form-control">
+  </div>
+  <div class="col-md-3 form-group">
+    <label for="id_telefono">Telefono del cliente: </label>
+    <input type="number" class="form-control">
+  </div>
+  <div class="col-md-3 form-group">
+    <label for="id_email">Correo del cliente:</label>
+    <input type="email" class="form-control">
+  </div>
+  <div class="col-md-3 form-group">
+    <label for="id_promocion">Fuente de promoción:</label>
+    <input type="text" class="form-control" id="id_promocion">
+  </div>
+
+  <div class="col-md-3 form-group">
+    <label for="id_cp">CP/PV:</label>
+    <select class="form-control" id="id_cp"></select>
+  </div>
+  <div class="col-md-3 form-group">
+    <label for="id_cargo">Cargo:</label>
+    <input type="text" class="form-control" id="id_cargo">
+  </div>
+  <div class="col-md-3 form-group">
+    <label for="id_cotizador">Cotizador:</label>
+    <select class="form-control" id="id_cotizador"></select>
+  </div>
+  <div class="col-md-3 form-group">
+    <label for="id_cotizador">Forma de pago:</label>
+    <select class="form-control" id="id_cotizador"></select>
+  </div>
+  <legend></legend>
+</div>
+<div class="row">
+  <div class="col-md-3 form-group">
+    <label for="id_fecha1">Fecha en que se cargo:</label>
+    <input type="date" class="form-control">
+  </div>
+  <div class="col-md-3 form-group">
+    <label for="id_hora1">Hora: </label>
+    <input type="time" class="form-control">
+  </div>
+  <div class="col-md-3 form-group">
+    <label for="id_fecha2">Fecha estimada de la mudanza:</label>
+    <input type="date" class="form-control">
+  </div>
+  <div class="col-md-3 form-group">
+    <label for="id_hora2">Hora: </label>
+    <input type="time" class="form-control">
+  </div>
+   </div>
+   <div class="row">
+
+  <div class="col-md-3 form-group">
+    <label for="id_fecha3">Fecha en que se cotizo</label>
+    <input type="date" class="form-control">
+  </div>
+  <div class="col-md-3 form-group">
+    <label for="id_hora3">Hora: </label>
+    <input type="time" class="form-control">
+  </div>
+  <div class="col-md-3 form-group">
+    <label for="id_fecha4">Fecha en que se aviso:</label>
+    <input type="date" class="form-control">
+  </div>
+  <div class="col-md-3 form-group">
+    <label for="id_hora4">Hora: </label>
+    <input type="time" class="form-control">
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3 form-group">
+    <label for="id_fecha5">Fecha en que se cerro:</label>
+    <input type="date" class="form-control">
+  </div>
+  <div class="col-md-3 form-group">
+    <label for="id_hora5">Hora: </label>
+    <input type="time" class="form-control">
+  </div>
+  <div class="col-md-3 form-group">
+    <label for="id_fecha6">Fecha real de la mudanza:</label>
+    <input type="date" class="form-control">
+  </div>
+  <div class="col-md-3 form-group">
+    <label for="id_hora6">Hora: </label>
+    <input type="time" class="form-control">
+  </div>
+</div>
+<legend></legend>
+<div class="row">
+  <div class="col-md-3 form-group">
+    <label for="">Nombre de quien paso la cotización:</label>
+    <select ng-model="cotizacion.quien_cotizo" class="form-control"><option ng-value="{{item.id}}" ng-repeat="item in telefonista">{{item.first_name}} {{item.last_name}}</option></select>
+  </div>
+  <div class="col-md-3 form-group">
+    <label for="">Nombre de quien llamo al cliente:</label>
+    <select class="form-control" ng-model="cotizacion.quien_llamo"><option ng-value="{{item.id}}" ng-repeat="item in telefonista">{{item.first_name}} {{item.last_name}}</option></select>
+  </div>
+
+</div>
+<div class="row">
+  <legend></legend>
+  <div class="col-md-3 form-group">
+    <label for="">Dirección de origen</label>
+    <input type="text" class="form-control">
+  </div>
+  <div class="col-md-3 form-group">
+    <label for="">Barrio/Provincia</label>
+    <select name="" id="" class="form-control"></select>
+  </div>
+  <div class="col-md-3 form-group">
+    <label for="">Dirección de destino</label>
+    <input type="text" class="form-control">
+  </div>
+  <div class="col-md-3 form-group">
+    <label for="">Barrio/Provincia</label>
+    <select name="" id="" class="form-control"></select>
+  </div>
+</div>
+</form>
+</div>
+<!--
 <style>
 .demo-card-square.mdl-card {
-  width: 100%;
-  height: auto;
+width: 100%;
+height: auto;
 }
 .demo-card-square > .mdl-card__title {
-  color: #fff;
-  background-color:#ff6d00;
+color: #fff;
+background-color:#CC6202;
 }
 </style>
 <div class="demo-card-square mdl-card mdl-shadow--2dp">
@@ -132,5 +289,58 @@
           </div>
         </div>
       </div>
+      <div class="form-group col-md-12">
+        <div class="col-md-4">
+          <label for="" class="form-label">Fecha en que se aviso:</label>
+        </div>
+        <div class="col-md-3">
+          <input type="date" class="form-control">
+        </div>
+        <div class="col-md-2">
+          <label for="" class="form-label">Hora:</label>
+        </div>
+        <div class="col-md-3">
+          <input type="time" class="form-control">
+        </div>
+      </div>
+      <div class="form-group col-md-12">
+        <div class="col-md-4">
+          <label for="" class="form-label">Fecha en que se cerro:</label>
+        </div>
+        <div class="col-md-3">
+          <input type="date" class="form-control">
+        </div>
+        <div class="col-md-2">
+          <label for="" class="form-label">Hora:</label>
+        </div>
+        <div class="col-md-3">
+          <input type="time" class="form-control">
+        </div>
+      </div>
+      <div class="form-group col-md-12">
+        <div class="col-md-4">
+          <label for="" class="form-label">Fecha real de mudanza:</label>
+        </div>
+        <div class="col-md-3">
+          <input type="date" class="form-control">
+        </div>
+        <div class="col-md-2">
+          <label for="" class="form-label">Hora:</label>
+        </div>
+        <div class="col-md-3">
+          <input type="time" class="form-control">
+        </div>
+      </div>
+
+      <div class="form-group col-md-6">
+        <div class="col-md-4"><label for="" class="form-label">Nombre de quien paso la mudanza:</label></div>
+        <div class="col-md-8"><input type="text" class="form-control" placeholder="Fuente De Promocion"></div>
+      </div>
+      <div class="form-group col-md-6">
+        <div class="col-md-4"><label for="" class="form-label">Nombre de quien llamo al cliente:</label></div>
+        <div class="col-md-8"><input type="text" class="form-control" placeholder="Fuente De Promocion"></div>
+      </div>
     </div>
+  </div>
 </div>
+ -->

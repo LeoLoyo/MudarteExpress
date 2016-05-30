@@ -2267,7 +2267,7 @@ th {
 .table-striped > tbody > tr:nth-of-type(odd) {
   background-color: #f9f9f9; }
 
-.table-hover > tbody > tr:hover {
+.table-hover > tbody > tr:hover, table.tabla > tbody > tr:hover {
   background-color: #f5f5f5; }
 
 table col[class*="col-"] {
@@ -2310,8 +2310,9 @@ table.tabla .table > tfoot > tr.totales > th,
 table.tabla > tfoot > tr.totales > th {
   background-color: #f5f5f5; }
 
-.table-hover > tbody > tr > td.active:hover,
-.table-hover > tbody > tr > th.active:hover, .table-hover > tbody > tr.active:hover > td, table.tabla .table-hover > tbody > tr.totales:hover > td, .table-hover > tbody > tr:hover > .active, table.tabla .table-hover > tbody > tr:hover > tr.totales, .table-hover > tbody > tr.active:hover > th, table.tabla .table-hover > tbody > tr.totales:hover > th {
+.table-hover > tbody > tr > td.active:hover, table.tabla > tbody > tr > td.active:hover,
+.table-hover > tbody > tr > th.active:hover,
+table.tabla > tbody > tr > th.active:hover, .table-hover > tbody > tr.active:hover > td, table.tabla > tbody > tr.active:hover > td, table.tabla .table-hover > tbody > tr.totales:hover > td, table.tabla > tbody > tr.totales:hover > td, .table-hover > tbody > tr:hover > .active, table.tabla > tbody > tr:hover > .active, table.tabla .table-hover > tbody > tr:hover > tr.totales, table.tabla > tbody > tr:hover > tr.totales, .table-hover > tbody > tr.active:hover > th, table.tabla > tbody > tr.active:hover > th, table.tabla .table-hover > tbody > tr.totales:hover > th, table.tabla > tbody > tr.totales:hover > th {
   background-color: #e8e8e8; }
 
 .table > thead > tr > td.success, table.tabla > thead > tr > td.success,
@@ -2335,8 +2336,9 @@ table.tabla > tfoot > tr.success > td,
 table.tabla > tfoot > tr.success > th {
   background-color: #dff0d8; }
 
-.table-hover > tbody > tr > td.success:hover,
-.table-hover > tbody > tr > th.success:hover, .table-hover > tbody > tr.success:hover > td, .table-hover > tbody > tr:hover > .success, .table-hover > tbody > tr.success:hover > th {
+.table-hover > tbody > tr > td.success:hover, table.tabla > tbody > tr > td.success:hover,
+.table-hover > tbody > tr > th.success:hover,
+table.tabla > tbody > tr > th.success:hover, .table-hover > tbody > tr.success:hover > td, table.tabla > tbody > tr.success:hover > td, .table-hover > tbody > tr:hover > .success, table.tabla > tbody > tr:hover > .success, .table-hover > tbody > tr.success:hover > th, table.tabla > tbody > tr.success:hover > th {
   background-color: #d0e9c6; }
 
 .table > thead > tr > td.info, table.tabla > thead > tr > td.info,
@@ -2360,8 +2362,9 @@ table.tabla > tfoot > tr.info > td,
 table.tabla > tfoot > tr.info > th {
   background-color: #d9edf7; }
 
-.table-hover > tbody > tr > td.info:hover,
-.table-hover > tbody > tr > th.info:hover, .table-hover > tbody > tr.info:hover > td, .table-hover > tbody > tr:hover > .info, .table-hover > tbody > tr.info:hover > th {
+.table-hover > tbody > tr > td.info:hover, table.tabla > tbody > tr > td.info:hover,
+.table-hover > tbody > tr > th.info:hover,
+table.tabla > tbody > tr > th.info:hover, .table-hover > tbody > tr.info:hover > td, table.tabla > tbody > tr.info:hover > td, .table-hover > tbody > tr:hover > .info, table.tabla > tbody > tr:hover > .info, .table-hover > tbody > tr.info:hover > th, table.tabla > tbody > tr.info:hover > th {
   background-color: #c4e3f3; }
 
 .table > thead > tr > td.warning, table.tabla > thead > tr > td.warning,
@@ -2385,8 +2388,9 @@ table.tabla > tfoot > tr.warning > td,
 table.tabla > tfoot > tr.warning > th {
   background-color: #fcf8e3; }
 
-.table-hover > tbody > tr > td.warning:hover,
-.table-hover > tbody > tr > th.warning:hover, .table-hover > tbody > tr.warning:hover > td, .table-hover > tbody > tr:hover > .warning, .table-hover > tbody > tr.warning:hover > th {
+.table-hover > tbody > tr > td.warning:hover, table.tabla > tbody > tr > td.warning:hover,
+.table-hover > tbody > tr > th.warning:hover,
+table.tabla > tbody > tr > th.warning:hover, .table-hover > tbody > tr.warning:hover > td, table.tabla > tbody > tr.warning:hover > td, .table-hover > tbody > tr:hover > .warning, table.tabla > tbody > tr:hover > .warning, .table-hover > tbody > tr.warning:hover > th, table.tabla > tbody > tr.warning:hover > th {
   background-color: #faf2cc; }
 
 .table > thead > tr > td.danger, table.tabla > thead > tr > td.danger,
@@ -2410,8 +2414,9 @@ table.tabla > tfoot > tr.danger > td,
 table.tabla > tfoot > tr.danger > th {
   background-color: #f2dede; }
 
-.table-hover > tbody > tr > td.danger:hover,
-.table-hover > tbody > tr > th.danger:hover, .table-hover > tbody > tr.danger:hover > td, .table-hover > tbody > tr:hover > .danger, .table-hover > tbody > tr.danger:hover > th {
+.table-hover > tbody > tr > td.danger:hover, table.tabla > tbody > tr > td.danger:hover,
+.table-hover > tbody > tr > th.danger:hover,
+table.tabla > tbody > tr > th.danger:hover, .table-hover > tbody > tr.danger:hover > td, table.tabla > tbody > tr.danger:hover > td, .table-hover > tbody > tr:hover > .danger, table.tabla > tbody > tr:hover > .danger, .table-hover > tbody > tr.danger:hover > th, table.tabla > tbody > tr.danger:hover > th {
   background-color: #ebcccc; }
 
 .table-responsive {
@@ -6219,7 +6224,10 @@ body {
   padding: 0;
   font-family: "Roboto" !important; }
 
-form.formulario {
+.error input {
+  border-color: red; }
+
+form.formulario, div.formulario {
   background: #fff;
   padding: 10px;
   margin-bottom: 30px;
@@ -6228,16 +6236,15 @@ form.formulario {
 .btnSeleccion {
   background: #eee;
   display: inline-flex;
-  width: 190px;
-  height: 70px;
+  width: 200px;
+  height: 50px;
   text-align: center;
   border: 1px solid #dedede;
-  margin-right: 10px;
-  margin-top: 10px;
-  font-size: 1em; }
+  font-size: 1em;
+  margin-left: 10px; }
   .btnSeleccion span {
     flex: 70%;
-    padding: 4px;
+    padding: 13px;
     margin: 8px;
     line-height: 15px; }
   .btnSeleccion span.classContenedores {
@@ -6256,10 +6263,39 @@ form.formulario {
   box-shadow: 0 2px 3px 0 #777;
   color: #fff; }
 
-table.tabla tr td {
-  text-align: center !important; }
-table.tabla tr td.ancho {
-  width: 80px !important; }
+table.tabla {
+  background: #fff;
+  box-shadow: 0 2px 3px 0 #777; }
+  table.tabla tr td {
+    text-align: center !important; }
+    table.tabla tr td input {
+      border: none;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      padding-left: 3px;
+      background: transparent; }
+    table.tabla tr td input[type=number] {
+      text-align: right; }
+    table.tabla tr td select {
+      display: block;
+      border: none;
+      width: 100%;
+      height: 34px;
+      margin: 0;
+      padding: 0;
+      font-weight: bold;
+      background: transparent; }
+      table.tabla tr td select.selectMoneda {
+        text-align-last: end; }
+    table.tabla tr td.paddingNone {
+      padding: 0;
+      margin: 0; }
+    table.tabla tr td.ancho {
+      width: 150px !important; }
+  table.tabla tr th {
+    text-align: center !important; }
 
 .login {
   box-shadow: 0 2px 3px 0 #777; }
@@ -6370,6 +6406,15 @@ table.tabla tr td.ancho {
   .sidebar-nav li {
     text-indent: 20px;
     line-height: 40px; }
+    .sidebar-nav li input {
+      opacity: 0;
+      position: absolute; }
+    .sidebar-nav li label {
+      cursor: pointer;
+      color: #000;
+      display: block; }
+      .sidebar-nav li label:active, .sidebar-nav li label:focus, .sidebar-nav li label:hover {
+        background: rgba(255, 255, 255, 0.2); }
     .sidebar-nav li a {
       display: block;
       text-decoration: none;
@@ -6382,6 +6427,9 @@ table.tabla tr td.ancho {
       .sidebar-nav li a:focus, .sidebar-nav li a:active {
         text-decoration: none;
         background: rgba(255, 255, 255, 0.2); }
+
+.activo {
+  background: rgba(255, 255, 255, 0.2); }
 
 .sidebar-nav > .sidebar-brand {
   height: 65px;

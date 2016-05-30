@@ -58,20 +58,29 @@
                 </li>
                 <li>
                 </li>
-                <li >
-                    <a class="btnsCotizacion hidden" ng-click="cabecera=true">Cabecera</a>
+                <li class="btnsCotizacion hidden" ng-click="cabecera=true">
+                    <label for="id_cabecera" ng-class="{activo:nav==='1'}">Datos del cliente</label>
+                    <input id="id_cabecera" type="radio" ng-model="nav" value="1" checked>
                 </li>
-                <li >
-                    <a class="btnsCotizacion hidden" ng-click="parciales=true">Detalle Mudanza</a>
+                <li class="btnsCotizacion hidden" ng-click="parciales=true">
+                    <label for="id_detalle" ng-class="{activo:nav==='2'}">Detalle Mudanza</label>
+                    <input id="id_detalle" type="radio" ng-model="nav" value="2">
                 </li>
-                <li >
-                    <a class="btnsCotizacion hidden" ng-click="muebles_contenedores=true">Muebles y Contenedores</a>
+                <li class="btnsCotizacion hidden" ng-click="presupuesto=true">
+                    <label for="id_presupuesto" ng-class="{activo:nav==='3'}">Presupuesto</label>
+                    <input id="id_presupuesto" type="radio" ng-model="nav" value="3">
                 </li>
-                <li >
-                    <a class="btnsCotizacion hidden" ng-click="presupuesto=true">Presupuesto</a>
+                <li class="btnsCotizacion hidden" ng-click="muebles_contenedores=true">
+                    <label for="id_muebles" ng-class="{activo:nav==='4'}">Muebles y Contenedores</label>
+                    <input id="id_muebles" type="radio" ng-model="nav" value="4">
                 </li>
-                <li>
-                    <a class="btnsCotizacion hidden" ng-show="resumen" ng-click="checked=false">Resumen</a>
+                <li class="btnsCotizacion hidden" ng-click="muebles_contenedores=true">
+                    <label for="id_materiales" ng-class="{activo:nav==='5'}">Materiales</label>
+                    <input id="id_materiales" type="radio" ng-model="nav" value="5">
+                </li>
+                <li class="btnsCotizacion hidden" ng-show="resumen" ng-click="checked=false">
+                    <label for="id_resumen" ng-class="{activo:nav==='6'}">Resumen</label>
+                     <input id="id_resumen" type="radio" ng-model="nav" value="6">
                 </li>
                 <li>
                     <a class="btnsCotizacion hidden"  ng-show="checked && resumen " ng-click="limpiar()">Limpiar</a>
