@@ -144,207 +144,26 @@
     <label for="">Dirección de origen</label>
     <input type="text" class="form-control">
   </div>
-  <div class="col-md-2 form-group">
+  <div class="col-md-4 form-group">
     <label for="">Barrio/Provincia</label>
     <select name="" ng-model="cotizacion.barrio_provincia_origen" class="form-control"><option ng-value="{{item}}" ng-repeat="item in barrio_provincias">{{item.descripcion}}</option></select>
+  </div>
+  <div class="col-md-4 form-group">
+    <label for="">observacion de origen</label>
+    <input type="text" ng-model="cotizacion.observacion_origen" class="form-control">
   </div>
   <div class="col-md-4 form-group">
     <label for="">Dirección de destino</label>
     <input type="text" class="form-control">
   </div>
-  <div class="col-md-2 form-group">
+  <div class="col-md-4 form-group">
     <label for="">Barrio/Provincia</label>
     <select name="" ng-model="cotizacion.barrio_provincia_destino" class="form-control"><option ng-value="{{item}}" ng-repeat="item in barrio_provincias">{{item.descripcion}}</option></select>
+  </div>
+  <div class="col-md-4 form-group">
+    <label for="">observacion de destino</label>
+    <input type="text" ng-model="cotizacion.observacion_destino" class="form-control">
   </div>
 </div>
 </form>
 </div>
-<!--
-<style>
-.demo-card-square.mdl-card {
-width: 100%;
-height: auto;
-}
-.demo-card-square > .mdl-card__title {
-color: #fff;
-background-color:#CC6202;
-}
-</style>
-<div class="demo-card-square mdl-card mdl-shadow--2dp">
-  <div class="mdl-card__title mdl-card--expand">
-    <h2 class="mdl-card__title-text">Datos Del Cliente</h2>
-  </div>
-    <div class="panel-body">
-      <div class="col-md-12">
-        <div class="form-group col-md-6">
-          <div class="col-md-4"><label for="" class="form-label">Nombre y Apellido:</label></div>
-          <div class="col-md-8"><input type="text" class="form-control" ng-model="cliente.nombre" placeholder="Nombre y Apellido"></div>
-        </div>
-        <div class="form-group col-md-6">
-          <div class="col-md-4"><label for="" class="form-label">Teléfono:</label></div>
-          <div class="col-md-8"><input type="number" ng-model="cliente.telefono" min=0 class="form-control" placeholder="Telefono"></div>
-        </div>
-      </div>
-      <div class="col-md-12">
-        <div class="form-group col-md-6">
-          <div class="col-md-4"><label for="" class="form-label">Email:</label></div>
-          <div class="col-md-8"><input type="email" ng-model="cliente.email" class="form-control" placeholder="email"></div>
-        </div>
-        <div class="form-group col-md-6">
-          <div class="col-md-4"><label for="" class="form-label">Fuente de promocion:</label></div>
-          <div class="col-md-8"><input type="text" ng-model="cotizacion.fuente" class="form-control" placeholder="Fuente De Promocion"></div>
-        </div>
-      </div>
-      <div class="col-md-12">
-        <div class="form-group col-md-12">
-          <div class="col-md-4">
-            <label for="" class="form-label">Fecha en que se cargo:</label>
-          </div>
-          <div class="col-md-3">
-            <input type="date" ng-model="cotizacion.fecha_de_carga" class="form-control">
-          </div>
-          <div class="col-md-2">
-            <label for="" class="form-label">Hora:</label>
-          </div>
-          <div class="col-md-3">
-            <input type="time" ng-model="cotizacion.hora_de_carga" class="form-control">
-          </div>
-        </div>
-        <div class="form-group col-md-12">
-          <div class="col-md-4">
-            <label for="" class="form-label">Fecha estimada de muedanza:</label>
-          </div>
-          <div class="col-md-3">
-            <input type="date" ng-model="cotizacion.fecha_estimada_mudanza"class="form-control">
-          </div>
-          <div class="col-md-2">
-            <label for="" class="form-label">Hora:</label>
-          </div>
-          <div class="col-md-3">
-            <input type="time" ng-model="cotizacion.hora_estimada_mudanza" class="form-control">
-          </div>
-        </div>
-        <div class="form-group col-md-12">
-          <div class="col-md-4">
-            <label for="" class="form-label">Fecha en que se cotizo:</label>
-          </div>
-          <div class="col-md-3">
-            <input type="date" ng-model="cotizacion.fecha_de_cotizacion"class="form-control">
-          </div>
-          <div class="col-md-2">
-            <label for="" class="form-label">Hora:</label>
-          </div>
-          <div class="col-md-3">
-            <input type="time" ng-model="cotizacion.hora_de_cotizacion"class="form-control">
-          </div>
-        </div>
-        <div class="form-group col-md-12">
-          <div class="col-md-4">
-            <label for="" class="form-label">Fecha en que se aviso:</label>
-          </div>
-          <div class="col-md-3">
-            <input type="date" ng-model="cotizacion.fecha_de_aviso" class="form-control">
-          </div>
-          <div class="col-md-2">
-            <label for="" class="form-label">Hora:</label>
-          </div>
-          <div class="col-md-3">
-            <input type="time" ng-model="cotizacion.hora_de_aviso" class="form-control">
-          </div>
-        </div>
-        <div class="form-group col-md-12">
-          <div class="col-md-4">
-            <label for="" class="form-label">Fecha en que se cerro:</label>
-          </div>
-          <div class="col-md-3">
-            <input type="date" ng-model="cotizacion.fecha_de_cierre" class="form-control">
-          </div>
-          <div class="col-md-2">
-            <label for="" class="form-label">Hora:</label>
-          </div>
-          <div class="col-md-3">
-            <input type="time" ng-model="cotizacion.hora_de_cierre" class="form-control">
-          </div>
-        </div>
-        <div class="form-group col-md-12">
-          <div class="col-md-4">
-            <label for="" class="form-label">Fecha real de mudanza:</label>
-          </div>
-          <div class="col-md-3">
-            <input type="date" ng-model="cotizacion.fecha_real_mudanza" class="form-control">
-          </div>
-          <div class="col-md-2">
-            <label for="" ng-model="cotizacion.hora_real_mudanza"class="form-label">Hora:</label>
-          </div>
-          <div class="col-md-3">
-            <input type="time" class="form-control">
-          </div>
-        </div>
-
-        <div class="form-group col-md-6">
-          <div class="col-md-4"><label for="" class="form-label">Nombre de quien paso la mudanza:</label></div>
-          <div class="col-md-8">
-            <select ng-model="cotizacion.quien_cotizo" class="form-control" ng-options="item.first_name for item in telefonistas"></select></div>
-        </div>
-        <div class="form-group col-md-6">
-          <div class="col-md-4"><label for="" class="form-label">Nombre de quien llamo al cliente:</label></div>
-          <div class="col-md-8">
-            <select class="form-control" ng-model="cotizacion.quien_llamo" ng-options="item.first_name for item in telefonista"></select>
-          </div>
-        </div>
-      </div>
-      <div class="form-group col-md-12">
-        <div class="col-md-4">
-          <label for="" class="form-label">Fecha en que se aviso:</label>
-        </div>
-        <div class="col-md-3">
-          <input type="date" class="form-control">
-        </div>
-        <div class="col-md-2">
-          <label for="" class="form-label">Hora:</label>
-        </div>
-        <div class="col-md-3">
-          <input type="time" class="form-control">
-        </div>
-      </div>
-      <div class="form-group col-md-12">
-        <div class="col-md-4">
-          <label for="" class="form-label">Fecha en que se cerro:</label>
-        </div>
-        <div class="col-md-3">
-          <input type="date" class="form-control">
-        </div>
-        <div class="col-md-2">
-          <label for="" class="form-label">Hora:</label>
-        </div>
-        <div class="col-md-3">
-          <input type="time" class="form-control">
-        </div>
-      </div>
-      <div class="form-group col-md-12">
-        <div class="col-md-4">
-          <label for="" class="form-label">Fecha real de mudanza:</label>
-        </div>
-        <div class="col-md-3">
-          <input type="date" class="form-control">
-        </div>
-        <div class="col-md-2">
-          <label for="" class="form-label">Hora:</label>
-        </div>
-        <div class="col-md-3">
-          <input type="time" class="form-control">
-        </div>
-      </div>
-
-      <div class="form-group col-md-6">
-        <div class="col-md-4"><label for="" class="form-label">Nombre de quien paso la mudanza:</label></div>
-        <div class="col-md-8"><input type="text" class="form-control" placeholder="Fuente De Promocion"></div>
-      </div>
-      <div class="form-group col-md-6">
-        <div class="col-md-4"><label for="" class="form-label">Nombre de quien llamo al cliente:</label></div>
-        <div class="col-md-8"><input type="text" class="form-control" placeholder="Fuente De Promocion"></div>
-      </div>
-    </div>
-  </div>
-</div>
- -->

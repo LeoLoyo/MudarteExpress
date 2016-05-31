@@ -3,11 +3,18 @@
     <div class="col-md-12">
       <h2>Detalle de la mudanza</h2>
         <table class="tabla">
+          <tr class="active">
+            <th>Descripción</th>
+            <th>Km a recorrer</th>
+            <th>Monto km</th>
+            <th>Total</th>
+          </tr>
           <tr>
             <td align="center">km</td>
-            <td class="paddingNone"><input type="number" name"recorrido_km" ng-model="cotizacion.recorrido_km" ng-change="add_parcial1()"></td>
+            <td class="paddingNone"><input type="number" style="text-align:left!important;font-weight:bold;" name"recorrido_km" ng-model="cotizacion.recorrido_km" ng-change="add_parcial1()"></td>
             <td align="center">
               <select class="selectMoneda" name="precio_km" id="precio_km" ng-init="cotizacion.precio_km = '30'"ng-model="cotizacion.precio_km" ng-change="add_parcial1()">
+
                 <option value="30">$30.00</option>
                 <option value="33">$33.00</option>
                 <option value="37">$37.00</option>

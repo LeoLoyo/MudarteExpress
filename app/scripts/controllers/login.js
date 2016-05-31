@@ -14,7 +14,7 @@
                 $state.go('cotizacion');
                 session=true;
                 $('.btnsCotizacion').removeClass('hidden');
-                $('.dropdown-toggle').text(response[0].user.name).append('<span class="caret"></span>');
+                $('.dropdown-toggle').text('').append('<i class="glyphicon glyphicon-user"></i> '+response[0].user.name+'<span class="caret"></span>');
               },1000);
 
           }else{
@@ -23,6 +23,7 @@
           }
       }
       $rootScope.logout = function(){
+        $rootScope.nav = '1';
         session=false;
         $('.dropdown-toggle').text('Login').append('<span class="caret"></span>');
         $state.go('login');
