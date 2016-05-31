@@ -88,7 +88,34 @@
           });
         }
 
-
+      self.all_fuentes = function(){
+        var collection = [
+                            'Internet Google' ,
+                            'Internet Otro buscador' ,
+                            'Internet Banner' ,
+                            'Cartel Via Publica' ,
+                            'Recomendado Cliente' ,
+                            'Cliente' ,
+                            'Volante diario/revista' ,
+                            'Volante via publica' ,
+                            'Volante en casa' ,
+                            'Volante en evento',
+                            'Publ. Diario/revista',
+                            'Public. Email',
+                            'Public. Via Publica',
+                            'Publicidad TV',
+                            'Pulicidad Radio',
+                            'Publicidad Cine',
+                            'Camion Mudarte',
+                            'Telemercadeo',
+                            'Deposito Belgrano',
+                            'Inmobiliaria',
+                            'Tarjeta descuento',
+                            'Otros',
+                            'My Home Planners'
+                          ];
+      return collection;
+      }
       return self;
     });
 
@@ -98,8 +125,8 @@
         // var url = setting.url + "contenedordescripcion/?format=json"
         var url = 'scripts/json/contenedordescripcion.json'
         if(contenedor !== undefined){
-          // url = setting.url +"contenedor/?format=json&contenedor="+contenedor;
-          url = 'scripts/json/contenedor.json';
+          url = setting.url +"contenedor/?format=json&contenedor="+contenedor;
+          // url = 'scripts/json/contenedor.json';
         }
         return $http.get(url).then(function(data){
           return data.data;
@@ -214,5 +241,16 @@
       }
     });
 
+    app.service('Direccion', function ($http, setting) {
+      var self = this;
 
+      self.all = function(){
+        var url = 'scripts/json/barrioprovincia.json';
+        return $http.get(url).then(function(data){
+          return data.data;
+        });
+      }
+
+      return self;
+    })
 })();

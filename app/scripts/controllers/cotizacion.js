@@ -2,7 +2,7 @@
   'use strict';
   var app = angular.module('cotizacionExpressApp');
 
-    app.controller('CotizacionCtrl', function ($interval,$rootScope, $state, $scope,Users, Material,Cotizacion, Contenedor, Mueble, Bulto, Cliente, $http,setting) {
+    app.controller('CotizacionCtrl', function ($interval,$rootScope, $state, $scope,Users,Direccion, Material,Cotizacion, Contenedor, Mueble, Bulto, Cliente, $http,setting) {
       //variables
       $interval(
         function handleInterval() {
@@ -51,9 +51,7 @@
         hora_registro:'',
         fuente:'',
         cp_pv:'',
-        particular:'',
-        empresa:'',
-        gobierno:'',
+        tipo_cliente:'',
         cargo:'',
         forma_pago:'',
         fecha_de_carga:'',
@@ -120,8 +118,8 @@
       $scope.tipo_muebles = []
       $scope.tipo_muebles = null;
 
-      // $scope.bultos = []
-      // $scope.bultos = null;
+      $scope.barrio_provincias = []
+      $scope.barrio_provincias = null;
 
       $scope.mueble = []
       $scope.mueble = null;
@@ -258,7 +256,6 @@
           });
           Mueble.all('filtrado').then(function(groups){
             $scope.muebles_group = groups;
-            // console.log(groups);
           });
           Mueble.all().then(function(muebles){
             $scope.muebles = muebles;
@@ -272,6 +269,10 @@
           Users.all(2).then(function(r){
             $scope.telefonista = r;
           });
+          Direccion.all().then(function(r){
+            $scope.barrio_provincias = r;
+          });
+            $scope.fuentes = Cotizacion.all_fuentes();
 
         }
         $rootScope.$on('change',function(event){
@@ -467,7 +468,7 @@
           }
         }
         $scope.cotizacion.materiales = calcular_totales($scope.materiales_temp,"total");
-        console.log($scope.materiales_temp);
+        // console.log($scope.materiales_temp);
         $scope.cotizacion.total_monto = $scope.cotizacion.mudanza + $scope.cotizacion.soga + $scope.cotizacion.embalaje + $scope.cotizacion.desembalaje + $scope.cotizacion.materiales + $scope.cotizacion.piano_cajafuerte + $scope.cotizacion.ajuste + $scope.cotizacion.iva
 
       };
@@ -491,7 +492,7 @@
 // temporal parcial_1
     // $scope.parcial1_temp = {};
     $scope.add_parcial1 = function() {
-      console.log($scope.cotizacion);
+      // console.log($scope.cotizacion);
       $scope.cotizacion.monto_km = Number($scope.cotizacion.recorrido_km * $scope.cotizacion.precio_km);
     };
 
