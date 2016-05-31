@@ -6525,4 +6525,7 @@ table.tabla tr.btn-inverse.totales {
 .btn-inverse.active, table.tabla tr.btn-inverse.totales {
   color: rgba(255, 255, 255, 0.75); }
 
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  visibility: hidden !important; }
+
 /*# sourceMappingURL=estilos.css.map */

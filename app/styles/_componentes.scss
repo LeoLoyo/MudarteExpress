@@ -400,3 +400,6 @@ table.tabla {
 .btn-inverse.active {
   color: rgba(255, 255, 255, 0.75);
 }
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  visibility: hidden!important;
+}
