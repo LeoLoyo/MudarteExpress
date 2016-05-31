@@ -1,8 +1,8 @@
 <div ng-show="nav==='3'">
     <div class="col-md-12">
-      <h2>presupuesto</h2>
+      <h2>Presupuesto de la mudanza</h2>
         <table class="tabla">
-          <tr>
+          <tr class="active">
             <th style="text-align:center!important;">Descripcion</th>
             <th style="text-align:center!important;">Monto $</th>
           </tr>
@@ -35,7 +35,7 @@
             <td class="paddingNone"><input type="number" min="0" ng-change="update_presupuesto()" ng-model="cotizacion.iva"></td>
           </tr>
           <tr class="active">
-            <th width="80%"><strong>Total</strong></th>
+            <th width="80%" style="text-align:right!important;"><strong>Total: </strong></th>
             <td style="text-align:right!important;"><strong>{{cotizacion.total_monto|currency}}</strong></td>
           </tr>
         </table>

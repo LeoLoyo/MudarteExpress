@@ -9,13 +9,13 @@
             $rootScope.$broadcast( "change" );
         },0);
       if(!session){
-        $state.go('cotizacion');
+        $state.go('login');
       }
 
       $scope.cantidades = [];
       function numeros(){
 
-        for(var i =1;i<100;i++){
+        for(var i =0;i<100;i++){
             $scope.cantidades.push({num:i});
         }
         return $scope.cantidades;
@@ -286,6 +286,15 @@
       init();
 
       //Methods
+      $scope.check = function (n) {
+        if(n==='0'){
+          n='1';
+        }else{
+          n='0'
+        }
+        console.log(n);
+        return n;
+      }
 
       $scope.add_contenedor = function(descripcion,uni) {
         var contenedor_temp = {
