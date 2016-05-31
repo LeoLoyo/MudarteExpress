@@ -60,6 +60,12 @@
               <th style="width:80px; padding:10px; padding-left:30px;">m<sup>3</sup></th>
             </tr>
             <tr ng-repeat="item in muebles_temp">
+              <td>{{item.mueble}} {{item.espeficicacion}}</td><!-- cambio leo -->
+              <td align="center">{{item.ancho}}x{{item.largo}}x{{item.alto}}</td>
+              <td align="center">{{item.cantidad}}</td>
+              <td align="center">{{item.total_punto/10|number:2}}</td>
+            </tr>
+            <tr ng-repeat="item in otros_temp">
               <td ng-if="item.mueble == 'Otros'">Otros-{{item.descripcion}}</td>
               <td ng-if="item.mueble != 'Otros'">{{item.mueble}}</td>
               <td align="center">{{item.ancho}}x{{item.largo}}x{{item.alto}}</td>
@@ -407,17 +413,18 @@
               </tr>
               <tr></tr>
               <tr ng-repeat="item in muebles_temp">
-                <td rowspan=2 colspan=2 ng-if="item.mueble == 'Otros'">Otros-{{item.descripcion}}</td>
-                <td rowspan=2 colspan=2 ng-if="item.mueble != 'Otros'">{{item.mueble}}</td>
-                <td rowspan=2 colspan=2>{{item.ancho}}x{{item.largo}}x{{item.alto}}</td>
-                <td rowspan=2 colspan=2>{{item.cantidad}}</td>
-                <td rowspan=2 colspan=2>{{item.total_punto/10|number:2}}</td>
+                <td rowspan=2 colspan=2 align=center ng-if="item.mueble == 'Otros'">Otros-{{item.descripcion}}</td>
+                <td rowspan=2 colspan=2 align=center
+                ng-if="item.mueble != 'Otros'">{{item.mueble}}</td>
+                <td rowspan=2 colspan=2 align=center>{{item.ancho}}x{{item.largo}}x{{item.alto}}</td>
+                <td rowspan=2 colspan=2 align=center>{{item.cantidad}}</td>
+                <td rowspan=2 colspan=2 align=center>{{item.total_punto/10|number:2}}</td>
               </tr>
               <tr></tr>
               <tr style="background-color: #A9A9A9;">
-              <th rowspan=2 colspan=2 colspan="2" class="estiloUno">Total</th>
-              <td rowspan=2 colspan=2><strong>{{unidades_otros}}</strong></td>
-              <td rowspan=2 colspan=2><strong>{{metros3_otros|number:2}}</strong></td>
+              <th rowspan=2 colspan=2>Total</th>
+              <td rowspan=2 colspan=2 align=center><strong>{{unidades_otros}}</strong></td>
+              <td rowspan=2 colspan=2 align=center><strong>{{metros3_otros|number:2}}</strong></td>
               </tr>
               <tr></tr>
             </table>
@@ -426,8 +433,8 @@
             <legend></legend>
             <table border=1 id="tablaTotal">
               <tr>
-                <th rowspan=2 colspan=2 style="background-color: #A9A9A9;">Total m<sup>3</sup></th>
-                <th rowspan=2 colspan=2><strong>{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}</strong></th>
+                <th rowspan=2 colspan=2 align=center style="background-color: #A9A9A9;">Total m<sup>3</sup></th>
+                <th rowspan=2 colspan=2 align=center><strong>{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}</strong></th>
               </tr>
               <tr></tr>
             </table>
