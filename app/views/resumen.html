@@ -1,4 +1,5 @@
 <div ng-show="nav==='6'">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <div class="row">
     <div class="col-md-12">
       <h1>Resumen</h1>
@@ -242,7 +243,7 @@
           <table class="table table-bordered">
             <tr class="info">
               <th>Mueble</th>
-              <th>ALA</th>
+              <th style="width:80px; padding:10px;">Dimension</th>
               <th style="width:80px; padding:10px;">Cantidad</th>
               <th style="width:80px; padding:10px; padding-left:30px;">m<sup>3</sup></th>
             </tr>
@@ -268,12 +269,8 @@
 
           <h2>Totales</h2>
           <table style="width:200px;" class="table table-bordered">
-            <!-- <tr>
-              <th class="info">Total Contenido</th>
-              <td align="center"><strong>{{unidades_contenedores+unidades_muebles+unidades_otros}}</strong></td>
-            </tr> -->
             <tr>
-              <th colspan="2" class="info">Total m<sup>3</sup></th>
+              <th class="info">Total m<sup>3</sup></th>
               <td align="center"><strong>{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}</strong></td>
             </tr>
             <tr>
@@ -286,7 +283,7 @@
         </form>
     </div>
 
-    <div id="divExportar" class="col-md-12 hidden">
+    <div id="divExportar" class="col-md-12">
         <h1>Resumen</h1>
             <!-- <table border=1 id="tablaTotal" class="hidden">
               <tr>
@@ -302,81 +299,337 @@
                 <td>{{cliente.responsable}}</td>
               </tr>
             </table> -->
+            <table  border=1 style="width:1250;" id="prueba">
+              <thead>
+              <tr>
+                <th rowspan=8 colspan=10><img src="app/img/LogoMudarte.png" /></th>
+                <th rowspan=2>N° Cotiz.</th>
+                <td rowspan=2 align=center></td>
+              </tr>
+              <tr></tr>
+              <tr>
+                <th rowspan=2>Fuente</th>
+                <td rowspan=2 align=center></td>
+              </tr>
+              <tr></tr>
+              <tr>
+                <th rowspan=2>CP/PV</th>
+                <td rowspan=2 align=center></td>
+              </tr>
+              <tr></tr>
+              <tr>
+                <th rowspan=2>Particular</th>
+                <td rowspan=2 align=center></td>
+              </tr>
+              <tr></tr>
+              <tr>
+                <th align=left rowspan=2 colspan=3>Nombre y apellido:</th>
+                <td align=center rowspan=2 colspan=7><h2>Pablo Amendola</h2></td>
+                <th rowspan=2>Empresa</th>
+                <td rowspan=2 align=center></td>
+              </tr>
+              <tr></tr>
+              <tr>
+                <th align=left rowspan=2 colspan=3>Telefono:</th>
+                <td align=center rowspan=2 colspan=7></td>
+                <th rowspan=2>Gobierno</th>
+                <td rowspan=2 align=center></td>
+              </tr>
+              <tr></tr>
+              <tr>
+                <th align=left rowspan=2 colspan=3>Correo electronico:</th>
+                <td align=center rowspan=2 colspan=7></td>
+                <th rowspan=2>Cargo</th>
+                <td rowspan=2 align=center></td>
+              </tr>
+              <tr></tr>
+              <tr>
+                <th align=left rowspan=2 colspan=3>Fecha en que se encargo:</th>
+                <td align=center rowspan=2 colspan=3></td>
+                <th rowspan=2 colspan=2>Hora:</th>
+                <td rowspan=2 colspan=2 align=center></td>
+                <th rowspan=2>Cotizador</th>
+                <td rowspan=2 align=center></td>
+              </tr>
+              <tr></tr>
+              <tr>
+                <th align=left rowspan=2 colspan=3>Fecha estimada de mudanza:</th>
+                <td align=center rowspan=2 colspan=3></td>
+                <th rowspan=2 colspan=2>Hora:</th>
+                <td rowspan=2 colspan=2 align=center></td>
+                <th rowspan=2>Forma Pago</th>
+                <td rowspan=2 align=center></td>
+              </tr>
+              <tr></tr>
+              </thead>
+              <tbody>
+              <tr>
+                <th align=left rowspan=2 colspan=3>Fecha en que se cotizo:</th>
+                <td align=center rowspan=2 colspan=3></td>
+                <th rowspan=2 colspan=2>Hora:</th>
+                <td rowspan=2 colspan=2 align=center></td>
+              </tr>
+              <tr></tr>
+              <tr>
+                <th align=left rowspan=2 colspan=3>Fecha en que se aviso:</th>
+                <td align=center rowspan=2 colspan=3></td>
+                <th rowspan=2 colspan=2>Hora:</th>
+                <td rowspan=2 colspan=2 align=center></td>
+              </tr>
+              <tr></tr>
+              <tr>
+                <th align=left rowspan=2 colspan=3>Fecha en que se cerro:</th>
+                <td align=center rowspan=2 colspan=3></td>
+                <th rowspan=2 colspan=2>Hora:</th>
+                <td rowspan=2 colspan=2 align=center></td>
+              </tr>
+              <tr></tr>
+              <tr>
+                <th align=left rowspan=2 colspan=3>Fecha real de mudanza:</th>
+                <td align=center rowspan=2 colspan=3></td>
+                <th rowspan=2 colspan=2>Hora:</th>
+                <td rowspan=2 colspan=2 align=center></td>
+              </tr>
+              <tr></tr>
+              <tr>
+                <th align=left rowspan=2 colspan=5>Nombre de quien paso la cotizacion:</th>
+                <td align=center rowspan=2 colspan=5></td>
+              </tr>
+              <tr></tr>
+              <tr>
+                <th align=left rowspan=2 colspan=5>Nombre de quien llamo al cliente:</th>
+                <td align=center rowspan=2 colspan=5></td>
+              </tr>
+              <tr></tr>
+              <tr>
+                <th rowspan=2 colspan=6>Domicilio de Origen:</th>
+                <th rowspan=2 colspan=4>Barrio/Provincia:</th>
+              </tr>
+              <tr></tr>
+              <tr>
+                <td align=center rowspan=3 colspan=6></td>
+                <td align=center rowspan=3 colspan=4></td>
+              </tr>
+              <tr></tr>
+              <tr></tr>
+              <tr>
+                <th rowspan=2 colspan=10>Observaciones de Origen:</th>
+              </tr>
+              <tr></tr>
+              <tr>
+                <td rowspan=6 colspan=10></td>
+              </tr>
+              <tr></tr>
+              <tr></tr>
+              <tr></tr>
+              <tr></tr>
+              <tr></tr>
+              <tr>
+                <th rowspan=2 colspan=6>Domicilio de Destino:</th>
+                <th rowspan=2 colspan=4>Barrio/Provincia:</th>
+              </tr>
+              <tr></tr>
+              <tr>
+                <td align=center rowspan=3 colspan=6></td>
+                <td align=center rowspan=3 colspan=4></td>
+              </tr>
+              <tr></tr>
+              <tr></tr>
+              <tr>
+                <th rowspan=2 colspan=10>Observaciones de Destino:</th>
+              </tr>
+              <tr></tr>
+              <tr>
+                <td rowspan=6 colspan=10></td>
+              </tr>
 
-          <h2>Contenedores</h2>
+              <tr></tr>
+              <tr></tr>
+              <tr></tr>
+              <tr></tr>
+            </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+          <table border=1 id="tablaMateriales">
+          <tbody>
+              <tr>
+                <th rowspan=2 colspan=2>Km</th>
+                <td rowspan=2 align=center></td>
+                <td rowspan=2 align=center></td>
+                <td rowspan=2 colspan=2 align=center></td>
+                <th rowspan=2 colspan=2>Materiales</th>
+                <th rowspan=2 colspan=2>Cantidad</th>
+                <th rowspan=2 colspan=2>Precio unit.</th>
+                <th rowspan=2 colspan=2>Totales</th>
+                <th rowspan=2 colspan=2>Mudanza</th>
+                <td rowspan=2 colspan=2 align=center></td>
+              </tr>
+              <tr></tr>
+              <tr>
+                <th rowspan=2 colspan=2>Tiempo de carga</th>
+                <td rowspan=2 colspan=2 align=center></td>
+                <td rowspan=2 colspan=2 align=center></td>
+                <th rowspan=2 colspan=2>Cajas Nuevas</th>
+                <td rowspan=2 colspan=2 align=center></td>
+                <td rowspan=2 colspan=2 align=center></td>
+                <td rowspan=2 colspan=2 align=center></td>
+                <th rowspan=2 colspan=2>Soga</th>
+                <td rowspan=2 colspan=2 align=center></td>
+              </tr>
+              <tr></tr>
+              <tr>
+                <th rowspan=2 colspan=2>Tiempo de descarga</th>
+                <td rowspan=2 colspan=2 align=center></td>
+                <td rowspan=2 colspan=2 align=center></td>
+                <th rowspan=2 colspan=2>Cajas Reciclables</th>
+                <td rowspan=2 colspan=2 align=center></td>
+                <td rowspan=2 colspan=2 align=center></td>
+                <td rowspan=2 colspan=2 align=center></td>
+                <th rowspan=2 colspan=2>Embalaje</th>
+                <td rowspan=2 colspan=2 align=center></td>
+              </tr>
+              <tr></tr>
+              <tr>
+                <th rowspan=2 colspan=2>Camion N°</th>
+                <td rowspan=2 colspan=2 align=center></td>
+                <td rowspan=2 colspan=2 align=center></td>
+                <th rowspan=2 colspan=2>Streech</th>
+                <td rowspan=2 colspan=2 align=center></td>
+                <td rowspan=2 colspan=2 align=center></td>
+                <td rowspan=2 colspan=2 align=center></td>
+                <th rowspan=2 colspan=2>Desembalaje</th>
+                <td rowspan=2 colspan=2 align=center></td>
+              </tr>
+              <tr></tr>
+              <tr>
+                <th rowspan=2 colspan=2>Ayudantes</th>
+                <td rowspan=2 colspan=2 align=center></td>
+                <td rowspan=2 colspan=2 align=center></td>
+                <th rowspan=2 colspan=2>Pluriball</th>
+                <td rowspan=2 colspan=2 align=center></td>
+                <td rowspan=2 colspan=2 align=center></td>
+                <td rowspan=2 colspan=2 align=center></td>
+                <th rowspan=2 colspan=2>Materiales</th>
+                <td rowspan=2 colspan=2 align=center></td>
+              </tr>
+              <tr></tr>
+              <tr>
+                <th rowspan=2 colspan=2>Seguro</th>
+                <td rowspan=2 colspan=2 align=center></td>
+                <td rowspan=2 colspan=2 align=center></td>
+                <th rowspan=2 colspan=2>Corrugado</th>
+                <td rowspan=2 colspan=2 align=center></td>
+                <td rowspan=2 colspan=2 align=center></td>
+                <td rowspan=2 colspan=2 align=center></td>
+                <th rowspan=2 colspan=2>Piano/C.fuerte</th>
+                <td rowspan=2 colspan=2 align=center></td>
+              </tr>
+              <tr></tr>
+              <tr>
+                <th rowspan=2 colspan=2>Desarme de Muebles</th>
+                <td rowspan=2 colspan=2 align=center></td>
+                <td rowspan=2 colspan=2 align=center></td>
+                <th rowspan=2 colspan=2>Cintas</th>
+                <td rowspan=2 colspan=2 align=center></td>
+                <td rowspan=2 colspan=2 align=center></td>
+                <td rowspan=2 colspan=2 align=center></td>
+                <th rowspan=2 colspan=2>Ajuste</th>
+                <td rowspan=2 colspan=2 align=center></td>
+              </tr>
+              <tr></tr>
+              <tr>
+                <th rowspan=2 colspan=2>Ambientes</th>
+                <td rowspan=2 colspan=2 align=center></td>
+                <td rowspan=2 colspan=2 align=center></td>
+                <th rowspan=2 colspan=2>Papel Sulfito</th>
+                <td rowspan=2 colspan=2 align=center></td>
+                <td rowspan=2 colspan=2 align=center></td>
+                <td rowspan=2 colspan=2 align=center></td>
+                <th rowspan=2 colspan=2>IVA</th>
+                <td rowspan=2 colspan=2 align=center></td>
+              </tr>
+              <tr></tr>
+              <tr>
+                <th rowspan=2 colspan=2>Rampa</th>
+                <td rowspan=2 align=center></td>
+                <td rowspan=2 align=center></td>
+                <td rowspan=2 colspan=2 align=center></td>
+                <th rowspan=2 colspan=2>Bolsas</th>
+                <td rowspan=2 colspan=2 align=center></td>
+                <td rowspan=2 colspan=2 align=center></td>
+                <td rowspan=2 colspan=2 align=center></td>
+                <th rowspan=2 colspan=2>Total</th>
+                <td rowspan=2 colspan=2 style="background-color: #A9A9A9;" align=center></td>
+              </tr>
+              <tr></tr>
+            </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <h2>Contenedores</h2>
             <legend></legend>
             <table border=1 id="tablaContenedor">
               <tr>
-                <th style="background-color: #d9edf7;">Contenedor</th>
-                <th style="background-color: #d9edf7;">Cantidad</th>
-                <th style="background-color: #d9edf7;">m<sup>3</sup></th>
+                <th rowspan=2 colspan=2>Contenedor</th>
+                <th rowspan=2 colspan=2>Cantidad</th>
+                <th rowspan=2 colspan=2>m<sup>3</sup></th>
               </tr>
+              <tr></tr>
               <tr ng-repeat="item in contenedores_temp">
-                <td>{{item.contenedor}}</td>
-                <td>{{item.unidad}}</td>
-                <td>{{item.punto/10|number:2}}</td>
+                <td rowspan=2 colspan=2 align=center>{{item.contenedor}}</td>
+                <td rowspan=2 colspan=2 align=center>{{item.unidad}}</td>
+                <td rowspan=2 colspan=2 align=center>{{item.punto/10|number:2}}</td>
               </tr>
-              <tr style="background-color: #f5f5f5">
-                <th class="estiloUno">Total</th>
-                <td><strong>{{unidades_contenedores}}</strong></td>
-                <td><strong>{{metros3_contenedores|number:2}}</strong></td>
+              <tr></tr>
+              <tr style="background-color: #A9A9A9;">
+                <th rowspan=2 colspan=2>Total</th>
+                <td rowspan=2 colspan=2 align=center><strong>{{unidades_contenedores}}</strong></td>
+                <td rowspan=2 colspan=2 align=center><strong>{{metros3_contenedores|number:2}}</strong></td>
               </tr>
+              <tr></tr>
             </table>
-
+            <br>
+            <br>
             <h2>Muebles</h2>
             <legend></legend>
             <table border=1 id="tablaMueble">
               <tr>
-                <th style="background-color: #d9edf7">Mueble</th>
-                <th style="background-color: #d9edf7">Cantidad</th>
-                <th style="background-color: #d9edf7">m<sup>3</sup></th>
+                <th rowspan=2 colspan=2>Mueble</th>
+                <th rowspan=2 colspan=2>Dimension</th>
+                <th rowspan=2 colspan=2>Cantidad</th>
+                <th rowspan=2 colspan=2>m<sup>3</sup></th>
               </tr>
+              <tr></tr>
               <tr ng-repeat="item in muebles_temp">
-                <td>{{item.mueble}}</td>
-                <td>{{item.cantidad}}</td>
-                <td>{{item.total_punto/10|number:2}}</td>
+                <td rowspan=2 colspan=2 align=center ng-if="item.mueble == 'Otros'">Otros-{{item.descripcion}}</td>
+                <td rowspan=2 colspan=2 align=center
+                ng-if="item.mueble != 'Otros'">{{item.mueble}}</td>
+                <td rowspan=2 colspan=2 align=center>{{item.ancho}}x{{item.largo}}x{{item.alto}}</td>
+                <td rowspan=2 colspan=2 align=center>{{item.cantidad}}</td>
+                <td rowspan=2 colspan=2 align=center>{{item.total_punto/10|number:2}}</td>
               </tr>
-              <tr style="background-color: #f5f5f5">
-                <th class="estiloUno">Total</th>
-              <td><strong>{{unidades_muebles}}</strong></td>
-              <td><strong>{{metros3_muebles|number:2}}</strong></td>
+              <tr></tr>
+              <tr style="background-color: #A9A9A9;">
+              <th rowspan=2 colspan=2>Total</th>
+              <td rowspan=2 colspan=2 align=center><strong>{{unidades_otros}}</strong></td>
+              <td rowspan=2 colspan=2 align=center><strong>{{metros3_otros|number:2}}</strong></td>
               </tr>
-            </table>
-
-            <h2>Otros</h2>
-            <legend></legend>
-            <table border=1 id="tablaOtro">
-              <tr>
-                <th style="background-color: #d9edf7">Descripcion</th>
-                <th style="background-color: #d9edf7">Dimension</th>
-                <th style="background-color: #d9edf7">Cantidad</th>
-                <th style="background-color: #d9edf7">m<sup>3</sup></th>
-              </tr>
-              <tr ng-repeat="item in otros_temp">
-                <td ng-if="item.mueble == 'Otros'">Otros-{{item.descripcion}}
-                <td ng-if="item.mueble != 'Otros'">{{item.mueble}}</td>
-                <td>{{item.ancho}}x{{item.largo}}x{{item.alto}}</td>
-                <td>{{item.cantidad}}</td>
-                <td>{{item.total_punto/10|number:2}}</td>
-              </tr>
-              <tr style="background-color: #f5f5f5">
-              <th colspan="2" class="estiloUno">Total</th>
-              <td><strong>{{unidades_otros}}</strong></td>
-              <td><strong>{{metros3_otros|number:2}}</strong></td>
-              </tr>
+              <tr></tr>
             </table>
 
             <h2>Totales</h2>
             <legend></legend>
             <table border=1 id="tablaTotal">
               <tr>
-                <th style="background-color: #d9edf7">Total Contenido</th>
-                <th><strong>{{unidades_contenedores+unidades_muebles+unidades_otros}}</strong></th>
+                <th rowspan=2 colspan=2 align=center style="background-color: #A9A9A9;">Total m<sup>3</sup></th>
+                <th rowspan=2 colspan=2 align=center><strong>{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}</strong></th>
               </tr>
-              <tr>
-                <th style="background-color: #d9edf7">Total m<sup>3</sup></th>
-                <th><strong>{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}</strong></th>
-              </tr>
+              <tr></tr>
             </table>
     </div>
 </div>
