@@ -2,7 +2,7 @@
   'use strict';
   var app = angular.module('cotizacionExpressApp');
 
-    app.controller('CotizacionCtrl', function ($interval,$rootScope, $state, $scope, Cotizacion, Contenedor, Mueble, Bulto, Cliente, $http,setting) {
+    app.controller('CotizacionCtrl', function ($interval,$rootScope, $state, $scope,Users,Direccion, Material,Cotizacion, Contenedor, Mueble, Bulto, Cliente, $http,setting) {
       //variables
       $interval(
         function handleInterval() {
@@ -32,23 +32,100 @@
         return $scope.cant_otros;
       }
 
-      $scope.cotizacion = {
-        numero:'123456',
-        responsable:{id:1,name:setting.user.name}
+      //objecto cliente
+      $scope.cliente ={
+        nombre:'',
+        telefono:'',
+        email:''
       };
 
-      $scope.contenedores = []
+      // objecto direccion
 
+      $scope.cotizacion = {
+        numero_cotizacion:'',
+        cliente:'',
+        cotizador:'',
+        quien_llamo:'',
+        quien_cotizo:'',
+        fecha_registro:'',
+        hora_registro:'',
+        fuente:'',
+        cp_pv:'',
+        tipo_cliente:'',
+        cargo:'',
+        forma_pago:'',
+        fecha_de_carga:'',
+        hora_de_carga:'',
+        fecha_estimada_mudanza:'',
+        hora_estimada_mudanza:'',
+        fecha_de_cotizacion:'',
+        hora_de_cotizacion:'',
+        fecha_de_aviso:'',
+        hora_de_aviso:'',
+        fecha_de_cierre:'',
+        hora_de_cierre:'',
+        fecha_real_mudanza:'',
+        hora_real_mudanza:'',
+        direccion_origen:'',
+        barrio_provincia_origen:'',
+        observacion_origen:'',
+        direccion_destino:'',
+        barrio_provincia_destino:'',
+        observacion_destino:'',
+        recorrido_km:Number(0),
+        precio_km:Number(30),
+        monto_km:Number(0),
+        tiempo_de_carga:Number(0),
+        tiempo_de_descarga:Number(0),
+        numero_camion:Number(0),
+        numero_ayudante:Number(0),
+        seguro:'No',
+        desarme_mueble:'No',
+        ambiente:Number(0),
+        rampa:'No',
+        mudanza:Number(0),
+        soga:Number(0),
+        embalaje:Number(0),
+        desembalaje:Number(0),
+        materiales:Number(0),
+        piano_cajafuerte:Number(0),
+        ajuste:Number(0),
+        iva:Number(0),
+        total_monto:Number(0),
+        observacion:'',
+        total_cantidad:'',
+        total_m3:'',
+        porcentaje_margen:'',
+        total_margen:'',
+        estado:''
+      };
+
+      $scope.cotizadores = []
+      $scope.cotizadores = null;
+
+      $scope.telefonistas = []
+      $scope.telefonistas = null;
+
+      $scope.materiales = []
+      $scope.materiales = null;
+
+      $scope.contenedores = []
       $scope.contenedores = null;
 
       $scope.todoscontenedores = []
       $scope.todoscontenedores = null;
 
-      // $scope.bultos = []
-      // $scope.bultos = null;
+      $scope.tipo_muebles = []
+      $scope.tipo_muebles = null;
+
+      $scope.barrio_provincias = []
+      $scope.barrio_provincias = null;
 
       $scope.mueble = []
       $scope.mueble = null;
+
+      $scope.muebles_group = []
+      $scope.muebles_group = null;
 
       $scope.contenedores_temp = [];
       $scope.muebles_temp = [];
@@ -127,7 +204,7 @@
       function buscar_mueble(ms_tmp,m){
         var l = ms_tmp.length;
         for(var i=0;i<l;i++){
-          if(m.mueble === ms_tmp[i].mueble){
+          if(m.mueble === ms_tmp[i].mueble && m.espeficicacion === ms_tmp[i].espeficicacion){
             if(m.cantidad>0){
                 ms_tmp[i].cantidad = m.cantidad;
             }else{
@@ -149,6 +226,7 @@
                 ms_tmp[i].largo = m.largo;
                 ms_tmp[i].alto = m.alto;
                 ms_tmp[i].cantidad = m.cantidad;
+                ms_tmp[i].descripcion = m.descripcion;
                 ms_tmp[i].total_punto = m.punto * m.cantidad;
             }else{
                 ms_tmp.splice(ms_tmp.indexOf(ms_tmp[i]),1);
@@ -160,24 +238,41 @@
       }
 
       function init(contenedor){
-        numeros();
-        numeros_otros();
-        $('.btnsCotizacion').removeClass('hidden');
         if(contenedor !== undefined){
           return Contenedor.all(contenedor).then(function(contenedores){
             $scope.todoscontenedores = contenedores;
 
           });
         }else{
+          numeros();
+          numeros_otros();
+          $('.btnsCotizacion').removeClass('hidden');
+
+          Material.all().then(function(materiales){
+            $scope.materiales = materiales;
+          });
           Contenedor.all().then(function(contenedores){
             $scope.contenedores = contenedores;
+          });
+          Mueble.all('filtrado').then(function(groups){
+            $scope.muebles_group = groups;
           });
           Mueble.all().then(function(muebles){
             $scope.muebles = muebles;
           });
-          Cliente.all().then(function(cliente){
-            $scope.cliente = cliente;
+          Mueble.tipo_mueble().then(function(muebles){
+            $scope.tipo_muebles = muebles;
           });
+          Users.all(1).then(function(r){
+            $scope.cotizadores = r;
+          });
+          Users.all(2).then(function(r){
+            $scope.telefonista = r;
+          });
+          Direccion.all().then(function(r){
+            $scope.barrio_provincias = r;
+          });
+            $scope.fuentes = Cotizacion.all_fuentes();
 
         }
         $rootScope.$on('change',function(event){
@@ -201,7 +296,7 @@
         };
 
 
-        init(descripcion).then(function(r){
+        init(descripcion).then(function(){
         if(!buscar_contenedor($scope.contenedores_temp, contenedor_temp)){
             if(contenedor_temp.unidad>0){
               $scope.contenedores_temp.push(contenedor_temp);
@@ -237,6 +332,7 @@
             // id: 1,
             // cotizacion: 1,
             mueble: mueble.descripcion,
+            espeficicacion: mueble.especificacion,
             descripcion: "",
             ancho: Number(mueble.ancho),
             largo: Number(mueble.largo),
@@ -260,8 +356,8 @@
         if(ancho!==undefined && largo!==undefined && alto!==undefined){
          var otro = {
               id: campo.id,
-              mueble: mueble.descripcion,
-              descripcion: "",
+              mueble: mueble,
+              descripcion: descripcion,
               ancho: Number(ancho),
               largo: Number(largo),
               alto: Number(alto),
@@ -272,10 +368,10 @@
           };
           var mult_dimension=otro.ancho*otro.largo*otro.alto;
 
-          if(mueble.descripcion === 'Otros'){
+          if(mueble === 'Otros'){
             otro.descripcion = descripcion;
           }else{
-            otro.descripcion = mueble.descripcion;
+            otro.descripcion = mueble;
           }
 
           otro.punto = Math.round(otro.ancho*otro.largo*otro.alto/100000);
@@ -307,39 +403,89 @@
         $scope.otros_temp_campo.splice($scope.otros_temp_campo.indexOf(campo),1);
       };
 
-      $scope.save = function(cot, cliente){
-        var total_cantidad = $scope.unidades_contenedores + $scope.unidades_muebles + $scope.unidades_otros;
-          var total_m3 = $scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros;
-          var cotizacion = {
-            numero_cotizacion:cot.numero,
-            cliente:1,
-            responsable:cot.responsable.id,
-            total_cantidad:total_cantidad,
-            total_m3:total_m3,
-            estado:'activo'
-          };
-          Cotizacion.save(cotizacion).then(function(result){
-            var id_cotizacion = result.data.id;
-            for(var i=0;i<$scope.contenedores_temp.length;i++){
-                Cotizacion.save_contenedores($scope.contenedores_temp[i],id_cotizacion);
-            }
-            for(var i=0;i<$scope.muebles_temp.length;i++){
-                Cotizacion.save_muebles($scope.muebles_temp[i],id_cotizacion);
-            }
-            for(var i=0;i<$scope.otros_temp.length;i++){
-                Cotizacion.save_muebles($scope.otros_temp[i],id_cotizacion);
-            }
-            // $scope.limpiar();
+      // $scope.save = function(cot, cliente){
+      //   var total_cantidad = $scope.unidades_contenedores + $scope.unidades_muebles + $scope.unidades_otros;
+      //     var total_m3 = $scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros;
+      //     var cotizacion = {
+      //       numero_cotizacion:cot.numero,
+      //       cliente:1,
+      //       responsable:cot.responsable.id,
+      //       total_cantidad:total_cantidad,
+      //       total_m3:total_m3,
+      //       estado:'activo'
+      //     };
+      //     Cotizacion.save(cotizacion).then(function(result){
+      //       var id_cotizacion = result.data.id;
+      //       for(var i=0;i<$scope.contenedores_temp.length;i++){
+      //           Cotizacion.save_contenedores($scope.contenedores_temp[i],id_cotizacion);
+      //       }
+      //       for(var i=0;i<$scope.muebles_temp.length;i++){
+      //           Cotizacion.save_muebles($scope.muebles_temp[i],id_cotizacion);
+      //       }
+      //       for(var i=0;i<$scope.otros_temp.length;i++){
+      //           Cotizacion.save_muebles($scope.otros_temp[i],id_cotizacion);
+      //       }
+      //       // $scope.limpiar();
+      //
+      //       },function(e){
+      //       alert("error");
+      //     });
+      //
+      //
+      //
+      // }
 
-            },function(e){
-            alert("error");
-          });
-
-
-
+      $scope.update_presupuesto = function () {
+        $scope.cotizacion.total_monto = Number($scope.cotizacion.mudanza + $scope.cotizacion.soga + $scope.cotizacion.embalaje + $scope.cotizacion.desembalaje + $scope.cotizacion.materiales + $scope.cotizacion.piano_cajafuerte + $scope.cotizacion.ajuste + $scope.cotizacion.iva);
       }
-
       angular.element('#nCotizacion').focus();
+
+      //temploral de material
+      $scope.materiales_temp = [];
+      $scope.add_material = function(material,uni, precio) {
+        var material_temp = {
+            // id: 1,
+            // cotizacion: 1,
+            material: material.descripcion,
+            cantidad: Number(uni),
+            precio_unitario: Number(precio),
+            total: Number(uni*precio),
+            estado: "activo"
+        };
+
+        if(buscar_material($scope.materiales_temp, material_temp)!==true){
+          if(material_temp.cantidad >0){
+              $scope.materiales_temp.push(material_temp);
+          }
+        }
+        $scope.cotizacion.materiales = calcular_totales($scope.materiales_temp,"total");
+        // console.log($scope.materiales_temp);
+        $scope.cotizacion.total_monto = $scope.cotizacion.mudanza + $scope.cotizacion.soga + $scope.cotizacion.embalaje + $scope.cotizacion.desembalaje + $scope.cotizacion.materiales + $scope.cotizacion.piano_cajafuerte + $scope.cotizacion.ajuste + $scope.cotizacion.iva
+
+      };
+
+      function buscar_material(ms_tmp,m){
+        var l = ms_tmp.length;
+        for(var i=0;i<l;i++){
+          if(m.material === ms_tmp[i].material){
+            if(m.cantidad>0){
+                ms_tmp[i].cantidad = m.cantidad;
+                ms_tmp[i].precio_unitario = m.precio_unitario;
+                ms_tmp[i].total = m.total;
+            }else{
+                ms_tmp.splice(ms_tmp.indexOf(ms_tmp[i]),1);
+            }
+            return true;
+          }
+        }
+        return false;
+      }
+// temporal parcial_1
+    // $scope.parcial1_temp = {};
+    $scope.add_parcial1 = function() {
+      // console.log($scope.cotizacion);
+      $scope.cotizacion.monto_km = Number($scope.cotizacion.recorrido_km * $scope.cotizacion.precio_km);
+    };
 
     });
 

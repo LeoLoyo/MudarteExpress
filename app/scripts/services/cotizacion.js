@@ -4,13 +4,42 @@
 
     app.service('Auth', function($http, setting){
       var self = this;
-      self.valid = function(user){
-        // $http.get(setting.url).then(function(){}).catch(function(){})
-        if(user.name === setting.user.name && user.pass === setting.user.pass){
-            return true;
-        }else{
-          return false;
+      var users = [
+        {
+          name:"Leonardo Loyo",
+          user:"leo",
+          pass:"0000"
+        },
+        {
+          name:"Administrador",
+          user:"admin",
+          pass:"admin"
+        },
+        {
+          name:"Yusnelvy Arrieche",
+          user:"yusnelvy",
+          pass:"1234"
+        },
+        {
+          name:"Yohandri",
+          user:"yohandri",
+          pass:"1234"
+        },
+        {
+          name:"Jessica Rivero",
+          user:"jessica",
+          pass:"1234"
         }
+      ];
+      var response;
+
+      self.valid = function(user){
+        for(var i=0;i<users.length;i++){
+            if(user.name === users[i]['user'] && user.pass === users[i]['pass']){
+              return response =[{user:users[i],status:true}];
+            }
+          }
+        return response =[{user:null,status:false}];
       };
     })
 
@@ -40,7 +69,7 @@
       }
       self.save_muebles = function(muebles,id_cotizacion){
         var data = {};
-
+        var url = setting.url+"mueblecotizacion/";
           data.cotizacion = id_cotizacion;
           data.mueble = muebles.mueble;
           data.descripcion = muebles.descripcion;
@@ -52,14 +81,41 @@
           data.total_punto = muebles.total_punto;
           data.estado ='activo';
 
-          return $http.post(setting.url+"mueblecotizacion/", data).success(function(result){
+          return $http.post(url, data).success(function(result){
             return true;
           }).error(function(e){
             return false;
           });
         }
 
-
+      self.all_fuentes = function(){
+        var collection = [
+                            'Internet Google' ,
+                            'Internet Otro buscador' ,
+                            'Internet Banner' ,
+                            'Cartel Via Publica' ,
+                            'Recomendado Cliente' ,
+                            'Cliente' ,
+                            'Volante diario/revista' ,
+                            'Volante via publica' ,
+                            'Volante en casa' ,
+                            'Volante en evento',
+                            'Publ. Diario/revista',
+                            'Public. Email',
+                            'Public. Via Publica',
+                            'Publicidad TV',
+                            'Pulicidad Radio',
+                            'Publicidad Cine',
+                            'Camion Mudarte',
+                            'Telemercadeo',
+                            'Deposito Belgrano',
+                            'Inmobiliaria',
+                            'Tarjeta descuento',
+                            'Otros',
+                            'My Home Planners'
+                          ];
+      return collection;
+      }
       return self;
     });
 
@@ -69,8 +125,8 @@
         // var url = setting.url + "contenedordescripcion/?format=json"
         var url = 'scripts/json/contenedordescripcion.json'
         if(contenedor !== undefined){
-          // url = setting.url +"contenedor/?format=json&contenedor="+contenedor;
-          url = 'scripts/json/contenedor.json';
+          url = setting.url +"contenedor/?format=json&contenedor="+contenedor;
+          // url = 'scripts/json/contenedor.json';
         }
         return $http.get(url).then(function(data){
           return data.data;
@@ -80,16 +136,51 @@
       }
     });
 
-    app.service('Mueble', function ($http, setting) {
+    app.service('Material', function ($http, setting) {
       var self = this;
       self.all = function(){
-        return $http.get(setting.url+"mueble/?format=json").then(function(data){
-          console.log("Mueble :" + data.data.length);
+          // url = setting.url + "/material/?format=json";
+          var url = "scripts/json/material.json";
+        return $http.get(url).then(function(data){
+          var out =[];
+          angular.forEach(data.data, function(value,key){
+            value.precio = Number(value.precio);
+            out.push(value);
+          },out);
+          // return data.data;
+          return out;
+        }).catch(function(e){
+          return null;
+        });
+      }
+    });
+
+    app.service('Mueble', function ($http, setting) {
+      var self = this;
+      self.all = function(group){
+       // var url = setting.url+"mueble/?format=json";
+        var url = 'scripts/json/mueble.json';
+        if(group !== undefined){
+          // url = setting.url+'muebledescripcion/?format=json';
+          url = 'scripts/json/muebledescripcion.json';
+        }
+        return $http.get(url).then(function(data){
           return data.data;
         }).catch(function(e){
           return null;
         });
       }
+      self.tipo_mueble = function(){
+        // var url = setting.url+"tipo_mueble/?format=json";
+        var url = "scripts/json/tipo_mueble.json";
+        return $http.get(url).then(function(data){
+          return data.data;
+        }).catch(function(e){
+          return null;
+        });
+      }
+      return self;
+
     });
 
     app.service('Bulto', function ($http, setting) {
@@ -125,4 +216,41 @@
       }
     });
 
+    app.service('Users', function ($http, setting) {
+      var self = this;
+      self.all = function(param){
+        var url = '';
+        switch(param){
+          case 1:
+            // url = setting.url+"user/?format=json&cotizador=cotizador";
+            url = 'scripts/json/cotizador.json';
+            break;
+
+          case 2:
+            // url = setting.url+"user/?format=json&telefonnista=telefonista";
+            url = 'scripts/json/telefonista.json';
+            break;
+          default:
+            url = 'scripts/json/user.json';
+            break
+        };
+
+        return $http.get(url).then(function(data){
+          return data.data;
+        });
+      }
+    });
+
+    app.service('Direccion', function ($http, setting) {
+      var self = this;
+
+      self.all = function(){
+        var url = 'scripts/json/barrioprovincia.json';
+        return $http.get(url).then(function(data){
+          return data.data;
+        });
+      }
+
+      return self;
+    })
 })();
