@@ -87,10 +87,6 @@
             return false;
           });
         }
-        self.operadores = function () {
-
-        }
-
 
       return self;
     });
@@ -217,5 +213,16 @@
       }
     });
 
+    app.service('Direccion', function ($http, setting) {
+      var self = this;
 
+      self.all = function(){
+        var url = 'scripts/json/barrioprovincia.json';
+        return $http.get(url).then(function(data){
+          return data.data;
+        });
+      }
+
+      return self;
+    })
 })();

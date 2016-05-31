@@ -24,7 +24,7 @@
            <div class="form-group">
       <div class="input-group">
       <div class="input-group-addon">N° de cotización</div>
-      <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
+      <input type="text" class="form-control" id="exampleInputAmount" placeholder="000">
     </div>
   </div>
       </div>
@@ -34,92 +34,97 @@
     <div class="row">
   <div class="col-md-3 form-group">
     <label for="id_nombre">Nombre del clente: </label>
-    <input type="text" id="id_nombre" class="form-control">
+    <input type="text" id="id_nombre" ng-model="cliente.nombre" class="form-control">
   </div>
   <div class="col-md-3 form-group">
     <label for="id_telefono">Telefono del cliente: </label>
-    <input type="number" class="form-control">
+    <input type="number" ng-model="cliente.telefono" class="form-control">
   </div>
   <div class="col-md-3 form-group">
     <label for="id_email">Correo del cliente:</label>
-    <input type="email" class="form-control">
+    <input type="email" ng-model="cliente.email" class="form-control">
   </div>
   <div class="col-md-3 form-group">
     <label for="id_promocion">Fuente de promoción:</label>
-    <input type="text" class="form-control" id="id_promocion">
+    <input type="text" ng-model="cotizacion.fuente" class="form-control" id="id_promocion">
   </div>
 
   <div class="col-md-3 form-group">
     <label for="id_cp">CP/PV:</label>
-    <select class="form-control" id="id_cp"></select>
+    <select class="form-control" ng-model="cotizacion.cp_pv" id="id_cp"><option value="CP">CP</option>
+    <option value="PV">PV</option></select>
   </div>
   <div class="col-md-3 form-group">
     <label for="id_cargo">Cargo:</label>
-    <input type="text" class="form-control" id="id_cargo">
+    <input type="text" ng-model="cotizacion.cargo" class="form-control" id="id_cargo">
   </div>
   <div class="col-md-3 form-group">
     <label for="id_cotizador">Cotizador:</label>
-    <select class="form-control" id="id_cotizador"></select>
+    <select class="form-control" id="id_cotizador"><option ng-value="{{item.id}}" ng-repeat="item in cotizadores">{{item.first_name}} {{item.last_name}}</option></select>
   </div>
   <div class="col-md-3 form-group">
     <label for="id_cotizador">Forma de pago:</label>
-    <select class="form-control" id="id_cotizador"></select>
+    <select class="form-control" id="id_cotizador">
+      <option value="EFECTIVO">EFECTIVO</option>
+      <option value="CHEQUE">CHEQUE</option>
+      <option value="TRANSFERENCIA">TRANSFERENCIA</option>
+    </select>
   </div>
   <legend></legend>
 </div>
 <div class="row">
   <div class="col-md-3 form-group">
     <label for="id_fecha1">Fecha en que se cargo:</label>
-    <input type="date" class="form-control">
+    <input type="date" ng-model="cotizacion.fecha_de_carga" class="form-control">
   </div>
   <div class="col-md-3 form-group">
     <label for="id_hora1">Hora: </label>
-    <input type="time" class="form-control">
+    <input type="time" ng-model="cotizacion.hora_de_carga" class="form-control">
   </div>
   <div class="col-md-3 form-group">
     <label for="id_fecha2">Fecha estimada de la mudanza:</label>
-    <input type="date" class="form-control">
+    <input type="date" ng-model="cotizacion.fecha_estimada_mudanza" class="form-control">
   </div>
   <div class="col-md-3 form-group">
     <label for="id_hora2">Hora: </label>
-    <input type="time" class="form-control">
+    <input type="time" ng-model="cotizacion.hora_estimada_mudanza" class="form-control">
   </div>
    </div>
    <div class="row">
 
   <div class="col-md-3 form-group">
     <label for="id_fecha3">Fecha en que se cotizo</label>
-    <input type="date" class="form-control">
+    <input type="date" ng-model="cotizacion.fecha_de_cotizacion" class="form-control">
   </div>
   <div class="col-md-3 form-group">
     <label for="id_hora3">Hora: </label>
-    <input type="time" class="form-control">
+    <input type="time" ng-model="cotizacion.hora_de_cotizacion" class="form-control">
   </div>
   <div class="col-md-3 form-group">
     <label for="id_fecha4">Fecha en que se aviso:</label>
-    <input type="date" class="form-control">
+    <input type="date" ng-model="cotizacion.fecha_de_aviso" class="form-control">
   </div>
   <div class="col-md-3 form-group">
     <label for="id_hora4">Hora: </label>
-    <input type="time" class="form-control">
+    <input type="time" ng-model="cotizacion.hora_de_aviso" class="form-control">
   </div>
 </div>
 <div class="row">
   <div class="col-md-3 form-group">
     <label for="id_fecha5">Fecha en que se cerro:</label>
-    <input type="date" class="form-control">
+    <input type="date" ng-model="cotizacion.fecha_de_cierre" class="form-control">
   </div>
   <div class="col-md-3 form-group">
     <label for="id_hora5">Hora: </label>
-    <input type="time" class="form-control">
+    <input type="time" ng-model="cotizacion.hora_de_cierre" class="form-control">
   </div>
   <div class="col-md-3 form-group">
     <label for="id_fecha6">Fecha real de la mudanza:</label>
-    <input type="date" class="form-control">
+    <input type="date" ng-model="cotizacion.fecha_real_mudanza" class="form-control">
   </div>
   <div class="col-md-3 form-group">
     <label for="id_hora6">Hora: </label>
-    <input type="time" class="form-control">
+    <input type="time" ng-model="cotizacion.hora_real_mudanza" class="form-control">
   </div>
 </div>
 <legend></legend>
@@ -136,21 +141,21 @@
 </div>
 <div class="row">
   <legend></legend>
-  <div class="col-md-3 form-group">
+  <div class="col-md-4 form-group">
     <label for="">Dirección de origen</label>
     <input type="text" class="form-control">
   </div>
-  <div class="col-md-3 form-group">
+  <div class="col-md-2 form-group">
     <label for="">Barrio/Provincia</label>
-    <select name="" id="" class="form-control"></select>
+    <select name="" ng-model="cotizacion.barrio_provincia_origen" class="form-control"><option ng-value="{{item.id}}" ng-repeat="item in barrio_provincias">{{item.descripcion}}</option></select>
   </div>
-  <div class="col-md-3 form-group">
+  <div class="col-md-4 form-group">
     <label for="">Dirección de destino</label>
     <input type="text" class="form-control">
   </div>
-  <div class="col-md-3 form-group">
+  <div class="col-md-2 form-group">
     <label for="">Barrio/Provincia</label>
-    <select name="" id="" class="form-control"></select>
+    <select name="" ng-model="cotizacion.barrio_provincia_destino" class="form-control"><option ng-value="{{item.id}}" ng-repeat="item in barrio_provincias">{{item.descripcion}}</option></select>
   </div>
 </div>
 </form>
