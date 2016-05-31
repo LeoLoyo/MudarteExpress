@@ -52,55 +52,57 @@
           </tr>
           <tr>
             <td>Fecha en que se cargo:</td>
-            <td>{{ccotizacion.fecha_de_carga}}</td>
+            <td>{{cotizacion.fecha_de_carga | date:'dd-MM-yyyy'}}</td>
             <td>Hora</td>
-            <td>{{cotizacion.hora_de_carga}}</td>
+            <td>{{cotizacion.hora_de_carga | date:'h:mma'}}</td>
             <td>Cotizador</td>
             <td>{{cotizacion.cotizador}}</td>
           </tr>
           <tr>
             <td>Fecha estimada de muedanza></td>
-            <td>{{ccotizacion.fecha_estimada_mudanza}}</td>
+            <td>{{cotizacion.fecha_estimada_mudanza | date:'dd-MM-yyyy'}}</td>
             <td>Hora</td>
-            <td>{{cotizacion.hora_estimada_mudanza}}</td>
+            <td>{{cotizacion.hora_estimada_mudanza | date:'h:mma'}}</td>
             <td>Forma pago</td>
             <td>{{cotizacion.forma_pago}}</td>
           </tr>
           <tr>
             <td>Fecha en que se cotizo:</td>
-            <td>{{ccotizacion.fecha_de_cotizacion}}</td>
+            <td>{{cotizacion.fecha_de_cotizacion | date:'dd-MM-yyyy'}}</td>
             <td>Hora</td>
-            <td>{{cotizacion.hora_de_cotizacion}}</td>
+            <td>{{cotizacion.hora_de_cotizacion | date:'h:mma'}}</td>
           </tr>
           <tr>
             <td>Fecha en que se aviso:</td>
-            <td>{{ccotizacion.fecha_de_aviso}}</td>
+            <td>{{cotizacion.fecha_de_aviso | date:'dd-MM-yyyy'}}</td>
             <td>Hora</td>
-            <td>{{cotizacion.hora_de_aviso}}</td>
+            <td>{{cotizacion.hora_de_aviso | date:'h:mma'}}</td>
           </tr>
           <tr>
             <td>Fecha en que se cerro:</td>
-            <td>{{ccotizacion.fecha_de_cierre}}</td>
+            <td>{{cotizacion.fecha_de_cierre | date:'dd-MM-yyyy'}}</td>
             <td>Hora</td>
-            <td>{{cotizacion.hora_de_cierre}}</td>
+            <td>{{cotizacion.hora_de_cierre | date:'h:mma'}}</td>
           </tr>
           <tr>
             <td>Fecha real de mudanza:</td>
-            <td>{{ccotizacion.fecha_real_mudanza}}</td>
+            <td>{{cotizacion.fecha_real_mudanza | date:'dd-MM-yyyy'}}</td>
             <td>Hora</td>
-            <td>{{cotizacion.hora_real_mudanza}}</td>
+            <td>{{cotizacion.hora_real_mudanza | date:'h:mma'}}</td>
           </tr>
           <tr>
             <td colspan="2">Nombre de quien paso la mudanza:</td>
-            <td>{{cotizacion.quien_cotizo}}</td>
+            <td>
+              {{cotizacion.quien_cotizo.first_name}} {{cotizacion.quien_cotizo.last_name}}
+            </td>
           </tr>
           <tr>
             <td colspan="2">Nombre de quien llamo al cliente:</td>
-            <td>{{cotizacion.quien_llamo}}</td>
+            <td>{{cotizacion.quien_llamo.first_name}} {{cotizacion.quien_llamo.last_name}}</td>
           </tr>
           <tr>
             <th colspan="2">Domicilio de Origen</th>
-            <th colspan="2">Barrio&Provincia</th>
+            <th colspan="2">Barrio/Provincia</th>
           </tr>
           <tr>
             <td colspan="2">{{cotizacion.direccion_origen}}</td>
@@ -109,35 +111,113 @@
           <tr>
             <th colspan="4">Observaciones de Origen</th>
           </tr>
-          <tr colspan="4">{{cotizacion.observacion_origen}}</tr>
+          <tr colspan="4">
+            <td>{{cotizacion.observacion_origen}}</td>
+          </tr>
+          <tr>
+            <th colspan="2">Domicilio de Destino</th>
+            <th colspan="2">Barrio/Provincia</th>
+          </tr>
+          <tr>
+            <td colspan="2">{{cotizacion.direccion_origen}}</td>
+            <td>{{cotizacion.barrio_provincia_origen}}</td>
+          </tr>
+          <tr>
+            <th colspan="4">Observaciones de Destino</th>
+          </tr>
+          <tr colspan="4">
+            <td>{{cotizacion.observacion_origen}}</td>
+          </tr>
+        </table>
+        <h2>Detalle de mudanza</h2>
+        <table class="table">
+          <tr>
+            <td align="center">km</td>
+            <td>{{cotizacion.recorrido_km}}</td>
+            <td align="center">{{cotizacion.precio_km|currency}}</td>
+            <td align="center">{{cotizacion.monto_km|currency}}</td>
+          </tr>
+          <tr>
+            <td align="center">Tiempo de carga</td>
+            <td align="center" colspan="2">{{cotizacion.tiempo_de_carga}}</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td align="center">Tiempo de descarga</td>
+            <td align="center" colspan="2">{{cotizacion.tiempo_de_descarga}}</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td align="center">Camión n°</td>
+            <td align="center" colspan="2">{{cotizacion.numero_camion}}</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td align="center">Ayudantes</td>
+            <td align="center" colspan="2">{{cotizacion.numero_ayudante}}</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td align="center">Seguro</td>
+            <td align="center" colspan="2">{{cotizacion.seguro}}</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td align="center">Desarme de Muebles</td>
+            <td align="center" colspan="2">{{cotizacion.desarme_mueble}}</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td align="center">Ambiente</td>
+            <td align="center" colspan="2">{{cotizacion.ambiente}}</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td align="center">Rampa</td>
+            <td align="center" colspan="2">{{cotizacion.rampa}}</td>
+            <td></td>
+          </tr>
+        </table>
+        <h2>Presuppuesto</h2>
+        <table class="table">
+          <tr>
+            <th>Descripcion</th>
+            <th>Monto$</th>
+          </tr>
+          <tr>
+            <td width="80%">Mudanza</td>
+            <td>{{cotizacion.mudanza}}</td>
+          </tr>
+          <tr>
+            <td width="80%">Soga</td>
+            <td>{{cotizacion.soga}}</td>
+          </tr>
+          <tr>
+            <td width="80%">Desembalaje</td>
+            <td>{{cotizacion.desembalaje}}</td>
+          </tr>
+          <tr>
+            <td width="80%">Materiales</td>
+            <td>{{cotizacion.materiales}}</td>
+          </tr>
+          <tr>
+            <td width="80%">Piano/C.fuerte</td>
+            <td>{{cotizacion.piano_cajafuerte}}</td>
+          </tr>
+          <tr>
+            <td width="80%">Ajuste</td>
+            <td>{{cotizacion.ajuste}}</td>
+          </tr>
+          <tr>
+            <td width="80%">IVA</td>
+            <td>{{cotizacion.iva}}</td>
+          </tr>
+          <tr>
+            <th width="80%">Total</th>
+            <td>{{cotizacion.total_monto|currency}}</td>
+          </tr>
         </table>
 
-        <div class="col-md-4"><label for="" class="form-label">Nombre y Apellido:</label></div>
-        <div class="col-md-12"><h2>{{cliente.nombre}}</h2></div>
-        <div class="panel-body">
-
-        <h3>{{cliente.nombre}}</h3>
-          <div class="col-md-12 col-lg-4">
-            <p><strong>Email:</strong>
-              {{cliente.email}}
-            </p>
-            <p><strong>Telefono:</strong>
-               {{cliente.telefono}}
-            </p>
-
-          </div>
-          <div class="col-md-12 col-lg-4">
-            <p><strong>N° Cotización: </strong>{{cotizacion.numero}}</p>
-          </div>
-          <div class="col-md-12 col-lg-4">
-
-            <p>
-              <strong>Responsable: </strong>{{cotizacion.responsable}}
-            </p>
-        </div>
-        <p><strong>Dirección:</strong>{{cliente.direccion}}</p>
-      </div>
-    </div>
         <form class="formulario">
           <h2>Contenedores</h2>
           <table class="table table-bordered">
@@ -162,28 +242,15 @@
           <table class="table table-bordered">
             <tr class="info">
               <th>Mueble</th>
+              <th>ALA</th>
               <th style="width:80px; padding:10px;">Cantidad</th>
               <th style="width:80px; padding:10px; padding-left:30px;">m<sup>3</sup></th>
             </tr>
             <tr ng-repeat="item in muebles_temp">
               <td>{{item.mueble}} {{item.espeficicacion}}</td><!-- cambio leo -->
+              <td align="center">{{item.ancho}}x{{item.largo}}x{{item.alto}}</td>
               <td align="center">{{item.cantidad}}</td>
               <td align="center">{{item.total_punto/10|number:2}}</td>
-            </tr>
-            <tr class="active">
-              <td><strong>Total</strong></td>
-              <td align="center"><strong>{{unidades_muebles}}</strong></td>
-              <td align="center"><strong>{{metros3_muebles|number:2}}</strong></td>
-            </tr>
-          </table>
-
-          <h2>Otros</h2>
-          <table class="table table-bordered">
-            <tr class="info">
-              <th>Descripción</th>
-              <th style="width:80px; padding:10px;">Dimension</th>
-              <th style="width:80px; padding:10px;">Cantidad</th>
-              <th style="width:80px; padding:10px; padding-left:30px;">m<sup>3</sup></th>
             </tr>
             <tr ng-repeat="item in otros_temp">
               <td ng-if="item.mueble == 'Otros'">Otros-{{item.descripcion}}</td>
@@ -194,8 +261,8 @@
             </tr>
             <tr class="active">
               <td colspan="2"><strong>Total</strong></td>
-              <td align="center"><strong>{{unidades_otros}}</strong></td>
-              <td align="center"><strong>{{metros3_otros|number:2}}</strong></td>
+              <td align="center"><strong>{{unidades_muebles + unidades_otros}}</strong></td>
+              <td align="center"><strong>{{metros3_muebles + metros3_otros|number:2}}</strong></td>
             </tr>
           </table>
 
