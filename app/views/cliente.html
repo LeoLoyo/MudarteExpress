@@ -3,28 +3,26 @@
   <div class="row">
     <div class="col-md-4">
       <h2 style="display:inline;">Datos del cliente</h2>
-
       </div>
       <div class="col-md-5">
         <label>Tipo de cliente: </label>
-    <div class="btn-group" data-toggle="buttons">
-
-                <label class="btn btn-default">
-                    <input type="radio" id="q156" name="quality[25]" value="1" /> Particular
-                </label>
-                <label class="btn btn-default">
-                    <input type="radio" id="q157" name="quality[25]" value="2" /> Empresa
-                </label>
-                <label class="btn btn-default">
-                    <input type="radio" id="q158" name="quality[25]" value="3" /> Gobierno
-                </label>
-              </div>
+        <div class="btn-group">
+          <label class="btn btn-default">
+              <input type="radio"  ng-model="cotizacion.tipo_cliente" value="Particular" /> Particular
+          </label>
+          <label class="btn btn-default">
+              <input type="radio"  ng-model="cotizacion.tipo_cliente" value="Empresa" /> Empresa
+          </label>
+          <label class="btn btn-default">
+              <input type="radio"  ng-model="cotizacion.tipo_cliente" value="Gobierno" /> Gobierno
+          </label>
+        </div>
       </div>
       <div class="col-md-3">
            <div class="form-group">
       <div class="input-group">
       <div class="input-group-addon">N° de cotización</div>
-      <input type="text" class="form-control" id="exampleInputAmount" placeholder="000">
+      <input type="text" ng-model="cotizacion.numero_cotizacion" class="form-control" id="exampleInputAmount" placeholder="000">
     </div>
   </div>
       </div>
@@ -46,7 +44,8 @@
   </div>
   <div class="col-md-3 form-group">
     <label for="id_promocion">Fuente de promoción:</label>
-    <input type="text" ng-model="cotizacion.fuente" class="form-control" id="id_promocion">
+    <select class="form-control" ng-model="cotizacion.fuente" id="id_promocion">
+      <option  ng-repeat="item in fuentes">{{item}}</option></select>
   </div>
 
   <div class="col-md-3 form-group">
@@ -60,11 +59,11 @@
   </div>
   <div class="col-md-3 form-group">
     <label for="id_cotizador">Cotizador:</label>
-    <select class="form-control" id="id_cotizador"><option ng-value="{{item.id}}" ng-repeat="item in cotizadores">{{item.first_name}} {{item.last_name}}</option></select>
+    <select class="form-control" ng-model="cotizacion.cotizador" id="id_cotizador"><option ng-value="{{item}}" ng-repeat="item in cotizadores">{{item.first_name}} {{item.last_name}}</option></select>
   </div>
   <div class="col-md-3 form-group">
     <label for="id_cotizador">Forma de pago:</label>
-    <select class="form-control" id="id_cotizador">
+    <select class="form-control" ng-model="cotizacion.forma_pago"id="id_cotizador">
       <option value="EFECTIVO">EFECTIVO</option>
       <option value="CHEQUE">CHEQUE</option>
       <option value="TRANSFERENCIA">TRANSFERENCIA</option>
@@ -131,11 +130,11 @@
 <div class="row">
   <div class="col-md-3 form-group">
     <label for="">Nombre de quien paso la cotización:</label>
-    <select ng-model="cotizacion.quien_cotizo" class="form-control"><option ng-value="{{item.id}}" ng-repeat="item in telefonista">{{item.first_name}} {{item.last_name}}</option></select>
+    <select ng-model="cotizacion.quien_cotizo" class="form-control"><option ng-value="{{item}}" ng-repeat="item in telefonista">{{item.first_name}} {{item.last_name}}</option></select>
   </div>
   <div class="col-md-3 form-group">
     <label for="">Nombre de quien llamo al cliente:</label>
-    <select class="form-control" ng-model="cotizacion.quien_llamo"><option ng-value="{{item.id}}" ng-repeat="item in telefonista">{{item.first_name}} {{item.last_name}}</option></select>
+    <select class="form-control" ng-model="cotizacion.quien_llamo"><option ng-value="{{item}}" ng-repeat="item in telefonista">{{item.first_name}} {{item.last_name}}</option></select>
   </div>
 
 </div>
@@ -147,7 +146,7 @@
   </div>
   <div class="col-md-2 form-group">
     <label for="">Barrio/Provincia</label>
-    <select name="" ng-model="cotizacion.barrio_provincia_origen" class="form-control"><option ng-value="{{item.id}}" ng-repeat="item in barrio_provincias">{{item.descripcion}}</option></select>
+    <select name="" ng-model="cotizacion.barrio_provincia_origen" class="form-control"><option ng-value="{{item}}" ng-repeat="item in barrio_provincias">{{item.descripcion}}</option></select>
   </div>
   <div class="col-md-4 form-group">
     <label for="">Dirección de destino</label>
@@ -155,7 +154,7 @@
   </div>
   <div class="col-md-2 form-group">
     <label for="">Barrio/Provincia</label>
-    <select name="" ng-model="cotizacion.barrio_provincia_destino" class="form-control"><option ng-value="{{item.id}}" ng-repeat="item in barrio_provincias">{{item.descripcion}}</option></select>
+    <select name="" ng-model="cotizacion.barrio_provincia_destino" class="form-control"><option ng-value="{{item}}" ng-repeat="item in barrio_provincias">{{item.descripcion}}</option></select>
   </div>
 </div>
 </form>

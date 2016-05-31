@@ -51,9 +51,7 @@
         hora_registro:'',
         fuente:'',
         cp_pv:'',
-        particular:'',
-        empresa:'',
-        gobierno:'',
+        tipo_cliente:'',
         cargo:'',
         forma_pago:'',
         fecha_de_carga:'',
@@ -258,7 +256,6 @@
           });
           Mueble.all('filtrado').then(function(groups){
             $scope.muebles_group = groups;
-            // console.log(groups);
           });
           Mueble.all().then(function(muebles){
             $scope.muebles = muebles;
@@ -268,15 +265,14 @@
           });
           Users.all(1).then(function(r){
             $scope.cotizadores = r;
-            // console.log(r);
           });
           Users.all(2).then(function(r){
             $scope.telefonista = r;
           });
           Direccion.all().then(function(r){
             $scope.barrio_provincias = r;
-            // console.log(r);
           });
+            $scope.fuentes = Cotizacion.all_fuentes();
 
         }
         $rootScope.$on('change',function(event){

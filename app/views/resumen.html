@@ -30,19 +30,19 @@
           </tr>
           <tr>
             <td>Particular</td>
-            <td>{{cotizacion.particular}}</td>
+            <td><strong ng-if="cotizacion.tipo_cliente ==='Particular'">X</strong></td>
           </tr>
           <tr>
             <td>Nombre y Apellido:</td>
             <td colspan="3">{{cliente.nombre}}</td>
             <td>Empresa</td>
-            <td>{{cotizacion.empresa}}</td>
+            <td><strong ng-if="cotizacion.tipo_cliente ==='Empresa'">X</strong></td>
           </tr>
           <tr>
             <td>Telefono:</td>
             <td colspan="3">{{cliente.telefono}}</td>
             <td>Gobierno</td>
-            <td>{{cotizacion.gobierno}}</td>
+            <td><strong ng-if="cotizacion.tipo_cliente ==='Gobierno'">X</strong></td>
           </tr>
           <tr>
             <td>Correo electronico:</td>
@@ -59,7 +59,7 @@
             <td>{{cotizacion.cotizador}}</td>
           </tr>
           <tr>
-            <td>Fecha estimada de muedanza></td>
+            <td>Fecha estimada de muedanza:</td>
             <td>{{cotizacion.fecha_estimada_mudanza | date:'dd-MM-yyyy'}}</td>
             <td>Hora</td>
             <td>{{cotizacion.hora_estimada_mudanza | date:'h:mma'}}</td>
