@@ -1,16 +1,12 @@
 <!doctype html>
-<html ng-app="cotizacionExpressApp">
+<html ng-app="cotizacionExpressApp" ng-init="nav='1'">
 <head>
     <meta content="text/html;" http-equiv="content-type" charset="utf-8">
     <title>Cotización express</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
-    <!-- <link rel="stylesheet" href="styles/main.css"> -->
+
+<!--     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+ -->
     <link rel="stylesheet" href="styles/estilos.css">
     <!-- endbuild -->
 </head>
@@ -33,10 +29,12 @@
             </div>
 
 <ul>
+
 </ul>
 <ul class="Right">
     <li class="dropdown">
-        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" tabindex="-1">Login <span ng-if="session">{{cotizacion.responsable.name}}</span><span></span></a>
+        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true" tabindex="-1">Login
+        </a>
         <ul class="dropdown-menu">
             <li><a  ng-click="logout()">Cerrar sesión</a></li>
         </ul>
@@ -48,7 +46,7 @@
 <div id="wrapper" class="toggled">
 
         <!-- Sidebar -->
-        <div id="sidebar-wrapper" ng-init="cabecera = true">
+        <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
                    <img src="logo.png" alt="">
@@ -56,32 +54,39 @@
                 </li>
                 <li>
                 </li>
-                <li class="btnsCotizacion hidden" ng-click="cabecera=true">
+                <li class="btnsCotizacion hidden" >
                     <label for="id_cabecera" ng-class="{activo:nav==='1'}">Datos del cliente</label>
-                    <input id="id_cabecera" type="radio" ng-model="nav" value="1" checked>
+                    <input tabindex="-1" id="id_cabecera" type="radio" ng-model="nav" value="1">
                 </li>
-                <li class="btnsCotizacion hidden" ng-click="parciales=true">
+                <li class="btnsCotizacion hidden">
                     <label for="id_detalle" ng-class="{activo:nav==='2'}">Detalle Mudanza</label>
                     <input id="id_detalle" type="radio" ng-model="nav" value="2">
                 </li>
-                <li class="btnsCotizacion hidden" ng-click="presupuesto=true">
-                    <label for="id_presupuesto" ng-class="{activo:nav==='3'}">Presupuesto</label>
-                    <input id="id_presupuesto" type="radio" ng-model="nav" value="3">
-                </li>
-                <li class="btnsCotizacion hidden" ng-click="muebles_contenedores=true">
+                <li class="btnsCotizacion hidden">
                     <label for="id_muebles" ng-class="{activo:nav==='4'}">Muebles y Contenedores</label>
                     <input id="id_muebles" type="radio" ng-model="nav" value="4">
                 </li>
-                <li class="btnsCotizacion hidden" ng-click="muebles_contenedores=true">
+                <li class="btnsCotizacion hidden">
                     <label for="id_materiales" ng-class="{activo:nav==='5'}">Materiales</label>
                     <input id="id_materiales" type="radio" ng-model="nav" value="5">
+                </li>
+                <li class="btnsCotizacion hidden">
+                    <label for="id_presupuesto" ng-class="{activo:nav==='3'}">Presupuesto</label>
+                    <input id="id_presupuesto" type="radio" ng-model="nav" value="3">
                 </li>
                 <li class="btnsCotizacion hidden" ng-show="resumen" ng-click="checked=false">
                     <label for="id_resumen" ng-class="{activo:nav==='6'}">Resumen</label>
                      <input id="id_resumen" type="radio" ng-model="nav" value="6">
                 </li>
-                <li>
-                    <a class="btnsCotizacion hidden"  ng-show="checked && resumen " ng-click="limpiar()">Limpiar</a>
+            </ul>
+            <ul class="btnAccion">
+                <li ng-show="nav==='6'">
+                </li>
+                <li ng-show="nav==='6'">
+                    <button type="submit" ng-disabled="otros_temp.length === 0 && contenedores_temp.length === 0 && muebles_temp.length === 0" class="btn btn-outline btn-lg btn-block" onclick="descargarExcel()" ng-click="save(cotizacion,cliente)">Exportar</button>
+                </li>
+                <li ng-show="nav==='6'">
+                    <button type="submit" ng-disabled="otros_temp.length === 0 && contenedores_temp.length === 0 && muebles_temp.length === 0" class="btn btn-outline btn-lg btn-block" onclick="descargarExcel2()" ng-click="save2(cotizacion,cliente)">Procesar</button>
                 </li>
             </ul>
             <div>Derechos reservados @2016</div>
@@ -98,8 +103,11 @@
 
 </div>
 <!-- /#wrapper -->
-
-
+<span class="btnLimpiar" ng-show="resumen">
+                    <button type="button" class="btn-inverse"   ng-click="limpiar()" data-toggle="tooltip" data-placement="left" title="Limpiar">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                </span>
 <!-- build:js(.) scripts/vendor.js -->
 <!-- bower:js -->
 <script src="bower_components/jquery/dist/jquery.js"></script>

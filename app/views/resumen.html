@@ -1,8 +1,7 @@
-<div class="row">
+<div ng-show="nav==='6'">
     <div class="col-md-12">
-      <h1>Resumen</h1>
-      <div class="panel panel-default">
-        <table class="table table-default">
+      <div class="">
+        <table class="tablaResumen" style="max-width:100%;">
           <tr>
             <td rowspan="4">
               <p><strong>4701-1177<strong></p>
@@ -14,229 +13,233 @@
               <h2>Cotización Express</h2>
             </td>
             <td rowspan="4" colspan="2">
-              logo mudarte
+              <img src="img/LogoMudarte.png" alt="">
             </td>
-            <td style="background-color: #FFE0B2;" align=center>Nº Cotiz.</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>N° Cotiz.</td>
             <td>{{cotizacion.numero_cotizacion}}</td>
           </tr>
           <tr>
-            <td style="background-color: #FFE0B2;" align=center>fuente</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>fuente</td>
             <td>{{cotizacion.fuente}}</td>
           </tr>
           <tr>
-            <td style="background-color: #FFE0B2;" align=center>Cp / PV</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Cp / PV</td>
             <td>{{cotizacion.cp_pv}}</td>
           </tr>
           <tr>
-            <td style="background-color: #FFE0B2;" align=center>Particular</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Particular</td>
             <td><strong ng-if="cotizacion.tipo_cliente ==='Particular'">X</strong></td>
           </tr>
           <tr>
-            <td style="background-color: #FFE0B2;" align=center>Nombre y Apellido:</td>
-            <td colspan="3">{{cliente.nombre}}</td>
-            <td style="background-color: #FFE0B2;" align=center>Empresa</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Nombre y Apellido:</td>
+            <td colspan="3" align=center><strong>{{cliente.nombre}}</strong></td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Empresa</td>
             <td><strong ng-if="cotizacion.tipo_cliente ==='Empresa'">X</strong></td>
           </tr>
           <tr>
-            <td style="background-color: #FFE0B2;" align=center>Telefono:</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Telefono:</td>
             <td colspan="3">{{cliente.telefono}}</td>
-            <td style="background-color: #FFE0B2;" align=center>Gobierno</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Gobierno</td>
             <td><strong ng-if="cotizacion.tipo_cliente ==='Gobierno'">X</strong></td>
           </tr>
           <tr>
-            <td style="background-color: #FFE0B2;" align=center>Correo electronico:</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Correo electronico:</td>
             <td colspan="3">{{cliente.email}}</td>
-            <td style="background-color: #FFE0B2;" align=center>Cargo</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Cargó</td>
             <td>{{cotizacion.cargo}}</td>
           </tr>
           <tr>
-            <td style="background-color: #FFE0B2;" align=center>Fecha en que se cargo:</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Fecha en que se cargó:</td>
             <td>{{cotizacion.fecha_de_carga | date:'dd-MM-yyyy'}}</td>
-            <td style="background-color: #FFE0B2;" align=center>Hora</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Hora:</td>
             <td>{{cotizacion.hora_de_carga | date:'h:mma'}}</td>
-            <td style="background-color: #FFE0B2;" align=center>Cotizador</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Cotizador</td>
             <td>{{cotizacion.cotizador}}</td>
           </tr>
           <tr>
-            <td style="background-color: #FFE0B2;" align=center>Fecha estimada de muedanza:</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Fecha estimada de muedanza:</td>
             <td>{{cotizacion.fecha_estimada_mudanza | date:'dd-MM-yyyy'}}</td>
-            <td style="background-color: #FFE0B2;" align=center>Hora</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Hora:</td>
             <td>{{cotizacion.hora_estimada_mudanza | date:'h:mma'}}</td>
-            <td style="background-color: #FFE0B2;" align=center>Forma pago</td>
-            <td>{{cotizacion.forma_pago}}</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Forma pago</td>
+            <td class="" style="border-bottom: 1px solid #dedede;">{{cotizacion.forma_pago}}</td>
           </tr>
           <tr>
-            <td style="background-color: #FFE0B2;" align=center>Fecha en que se cotizo:</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Fecha en que se cotizó:</td>
             <td>{{cotizacion.fecha_de_cotizacion | date:'dd-MM-yyyy'}}</td>
-            <td style="background-color: #FFE0B2;" align=center>Hora</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Hora:</td>
             <td>{{cotizacion.hora_de_cotizacion | date:'h:mma'}}</td>
+            <td class="tdResumen" rowspan="4"></td>
           </tr>
           <tr>
-            <td style="background-color: #FFE0B2;" align=center>Fecha en que se aviso:</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Fecha en que se avisó:</td>
             <td>{{cotizacion.fecha_de_aviso | date:'dd-MM-yyyy'}}</td>
-            <td style="background-color: #FFE0B2;" align=center>Hora</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Hora:</td>
             <td>{{cotizacion.hora_de_aviso | date:'h:mma'}}</td>
           </tr>
           <tr>
-            <td style="background-color: #FFE0B2;" align=center>Fecha en que se cerro:</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Fecha en que se cerro:</td>
             <td>{{cotizacion.fecha_de_cierre | date:'dd-MM-yyyy'}}</td>
-            <td style="background-color: #FFE0B2;" align=center>Hora</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Hora:</td>
             <td>{{cotizacion.hora_de_cierre | date:'h:mma'}}</td>
           </tr>
           <tr>
-            <td style="background-color: #FFE0B2;" align=center>Fecha real de mudanza:</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Fecha real de mudanza:</td>
             <td>{{cotizacion.fecha_real_mudanza | date:'dd-MM-yyyy'}}</td>
-            <td style="background-color: #FFE0B2;" align=center>Hora</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Hora:</td>
             <td>{{cotizacion.hora_real_mudanza | date:'h:mma'}}</td>
           </tr>
           <tr>
-            <td style="background-color: #FFE0B2;" align=center>Nombre de quien paso la cotizacion:</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Nombre de quien paso la cotización:</td>
             <td>
-              {{cotizacion.quien_cotizo.first_name}} {{cotizacion.quien_cotizo.last_name}}
+              {{cotizacion.quien_cotizo}}
             </td>
+            <td class="tdResumen" colspan="4"></td>
           </tr>
           <tr>
-            <td style="background-color: #FFE0B2;" align=center>Nombre de quien llamo al cliente:</td>
-            <td>{{cotizacion.quien_llamo.first_name}} {{cotizacion.quien_llamo.last_name}}</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Nombre de quien llamó al cliente:</td>
+            <td>{{cotizacion.quien_llamo}}</td>
+            <td class="tdResumen" colspan="4"></td>
           </tr>
           <tr>
-            <th style="background-color: #FFE0B2;" colspan="2" align=center >Domicilio de Origen</th>
-            <th style="background-color: #FFE0B2; align=center;" colspan="2">Barrio/Provincia</th>
+            <th style="background-color: #fff; border-right: 1px solid #dedede;" class="tdResumen" colspan="2" align=center >Domicilio de Origen:</th>
+            <th style="background-color: #fff;align=center;"  class="tdResumen" colspan="4">Barrio/Provincia:</th>
           </tr>
           <tr>
-            <td colspan="2">{{cotizacion.direccion_origen}}</td>
+            <td colspan="2" style="border-right: 1px solid #dedede;">{{cotizacion.direccion_origen}}</td>
             <td>{{cotizacion.barrio_provincia_origen}}</td>
           </tr>
           <tr>
-            <th style="background-color: #FFE0B2;" align=center colspan="4">Observaciones de Origen</th>
-          </tr>
-          <tr colspan="4">
-            <td>{{cotizacion.observacion_origen}}</td>
+            <th style="background-color: #fff;" class="tdResumen" align=center colspan="6">Observaciones de Origen:</th>
           </tr>
           <tr>
-            <th style="background-color: #FFE0B2;" align=center colspan="2">Domicilio de Destino</th>
-            <th style="background-color: #FFE0B2;" align=center colspan="2">Barrio/Provincia</th>
+            <td colspan="6">{{cotizacion.observacion_origen}}</td>
           </tr>
           <tr>
-            <td colspan="2">{{cotizacion.direccion_destino}}</td>
+            <th style="background-color: #fff; border-right: 1px solid #dedede;" class="tdResumen" align=center colspan="2">Domicilio de Destino:</th>
+            <th style="background-color: #fff;" class="tdResumen" align=center colspan="4">Barrio/Provincia:</th>
+          </tr>
+          <tr>
+            <td colspan="2" style="border-right: 1px solid #dedede;">{{cotizacion.direccion_destino}}</td>
             <td>{{cotizacion.barrio_provincia_destino}}</td>
           </tr>
           <tr>
-            <th style="background-color: #FFE0B2;" align=center colspan="4">Observaciones de Destino</th>
+            <th style="background-color: #fff;" class="tdResumen" align=center colspan="6">Observaciones de Destino:</th>
           </tr>
-          <tr colspan="4">
-            <td>{{cotizacion.observacion_destino}}</td>
+          <tr>
+            <td colspan="6">{{cotizacion.observacion_destino}}</td>
           </tr>
         </table>
+        <legend></legend>
         <h2>Detalle de mudanza</h2>
-        <table class="table">
+        <table class="tablaResumen">
           <tr>
-            <td style="background-color: #FFE0B2;" align="center">km</td>
+            <td class="tdResumen" align="center">km</td>
             <td>{{cotizacion.recorrido_km}}</td>
-            <td align="center">{{cotizacion.precio_km|currency}}</td>
-            <td align="center">{{cotizacion.monto_km|currency}}</td>
+            <td align="center" class="tdResumen">{{cotizacion.precio_km|currency}}</td>
+            <td align="center" class="tdResumen">{{cotizacion.monto_km|currency}}</td>
           </tr>
           <tr>
-            <td style="background-color: #FFE0B2;" align="center">Tiempo de carga</td>
-            <td align="center" colspan="2">{{cotizacion.tiempo_de_carga}}</td>
+            <td class="tdResumen" align="center">Tiempo de carga</td>
+            <td align="center" colspan="2" class="tdResumen">{{cotizacion.tiempo_de_carga.num}}</td>
           </tr>
           <tr>
-            <td style="background-color: #FFE0B2;" align="center">Tiempo de descarga</td>
-            <td align="center" colspan="2">{{cotizacion.tiempo_de_descarga}}</td>
+            <td class="tdResumen" align="center">Tiempo de descarga</td>
+            <td align="center" colspan="2" class="tdResumen">{{cotizacion.tiempo_de_descarga.num}}</td>
           </tr>
           <tr>
-            <td style="background-color: #FFE0B2;" align="center">Camión n°</td>
-            <td align="center" colspan="2">{{cotizacion.numero_camion}}</td>
+            <td class="tdResumen" align="center">Camión n°</td>
+            <td align="center" colspan="2" class="tdResumen">{{cotizacion.numero_camion.num}}</td>
           </tr>
           <tr>
-            <td style="background-color: #FFE0B2;" align="center">Ayudantes</td>
-            <td align="center" colspan="2">{{cotizacion.numero_ayudante}}</td>
+            <td class="tdResumen" align="center">Ayudantes</td>
+            <td align="center" colspan="2" class="tdResumen">{{cotizacion.numero_ayudante.num}}</td>
           </tr>
           <tr>
-            <td style="background-color: #FFE0B2;" align="center">Seguro</td>
-            <td align="center" colspan="2">{{cotizacion.seguro}}</td>
+            <td class="tdResumen" align="center">Seguro</td>
+            <td align="center" colspan="2" class="tdResumen">{{cotizacion.seguro}}</td>
           </tr>
           <tr>
-            <td style="background-color: #FFE0B2;" align="center">Desarme de Muebles</td>
-            <td align="center" colspan="2">{{cotizacion.desarme_mueble}}</td>
+            <td class="tdResumen" align="center">Desarme de Muebles</td>
+            <td align="center" colspan="2" class="tdResumen">{{cotizacion.desarme_mueble}}</td>
           </tr>
           <tr>
-            <td style="background-color: #FFE0B2;" align="center">Ambiente</td>
-            <td align="center" colspan="2">{{cotizacion.ambiente}}</td>
+            <td class="tdResumen" align="center">Ambiente</td>
+            <td align="center" colspan="2" class="tdResumen">{{cotizacion.ambiente.num}}</td>
           </tr>
           <tr>
-            <td style="background-color: #FFE0B2;" align="center">Rampa</td>
-            <td align="center" colspan="2">{{cotizacion.rampa}}</td>
+            <td class="tdResumen" align="center">Rampa</td>
+            <td align="center" colspan="2" class="tdResumen">{{cotizacion.rampa}}</td>
           </tr>
         </table>
+        <legend></legend>
         <h2>Materiales</h2>
-        <table class="tabla">
-          <tr >
+        <table class="tablaResumen">
+          <tr class="active">
             <th>Material</th>
-            <th >Cantidad</th>
-            <th width="200">Precio unit.</th>
-            <th width="200">Totales</th>
+            <th style="text-align:right!important;">Cantidad</th>
+            <th width="200" style="text-align:right!important;">Precio unit.</th>
+            <th width="200" style="text-align:right!important;">Totales</th>
           </tr>
-          <tr ng-repeat="item in materiales">
-            <td>{{item.descripcion}}</td>
-            <td align="center" class="paddingNone">{{cantidad.num}}</td>
-            <td align="center" class="paddingNone">{{item.precio}}</td>
-            <td align="center" >{{item.precio * cantidad.num|currency}}</td>
+          <tr ng-repeat="item in materiales_temp">
+            <td>{{item.material}}</td>
+            <td style="text-align:right!important;">{{item.cantidad}}</td>
+            <td style="text-align:right!important;">{{item.precio_unitario}}</td>
+            <td style="text-align:right!important;" >{{item.total|currency}}</td>
           </tr>
           <tr class="active">
-            <td colspan="3" style="text-align:left!important;"><strong>Total</strong></td>
-            <td align="center"><strong>{{cotizacion.materiales|currency}}</strong></td>
+            <td colspan="3" style="text-align:right!important;"><strong>Total:</strong></td>
+            <td style="text-align:right!important;"><strong>{{cotizacion.materiales|currency}}</strong></td>
           </tr>
         </table>
-
-        <h2>Presuppuesto</h2>
-        <table class="table">
-          <tr>
-            <th style="background-color: #FFE0B2;">Descripcion</th>
-            <th style="background-color: #FFE0B2;">Monto$</th>
+        <legend></legend>
+        <h2>Presupuesto</h2>
+        <table class="tablaResumen">
+          <tr class="active">
+            <th  class="tdResumen">Descripción</th>
+            <th  class="tdResumen">Montos $</th>
           </tr>
           <tr>
-            <td style="background-color: #FFE0B2; width=40px;" >Mudanza</td>
-            <td>{{cotizacion.mudanza}}</td>
+            <td  class="tdResumen" width="40px;" >Mudanza</td>
+            <td style="text-align:right!important;">{{cotizacion.mudanza}}</td>
           </tr>
           <tr>
-            <td style="background-color: #FFE0B2;" width="20%">Soga</td>
-            <td>{{cotizacion.soga}}</td>
+            <td  class="tdResumen" width="20%">Soga</td>
+            <td style="text-align:right!important;">{{cotizacion.soga}}</td>
           </tr>
           <tr>
-            <td style="background-color: #FFE0B2;" width="20%">Embalaje</td>
-            <td>{{cotizacion.embalaje}}</td>
+            <td  class="tdResumen" width="20%">Embalaje</td>
+            <td style="text-align:right!important;">{{cotizacion.embalaje}}</td>
           </tr>
           <tr>
-            <td style="background-color: #FFE0B2;" width="20%">Desembalaje</td>
-            <td>{{cotizacion.desembalaje}}</td>
+            <td  class="tdResumen" width="20%">Desembalaje</td>
+            <td style="text-align:right!important;">{{cotizacion.desembalaje}}</td>
           </tr>
           <tr>
-            <td style="background-color: #FFE0B2;" width="20%">Materiales</td>
-            <td>{{cotizacion.materiales}}</td>
+            <td  class="tdResumen" width="20%">Materiales</td>
+            <td style="text-align:right!important;">{{cotizacion.materiales}}</td>
           </tr>
           <tr>
-            <td style="background-color: #FFE0B2;" width="20%">Piano/C.fuerte</td>
-            <td>{{cotizacion.piano_cajafuerte}}</td>
+            <td  class="tdResumen" width="20%">Piano/C.fuerte</td>
+            <td style="text-align:right!important;">{{cotizacion.piano_cajafuerte}}</td>
           </tr>
           <tr>
-            <td style="background-color: #FFE0B2;" width="80%">Ajuste</td>
-            <td>{{cotizacion.ajuste}}</td>
+            <td  class="tdResumen" width="80%">Ajuste</td>
+            <td style="text-align:right!important;">{{cotizacion.ajuste}}</td>
           </tr>
           <tr>
-            <td style="background-color: #FFE0B2;" width="80%">IVA</td>
-            <td>{{cotizacion.iva}}</td>
+            <td  class="tdResumen" width="80%">IVA</td>
+            <td style="text-align:right!important;">{{cotizacion.iva}}</td>
           </tr>
           <tr>
-            <th style="background-color: #FFE0B2;" width="80%">Total</th>
-            <td>{{cotizacion.total_monto|currency}}</td>
+            <th  class="tdResumen" width="80%">Total</th>
+            <td style="text-align:right!important;">{{cotizacion.total_monto|currency}}</td>
           </tr>
         </table>
-
-        <form class="formulario">
+        <legend></legend>
           <h2>Contenedores</h2>
-          <table class="table table-bordered">
-              <tr style="background-color: #FFE0B2;">
+          <table class="tablaResumen">
+              <tr class="tdResumen active">
                 <th>Contenedor</th>
                 <th style="width:80px; padding:10px;">Cantidad</th>
                 <th style="width:80px; padding:10px; padding-left:30px;">m<sup>3</sup></th>
@@ -247,18 +250,17 @@
                 <td align="center">{{item.punto/10|number:2}}</td>
               </tr>
               <tr class="active">
-                <td><strong>Total</strong></td>
+                <td style="text-align:right!important;"><strong>Total:</strong></td>
                 <td align="center"><strong>{{unidades_contenedores}}</strong></td>
                 <td align="center"><strong>{{metros3_contenedores|number:2}}</strong></td>
               </tr>
           </table>
-
+          <legend></legend>
           <h2>Muebles</h2>
-          <table class="table table-bordered">
-            <tr style="background-color: #FFE0B2;">
+          <table class="tablaResumen">
+            <tr class="tdResumen active">
               <th>Mueble</th>
-              <th>ALA</th>
-              <th style="width:80px; padding:10px;">Dimension</th>
+              <th style="text-align:center;">ALA</th>
               <th style="width:80px; padding:10px;">Cantidad</th>
               <th style="width:80px; padding:10px; padding-left:30px;">m<sup>3</sup></th>
             </tr>
@@ -281,21 +283,23 @@
               <td align="center"><strong>{{metros3_muebles + metros3_otros|number:2}}</strong></td>
             </tr>
           </table>
-
+          <legend></legend>
           <h2>Totales</h2>
-          <table style="width:200px;" class="table table-bordered">
+          <table style="width:200px;" class="tablaResumen">
             <tr>
-              <th colspan="2" style="background-color: #FFE0B2;">Total m<sup>3</sup></th>
-              <td align="center"><strong>{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}</strong></td>
+              <th colspan="2" class="tdResumen">Total m<sup>3</sup></th>
+              <td align="center" class="tdResumen"><strong>{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}</strong></td>
             </tr>
             <tr>
-              <td><input type="number" ng-model="margen">%</td>
-              <th style="background-color: #FFE0B2;">Margen</th>
-              <td>{{(metros3_contenedores+metros3_muebles+metros3_otros)*(1+(margen/100))|number:2}}</td>
+              <td class="paddingNone tdResumen" style="padding:0;display:flex;">
+                <input type="number" class="form-control" style="flex:90%;border-radius:0;border:none;" ng-model="margen"><span style="flex:10%;margin-top:auto;margin-bottom:auto;"> %</span>
+              </td>
+              <th class="tdResumen">Margen</th>
+              <td class="tdResumen">{{(metros3_contenedores+metros3_muebles+metros3_otros)*(1+(margen/100))|number:2}}</td>
             </tr>
           </table>
-          <button type="submit" ng-disabled="otros_temp.length === 0 && contenedores_temp.length === 0 && muebles_temp.length === 0" class="btn btn-success" onclick="descargarExcel()" ng-click="save(cotizacion,cliente)">Exportar</button>
-        </form>
+          <!-- <button type="submit" ng-disabled="otros_temp.length === 0 && contenedores_temp.length === 0 && muebles_temp.length === 0" class="btn btn-success" onclick="descargarExcel()" ng-click="save(cotizacion,cliente)">Exportar</button> -->
+
     </div>
 
     <div id="divExportar" class="col-md-12">
@@ -317,14 +321,12 @@
             <table border=1 style="width:1450;" id="prueba">
               <thead>
               <tr>
-                <td rowspan=8 colspan=10>
-                  <h2>Cotizacion Express</h2>
-                  <p><strong>4701-1177
-                    <br>WWW.MUDARTE.COM.AR
-                    <br>info@mudarte.com.ar
-                    <br>3 de Febrero 3455 / Nunez<strong></p>
-                  <img type="image" src="img/LogoMudarte.png"/>
-                </td>
+              <td align=center rowspan=8 colspan=10>
+                <h1>Cotización Express</h1>
+                <p><strong>4701-1177<strong></p>
+                <p><strong>WWW.MUDARTE.COM.AR<strong></p>
+                <p>info@mudarte.com.ar</p>
+              </td>
                 <th rowspan=2>N° Cotiz.</th>
                 <td rowspan=2 align=center>{{cotizacion.numero_cotizacion}}</td>
               </tr>
@@ -415,12 +417,12 @@
               <tr></tr>
               <tr>
                 <th align=left rowspan=2 colspan=5>Nombre de quien paso la cotizacion:</th>
-                <td align=center rowspan=2 colspan=5>{{cotizacion.quien_cotizo.first_name}} {{cotizacion.quien_cotizo.last_name}}</td>
+                <td align=center rowspan=2 colspan=5>{{cotizacion.quien_cotizo}}</td>
               </tr>
               <tr></tr>
               <tr>
                 <th align=left rowspan=2 colspan=5>Nombre de quien llamo al cliente:</th>
-                <td align=center rowspan=2 colspan=5>{{cotizacion.quien_llamo.first_name}} {{cotizacion.quien_llamo.last_name}}</td>
+                <td align=center rowspan=2 colspan=5>{{cotizacion.quien_llamo}}</td>
               </tr>
               <tr></tr>
               <tr>
@@ -489,7 +491,7 @@
               <tr></tr>
               <tr>
                 <th rowspan=2 colspan=2>Tiempo de carga</th>
-                <td rowspan=2 colspan=2 align=center>{{cotizacion.tiempo_de_carga}}</td>
+                <td rowspan=2 colspan=2 align=center>{{cotizacion.tiempo_de_carga.num}}</td>
                 <td rowspan=2 colspan=2 align=center></td>
                 <th rowspan=2 colspan=2>Soga</th>
                 <td rowspan=2 colspan=2 align=center>{{cotizacion.soga}}</td>
@@ -497,7 +499,7 @@
               <tr></tr>
               <tr>
                 <th rowspan=2 colspan=2>Tiempo de descarga</th>
-                <td rowspan=2 colspan=2 align=center>{{cotizacion.tiempo_de_descarga}}</td>
+                <td rowspan=2 colspan=2 align=center>{{cotizacion.tiempo_de_descarga.num}}</td>
                 <td rowspan=2 colspan=2 align=center></td>
                 <th rowspan=2 colspan=2>Embalaje</th>
                 <td rowspan=2 colspan=2 align=center>{{cotizacion.embalaje}}</td>
@@ -505,7 +507,7 @@
               <tr></tr>
               <tr>
                 <th rowspan=2 colspan=2>Camion N°</th>
-                <td rowspan=2 colspan=2 align=center>{{cotizacion.numero_camion}}</td>
+                <td rowspan=2 colspan=2 align=center>{{cotizacion.numero_camion.num}}</td>
                 <td rowspan=2 colspan=2 align=center></td>
                 <th rowspan=2 colspan=2>Desembalaje</th>
                 <td rowspan=2 colspan=2 align=center>{{cotizacion.desembalaje}}</td>
@@ -513,7 +515,7 @@
               <tr></tr>
               <tr>
                 <th rowspan=2 colspan=2>Ayudantes</th>
-                <td rowspan=2 colspan=2 align=center>{{cotizacion.numero_ayudante}}</td>
+                <td rowspan=2 colspan=2 align=center>{{cotizacion.numero_ayudante.num}}</td>
                 <td rowspan=2 colspan=2 align=center></td>
                 <th rowspan=2 colspan=2>Materiales</th>
                 <td rowspan=2 colspan=2 align=center>{{cotizacion.materiales}}</td>
@@ -537,7 +539,7 @@
               <tr></tr>
               <tr>
                 <th rowspan=2 colspan=2>Ambientes</th>
-                <td rowspan=2 colspan=2 align=center>{{cotizacion.ambiente}}</td>
+                <td rowspan=2 colspan=2 align=center>{{cotizacion.ambiente.num}}</td>
                 <td rowspan=2 colspan=2 align=center></td>
                 <th rowspan=2 colspan=2>IVA</th>
                 <td rowspan=2 colspan=2 align=center>{{cotizacion.iva}}</td>
@@ -547,7 +549,7 @@
                 <th rowspan=2 colspan=2>Rampa</th>
                 <td rowspan=2 colspan=2 align=center>{{cotizacion.rampa}}</td>
                 <td rowspan=2 colspan=2 align=center></td>
-                <th rowspan=2 colspan=2>Total</th>
+                <th rowspan=2 colspan=2 style="background-color: #A9A9A9;">Total</th>
                 <td rowspan=2 colspan=2 style="background-color: #A9A9A9;" align=center>{{cotizacion.total_monto|currency}}</td>
               </tr>
               <tr></tr>
@@ -557,7 +559,6 @@
             <br>
             <br>
             <h2>Materiales</h2>
-            <legend></legend>
             <table border=1 id="tablaMateriales">
               <thead>
               <tr style="height:35px;">
@@ -568,11 +569,15 @@
               </tr>
               </thead>
               <tbody>
-              <tr height=35 ng-repeat="item in contenedores_temp">
-                <td align=center>{{item.descripcion}}</td>
-                <td align=center>{{cantidad.num}}</td>
-                <td align=center>{{item.precio}}</td>
-                <td align=center>{{item.precio * cantidad.num|currency}}</td>
+              <tr height=35 ng-repeat="item in materiales_temp">
+                <td align=center>{{item.material}}</td>
+                <td align=center>{{item.cantidad}}</td>
+                <td align=center>{{item.precio_unitario}}</td>
+                <td align=center>{{item.total|currency}}</td>
+              </tr>
+              <tr height=35 style="background-color: #A9A9A9;">
+                <th colspan="3">Total:</th>
+                <td><strong>{{cotizacion.materiales|currency}}</strong></td>
               </tr>
             </table>
             <br>
@@ -593,8 +598,8 @@
                 <td align=center>{{item.unidad}}</td>
                 <td align=center>{{item.punto/10|number:2}}</td>
               </tr>
-              <tr style="background-color: #A9A9A9;">
-                <td><strong>Total</strong></td>
+              <tr height=35 style="background-color: #A9A9A9;">
+                <th>Total</th>
                 <td align=center><strong>{{unidades_contenedores}}</strong></td>
                 <td align=center><strong>{{metros3_contenedores|number:2}}</strong></td>
               </tr>
@@ -625,14 +630,18 @@
               </tr>
             </table>
 
-            <h2>Totales</h2>
-            <legend></legend>
-            <table border=1 id="tablaTotal">
-              <tr>
-                <th align=center style="background-color: #A9A9A9;">Total m<sup>3</sup></th>
-                <th align=center><strong>{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}</strong></th>
-              </tr>
-            </table>
+          <h2>Totales</h2>
+          <table border=1 id="tablaTotal">
+            <tr style="height:35px;">
+              <th colspan="2">Total m<sup>3</sup></th>
+              <td align="center"><strong>{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}</strong></td>
+            </tr>
+            <tr style="height:35px;">
+              <td>{{margen}}</td>
+              <th>Margen</th>
+              <td>{{(metros3_contenedores+metros3_muebles+metros3_otros)*(1+(margen/100))|number:2}}</td>
+            </tr>
+          </table>
     </div>
 </div>
 

@@ -32,6 +32,7 @@ form.formulario, div.formulario {
   border: 1px solid #dedede;
   font-size: 1em;
   margin-left: 10px;
+  margin-bottom: 10px;
   span {
     flex: 70%;
     padding: 13px;
@@ -56,6 +57,27 @@ form.formulario, div.formulario {
   background: $colorNavbar;
   box-shadow: $sombra_1;
   color: #fff;
+}
+.btn-outline {
+  color: $colorTexto_2;
+  border-color: $colorTexto_2;
+  background-color: transparent;
+  &:hover, &:focus, &:active {
+    color: $colorTextoNavbar;
+    border-color: $colorTextoNavbar;
+    background-color: #363636;
+  *background-color: #222222;
+  background-image: -moz-linear-gradient(top, #444444, #222222);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#444444), to(#222222));
+  background-image: -webkit-linear-gradient(top, #444444, #222222);
+  background-image: -o-linear-gradient(top, #444444, #222222);
+  background-image: linear-gradient(to bottom, #444444, #222222);
+  background-repeat: repeat-x;
+  border-color: #222222 #222222 #000000;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff444444', endColorstr='#ff222222', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+  }
 }
 table.tabla {
     @extend .table;
@@ -108,6 +130,18 @@ table.tabla {
         @extend .active;
     }
 }
+table.tablaResumen {
+  @extend .table;
+  background: #FFF;
+  box-shadow: $sombra_1;
+  tr {
+    td.tdResumen {
+      font-weight: bold;
+      border: 1px solid #dedede;
+      text-align: left;
+    }
+  }
+}
 .login {
     @extend .panel;
     box-shadow: $sombra_1;
@@ -123,7 +157,7 @@ table.tabla {
         }
         button {
           @extend .btn;
-          @extend .btn-success;
+          @extend .btn-outline;
           float: right;
         }
     }
@@ -229,8 +263,32 @@ table.tabla {
     font-size: 0.8em;
     border-top: 1px solid #fff;
   }
+  ul.btnAccion {
+    position: absolute;
+    bottom: 50px;
+    background: $colorSidebar;
+    margin: 0;
+    padding: 0 10px;
+    width: 100%;
+    margin-bottom: 10px;
+    button {
+      border-radius: 0;
+    }
+  }
 }
-
+.btnLimpiar {
+  display: block;
+  position: fixed;
+  z-index: 1100;
+  bottom: 30px;
+  right: 50px;
+  button {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    box-shadow: $sombra_2;
+  }
+}
 #wrapper.toggled #sidebar-wrapper {
   width: 210px;
   right: 0;
@@ -312,4 +370,56 @@ table.tabla {
         background: none;
     }
   }
+}
+.grupoRadio {
+  label {
+    input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+    }
+  }
+}
+.btn-inverse {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #363636;
+  *background-color: #222222;
+  background-image: -moz-linear-gradient(top, #444444, #222222);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#444444), to(#222222));
+  background-image: -webkit-linear-gradient(top, #444444, #222222);
+  background-image: -o-linear-gradient(top, #444444, #222222);
+  background-image: linear-gradient(to bottom, #444444, #222222);
+  background-repeat: repeat-x;
+  border-color: #222222 #222222 #000000;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff444444', endColorstr='#ff222222', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, .2);
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 1px rgba(0, 0, 0, .075);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 1px rgba(0, 0, 0, .075);
+}
+
+.btn-inverse:hover,
+.btn-inverse:focus,
+.btn-inverse:active,
+.btn-inverse.active,
+.btn-inverse.disabled,
+.btn-inverse[disabled] {
+  color: #ffffff;
+  background-color: #222222;
+  *background-color: #151515;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+             box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+
+.btn-inverse:active,
+.btn-inverse.active {
+  background-color: #080808 \9;
+}
+
+.btn-inverse.active {
+  color: rgba(255, 255, 255, 0.75);
+}
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  visibility: hidden!important;
 }

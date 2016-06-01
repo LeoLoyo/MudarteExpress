@@ -34,8 +34,22 @@ var session = false;
         url:'/cotizacion',
         views:{
           'maincontent':{
-            templateUrl:'views/cotizacion.html',
+            templateUrl:'views/cliente.html',
+            // templateUrl:'views/cotizacion.html',
             controller:'CotizacionCtrl'
+            ,
+            resolve:{
+              muebles_resolve:function (API,Mueble){
+                 return Mueble.all().then(function(r){
+                  return r;
+                });
+              },
+              contenedores_resolve:function (API,Contenedor){
+                return Contenedor.all().then(function(r){
+                 return r;
+               });
+              }
+            }
           }
         }
       })

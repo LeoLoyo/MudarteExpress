@@ -1,9 +1,9 @@
 <div ng-show="nav==='3'">
     <div class="col-md-12">
-      <h2>presupuesto</h2>
+      <h2>Presupuesto de la mudanza</h2>
         <table class="tabla">
-          <tr>
-            <th style="text-align:center!important;">Descripcion</th>
+          <tr class="active">
+            <th style="text-align:center!important;">Descripción</th>
             <th style="text-align:center!important;">Monto $</th>
           </tr>
           <tr>
@@ -13,6 +13,10 @@
           <tr>
             <td width="80%">Soga</td>
             <td class="paddingNone"><input type="number" min="0" ng-change="update_presupuesto()" ng-model="cotizacion.soga"></td>
+          </tr>
+          <tr>
+            <td width="80%">Embalaje</td>
+            <td class="paddingNone"><input type="number" min="0" ng-change="update_presupuesto()" ng-model="cotizacion.embalaje"></td>
           </tr>
           <tr>
             <td width="80%">Desembalaje</td>
@@ -35,7 +39,7 @@
             <td class="paddingNone"><input type="number" min="0" ng-change="update_presupuesto()" ng-model="cotizacion.iva"></td>
           </tr>
           <tr class="active">
-            <th width="80%"><strong>Total</strong></th>
+            <th width="80%" style="text-align:right!important;"><strong>Total: </strong></th>
             <td style="text-align:right!important;"><strong>{{cotizacion.total_monto|currency}}</strong></td>
           </tr>
         </table>
