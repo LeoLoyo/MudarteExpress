@@ -60,5 +60,7 @@ var session = false;
       //"url":"http://192.168.0.115:8000/api/v1/",
       "user":{"name":"admin","pass":"admin"}
     });
-
+    app.run(function(){
+      console.log('run');
+    });
 // })();

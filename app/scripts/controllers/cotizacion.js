@@ -1,17 +1,20 @@
 (function(){
   'use strict';
   var app = angular.module('cotizacionExpressApp');
-
     app.controller('CotizacionCtrl', function (contenedores_resolve,muebles_resolve, $interval,$rootScope, $state, $scope,Users,Direccion, Material,Cotizacion, Contenedor, Mueble, Bulto, Cliente, $http,setting) {
+      if(!session){
+        $state.go('login');
+      }else{
+        angular.element('#ncotizacion').focus();
+
+
       // variables
       $interval(
         function handleInterval() {
             $rootScope.$broadcast( "change" );
         },0);
-      if(!session){
-        $state.go('login');
-      }
-      angular.element('#ncotizacion').focus();
+
+$('.btnsCotizacion').removeClass('hidden');
       $scope.cantidades = [];
       function numeros(){
 
@@ -244,7 +247,6 @@
         }else{
           numeros();
           numeros_otros();
-          $('.btnsCotizacion').removeClass('hidden');
 
           Material.all().then(function(r){
             var out =[];
@@ -282,6 +284,7 @@
         });
         $scope.fuentes = Cotizacion.all_fuentes();
         }
+
         $rootScope.$on('change',function(event){
           if($scope.contenedores_temp.length===0 && $scope.otros_temp.length===0 && $scope.muebles_temp.length===0){
             $rootScope.resumen = false;
@@ -295,12 +298,7 @@
 
       //Methods
       $scope.check = function (n) {
-        if(n==='0'){
-          n='1';
-        }else{
-          n='0'
-        }
-        console.log(n);
+        (n==='0')? n = '1':n = '0';
         return n;
       }
 
@@ -321,19 +319,17 @@
         $scope.contenedores_temp = cal_punto($scope.contenedores_temp, $scope.todoscontenedores);
         $scope.metros3_contenedores = calcular_totales($scope.contenedores_temp,"punto")/10;
         $scope.unidades_contenedores = calcular_totales($scope.contenedores_temp,"unidad");
-        // Cotizacion.save_contenedores($scope.contenedores_temp);
         });
 
       };
 
       $rootScope.limpiar = function(){
-        init();
+
         $scope.contenedores_temp = [];
         $scope.muebles_temp = [];
 
         $scope.otros_temp = [];
         $scope.otros_temp_campo = [];
-        //
         // //Variables De Totales
         $scope.metros3_contenedores = 0;
         $scope.unidades_contenedores = 0;
@@ -391,6 +387,9 @@
           }
 
           otro.punto = Math.round(otro.ancho*otro.largo*otro.alto/100000);
+          if(otro.punto===0){
+            otro.punto = 1;
+          }
           otro.total_punto = otro.punto * otro.cantidad;
           if(buscar_otros($scope.otros_temp, otro)!==true){
             if(otro.cantidad >0){
@@ -501,7 +500,8 @@
     $scope.add_parcial1 = function() {
       // console.log($scope.cotizacion);
       $scope.cotizacion.monto_km = Number($scope.cotizacion.recorrido_km * $scope.cotizacion.precio_km);
-    };
+    }
+  }
 
     });
 
