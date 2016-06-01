@@ -16,7 +16,7 @@
             <td rowspan="4" colspan="2">
               logo mudarte
             </td>
-            <td style="background-color: #FFE0B2;" align=center>N° Cotiz.</td>
+            <td style="background-color: #FFE0B2;" align=center>Nº Cotiz.</td>
             <td>{{cotizacion.numero_cotizacion}}</td>
           </tr>
           <tr>
@@ -638,14 +638,9 @@
 
 <script>
 function descargarExcel(){
-        var tmpElemento = document.createElement('a');
-        var data_type = 'data:"application/vnd.ms-excel; charset=utf8';
-        var tabla_div = document.getElementById('divExportar');
-        var tabla_html = tabla_div.outerHTML.replace(/ /g, '%20');
-        tmpElemento.href = data_type + ', ' + tabla_html + ', ' + write_url('A3',  'http://www.mudarte.com.ar/imagenes/logo.png', $format        );;
-        //Asignamos el nombre a nuestro EXCEL
-        tmpElemento.download = 'Resumen.xls';
-        tmpElemento.click();
+  var table= document.getElementById('divExportar');
+  var html = table.outerHTML;
+  window.open('data:application/vnd.ms-excel,' + escape(html));
     }
 </script>
 </div>
