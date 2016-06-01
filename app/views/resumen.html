@@ -612,27 +612,32 @@
             <table border=1 id="tablaMueble">
               <tr style="height:35px;">
                 <th>Mueble</th>
-                <th>Dimension</th>
+                <th>ALA</th>
                 <th>Cantidad</th>
                 <th>m<sup>3</sup></th>
               </tr>
-              <tr style="height:35px;" ng-repeat="item in muebles_temp">
-                <td align=center ng-if="item.mueble == 'Otros'">Otros-{{item.descripcion}}</td>
-                <td align=center ng-if="item.mueble != 'Otros'">{{item.mueble}}</td>
-                <td align=center>{{item.ancho}}x{{item.largo}}x{{item.alto}}</td>
-                <td align=center>{{item.cantidad}}</td>
-                <td align=center>{{item.total_punto/10|number:2}}</td>
+              <tr ng-repeat="item in muebles_temp">
+                <td  ng-if="item.mueble != ''">{{item.mueble}} {{item.espeficicacion}}</td><!-- cambio leo -->
+                <td align="center">{{item.ancho}}x{{item.largo}}x{{item.alto}}</td>
+                <td align="center">{{item.cantidad}}</td>
+                <td align="center">{{item.total_punto/10|number:2}}</td>
+              </tr>
+              <tr ng-repeat="item in otros_temp">
+                <td ng-if="item.mueble == 'Otros'">Otros-{{item.descripcion}}</td>
+                <td ng-if="item.mueble != 'Otros'">{{item.mueble}}</td>
+                <td align="center">{{item.ancho}}x{{item.largo}}x{{item.alto}}</td>
+                <td align="center">{{item.cantidad}}</td>
+                <td align="center">{{item.total_punto/10|number:2}}</td>
               </tr>
               <tr style="height:35px; background-color: #A9A9A9;">
-              <th colspan=2>Total</th>
-              <td align=center><strong>{{unidades_otros}}</strong></td>
-              <td align=center><strong>{{metros3_otros|number:2}}</strong></td>
+                <th colspan=2>Total</th>
+                <td align=center><strong>{{unidades_muebles + unidades_otros}}</strong></td>
+                <td align=center><strong>{{metros3_muebles + metros3_otros|number:2}}</strong></td>
               </tr>
             </table>
-
           <h2>Totales</h2>
           <table border=1 id="tablaTotal">
-            <tr style="height:35px;">
+            <tr style="height:35px; background-color: #A9A9A9;">
               <th colspan="2">Total m<sup>3</sup></th>
               <td align="center"><strong>{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}</strong></td>
             </tr>
