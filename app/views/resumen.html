@@ -32,7 +32,7 @@
           </tr>
           <tr>
             <td style="background-color: #fff;" class="tdResumen" align=center>Nombre y Apellido:</td>
-            <td colspan="3">{{cliente.nombre}}</td>
+            <td colspan="3" align=center><strong>{{cliente.nombre}}</strong></td>
             <td style="background-color: #fff;" class="tdResumen" align=center>Empresa</td>
             <td><strong ng-if="cotizacion.tipo_cliente ==='Empresa'">X</strong></td>
           </tr>
@@ -260,7 +260,7 @@
           <table class="tablaResumen">
             <tr class="tdResumen active">
               <th>Mueble</th>
-              <th style="text-align:center;">ALA</th>
+              <th style="text-align:center;">Dimensión</th>
               <th style="width:80px; padding:10px;">Cantidad</th>
               <th style="width:80px; padding:10px; padding-left:30px;">m<sup>3</sup></th>
             </tr>
@@ -302,7 +302,7 @@
 
     </div>
 
-    <div id="divExportar" class="col-md-12">
+    <div id="divExportar" class="hidden col-md-12">
         <h1>Resumen</h1>
             <!-- <table border=1 id="tablaTotal" class="hidden">
               <tr>
@@ -318,16 +318,15 @@
                 <td>{{cliente.responsable}}</td>
               </tr>
             </table> -->
-            <table  border=1 style="width:1250;" id="prueba">
+            <table border=1 style="width:1450;" id="prueba">
               <thead>
               <tr>
-                <th rowspan=8 colspan=10>
-                  <p><strong>4701-1177<strong></p>
-                  <p><strong>WWW.MUDARTE.COM.AR<strong></p>
-                  <p>info@mudarte.com.ar </p>
-                  <p>3 de Febrero 3455 / Nunez</p>
-                  <h2>Cotizacion Express</h2>
-                </th>
+              <td align=center rowspan=8 colspan=10>
+                <h1>Cotización Express</h1>
+                <p><strong>4701-1177<strong></p>
+                <p><strong>WWW.MUDARTE.COM.AR<strong></p>
+                <p>info@mudarte.com.ar</p>
+              </td>
                 <th rowspan=2>N° Cotiz.</th>
                 <td rowspan=2 align=center>{{cotizacion.numero_cotizacion}}</td>
               </tr>
@@ -418,12 +417,12 @@
               <tr></tr>
               <tr>
                 <th align=left rowspan=2 colspan=5>Nombre de quien paso la cotizacion:</th>
-                <td align=center rowspan=2 colspan=5>{{cotizacion.quien_cotizo.first_name}} {{cotizacion.quien_cotizo.last_name}}</td>
+                <td align=center rowspan=2 colspan=5>{{cotizacion.quien_cotizo}}</td>
               </tr>
               <tr></tr>
               <tr>
                 <th align=left rowspan=2 colspan=5>Nombre de quien llamo al cliente:</th>
-                <td align=center rowspan=2 colspan=5>{{cotizacion.quien_llamo.first_name}} {{cotizacion.quien_llamo.last_name}}</td>
+                <td align=center rowspan=2 colspan=5>{{cotizacion.quien_llamo}}</td>
               </tr>
               <tr></tr>
               <tr>
@@ -492,7 +491,7 @@
               <tr></tr>
               <tr>
                 <th rowspan=2 colspan=2>Tiempo de carga</th>
-                <td rowspan=2 colspan=2 align=center>{{cotizacion.tiempo_de_carga}}</td>
+                <td rowspan=2 colspan=2 align=center>{{cotizacion.tiempo_de_carga.num}}</td>
                 <td rowspan=2 colspan=2 align=center></td>
                 <th rowspan=2 colspan=2>Soga</th>
                 <td rowspan=2 colspan=2 align=center>{{cotizacion.soga}}</td>
@@ -500,7 +499,7 @@
               <tr></tr>
               <tr>
                 <th rowspan=2 colspan=2>Tiempo de descarga</th>
-                <td rowspan=2 colspan=2 align=center>{{cotizacion.tiempo_de_descarga}}</td>
+                <td rowspan=2 colspan=2 align=center>{{cotizacion.tiempo_de_descarga.num}}</td>
                 <td rowspan=2 colspan=2 align=center></td>
                 <th rowspan=2 colspan=2>Embalaje</th>
                 <td rowspan=2 colspan=2 align=center>{{cotizacion.embalaje}}</td>
@@ -508,7 +507,7 @@
               <tr></tr>
               <tr>
                 <th rowspan=2 colspan=2>Camion N°</th>
-                <td rowspan=2 colspan=2 align=center>{{cotizacion.numero_camion}}</td>
+                <td rowspan=2 colspan=2 align=center>{{cotizacion.numero_camion.num}}</td>
                 <td rowspan=2 colspan=2 align=center></td>
                 <th rowspan=2 colspan=2>Desembalaje</th>
                 <td rowspan=2 colspan=2 align=center>{{cotizacion.desembalaje}}</td>
@@ -516,7 +515,7 @@
               <tr></tr>
               <tr>
                 <th rowspan=2 colspan=2>Ayudantes</th>
-                <td rowspan=2 colspan=2 align=center>{{cotizacion.numero_ayudante}}</td>
+                <td rowspan=2 colspan=2 align=center>{{cotizacion.numero_ayudante.num}}</td>
                 <td rowspan=2 colspan=2 align=center></td>
                 <th rowspan=2 colspan=2>Materiales</th>
                 <td rowspan=2 colspan=2 align=center>{{cotizacion.materiales}}</td>
@@ -540,7 +539,7 @@
               <tr></tr>
               <tr>
                 <th rowspan=2 colspan=2>Ambientes</th>
-                <td rowspan=2 colspan=2 align=center>{{cotizacion.ambiente}}</td>
+                <td rowspan=2 colspan=2 align=center>{{cotizacion.ambiente.num}}</td>
                 <td rowspan=2 colspan=2 align=center></td>
                 <th rowspan=2 colspan=2>IVA</th>
                 <td rowspan=2 colspan=2 align=center>{{cotizacion.iva}}</td>
@@ -550,13 +549,37 @@
                 <th rowspan=2 colspan=2>Rampa</th>
                 <td rowspan=2 colspan=2 align=center>{{cotizacion.rampa}}</td>
                 <td rowspan=2 colspan=2 align=center></td>
-                <th rowspan=2 colspan=2>Total</th>
+                <th rowspan=2 colspan=2 style="background-color: #A9A9A9;">Total</th>
                 <td rowspan=2 colspan=2 style="background-color: #A9A9A9;" align=center>{{cotizacion.total_monto|currency}}</td>
               </tr>
               <tr></tr>
             </tbody>
             </table>
             <br>
+            <br>
+            <br>
+            <h2>Materiales</h2>
+            <table border=1 id="tablaMateriales">
+              <thead>
+              <tr style="height:35px;">
+                <th width=50>Materiales</th>
+                <th width=60>Cantidad</th>
+                <th width=70>Precio unit.</th>
+                <th width=70>Totales</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr height=35 ng-repeat="item in materiales_temp">
+                <td align=center>{{item.material}}</td>
+                <td align=center>{{item.cantidad}}</td>
+                <td align=center>{{item.precio_unitario}}</td>
+                <td align=center>{{item.total|currency}}</td>
+              </tr>
+              <tr height=35 style="background-color: #A9A9A9;">
+                <th colspan="3">Total:</th>
+                <td><strong>{{cotizacion.materiales|currency}}</strong></td>
+              </tr>
+            </table>
             <br>
             <br>
             <h2>Contenedores</h2>
@@ -575,8 +598,8 @@
                 <td align=center>{{item.unidad}}</td>
                 <td align=center>{{item.punto/10|number:2}}</td>
               </tr>
-              <tr style="background-color: #A9A9A9;">
-                <td><strong>Total</strong></td>
+              <tr height=35 style="background-color: #A9A9A9;">
+                <th>Total</th>
                 <td align=center><strong>{{unidades_contenedores}}</strong></td>
                 <td align=center><strong>{{metros3_contenedores|number:2}}</strong></td>
               </tr>
@@ -589,47 +612,44 @@
             <table border=1 id="tablaMueble">
               <tr style="height:35px;">
                 <th>Mueble</th>
-                <th>Dimension</th>
+                <th>Dimensión</th>
                 <th>Cantidad</th>
                 <th>m<sup>3</sup></th>
               </tr>
               <tr style="height:35px;" ng-repeat="item in muebles_temp">
                 <td align=center ng-if="item.mueble == 'Otros'">Otros-{{item.descripcion}}</td>
-                <td align=center
-                ng-if="item.mueble != 'Otros'">{{item.mueble}}</td>
+                <td align=center ng-if="item.mueble != 'Otros'">{{item.mueble}}</td>
                 <td align=center>{{item.ancho}}x{{item.largo}}x{{item.alto}}</td>
                 <td align=center>{{item.cantidad}}</td>
                 <td align=center>{{item.total_punto/10|number:2}}</td>
               </tr>
               <tr style="height:35px; background-color: #A9A9A9;">
-              <th>Total</th>
+              <th colspan=2>Total</th>
               <td align=center><strong>{{unidades_otros}}</strong></td>
               <td align=center><strong>{{metros3_otros|number:2}}</strong></td>
               </tr>
             </table>
 
-            <h2>Totales</h2>
-            <legend></legend>
-            <table border=1 id="tablaTotal">
-              <tr>
-                <th align=center style="background-color: #A9A9A9;">Total m<sup>3</sup></th>
-                <th align=center><strong>{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}</strong></th>
-              </tr>
-              <tr></tr>
-            </table>
+          <h2>Totales</h2>
+          <table border=1 id="tablaTotal">
+            <tr style="height:35px;">
+              <th colspan="2">Total m<sup>3</sup></th>
+              <td align="center"><strong>{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}</strong></td>
+            </tr>
+            <tr style="height:35px;">
+              <td>{{margen}}</td>
+              <th>Margen</th>
+              <td>{{(metros3_contenedores+metros3_muebles+metros3_otros)*(1+(margen/100))|number:2}}</td>
+            </tr>
+          </table>
     </div>
 </div>
 
 <script>
 function descargarExcel(){
-        var tmpElemento = document.createElement('a');
-        var data_type = 'data:application/vnd.ms-excel; charset=utf-8';
-        var tabla_div = document.getElementById('divExportar');
-        var tabla_html = tabla_div.outerHTML.replace(/ /g, '%20');
-        tmpElemento.href = data_type + ', ' + tabla_html;
-        //Asignamos el nombre a nuestro EXCEL
-        tmpElemento.download = 'Resumen.xls';
-        tmpElemento.click();
+  var table= document.getElementById('divExportar');
+  var html = table.outerHTML;
+  window.open('data:application/vnd.ms-excel,' + escape(html));
     }
 </script>
 </div>

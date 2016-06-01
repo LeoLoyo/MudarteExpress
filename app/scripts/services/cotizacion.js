@@ -156,8 +156,8 @@
     app.factory('Contenedor', function (API, setting) {
       var self = this;
       self.all = function (contenedor) {
-        // var url = setting.url + "contenedordescripcion/?format=json"
-        var url = 'scripts/json/contenedordescripcion.json'
+        var url = setting.url + "contenedordescripcion/?format=json"
+        // var url = 'scripts/json/contenedordescripcion.json'
             if(contenedor !== undefined){
               url = setting.url +"contenedor/?format=json&contenedor="+contenedor;
               // url = 'scripts/json/contenedor.json';
@@ -173,8 +173,8 @@
     app.service('Material', function (API, setting) {
       var self = this;
       self.all = function () {
-        // var url = setting.url + "/material/?format=json";
-        var url = "scripts/json/material.json";
+        var url = setting.url + "material/?format=json";
+        // var url = "scripts/json/material.json";
 
         return API.query(url)
           .then(function(result){
@@ -188,11 +188,11 @@
 
       var self = this;
       self.all = function (group) {
-        //  var url = setting.url+"mueble/?format=json";
-          var url = 'scripts/json/mueble.json';
+         var url = setting.url+"mueble/?format=json";
+          // var url = 'scripts/json/mueble.json';
           if(group !== undefined){
-            // url = setting.url+'muebledescripcion/?format=json';
-            url = 'scripts/json/muebledescripcion.json';
+            url = setting.url+'muebledescripcion/?format=json';
+            // url = 'scripts/json/muebledescripcion.json';
           }
         return API.query(url)
           .then(function(result){
@@ -201,8 +201,8 @@
       }
 
       self.tipo_mueble = function(){
-        // var url = setting.url+"tipo_mueble/?format=json";
-        var url = "scripts/json/tipo_mueble.json";
+        var url = setting.url+"tipo_mueble/?format=json";
+        // var url = "scripts/json/tipo_mueble.json";
         return API.query(url)
           .then(function(result){
             return API.getAll(result);
@@ -251,13 +251,13 @@
         var url = '';
         switch(param){
           case 1:
-            // url = setting.url+"user/?format=json&cotizador=cotizador";
-            url = 'scripts/json/cotizador.json';
+            url = setting.url+"user/?format=json&cotizador=cotizador";
+            // url = 'scripts/json/cotizador.json';
             break;
 
           case 2:
-            // url = setting.url+"user/?format=json&telefonnista=telefonista";
-            url = 'scripts/json/telefonista.json';
+            url = setting.url+"user/?format=json&telefonnista=telefonista";
+            // url = 'scripts/json/telefonista.json';
             break;
           default:
             url = 'scripts/json/user.json';
