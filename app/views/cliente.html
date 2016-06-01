@@ -6,7 +6,6 @@
       <h2 style="display:inline;">Datos del cliente</h2>
       </div>
       <div class="col-md-5">
-        <label>Tipo de cliente: </label>
         <div class="btn-group grupoRadio">
           <label class="btn btn-default" ng-class="{btnSeleccionado:cotizacion.tipo_cliente==='Particular'}">
               <input type="radio"  ng-model="cotizacion.tipo_cliente"  value="Particular" /> Particular
@@ -22,8 +21,8 @@
       <div class="col-md-3">
            <div class="form-group">
       <div class="input-group">
-      <div class="input-group-addon">N° de cotización</div>
-      <input type="text" ng-model="cotizacion.numero_cotizacion" class="form-control" id="exampleInputAmount" placeholder="000">
+      <div class="input-group-addon btnSeleccionado">N° de cotización</div>
+      <input type="text" ng-model="cotizacion.numero_cotizacion" class="form-control" id="ncotizacion" placeholder="000">
     </div>
   </div>
       </div>
@@ -143,29 +142,29 @@
 </div>
 <div class="row">
   <legend></legend>
-  <div class="col-md-4 form-group">
+  <div class="col-md-8 form-group">
     <label for="">Dirección de origen</label>
-    <input type="text" class="form-control" ng-model="cotizacion.direccion_origen">
+    <textarea style="resize:none;" rows="2" class="form-control" ng-model="cotizacion.direccion_origen"></textarea>
   </div>
   <div class="col-md-4 form-group">
     <label for="">Barrio/Provincia</label>
     <select name="" ng-model="cotizacion.barrio_provincia_origen" class="form-control"><option ng-repeat="item in barrio_provincias">{{item.descripcion}}</option></select>
   </div>
-  <div class="col-md-4 form-group">
+  <div class="col-md-12 form-group">
     <label for="">observacion de origen</label>
-    <input type="text" ng-model="cotizacion.observacion_origen" class="form-control">
+    <textarea style="resize:none;" class="form-control" ng-model="cotizacion.observacion_origen"></textarea>
   </div>
-  <div class="col-md-4 form-group">
+  <div class="col-md-8 form-group">
     <label for="">Dirección de destino</label>
-    <input type="text" class="form-control" ng-model="cotizacion.direccion_destino">
+    <textarea style="resize:none;" class="form-control" ng-model="cotizacion.direccion_destino"></textarea>
   </div>
   <div class="col-md-4 form-group">
     <label for="">Barrio/Provincia</label>
     <select name="" ng-model="cotizacion.barrio_provincia_destino" class="form-control"><option ng-repeat="item in barrio_provincias">{{item.descripcion}}</option></select>
   </div>
-  <div class="col-md-4 form-group">
+  <div class="col-md-12 form-group">
     <label for="">observacion de destino</label>
-    <input type="text" ng-model="cotizacion.observacion_destino" class="form-control">
+    <textarea style="resize:none;" class="form-control" ng-model="cotizacion.observacion_destino"></textarea>
   </div>
 </div>
 </form>

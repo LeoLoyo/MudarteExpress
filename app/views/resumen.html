@@ -1,8 +1,7 @@
 <div ng-show="nav==='6'">
     <div class="col-md-12">
-      <h1>Resumen</h1>
       <div class="">
-        <table class="tablaResumen">
+        <table class="tablaResumen" style="max-width:100%;">
           <tr>
             <td rowspan="4">
               <p><strong>4701-1177<strong></p>
@@ -63,7 +62,7 @@
             <td style="background-color: #fff;" class="tdResumen" align=center>Hora:</td>
             <td>{{cotizacion.hora_estimada_mudanza | date:'h:mma'}}</td>
             <td style="background-color: #fff;" class="tdResumen" align=center>Forma pago</td>
-            <td class="">{{cotizacion.forma_pago}}</td>
+            <td class="" style="border-bottom: 1px solid #dedede;">{{cotizacion.forma_pago}}</td>
           </tr>
           <tr>
             <td style="background-color: #fff;" class="tdResumen" align=center>Fecha en que se cotizó:</td>
@@ -103,32 +102,32 @@
             <td class="tdResumen" colspan="4"></td>
           </tr>
           <tr>
-            <th style="background-color: #fff;" class="tdResumen" colspan="2" align=center >Domicilio de Origen:</th>
+            <th style="background-color: #fff; border-right: 1px solid #dedede;" class="tdResumen" colspan="2" align=center >Domicilio de Origen:</th>
             <th style="background-color: #fff;align=center;"  class="tdResumen" colspan="4">Barrio/Provincia:</th>
           </tr>
           <tr>
-            <td colspan="2">{{cotizacion.direccion_origen}}</td>
+            <td colspan="2" style="border-right: 1px solid #dedede;">{{cotizacion.direccion_origen}}</td>
             <td>{{cotizacion.barrio_provincia_origen}}</td>
           </tr>
           <tr>
             <th style="background-color: #fff;" class="tdResumen" align=center colspan="6">Observaciones de Origen:</th>
           </tr>
-          <tr colspan="4">
-            <td>{{cotizacion.observacion_origen}}</td>
+          <tr>
+            <td colspan="6">{{cotizacion.observacion_origen}}</td>
           </tr>
           <tr>
-            <th style="background-color: #fff;" class="tdResumen" align=center colspan="2">Domicilio de Destino:</th>
+            <th style="background-color: #fff; border-right: 1px solid #dedede;" class="tdResumen" align=center colspan="2">Domicilio de Destino:</th>
             <th style="background-color: #fff;" class="tdResumen" align=center colspan="4">Barrio/Provincia:</th>
           </tr>
           <tr>
-            <td colspan="2">{{cotizacion.direccion_destino}}</td>
+            <td colspan="2" style="border-right: 1px solid #dedede;">{{cotizacion.direccion_destino}}</td>
             <td>{{cotizacion.barrio_provincia_destino}}</td>
           </tr>
           <tr>
             <th style="background-color: #fff;" class="tdResumen" align=center colspan="6">Observaciones de Destino:</th>
           </tr>
-          <tr colspan="4">
-            <td>{{cotizacion.observacion_destino}}</td>
+          <tr>
+            <td colspan="6">{{cotizacion.observacion_destino}}</td>
           </tr>
         </table>
         <legend></legend>
@@ -178,15 +177,15 @@
         <table class="tablaResumen">
           <tr class="active">
             <th>Material</th>
-            <th align="center">Cantidad</th>
+            <th style="text-align:right!important;">Cantidad</th>
             <th width="200" style="text-align:right!important;">Precio unit.</th>
             <th width="200" style="text-align:right!important;">Totales</th>
           </tr>
-          <tr ng-repeat="item in materiales">
-            <td>{{item.descripcion}}</td>
-            <td align="center" class="paddingNone">{{item.cantidad}}</td>
-            <td style="text-align:right!important;" class="paddingNone">{{item.precio}}</td>
-            <td style="text-align:right!important;" >{{item.precio * cantidad.num|currency}}</td>
+          <tr ng-repeat="item in materiales_temp">
+            <td>{{item.material}}</td>
+            <td style="text-align:right!important;">{{item.cantidad}}</td>
+            <td style="text-align:right!important;">{{item.precio_unitario}}</td>
+            <td style="text-align:right!important;" >{{item.total|currency}}</td>
           </tr>
           <tr class="active">
             <td colspan="3" style="text-align:right!important;"><strong>Total:</strong></td>

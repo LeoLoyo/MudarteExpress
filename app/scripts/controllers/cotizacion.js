@@ -11,7 +11,7 @@
       if(!session){
         $state.go('login');
       }
-
+      angular.element('#ncotizacion').focus();
       $scope.cantidades = [];
       function numeros(){
 
@@ -51,7 +51,7 @@
         hora_registro:'',
         fuente:'',
         cp_pv:'',
-        tipo_cliente:'',
+        tipo_cliente:'Particular',
         cargo:'',
         forma_pago:'',
         fecha_de_carga:'',
