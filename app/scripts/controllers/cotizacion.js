@@ -2,7 +2,7 @@
   'use strict';
   var app = angular.module('cotizacionExpressApp');
 
-    app.controller('CotizacionCtrl', function ($interval,$rootScope, $state, $scope,Users,Direccion, Material,Cotizacion, Contenedor, Mueble, Bulto, Cliente, $http,setting) {
+    app.controller('CotizacionCtrl', function (muebles_resolve, $interval,$rootScope, $state, $scope,Users,Direccion, Material,Cotizacion, Contenedor, Mueble, Bulto, Cliente, $http,setting) {
       // variables
       $interval(
         function handleInterval() {
@@ -259,20 +259,24 @@
         });
         Contenedor.all().then(function(r){
           $scope.contenedores = r;
-        });
+        }).catch(function(){
+          $scope.contenedores = [];
+        });;
         Mueble.all('filtrado').then(function(groups){
           $scope.muebles_group = groups;
+        }).catch(function(){
+          $scope.muebles_group = [];
         });
-        Mueble.all().then(function(muebles){
-          $scope.muebles = muebles;
-        });
+        // Mueble.all().then(function(muebles){
+          $scope.muebles = muebles_resolve;
+        // });
+
         Mueble.tipo_mueble().then(function(muebles){
           $scope.tipo_muebles = muebles;
+        }).catch(function(){
+          $scope.tipo_muebles = [];
         });
-
         $scope.fuentes = Cotizacion.all_fuentes();
-
-
         }
         $rootScope.$on('change',function(event){
           if($scope.contenedores_temp.length===0 && $scope.otros_temp.length===0 && $scope.muebles_temp.length===0){

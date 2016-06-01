@@ -9,10 +9,11 @@
         parameters = parameters || [];
         var q = $q.defer();
 
-          $http.get(url).then(function (result) {
+          $http.get(url)
+          .then(function (result) {
               q.resolve(result);
-            }, function (error) {
-              console.warn('I found an error');
+            })
+            .catch(function (error) {
               console.warn(error);
               q.reject(error);
             });

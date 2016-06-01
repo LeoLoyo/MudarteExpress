@@ -37,6 +37,12 @@ var session = false;
             templateUrl:'views/cliente.html',
             // templateUrl:'views/cotizacion.html',
             controller:'CotizacionCtrl'
+            ,
+            resolve:{
+              muebles_resolve:function (API,Mueble){
+                return Mueble.all();
+              }
+            }
           }
         }
       })

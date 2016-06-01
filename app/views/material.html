@@ -11,8 +11,8 @@
           <tr ng-repeat="item in materiales">
             <td>{{item.descripcion}}</td>
             <td align="center" class="paddingNone">
-              <select ng-focus="scrollAnime($event)" ng-model="cantidad" ng-options="m.num for m in cantidades" ng-change="add_material(item,cantidad.num, item.precio)" class="selectMoneda">
-              <option value="">0</option>
+              <select ng-focus="scrollAnime($event)" ng-model="cantidad" ng-options="m.num for m in cantidades"  ng-change="add_material(item,cantidad.num, item.precio)" class="selectMoneda" style="text-align-last: center;">
+              <!-- <select ng-focus="scrollAnime($event)" ng-model="cantidad" ng-options="m.num for m in cantidades" ng-init="cantidad='cantidades[0]'" ng-change="add_material(item,cantidad.num, item.precio)" class="selectMoneda" style="text-align-last: center;"> -->
               </select>
             <td align="center" class="paddingNone">
               <input type="number" ng-show="cantidad.num!=undefined" ng-model="item.precio" ng-change="add_material(item,cantidad.num, item.precio)" >

@@ -51,8 +51,10 @@
 
   <div class="col-md-3 form-group">
     <label for="id_cp">CP/PV:</label>
-    <select class="form-control" ng-model="cotizacion.cp_pv" id="id_cp"><option value="CP">CP</option>
-    <option value="PV">PV</option></select>
+    <select class="form-control" ng-model="cotizacion.cp_pv" id="id_cp">
+      <option value="CP">CP</option>
+      <option value="PV">PV</option>
+    </select>
   </div>
   <div class="col-md-3 form-group">
     <label for="id_cargo">Cargo:</label>
@@ -65,16 +67,16 @@
   <div class="col-md-3 form-group">
     <label for="id_cotizador">Forma de pago:</label>
     <select class="form-control" ng-model="cotizacion.forma_pago"id="id_cotizador">
-      <option value="EFECTIVO">EFECTIVO</option>
-      <option value="CHEQUE">CHEQUE</option>
-      <option value="TRANSFERENCIA">TRANSFERENCIA</option>
+      <option value="Efectivo">Efectivo</option>
+      <option value="Cheque">Cheque</option>
+      <option value="Transferencia">Transferencia</option>
     </select>
   </div>
   <legend></legend>
 </div>
 <div class="row">
   <div class="col-md-3 form-group">
-    <label for="id_fecha1">Fecha en que se cargo:</label>
+    <label for="id_fecha1">Fecha en que se cargó:</label>
     <input type="date" ng-model="cotizacion.fecha_de_carga" class="form-control">
   </div>
   <div class="col-md-3 form-group">
@@ -93,7 +95,7 @@
    <div class="row">
 
   <div class="col-md-3 form-group">
-    <label for="id_fecha3">Fecha en que se cotizo</label>
+    <label for="id_fecha3">Fecha en que se cotizó</label>
     <input type="date" ng-model="cotizacion.fecha_de_cotizacion" class="form-control">
   </div>
   <div class="col-md-3 form-group">
@@ -101,7 +103,7 @@
     <input type="time" ng-model="cotizacion.hora_de_cotizacion" class="form-control">
   </div>
   <div class="col-md-3 form-group">
-    <label for="id_fecha4">Fecha en que se aviso:</label>
+    <label for="id_fecha4">Fecha en que se avisó:</label>
     <input type="date" ng-model="cotizacion.fecha_de_aviso" class="form-control">
   </div>
   <div class="col-md-3 form-group">
@@ -130,12 +132,12 @@
 <legend></legend>
 <div class="row">
   <div class="col-md-3 form-group">
-    <label for="">Nombre de quien paso la cotización:</label>
-    <select ng-model="cotizacion.quien_cotizo" class="form-control"><option ng-value="{{item}}" ng-repeat="item in telefonista">{{item.first_name}} {{item.last_name}}</option></select>
+    <label for="">Nombre de quien pasó la cotización:</label>
+    <select ng-model="cotizacion.quien_cotizo" class="form-control"><option ng-repeat="item in telefonista">{{item.first_name}} {{item.last_name}}</option></select>
   </div>
   <div class="col-md-3 form-group">
-    <label for="">Nombre de quien llamo al cliente:</label>
-    <select class="form-control" ng-model="cotizacion.quien_llamo"><option ng-value="{{item}}" ng-repeat="item in telefonista">{{item.first_name}} {{item.last_name}}</option></select>
+    <label for="">Nombre de quien llamó al cliente:</label>
+    <select class="form-control" ng-model="cotizacion.quien_llamo"><option ng-repeat="item in telefonista">{{item.first_name}} {{item.last_name}}</option></select>
   </div>
 
 </div>
@@ -143,11 +145,11 @@
   <legend></legend>
   <div class="col-md-4 form-group">
     <label for="">Dirección de origen</label>
-    <input type="text" class="form-control">
+    <input type="text" class="form-control" ng-model="cotizacion.direccion_origen">
   </div>
   <div class="col-md-4 form-group">
     <label for="">Barrio/Provincia</label>
-    <select name="" ng-model="cotizacion.barrio_provincia_origen" class="form-control"><option ng-value="{{item}}" ng-repeat="item in barrio_provincias">{{item.descripcion}}</option></select>
+    <select name="" ng-model="cotizacion.barrio_provincia_origen" class="form-control"><option ng-repeat="item in barrio_provincias">{{item.descripcion}}</option></select>
   </div>
   <div class="col-md-4 form-group">
     <label for="">observacion de origen</label>
@@ -155,11 +157,11 @@
   </div>
   <div class="col-md-4 form-group">
     <label for="">Dirección de destino</label>
-    <input type="text" class="form-control">
+    <input type="text" class="form-control" ng-model="cotizacion.direccion_destino">
   </div>
   <div class="col-md-4 form-group">
     <label for="">Barrio/Provincia</label>
-    <select name="" ng-model="cotizacion.barrio_provincia_destino" class="form-control"><option ng-value="{{item}}" ng-repeat="item in barrio_provincias">{{item.descripcion}}</option></select>
+    <select name="" ng-model="cotizacion.barrio_provincia_destino" class="form-control"><option ng-repeat="item in barrio_provincias">{{item.descripcion}}</option></select>
   </div>
   <div class="col-md-4 form-group">
     <label for="">observacion de destino</label>
