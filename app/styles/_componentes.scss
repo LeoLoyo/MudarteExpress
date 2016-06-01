@@ -130,6 +130,18 @@ table.tabla {
         @extend .active;
     }
 }
+table.tablaResumen {
+  @extend .table;
+  background: #FFF;
+  box-shadow: $sombra_1;
+  tr {
+    td.tdResumen {
+      font-weight: bold;
+      border: 1px solid #dedede;
+      text-align: left;
+    }
+  }
+}
 .login {
     @extend .panel;
     box-shadow: $sombra_1;

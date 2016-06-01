@@ -8,13 +8,13 @@
       <div class="col-md-5">
         <label>Tipo de cliente: </label>
         <div class="btn-group grupoRadio">
-          <label class="btn btn-default">
-              <input type="radio"  ng-model="cotizacion.tipo_cliente" value="Particular" /> Particular
+          <label class="btn btn-default" ng-class="{btnSeleccionado:cotizacion.tipo_cliente==='Particular'}">
+              <input type="radio"  ng-model="cotizacion.tipo_cliente"  value="Particular" /> Particular
           </label>
-          <label class="btn btn-default">
+          <label class="btn btn-default" ng-class="{btnSeleccionado:cotizacion.tipo_cliente==='Empresa'}">
               <input type="radio"  ng-model="cotizacion.tipo_cliente" value="Empresa" /> Empresa
           </label>
-          <label class="btn btn-default">
+          <label class="btn btn-default" ng-class="{btnSeleccionado:cotizacion.tipo_cliente==='Gobierno'}">
               <input type="radio"  ng-model="cotizacion.tipo_cliente" value="Gobierno" /> Gobierno
           </label>
         </div>

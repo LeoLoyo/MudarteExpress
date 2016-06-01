@@ -245,11 +245,12 @@ th {
   .label {
     border: 1px solid #000; }
 
-  .table, table.tabla {
+  .table, table.tabla, table.tablaResumen {
     border-collapse: collapse !important; }
-    .table td, table.tabla td,
+    .table td, table.tabla td, table.tablaResumen td,
     .table th,
-    table.tabla th {
+    table.tabla th,
+    table.tablaResumen th {
       background-color: #fff !important; }
 
   .table-bordered th, table.tabla th,
@@ -2198,43 +2199,53 @@ caption {
 th {
   text-align: left; }
 
-.table, table.tabla {
+.table, table.tabla, table.tablaResumen {
   width: 100%;
   max-width: 100%;
   margin-bottom: 20px; }
-  .table > thead > tr > th, table.tabla > thead > tr > th,
+  .table > thead > tr > th, table.tabla > thead > tr > th, table.tablaResumen > thead > tr > th,
   .table > thead > tr > td,
   table.tabla > thead > tr > td,
+  table.tablaResumen > thead > tr > td,
   .table > tbody > tr > th,
   table.tabla > tbody > tr > th,
+  table.tablaResumen > tbody > tr > th,
   .table > tbody > tr > td,
   table.tabla > tbody > tr > td,
+  table.tablaResumen > tbody > tr > td,
   .table > tfoot > tr > th,
   table.tabla > tfoot > tr > th,
+  table.tablaResumen > tfoot > tr > th,
   .table > tfoot > tr > td,
-  table.tabla > tfoot > tr > td {
+  table.tabla > tfoot > tr > td,
+  table.tablaResumen > tfoot > tr > td {
     padding: 8px;
     line-height: 1.42857;
     vertical-align: top;
     border-top: 1px solid #ddd; }
-  .table > thead > tr > th, table.tabla > thead > tr > th {
+  .table > thead > tr > th, table.tabla > thead > tr > th, table.tablaResumen > thead > tr > th {
     vertical-align: bottom;
     border-bottom: 2px solid #ddd; }
-  .table > caption + thead > tr:first-child > th, table.tabla > caption + thead > tr:first-child > th,
+  .table > caption + thead > tr:first-child > th, table.tabla > caption + thead > tr:first-child > th, table.tablaResumen > caption + thead > tr:first-child > th,
   .table > caption + thead > tr:first-child > td,
   table.tabla > caption + thead > tr:first-child > td,
+  table.tablaResumen > caption + thead > tr:first-child > td,
   .table > colgroup + thead > tr:first-child > th,
   table.tabla > colgroup + thead > tr:first-child > th,
+  table.tablaResumen > colgroup + thead > tr:first-child > th,
   .table > colgroup + thead > tr:first-child > td,
   table.tabla > colgroup + thead > tr:first-child > td,
+  table.tablaResumen > colgroup + thead > tr:first-child > td,
   .table > thead:first-child > tr:first-child > th,
   table.tabla > thead:first-child > tr:first-child > th,
+  table.tablaResumen > thead:first-child > tr:first-child > th,
   .table > thead:first-child > tr:first-child > td,
-  table.tabla > thead:first-child > tr:first-child > td {
+  table.tabla > thead:first-child > tr:first-child > td,
+  table.tablaResumen > thead:first-child > tr:first-child > td {
     border-top: 0; }
-  .table > tbody + tbody, table.tabla > tbody + tbody {
+  .table > tbody + tbody, table.tabla > tbody + tbody, table.tablaResumen > tbody + tbody {
     border-top: 2px solid #ddd; }
-  .table .table, table.tabla .table, .table table.tabla, table.tabla table.tabla {
+  .table .table, table.tabla .table, table.tablaResumen .table, .table table.tabla, table.tabla table.tabla, table.tablaResumen table.tabla, .table table.tablaResumen, table.tabla table.tablaResumen, table.tablaResumen table.tablaResumen {
     background-color: #eee; }
 
 .table-condensed > thead > tr > th,
@@ -2281,33 +2292,46 @@ table th[class*="col-"] {
   float: none;
   display: table-cell; }
 
-.table > thead > tr > td.active, table.tabla > thead > tr > td.active,
+.table > thead > tr > td.active, table.tabla > thead > tr > td.active, table.tablaResumen > thead > tr > td.active,
 .table > thead > tr > th.active,
-table.tabla > thead > tr > th.active, .table > thead > tr.active > td, table.tabla > thead > tr.active > td, table.tabla .table > thead > tr.totales > td, table.tabla > thead > tr.totales > td, .table > thead > tr.active > th, table.tabla > thead > tr.active > th, table.tabla .table > thead > tr.totales > th, table.tabla > thead > tr.totales > th,
+table.tabla > thead > tr > th.active,
+table.tablaResumen > thead > tr > th.active, .table > thead > tr.active > td, table.tabla > thead > tr.active > td, table.tablaResumen > thead > tr.active > td, table.tabla .table > thead > tr.totales > td, table.tabla > thead > tr.totales > td, table.tabla table.tablaResumen > thead > tr.totales > td, .table > thead > tr.active > th, table.tabla > thead > tr.active > th, table.tablaResumen > thead > tr.active > th, table.tabla .table > thead > tr.totales > th, table.tabla > thead > tr.totales > th, table.tabla table.tablaResumen > thead > tr.totales > th,
 .table > tbody > tr > td.active,
 table.tabla > tbody > tr > td.active,
+table.tablaResumen > tbody > tr > td.active,
 .table > tbody > tr > th.active,
 table.tabla > tbody > tr > th.active,
+table.tablaResumen > tbody > tr > th.active,
 .table > tbody > tr.active > td,
 table.tabla > tbody > tr.active > td,
+table.tablaResumen > tbody > tr.active > td,
 table.tabla .table > tbody > tr.totales > td,
 table.tabla > tbody > tr.totales > td,
+table.tabla table.tablaResumen > tbody > tr.totales > td,
 .table > tbody > tr.active > th,
 table.tabla > tbody > tr.active > th,
+table.tablaResumen > tbody > tr.active > th,
 table.tabla .table > tbody > tr.totales > th,
 table.tabla > tbody > tr.totales > th,
+table.tabla table.tablaResumen > tbody > tr.totales > th,
 .table > tfoot > tr > td.active,
 table.tabla > tfoot > tr > td.active,
+table.tablaResumen > tfoot > tr > td.active,
 .table > tfoot > tr > th.active,
 table.tabla > tfoot > tr > th.active,
+table.tablaResumen > tfoot > tr > th.active,
 .table > tfoot > tr.active > td,
 table.tabla > tfoot > tr.active > td,
+table.tablaResumen > tfoot > tr.active > td,
 table.tabla .table > tfoot > tr.totales > td,
 table.tabla > tfoot > tr.totales > td,
+table.tabla table.tablaResumen > tfoot > tr.totales > td,
 .table > tfoot > tr.active > th,
 table.tabla > tfoot > tr.active > th,
+table.tablaResumen > tfoot > tr.active > th,
 table.tabla .table > tfoot > tr.totales > th,
-table.tabla > tfoot > tr.totales > th {
+table.tabla > tfoot > tr.totales > th,
+table.tabla table.tablaResumen > tfoot > tr.totales > th {
   background-color: #f5f5f5; }
 
 .table-hover > tbody > tr > td.active:hover, table.tabla > tbody > tr > td.active:hover,
@@ -2315,25 +2339,34 @@ table.tabla > tfoot > tr.totales > th {
 table.tabla > tbody > tr > th.active:hover, .table-hover > tbody > tr.active:hover > td, table.tabla > tbody > tr.active:hover > td, table.tabla .table-hover > tbody > tr.totales:hover > td, table.tabla > tbody > tr.totales:hover > td, .table-hover > tbody > tr:hover > .active, table.tabla > tbody > tr:hover > .active, table.tabla .table-hover > tbody > tr:hover > tr.totales, table.tabla > tbody > tr:hover > tr.totales, .table-hover > tbody > tr.active:hover > th, table.tabla > tbody > tr.active:hover > th, table.tabla .table-hover > tbody > tr.totales:hover > th, table.tabla > tbody > tr.totales:hover > th {
   background-color: #e8e8e8; }
 
-.table > thead > tr > td.success, table.tabla > thead > tr > td.success,
+.table > thead > tr > td.success, table.tabla > thead > tr > td.success, table.tablaResumen > thead > tr > td.success,
 .table > thead > tr > th.success,
-table.tabla > thead > tr > th.success, .table > thead > tr.success > td, table.tabla > thead > tr.success > td, .table > thead > tr.success > th, table.tabla > thead > tr.success > th,
+table.tabla > thead > tr > th.success,
+table.tablaResumen > thead > tr > th.success, .table > thead > tr.success > td, table.tabla > thead > tr.success > td, table.tablaResumen > thead > tr.success > td, .table > thead > tr.success > th, table.tabla > thead > tr.success > th, table.tablaResumen > thead > tr.success > th,
 .table > tbody > tr > td.success,
 table.tabla > tbody > tr > td.success,
+table.tablaResumen > tbody > tr > td.success,
 .table > tbody > tr > th.success,
 table.tabla > tbody > tr > th.success,
+table.tablaResumen > tbody > tr > th.success,
 .table > tbody > tr.success > td,
 table.tabla > tbody > tr.success > td,
+table.tablaResumen > tbody > tr.success > td,
 .table > tbody > tr.success > th,
 table.tabla > tbody > tr.success > th,
+table.tablaResumen > tbody > tr.success > th,
 .table > tfoot > tr > td.success,
 table.tabla > tfoot > tr > td.success,
+table.tablaResumen > tfoot > tr > td.success,
 .table > tfoot > tr > th.success,
 table.tabla > tfoot > tr > th.success,
+table.tablaResumen > tfoot > tr > th.success,
 .table > tfoot > tr.success > td,
 table.tabla > tfoot > tr.success > td,
+table.tablaResumen > tfoot > tr.success > td,
 .table > tfoot > tr.success > th,
-table.tabla > tfoot > tr.success > th {
+table.tabla > tfoot > tr.success > th,
+table.tablaResumen > tfoot > tr.success > th {
   background-color: #dff0d8; }
 
 .table-hover > tbody > tr > td.success:hover, table.tabla > tbody > tr > td.success:hover,
@@ -2341,25 +2374,34 @@ table.tabla > tfoot > tr.success > th {
 table.tabla > tbody > tr > th.success:hover, .table-hover > tbody > tr.success:hover > td, table.tabla > tbody > tr.success:hover > td, .table-hover > tbody > tr:hover > .success, table.tabla > tbody > tr:hover > .success, .table-hover > tbody > tr.success:hover > th, table.tabla > tbody > tr.success:hover > th {
   background-color: #d0e9c6; }
 
-.table > thead > tr > td.info, table.tabla > thead > tr > td.info,
+.table > thead > tr > td.info, table.tabla > thead > tr > td.info, table.tablaResumen > thead > tr > td.info,
 .table > thead > tr > th.info,
-table.tabla > thead > tr > th.info, .table > thead > tr.info > td, table.tabla > thead > tr.info > td, .table > thead > tr.info > th, table.tabla > thead > tr.info > th,
+table.tabla > thead > tr > th.info,
+table.tablaResumen > thead > tr > th.info, .table > thead > tr.info > td, table.tabla > thead > tr.info > td, table.tablaResumen > thead > tr.info > td, .table > thead > tr.info > th, table.tabla > thead > tr.info > th, table.tablaResumen > thead > tr.info > th,
 .table > tbody > tr > td.info,
 table.tabla > tbody > tr > td.info,
+table.tablaResumen > tbody > tr > td.info,
 .table > tbody > tr > th.info,
 table.tabla > tbody > tr > th.info,
+table.tablaResumen > tbody > tr > th.info,
 .table > tbody > tr.info > td,
 table.tabla > tbody > tr.info > td,
+table.tablaResumen > tbody > tr.info > td,
 .table > tbody > tr.info > th,
 table.tabla > tbody > tr.info > th,
+table.tablaResumen > tbody > tr.info > th,
 .table > tfoot > tr > td.info,
 table.tabla > tfoot > tr > td.info,
+table.tablaResumen > tfoot > tr > td.info,
 .table > tfoot > tr > th.info,
 table.tabla > tfoot > tr > th.info,
+table.tablaResumen > tfoot > tr > th.info,
 .table > tfoot > tr.info > td,
 table.tabla > tfoot > tr.info > td,
+table.tablaResumen > tfoot > tr.info > td,
 .table > tfoot > tr.info > th,
-table.tabla > tfoot > tr.info > th {
+table.tabla > tfoot > tr.info > th,
+table.tablaResumen > tfoot > tr.info > th {
   background-color: #d9edf7; }
 
 .table-hover > tbody > tr > td.info:hover, table.tabla > tbody > tr > td.info:hover,
@@ -2367,25 +2409,34 @@ table.tabla > tfoot > tr.info > th {
 table.tabla > tbody > tr > th.info:hover, .table-hover > tbody > tr.info:hover > td, table.tabla > tbody > tr.info:hover > td, .table-hover > tbody > tr:hover > .info, table.tabla > tbody > tr:hover > .info, .table-hover > tbody > tr.info:hover > th, table.tabla > tbody > tr.info:hover > th {
   background-color: #c4e3f3; }
 
-.table > thead > tr > td.warning, table.tabla > thead > tr > td.warning,
+.table > thead > tr > td.warning, table.tabla > thead > tr > td.warning, table.tablaResumen > thead > tr > td.warning,
 .table > thead > tr > th.warning,
-table.tabla > thead > tr > th.warning, .table > thead > tr.warning > td, table.tabla > thead > tr.warning > td, .table > thead > tr.warning > th, table.tabla > thead > tr.warning > th,
+table.tabla > thead > tr > th.warning,
+table.tablaResumen > thead > tr > th.warning, .table > thead > tr.warning > td, table.tabla > thead > tr.warning > td, table.tablaResumen > thead > tr.warning > td, .table > thead > tr.warning > th, table.tabla > thead > tr.warning > th, table.tablaResumen > thead > tr.warning > th,
 .table > tbody > tr > td.warning,
 table.tabla > tbody > tr > td.warning,
+table.tablaResumen > tbody > tr > td.warning,
 .table > tbody > tr > th.warning,
 table.tabla > tbody > tr > th.warning,
+table.tablaResumen > tbody > tr > th.warning,
 .table > tbody > tr.warning > td,
 table.tabla > tbody > tr.warning > td,
+table.tablaResumen > tbody > tr.warning > td,
 .table > tbody > tr.warning > th,
 table.tabla > tbody > tr.warning > th,
+table.tablaResumen > tbody > tr.warning > th,
 .table > tfoot > tr > td.warning,
 table.tabla > tfoot > tr > td.warning,
+table.tablaResumen > tfoot > tr > td.warning,
 .table > tfoot > tr > th.warning,
 table.tabla > tfoot > tr > th.warning,
+table.tablaResumen > tfoot > tr > th.warning,
 .table > tfoot > tr.warning > td,
 table.tabla > tfoot > tr.warning > td,
+table.tablaResumen > tfoot > tr.warning > td,
 .table > tfoot > tr.warning > th,
-table.tabla > tfoot > tr.warning > th {
+table.tabla > tfoot > tr.warning > th,
+table.tablaResumen > tfoot > tr.warning > th {
   background-color: #fcf8e3; }
 
 .table-hover > tbody > tr > td.warning:hover, table.tabla > tbody > tr > td.warning:hover,
@@ -2393,25 +2444,34 @@ table.tabla > tfoot > tr.warning > th {
 table.tabla > tbody > tr > th.warning:hover, .table-hover > tbody > tr.warning:hover > td, table.tabla > tbody > tr.warning:hover > td, .table-hover > tbody > tr:hover > .warning, table.tabla > tbody > tr:hover > .warning, .table-hover > tbody > tr.warning:hover > th, table.tabla > tbody > tr.warning:hover > th {
   background-color: #faf2cc; }
 
-.table > thead > tr > td.danger, table.tabla > thead > tr > td.danger,
+.table > thead > tr > td.danger, table.tabla > thead > tr > td.danger, table.tablaResumen > thead > tr > td.danger,
 .table > thead > tr > th.danger,
-table.tabla > thead > tr > th.danger, .table > thead > tr.danger > td, table.tabla > thead > tr.danger > td, .table > thead > tr.danger > th, table.tabla > thead > tr.danger > th,
+table.tabla > thead > tr > th.danger,
+table.tablaResumen > thead > tr > th.danger, .table > thead > tr.danger > td, table.tabla > thead > tr.danger > td, table.tablaResumen > thead > tr.danger > td, .table > thead > tr.danger > th, table.tabla > thead > tr.danger > th, table.tablaResumen > thead > tr.danger > th,
 .table > tbody > tr > td.danger,
 table.tabla > tbody > tr > td.danger,
+table.tablaResumen > tbody > tr > td.danger,
 .table > tbody > tr > th.danger,
 table.tabla > tbody > tr > th.danger,
+table.tablaResumen > tbody > tr > th.danger,
 .table > tbody > tr.danger > td,
 table.tabla > tbody > tr.danger > td,
+table.tablaResumen > tbody > tr.danger > td,
 .table > tbody > tr.danger > th,
 table.tabla > tbody > tr.danger > th,
+table.tablaResumen > tbody > tr.danger > th,
 .table > tfoot > tr > td.danger,
 table.tabla > tfoot > tr > td.danger,
+table.tablaResumen > tfoot > tr > td.danger,
 .table > tfoot > tr > th.danger,
 table.tabla > tfoot > tr > th.danger,
+table.tablaResumen > tfoot > tr > th.danger,
 .table > tfoot > tr.danger > td,
 table.tabla > tfoot > tr.danger > td,
+table.tablaResumen > tfoot > tr.danger > td,
 .table > tfoot > tr.danger > th,
-table.tabla > tfoot > tr.danger > th {
+table.tabla > tfoot > tr.danger > th,
+table.tablaResumen > tfoot > tr.danger > th {
   background-color: #f2dede; }
 
 .table-hover > tbody > tr > td.danger:hover, table.tabla > tbody > tr > td.danger:hover,
@@ -2429,19 +2489,24 @@ table.tabla > tbody > tr > th.danger:hover, .table-hover > tbody > tr.danger:hov
       overflow-y: hidden;
       -ms-overflow-style: -ms-autohiding-scrollbar;
       border: 1px solid #ddd; }
-      .table-responsive > .table, .table-responsive > table.tabla {
+      .table-responsive > .table, .table-responsive > table.tabla, .table-responsive > table.tablaResumen {
         margin-bottom: 0; }
-        .table-responsive > .table > thead > tr > th, .table-responsive > table.tabla > thead > tr > th,
+        .table-responsive > .table > thead > tr > th, .table-responsive > table.tabla > thead > tr > th, .table-responsive > table.tablaResumen > thead > tr > th,
         .table-responsive > .table > thead > tr > td,
         .table-responsive > table.tabla > thead > tr > td,
+        .table-responsive > table.tablaResumen > thead > tr > td,
         .table-responsive > .table > tbody > tr > th,
         .table-responsive > table.tabla > tbody > tr > th,
+        .table-responsive > table.tablaResumen > tbody > tr > th,
         .table-responsive > .table > tbody > tr > td,
         .table-responsive > table.tabla > tbody > tr > td,
+        .table-responsive > table.tablaResumen > tbody > tr > td,
         .table-responsive > .table > tfoot > tr > th,
         .table-responsive > table.tabla > tfoot > tr > th,
+        .table-responsive > table.tablaResumen > tfoot > tr > th,
         .table-responsive > .table > tfoot > tr > td,
-        .table-responsive > table.tabla > tfoot > tr > td {
+        .table-responsive > table.tabla > tfoot > tr > td,
+        .table-responsive > table.tablaResumen > tfoot > tr > td {
           white-space: nowrap; }
       .table-responsive > .table-bordered, .table-responsive > table.tabla {
         border: 0; }
@@ -4923,192 +4988,272 @@ button.list-group-item-danger {
 .list-group + .panel-footer {
   border-top-width: 0; }
 
-.panel > .table, .login > .table, .panel > table.tabla, .login > table.tabla,
+.panel > .table, .login > .table, .panel > table.tabla, .login > table.tabla, .panel > table.tablaResumen, .login > table.tablaResumen,
 .panel > .table-responsive > .table,
 .login > .table-responsive > .table,
 .panel > .table-responsive > table.tabla,
 .login > .table-responsive > table.tabla,
+.panel > .table-responsive > table.tablaResumen,
+.login > .table-responsive > table.tablaResumen,
 .panel > .panel-collapse > .table,
 .login > .panel-collapse > .table,
 .panel > .panel-collapse > table.tabla,
-.login > .panel-collapse > table.tabla {
+.login > .panel-collapse > table.tabla,
+.panel > .panel-collapse > table.tablaResumen,
+.login > .panel-collapse > table.tablaResumen {
   margin-bottom: 0; }
-  .panel > .table caption, .login > .table caption, .panel > table.tabla caption, .login > table.tabla caption,
+  .panel > .table caption, .login > .table caption, .panel > table.tabla caption, .login > table.tabla caption, .panel > table.tablaResumen caption, .login > table.tablaResumen caption,
   .panel > .table-responsive > .table caption,
   .login > .table-responsive > .table caption,
   .panel > .table-responsive > table.tabla caption,
   .login > .table-responsive > table.tabla caption,
+  .panel > .table-responsive > table.tablaResumen caption,
+  .login > .table-responsive > table.tablaResumen caption,
   .panel > .panel-collapse > .table caption,
   .login > .panel-collapse > .table caption,
   .panel > .panel-collapse > table.tabla caption,
-  .login > .panel-collapse > table.tabla caption {
+  .login > .panel-collapse > table.tabla caption,
+  .panel > .panel-collapse > table.tablaResumen caption,
+  .login > .panel-collapse > table.tablaResumen caption {
     padding-left: 15px;
     padding-right: 15px; }
-.panel > .table:first-child, .login > .table:first-child, .panel > table.tabla:first-child, .login > table.tabla:first-child,
+.panel > .table:first-child, .login > .table:first-child, .panel > table.tabla:first-child, .login > table.tabla:first-child, .panel > table.tablaResumen:first-child, .login > table.tablaResumen:first-child,
 .panel > .table-responsive:first-child > .table:first-child,
 .login > .table-responsive:first-child > .table:first-child,
 .panel > .table-responsive:first-child > table.tabla:first-child,
-.login > .table-responsive:first-child > table.tabla:first-child {
+.login > .table-responsive:first-child > table.tabla:first-child,
+.panel > .table-responsive:first-child > table.tablaResumen:first-child,
+.login > .table-responsive:first-child > table.tablaResumen:first-child {
   border-top-right-radius: 3px;
   border-top-left-radius: 3px; }
-  .panel > .table:first-child > thead:first-child > tr:first-child, .login > .table:first-child > thead:first-child > tr:first-child, .panel > table.tabla:first-child > thead:first-child > tr:first-child, .login > table.tabla:first-child > thead:first-child > tr:first-child,
+  .panel > .table:first-child > thead:first-child > tr:first-child, .login > .table:first-child > thead:first-child > tr:first-child, .panel > table.tabla:first-child > thead:first-child > tr:first-child, .login > table.tabla:first-child > thead:first-child > tr:first-child, .panel > table.tablaResumen:first-child > thead:first-child > tr:first-child, .login > table.tablaResumen:first-child > thead:first-child > tr:first-child,
   .panel > .table:first-child > tbody:first-child > tr:first-child,
   .login > .table:first-child > tbody:first-child > tr:first-child,
   .panel > table.tabla:first-child > tbody:first-child > tr:first-child,
   .login > table.tabla:first-child > tbody:first-child > tr:first-child,
+  .panel > table.tablaResumen:first-child > tbody:first-child > tr:first-child,
+  .login > table.tablaResumen:first-child > tbody:first-child > tr:first-child,
   .panel > .table-responsive:first-child > .table:first-child > thead:first-child > tr:first-child,
   .login > .table-responsive:first-child > .table:first-child > thead:first-child > tr:first-child,
   .panel > .table-responsive:first-child > table.tabla:first-child > thead:first-child > tr:first-child,
   .login > .table-responsive:first-child > table.tabla:first-child > thead:first-child > tr:first-child,
+  .panel > .table-responsive:first-child > table.tablaResumen:first-child > thead:first-child > tr:first-child,
+  .login > .table-responsive:first-child > table.tablaResumen:first-child > thead:first-child > tr:first-child,
   .panel > .table-responsive:first-child > .table:first-child > tbody:first-child > tr:first-child,
   .login > .table-responsive:first-child > .table:first-child > tbody:first-child > tr:first-child,
   .panel > .table-responsive:first-child > table.tabla:first-child > tbody:first-child > tr:first-child,
-  .login > .table-responsive:first-child > table.tabla:first-child > tbody:first-child > tr:first-child {
+  .login > .table-responsive:first-child > table.tabla:first-child > tbody:first-child > tr:first-child,
+  .panel > .table-responsive:first-child > table.tablaResumen:first-child > tbody:first-child > tr:first-child,
+  .login > .table-responsive:first-child > table.tablaResumen:first-child > tbody:first-child > tr:first-child {
     border-top-left-radius: 3px;
     border-top-right-radius: 3px; }
-    .panel > .table:first-child > thead:first-child > tr:first-child td:first-child, .login > .table:first-child > thead:first-child > tr:first-child td:first-child, .panel > table.tabla:first-child > thead:first-child > tr:first-child td:first-child, .login > table.tabla:first-child > thead:first-child > tr:first-child td:first-child,
+    .panel > .table:first-child > thead:first-child > tr:first-child td:first-child, .login > .table:first-child > thead:first-child > tr:first-child td:first-child, .panel > table.tabla:first-child > thead:first-child > tr:first-child td:first-child, .login > table.tabla:first-child > thead:first-child > tr:first-child td:first-child, .panel > table.tablaResumen:first-child > thead:first-child > tr:first-child td:first-child, .login > table.tablaResumen:first-child > thead:first-child > tr:first-child td:first-child,
     .panel > .table:first-child > thead:first-child > tr:first-child th:first-child,
     .login > .table:first-child > thead:first-child > tr:first-child th:first-child,
     .panel > table.tabla:first-child > thead:first-child > tr:first-child th:first-child,
     .login > table.tabla:first-child > thead:first-child > tr:first-child th:first-child,
+    .panel > table.tablaResumen:first-child > thead:first-child > tr:first-child th:first-child,
+    .login > table.tablaResumen:first-child > thead:first-child > tr:first-child th:first-child,
     .panel > .table:first-child > tbody:first-child > tr:first-child td:first-child,
     .login > .table:first-child > tbody:first-child > tr:first-child td:first-child,
     .panel > table.tabla:first-child > tbody:first-child > tr:first-child td:first-child,
     .login > table.tabla:first-child > tbody:first-child > tr:first-child td:first-child,
+    .panel > table.tablaResumen:first-child > tbody:first-child > tr:first-child td:first-child,
+    .login > table.tablaResumen:first-child > tbody:first-child > tr:first-child td:first-child,
     .panel > .table:first-child > tbody:first-child > tr:first-child th:first-child,
     .login > .table:first-child > tbody:first-child > tr:first-child th:first-child,
     .panel > table.tabla:first-child > tbody:first-child > tr:first-child th:first-child,
     .login > table.tabla:first-child > tbody:first-child > tr:first-child th:first-child,
+    .panel > table.tablaResumen:first-child > tbody:first-child > tr:first-child th:first-child,
+    .login > table.tablaResumen:first-child > tbody:first-child > tr:first-child th:first-child,
     .panel > .table-responsive:first-child > .table:first-child > thead:first-child > tr:first-child td:first-child,
     .login > .table-responsive:first-child > .table:first-child > thead:first-child > tr:first-child td:first-child,
     .panel > .table-responsive:first-child > table.tabla:first-child > thead:first-child > tr:first-child td:first-child,
     .login > .table-responsive:first-child > table.tabla:first-child > thead:first-child > tr:first-child td:first-child,
+    .panel > .table-responsive:first-child > table.tablaResumen:first-child > thead:first-child > tr:first-child td:first-child,
+    .login > .table-responsive:first-child > table.tablaResumen:first-child > thead:first-child > tr:first-child td:first-child,
     .panel > .table-responsive:first-child > .table:first-child > thead:first-child > tr:first-child th:first-child,
     .login > .table-responsive:first-child > .table:first-child > thead:first-child > tr:first-child th:first-child,
     .panel > .table-responsive:first-child > table.tabla:first-child > thead:first-child > tr:first-child th:first-child,
     .login > .table-responsive:first-child > table.tabla:first-child > thead:first-child > tr:first-child th:first-child,
+    .panel > .table-responsive:first-child > table.tablaResumen:first-child > thead:first-child > tr:first-child th:first-child,
+    .login > .table-responsive:first-child > table.tablaResumen:first-child > thead:first-child > tr:first-child th:first-child,
     .panel > .table-responsive:first-child > .table:first-child > tbody:first-child > tr:first-child td:first-child,
     .login > .table-responsive:first-child > .table:first-child > tbody:first-child > tr:first-child td:first-child,
     .panel > .table-responsive:first-child > table.tabla:first-child > tbody:first-child > tr:first-child td:first-child,
     .login > .table-responsive:first-child > table.tabla:first-child > tbody:first-child > tr:first-child td:first-child,
+    .panel > .table-responsive:first-child > table.tablaResumen:first-child > tbody:first-child > tr:first-child td:first-child,
+    .login > .table-responsive:first-child > table.tablaResumen:first-child > tbody:first-child > tr:first-child td:first-child,
     .panel > .table-responsive:first-child > .table:first-child > tbody:first-child > tr:first-child th:first-child,
     .login > .table-responsive:first-child > .table:first-child > tbody:first-child > tr:first-child th:first-child,
     .panel > .table-responsive:first-child > table.tabla:first-child > tbody:first-child > tr:first-child th:first-child,
-    .login > .table-responsive:first-child > table.tabla:first-child > tbody:first-child > tr:first-child th:first-child {
+    .login > .table-responsive:first-child > table.tabla:first-child > tbody:first-child > tr:first-child th:first-child,
+    .panel > .table-responsive:first-child > table.tablaResumen:first-child > tbody:first-child > tr:first-child th:first-child,
+    .login > .table-responsive:first-child > table.tablaResumen:first-child > tbody:first-child > tr:first-child th:first-child {
       border-top-left-radius: 3px; }
-    .panel > .table:first-child > thead:first-child > tr:first-child td:last-child, .login > .table:first-child > thead:first-child > tr:first-child td:last-child, .panel > table.tabla:first-child > thead:first-child > tr:first-child td:last-child, .login > table.tabla:first-child > thead:first-child > tr:first-child td:last-child,
+    .panel > .table:first-child > thead:first-child > tr:first-child td:last-child, .login > .table:first-child > thead:first-child > tr:first-child td:last-child, .panel > table.tabla:first-child > thead:first-child > tr:first-child td:last-child, .login > table.tabla:first-child > thead:first-child > tr:first-child td:last-child, .panel > table.tablaResumen:first-child > thead:first-child > tr:first-child td:last-child, .login > table.tablaResumen:first-child > thead:first-child > tr:first-child td:last-child,
     .panel > .table:first-child > thead:first-child > tr:first-child th:last-child,
     .login > .table:first-child > thead:first-child > tr:first-child th:last-child,
     .panel > table.tabla:first-child > thead:first-child > tr:first-child th:last-child,
     .login > table.tabla:first-child > thead:first-child > tr:first-child th:last-child,
+    .panel > table.tablaResumen:first-child > thead:first-child > tr:first-child th:last-child,
+    .login > table.tablaResumen:first-child > thead:first-child > tr:first-child th:last-child,
     .panel > .table:first-child > tbody:first-child > tr:first-child td:last-child,
     .login > .table:first-child > tbody:first-child > tr:first-child td:last-child,
     .panel > table.tabla:first-child > tbody:first-child > tr:first-child td:last-child,
     .login > table.tabla:first-child > tbody:first-child > tr:first-child td:last-child,
+    .panel > table.tablaResumen:first-child > tbody:first-child > tr:first-child td:last-child,
+    .login > table.tablaResumen:first-child > tbody:first-child > tr:first-child td:last-child,
     .panel > .table:first-child > tbody:first-child > tr:first-child th:last-child,
     .login > .table:first-child > tbody:first-child > tr:first-child th:last-child,
     .panel > table.tabla:first-child > tbody:first-child > tr:first-child th:last-child,
     .login > table.tabla:first-child > tbody:first-child > tr:first-child th:last-child,
+    .panel > table.tablaResumen:first-child > tbody:first-child > tr:first-child th:last-child,
+    .login > table.tablaResumen:first-child > tbody:first-child > tr:first-child th:last-child,
     .panel > .table-responsive:first-child > .table:first-child > thead:first-child > tr:first-child td:last-child,
     .login > .table-responsive:first-child > .table:first-child > thead:first-child > tr:first-child td:last-child,
     .panel > .table-responsive:first-child > table.tabla:first-child > thead:first-child > tr:first-child td:last-child,
     .login > .table-responsive:first-child > table.tabla:first-child > thead:first-child > tr:first-child td:last-child,
+    .panel > .table-responsive:first-child > table.tablaResumen:first-child > thead:first-child > tr:first-child td:last-child,
+    .login > .table-responsive:first-child > table.tablaResumen:first-child > thead:first-child > tr:first-child td:last-child,
     .panel > .table-responsive:first-child > .table:first-child > thead:first-child > tr:first-child th:last-child,
     .login > .table-responsive:first-child > .table:first-child > thead:first-child > tr:first-child th:last-child,
     .panel > .table-responsive:first-child > table.tabla:first-child > thead:first-child > tr:first-child th:last-child,
     .login > .table-responsive:first-child > table.tabla:first-child > thead:first-child > tr:first-child th:last-child,
+    .panel > .table-responsive:first-child > table.tablaResumen:first-child > thead:first-child > tr:first-child th:last-child,
+    .login > .table-responsive:first-child > table.tablaResumen:first-child > thead:first-child > tr:first-child th:last-child,
     .panel > .table-responsive:first-child > .table:first-child > tbody:first-child > tr:first-child td:last-child,
     .login > .table-responsive:first-child > .table:first-child > tbody:first-child > tr:first-child td:last-child,
     .panel > .table-responsive:first-child > table.tabla:first-child > tbody:first-child > tr:first-child td:last-child,
     .login > .table-responsive:first-child > table.tabla:first-child > tbody:first-child > tr:first-child td:last-child,
+    .panel > .table-responsive:first-child > table.tablaResumen:first-child > tbody:first-child > tr:first-child td:last-child,
+    .login > .table-responsive:first-child > table.tablaResumen:first-child > tbody:first-child > tr:first-child td:last-child,
     .panel > .table-responsive:first-child > .table:first-child > tbody:first-child > tr:first-child th:last-child,
     .login > .table-responsive:first-child > .table:first-child > tbody:first-child > tr:first-child th:last-child,
     .panel > .table-responsive:first-child > table.tabla:first-child > tbody:first-child > tr:first-child th:last-child,
-    .login > .table-responsive:first-child > table.tabla:first-child > tbody:first-child > tr:first-child th:last-child {
+    .login > .table-responsive:first-child > table.tabla:first-child > tbody:first-child > tr:first-child th:last-child,
+    .panel > .table-responsive:first-child > table.tablaResumen:first-child > tbody:first-child > tr:first-child th:last-child,
+    .login > .table-responsive:first-child > table.tablaResumen:first-child > tbody:first-child > tr:first-child th:last-child {
       border-top-right-radius: 3px; }
-.panel > .table:last-child, .login > .table:last-child, .panel > table.tabla:last-child, .login > table.tabla:last-child,
+.panel > .table:last-child, .login > .table:last-child, .panel > table.tabla:last-child, .login > table.tabla:last-child, .panel > table.tablaResumen:last-child, .login > table.tablaResumen:last-child,
 .panel > .table-responsive:last-child > .table:last-child,
 .login > .table-responsive:last-child > .table:last-child,
 .panel > .table-responsive:last-child > table.tabla:last-child,
-.login > .table-responsive:last-child > table.tabla:last-child {
+.login > .table-responsive:last-child > table.tabla:last-child,
+.panel > .table-responsive:last-child > table.tablaResumen:last-child,
+.login > .table-responsive:last-child > table.tablaResumen:last-child {
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px; }
-  .panel > .table:last-child > tbody:last-child > tr:last-child, .login > .table:last-child > tbody:last-child > tr:last-child, .panel > table.tabla:last-child > tbody:last-child > tr:last-child, .login > table.tabla:last-child > tbody:last-child > tr:last-child,
+  .panel > .table:last-child > tbody:last-child > tr:last-child, .login > .table:last-child > tbody:last-child > tr:last-child, .panel > table.tabla:last-child > tbody:last-child > tr:last-child, .login > table.tabla:last-child > tbody:last-child > tr:last-child, .panel > table.tablaResumen:last-child > tbody:last-child > tr:last-child, .login > table.tablaResumen:last-child > tbody:last-child > tr:last-child,
   .panel > .table:last-child > tfoot:last-child > tr:last-child,
   .login > .table:last-child > tfoot:last-child > tr:last-child,
   .panel > table.tabla:last-child > tfoot:last-child > tr:last-child,
   .login > table.tabla:last-child > tfoot:last-child > tr:last-child,
+  .panel > table.tablaResumen:last-child > tfoot:last-child > tr:last-child,
+  .login > table.tablaResumen:last-child > tfoot:last-child > tr:last-child,
   .panel > .table-responsive:last-child > .table:last-child > tbody:last-child > tr:last-child,
   .login > .table-responsive:last-child > .table:last-child > tbody:last-child > tr:last-child,
   .panel > .table-responsive:last-child > table.tabla:last-child > tbody:last-child > tr:last-child,
   .login > .table-responsive:last-child > table.tabla:last-child > tbody:last-child > tr:last-child,
+  .panel > .table-responsive:last-child > table.tablaResumen:last-child > tbody:last-child > tr:last-child,
+  .login > .table-responsive:last-child > table.tablaResumen:last-child > tbody:last-child > tr:last-child,
   .panel > .table-responsive:last-child > .table:last-child > tfoot:last-child > tr:last-child,
   .login > .table-responsive:last-child > .table:last-child > tfoot:last-child > tr:last-child,
   .panel > .table-responsive:last-child > table.tabla:last-child > tfoot:last-child > tr:last-child,
-  .login > .table-responsive:last-child > table.tabla:last-child > tfoot:last-child > tr:last-child {
+  .login > .table-responsive:last-child > table.tabla:last-child > tfoot:last-child > tr:last-child,
+  .panel > .table-responsive:last-child > table.tablaResumen:last-child > tfoot:last-child > tr:last-child,
+  .login > .table-responsive:last-child > table.tablaResumen:last-child > tfoot:last-child > tr:last-child {
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px; }
-    .panel > .table:last-child > tbody:last-child > tr:last-child td:first-child, .login > .table:last-child > tbody:last-child > tr:last-child td:first-child, .panel > table.tabla:last-child > tbody:last-child > tr:last-child td:first-child, .login > table.tabla:last-child > tbody:last-child > tr:last-child td:first-child,
+    .panel > .table:last-child > tbody:last-child > tr:last-child td:first-child, .login > .table:last-child > tbody:last-child > tr:last-child td:first-child, .panel > table.tabla:last-child > tbody:last-child > tr:last-child td:first-child, .login > table.tabla:last-child > tbody:last-child > tr:last-child td:first-child, .panel > table.tablaResumen:last-child > tbody:last-child > tr:last-child td:first-child, .login > table.tablaResumen:last-child > tbody:last-child > tr:last-child td:first-child,
     .panel > .table:last-child > tbody:last-child > tr:last-child th:first-child,
     .login > .table:last-child > tbody:last-child > tr:last-child th:first-child,
     .panel > table.tabla:last-child > tbody:last-child > tr:last-child th:first-child,
     .login > table.tabla:last-child > tbody:last-child > tr:last-child th:first-child,
+    .panel > table.tablaResumen:last-child > tbody:last-child > tr:last-child th:first-child,
+    .login > table.tablaResumen:last-child > tbody:last-child > tr:last-child th:first-child,
     .panel > .table:last-child > tfoot:last-child > tr:last-child td:first-child,
     .login > .table:last-child > tfoot:last-child > tr:last-child td:first-child,
     .panel > table.tabla:last-child > tfoot:last-child > tr:last-child td:first-child,
     .login > table.tabla:last-child > tfoot:last-child > tr:last-child td:first-child,
+    .panel > table.tablaResumen:last-child > tfoot:last-child > tr:last-child td:first-child,
+    .login > table.tablaResumen:last-child > tfoot:last-child > tr:last-child td:first-child,
     .panel > .table:last-child > tfoot:last-child > tr:last-child th:first-child,
     .login > .table:last-child > tfoot:last-child > tr:last-child th:first-child,
     .panel > table.tabla:last-child > tfoot:last-child > tr:last-child th:first-child,
     .login > table.tabla:last-child > tfoot:last-child > tr:last-child th:first-child,
+    .panel > table.tablaResumen:last-child > tfoot:last-child > tr:last-child th:first-child,
+    .login > table.tablaResumen:last-child > tfoot:last-child > tr:last-child th:first-child,
     .panel > .table-responsive:last-child > .table:last-child > tbody:last-child > tr:last-child td:first-child,
     .login > .table-responsive:last-child > .table:last-child > tbody:last-child > tr:last-child td:first-child,
     .panel > .table-responsive:last-child > table.tabla:last-child > tbody:last-child > tr:last-child td:first-child,
     .login > .table-responsive:last-child > table.tabla:last-child > tbody:last-child > tr:last-child td:first-child,
+    .panel > .table-responsive:last-child > table.tablaResumen:last-child > tbody:last-child > tr:last-child td:first-child,
+    .login > .table-responsive:last-child > table.tablaResumen:last-child > tbody:last-child > tr:last-child td:first-child,
     .panel > .table-responsive:last-child > .table:last-child > tbody:last-child > tr:last-child th:first-child,
     .login > .table-responsive:last-child > .table:last-child > tbody:last-child > tr:last-child th:first-child,
     .panel > .table-responsive:last-child > table.tabla:last-child > tbody:last-child > tr:last-child th:first-child,
     .login > .table-responsive:last-child > table.tabla:last-child > tbody:last-child > tr:last-child th:first-child,
+    .panel > .table-responsive:last-child > table.tablaResumen:last-child > tbody:last-child > tr:last-child th:first-child,
+    .login > .table-responsive:last-child > table.tablaResumen:last-child > tbody:last-child > tr:last-child th:first-child,
     .panel > .table-responsive:last-child > .table:last-child > tfoot:last-child > tr:last-child td:first-child,
     .login > .table-responsive:last-child > .table:last-child > tfoot:last-child > tr:last-child td:first-child,
     .panel > .table-responsive:last-child > table.tabla:last-child > tfoot:last-child > tr:last-child td:first-child,
     .login > .table-responsive:last-child > table.tabla:last-child > tfoot:last-child > tr:last-child td:first-child,
+    .panel > .table-responsive:last-child > table.tablaResumen:last-child > tfoot:last-child > tr:last-child td:first-child,
+    .login > .table-responsive:last-child > table.tablaResumen:last-child > tfoot:last-child > tr:last-child td:first-child,
     .panel > .table-responsive:last-child > .table:last-child > tfoot:last-child > tr:last-child th:first-child,
     .login > .table-responsive:last-child > .table:last-child > tfoot:last-child > tr:last-child th:first-child,
     .panel > .table-responsive:last-child > table.tabla:last-child > tfoot:last-child > tr:last-child th:first-child,
-    .login > .table-responsive:last-child > table.tabla:last-child > tfoot:last-child > tr:last-child th:first-child {
+    .login > .table-responsive:last-child > table.tabla:last-child > tfoot:last-child > tr:last-child th:first-child,
+    .panel > .table-responsive:last-child > table.tablaResumen:last-child > tfoot:last-child > tr:last-child th:first-child,
+    .login > .table-responsive:last-child > table.tablaResumen:last-child > tfoot:last-child > tr:last-child th:first-child {
       border-bottom-left-radius: 3px; }
-    .panel > .table:last-child > tbody:last-child > tr:last-child td:last-child, .login > .table:last-child > tbody:last-child > tr:last-child td:last-child, .panel > table.tabla:last-child > tbody:last-child > tr:last-child td:last-child, .login > table.tabla:last-child > tbody:last-child > tr:last-child td:last-child,
+    .panel > .table:last-child > tbody:last-child > tr:last-child td:last-child, .login > .table:last-child > tbody:last-child > tr:last-child td:last-child, .panel > table.tabla:last-child > tbody:last-child > tr:last-child td:last-child, .login > table.tabla:last-child > tbody:last-child > tr:last-child td:last-child, .panel > table.tablaResumen:last-child > tbody:last-child > tr:last-child td:last-child, .login > table.tablaResumen:last-child > tbody:last-child > tr:last-child td:last-child,
     .panel > .table:last-child > tbody:last-child > tr:last-child th:last-child,
     .login > .table:last-child > tbody:last-child > tr:last-child th:last-child,
     .panel > table.tabla:last-child > tbody:last-child > tr:last-child th:last-child,
     .login > table.tabla:last-child > tbody:last-child > tr:last-child th:last-child,
+    .panel > table.tablaResumen:last-child > tbody:last-child > tr:last-child th:last-child,
+    .login > table.tablaResumen:last-child > tbody:last-child > tr:last-child th:last-child,
     .panel > .table:last-child > tfoot:last-child > tr:last-child td:last-child,
     .login > .table:last-child > tfoot:last-child > tr:last-child td:last-child,
     .panel > table.tabla:last-child > tfoot:last-child > tr:last-child td:last-child,
     .login > table.tabla:last-child > tfoot:last-child > tr:last-child td:last-child,
+    .panel > table.tablaResumen:last-child > tfoot:last-child > tr:last-child td:last-child,
+    .login > table.tablaResumen:last-child > tfoot:last-child > tr:last-child td:last-child,
     .panel > .table:last-child > tfoot:last-child > tr:last-child th:last-child,
     .login > .table:last-child > tfoot:last-child > tr:last-child th:last-child,
     .panel > table.tabla:last-child > tfoot:last-child > tr:last-child th:last-child,
     .login > table.tabla:last-child > tfoot:last-child > tr:last-child th:last-child,
+    .panel > table.tablaResumen:last-child > tfoot:last-child > tr:last-child th:last-child,
+    .login > table.tablaResumen:last-child > tfoot:last-child > tr:last-child th:last-child,
     .panel > .table-responsive:last-child > .table:last-child > tbody:last-child > tr:last-child td:last-child,
     .login > .table-responsive:last-child > .table:last-child > tbody:last-child > tr:last-child td:last-child,
     .panel > .table-responsive:last-child > table.tabla:last-child > tbody:last-child > tr:last-child td:last-child,
     .login > .table-responsive:last-child > table.tabla:last-child > tbody:last-child > tr:last-child td:last-child,
+    .panel > .table-responsive:last-child > table.tablaResumen:last-child > tbody:last-child > tr:last-child td:last-child,
+    .login > .table-responsive:last-child > table.tablaResumen:last-child > tbody:last-child > tr:last-child td:last-child,
     .panel > .table-responsive:last-child > .table:last-child > tbody:last-child > tr:last-child th:last-child,
     .login > .table-responsive:last-child > .table:last-child > tbody:last-child > tr:last-child th:last-child,
     .panel > .table-responsive:last-child > table.tabla:last-child > tbody:last-child > tr:last-child th:last-child,
     .login > .table-responsive:last-child > table.tabla:last-child > tbody:last-child > tr:last-child th:last-child,
+    .panel > .table-responsive:last-child > table.tablaResumen:last-child > tbody:last-child > tr:last-child th:last-child,
+    .login > .table-responsive:last-child > table.tablaResumen:last-child > tbody:last-child > tr:last-child th:last-child,
     .panel > .table-responsive:last-child > .table:last-child > tfoot:last-child > tr:last-child td:last-child,
     .login > .table-responsive:last-child > .table:last-child > tfoot:last-child > tr:last-child td:last-child,
     .panel > .table-responsive:last-child > table.tabla:last-child > tfoot:last-child > tr:last-child td:last-child,
     .login > .table-responsive:last-child > table.tabla:last-child > tfoot:last-child > tr:last-child td:last-child,
+    .panel > .table-responsive:last-child > table.tablaResumen:last-child > tfoot:last-child > tr:last-child td:last-child,
+    .login > .table-responsive:last-child > table.tablaResumen:last-child > tfoot:last-child > tr:last-child td:last-child,
     .panel > .table-responsive:last-child > .table:last-child > tfoot:last-child > tr:last-child th:last-child,
     .login > .table-responsive:last-child > .table:last-child > tfoot:last-child > tr:last-child th:last-child,
     .panel > .table-responsive:last-child > table.tabla:last-child > tfoot:last-child > tr:last-child th:last-child,
-    .login > .table-responsive:last-child > table.tabla:last-child > tfoot:last-child > tr:last-child th:last-child {
+    .login > .table-responsive:last-child > table.tabla:last-child > tfoot:last-child > tr:last-child th:last-child,
+    .panel > .table-responsive:last-child > table.tablaResumen:last-child > tfoot:last-child > tr:last-child th:last-child,
+    .login > .table-responsive:last-child > table.tablaResumen:last-child > tfoot:last-child > tr:last-child th:last-child {
       border-bottom-right-radius: 3px; }
-.panel > .panel-body + .table, .login > .panel-body + .table, .login .panel > div.cuerpo + .table, .login > div.cuerpo + .table, .panel > .panel-body + table.tabla, .login > .panel-body + table.tabla, .login .panel > div.cuerpo + table.tabla, .login > div.cuerpo + table.tabla,
+.panel > .panel-body + .table, .login > .panel-body + .table, .login .panel > div.cuerpo + .table, .login > div.cuerpo + .table, .panel > .panel-body + table.tabla, .login > .panel-body + table.tabla, .login .panel > div.cuerpo + table.tabla, .login > div.cuerpo + table.tabla, .panel > .panel-body + table.tablaResumen, .login > .panel-body + table.tablaResumen, .login .panel > div.cuerpo + table.tablaResumen, .login > div.cuerpo + table.tablaResumen,
 .panel > .panel-body + .table-responsive,
 .login > .panel-body + .table-responsive,
 .login .panel > div.cuerpo + .table-responsive,
@@ -5117,20 +5262,26 @@ button.list-group-item-danger {
 .login > .table + .panel-body,
 .panel > table.tabla + .panel-body,
 .login > table.tabla + .panel-body,
+.panel > table.tablaResumen + .panel-body,
+.login > table.tablaResumen + .panel-body,
 .login .panel > .table + div.cuerpo,
 .login > .table + div.cuerpo,
 .login .panel > table.tabla + div.cuerpo,
 .login > table.tabla + div.cuerpo,
+.login .panel > table.tablaResumen + div.cuerpo,
+.login > table.tablaResumen + div.cuerpo,
 .panel > .table-responsive + .panel-body,
 .login > .table-responsive + .panel-body,
 .login .panel > .table-responsive + div.cuerpo,
 .login > .table-responsive + div.cuerpo {
   border-top: 1px solid #ddd; }
-.panel > .table > tbody:first-child > tr:first-child th, .login > .table > tbody:first-child > tr:first-child th, .panel > table.tabla > tbody:first-child > tr:first-child th, .login > table.tabla > tbody:first-child > tr:first-child th,
+.panel > .table > tbody:first-child > tr:first-child th, .login > .table > tbody:first-child > tr:first-child th, .panel > table.tabla > tbody:first-child > tr:first-child th, .login > table.tabla > tbody:first-child > tr:first-child th, .panel > table.tablaResumen > tbody:first-child > tr:first-child th, .login > table.tablaResumen > tbody:first-child > tr:first-child th,
 .panel > .table > tbody:first-child > tr:first-child td,
 .login > .table > tbody:first-child > tr:first-child td,
 .panel > table.tabla > tbody:first-child > tr:first-child td,
-.login > table.tabla > tbody:first-child > tr:first-child td {
+.login > table.tabla > tbody:first-child > tr:first-child td,
+.panel > table.tablaResumen > tbody:first-child > tr:first-child td,
+.login > table.tablaResumen > tbody:first-child > tr:first-child td {
   border-top: 0; }
 .panel > .table-bordered, .login > .table-bordered, .panel > table.tabla, .login > table.tabla,
 .panel > .table-responsive > .table-bordered,
@@ -6317,6 +6468,14 @@ table.tabla {
       width: 150px !important; }
   table.tabla tr th {
     text-align: center !important; }
+
+table.tablaResumen {
+  background: #FFF;
+  box-shadow: 0 2px 3px 0 #777; }
+  table.tablaResumen tr td.tdResumen {
+    font-weight: bold;
+    border: 1px solid #dedede;
+    text-align: left; }
 
 .login {
   box-shadow: 0 2px 3px 0 #777; }
