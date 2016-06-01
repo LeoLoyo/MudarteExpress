@@ -5,6 +5,7 @@
       if(!session){
         $state.go('login');
       }else{
+        angular.element('#ncotizacion').focus();
 
 
       // variables
@@ -53,7 +54,7 @@ $('.btnsCotizacion').removeClass('hidden');
         hora_registro:'',
         fuente:'',
         cp_pv:'',
-        tipo_cliente:'',
+        tipo_cliente:'Particular',
         cargo:'',
         forma_pago:'',
         fecha_de_carga:'',
