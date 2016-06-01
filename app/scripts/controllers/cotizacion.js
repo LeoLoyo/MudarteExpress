@@ -2,7 +2,7 @@
   'use strict';
   var app = angular.module('cotizacionExpressApp');
 
-    app.controller('CotizacionCtrl', function (muebles_resolve, $interval,$rootScope, $state, $scope,Users,Direccion, Material,Cotizacion, Contenedor, Mueble, Bulto, Cliente, $http,setting) {
+    app.controller('CotizacionCtrl', function (contenedores_resolve,muebles_resolve, $interval,$rootScope, $state, $scope,Users,Direccion, Material,Cotizacion, Contenedor, Mueble, Bulto, Cliente, $http,setting) {
       // variables
       $interval(
         function handleInterval() {
@@ -264,19 +264,16 @@
         Direccion.all().then(function(r){
           $scope.barrio_provincias = r;
         });
-        Contenedor.all().then(function(r){
-          $scope.contenedores = r;
-        }).catch(function(){
-          $scope.contenedores = [];
-        });;
+
+        $scope.contenedores = contenedores_resolve;
+
         Mueble.all('filtrado').then(function(groups){
           $scope.muebles_group = groups;
         }).catch(function(){
           $scope.muebles_group = [];
         });
-        // Mueble.all().then(function(muebles){
-          $scope.muebles = muebles_resolve;
-        // });
+
+        $scope.muebles = muebles_resolve;
 
         Mueble.tipo_mueble().then(function(muebles){
           $scope.tipo_muebles = muebles;

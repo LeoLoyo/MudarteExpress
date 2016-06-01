@@ -40,7 +40,14 @@ var session = false;
             ,
             resolve:{
               muebles_resolve:function (API,Mueble){
-                return Mueble.all();
+                 return Mueble.all().then(function(r){
+                  return r;
+                });
+              },
+              contenedores_resolve:function (API,Contenedor){
+                return Contenedor.all().then(function(r){
+                 return r;
+               });
               }
             }
           }
