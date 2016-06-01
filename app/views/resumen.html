@@ -11,7 +11,7 @@
               <p>3 de Febrero 3455 / Nunez</p>
             </td>
             <td rowspan="4">
-              <h2>Cotizacion Express</h2>
+              <h2>Cotización Express</h2>
             </td>
             <td rowspan="4" colspan="2">
               logo mudarte
@@ -314,16 +314,17 @@
                 <td>{{cliente.responsable}}</td>
               </tr>
             </table> -->
-            <table  border=1 style="width:1250;" id="prueba">
+            <table border=1 style="width:1450;" id="prueba">
               <thead>
               <tr>
-                <th rowspan=8 colspan=10>
-                  <p><strong>4701-1177<strong></p>
-                  <p><strong>WWW.MUDARTE.COM.AR<strong></p>
-                  <p>info@mudarte.com.ar </p>
-                  <p>3 de Febrero 3455 / Nunez</p>
+                <td rowspan=8 colspan=10>
                   <h2>Cotizacion Express</h2>
-                </th>
+                  <p><strong>4701-1177
+                    <br>WWW.MUDARTE.COM.AR
+                    <br>info@mudarte.com.ar
+                    <br>3 de Febrero 3455 / Nunez<strong></p>
+                  <img type="image" src="img/LogoMudarte.png"/>
+                </td>
                 <th rowspan=2>N° Cotiz.</th>
                 <td rowspan=2 align=center>{{cotizacion.numero_cotizacion}}</td>
               </tr>
@@ -555,6 +556,27 @@
             <br>
             <br>
             <br>
+            <h2>Materiales</h2>
+            <legend></legend>
+            <table border=1 id="tablaMateriales">
+              <thead>
+              <tr style="height:35px;">
+                <th width=50>Materiales</th>
+                <th width=60>Cantidad</th>
+                <th width=70>Precio unit.</th>
+                <th width=70>Totales</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr height=35 ng-repeat="item in contenedores_temp">
+                <td align=center>{{item.descripcion}}</td>
+                <td align=center>{{cantidad.num}}</td>
+                <td align=center>{{item.precio}}</td>
+                <td align=center>{{item.precio * cantidad.num|currency}}</td>
+              </tr>
+            </table>
+            <br>
+            <br>
             <h2>Contenedores</h2>
             <legend></legend>
             <table border=1 id="tablaContenedor">
@@ -591,14 +613,13 @@
               </tr>
               <tr style="height:35px;" ng-repeat="item in muebles_temp">
                 <td align=center ng-if="item.mueble == 'Otros'">Otros-{{item.descripcion}}</td>
-                <td align=center
-                ng-if="item.mueble != 'Otros'">{{item.mueble}}</td>
+                <td align=center ng-if="item.mueble != 'Otros'">{{item.mueble}}</td>
                 <td align=center>{{item.ancho}}x{{item.largo}}x{{item.alto}}</td>
                 <td align=center>{{item.cantidad}}</td>
                 <td align=center>{{item.total_punto/10|number:2}}</td>
               </tr>
               <tr style="height:35px; background-color: #A9A9A9;">
-              <th>Total</th>
+              <th colspan=2>Total</th>
               <td align=center><strong>{{unidades_otros}}</strong></td>
               <td align=center><strong>{{metros3_otros|number:2}}</strong></td>
               </tr>
@@ -611,7 +632,6 @@
                 <th align=center style="background-color: #A9A9A9;">Total m<sup>3</sup></th>
                 <th align=center><strong>{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}</strong></th>
               </tr>
-              <tr></tr>
             </table>
     </div>
 </div>
@@ -619,10 +639,10 @@
 <script>
 function descargarExcel(){
         var tmpElemento = document.createElement('a');
-        var data_type = 'data:application/vnd.ms-excel; charset=utf-8';
+        var data_type = 'data:"application/vnd.ms-excel; charset=utf8';
         var tabla_div = document.getElementById('divExportar');
         var tabla_html = tabla_div.outerHTML.replace(/ /g, '%20');
-        tmpElemento.href = data_type + ', ' + tabla_html;
+        tmpElemento.href = data_type + ', ' + tabla_html + ', ' + write_url('A3',  'http://www.mudarte.com.ar/imagenes/logo.png', $format        );;
         //Asignamos el nombre a nuestro EXCEL
         tmpElemento.download = 'Resumen.xls';
         tmpElemento.click();
