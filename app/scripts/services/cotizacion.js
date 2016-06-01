@@ -1,7 +1,40 @@
 (function(){
   'use strict';
   var app = angular.module('Express.services',[]);
+    app.factory('API',function($http,$q){
+      var self = this;
 
+      // Handle query's and potential errors
+      self.query = function (url, parameters) {
+        parameters = parameters || [];
+        var q = $q.defer();
+
+          $http.get(url).then(function (result) {
+              q.resolve(result);
+            }, function (error) {
+              console.warn('I found an error');
+              console.warn(error);
+              q.reject(error);
+            });
+        return q.promise;
+      }
+      self.getAll = function(result) {
+        var output = [];
+        for (var i = 0; i < result.data.length; i++) {
+          output.push(result.data[i]);
+        }
+        return output;
+      }
+
+      // // Proces a single result
+      // self.getById = function(result) {
+      //   var output = null;
+      //   output = angular.copy(result.rows.item(0));
+      //   return output;
+      // }
+
+      return self;
+    });
     app.service('Auth', function($http, setting){
       var self = this;
       var users = [
@@ -119,23 +152,21 @@
       return self;
     });
 
-    app.factory('Contenedor', function ($http, setting) {
-      var collection = [];
-
-      return {
-        all:function(contenedor){
-          // var url = setting.url + "contenedordescripcion/?format=json"
-          var url = 'scripts/json/contenedordescripcion.json'
-          if(contenedor !== undefined){
-            url = setting.url +"contenedor/?format=json&contenedor="+contenedor;
-            // url = 'scripts/json/contenedor.json';
-          }
-          $http.get(url).then(function(data){
-             collection = data.data;
+    app.factory('Contenedor', function (API, setting) {
+      var self = this;
+      self.all = function (contenedor) {
+        var url = setting.url + "contenedordescripcion/?format=json"
+        // var url = 'scripts/json/contenedordescripcion.json'
+            if(contenedor !== undefined){
+              url = setting.url +"contenedor/?format=json&contenedor="+contenedor;
+              // url = 'scripts/json/contenedor.json';
+            }
+        return API.query(url)
+          .then(function(result){
+            return API.getAll(result);
           });
-          return collection;
-        }
-      };
+      }
+      return self;
     });
 
     app.factory('Material', function ($http, setting) {
@@ -159,31 +190,29 @@
       };
     });
 
-    app.service('Mueble', function ($http, setting) {
+    app.factory('Mueble', function (API, setting) {
 
       var self = this;
-
-      self.all = function(group){
-      //  var url = setting.url+"mueble/?format=json";
-        var url = 'scripts/json/mueble.json';
-        if(group !== undefined){
-          // url = setting.url+'muebledescripcion/?format=json';
-          url = 'scripts/json/muebledescripcion.json';
-        }
-        return $http.get(url).then(function(data){
-          return data.data;
-        }).catch(function(e){
-          return null;
-        });
+      self.all = function (group) {
+         var url = setting.url+"mueble/?format=json";
+          // var url = 'scripts/json/mueble.json';
+          if(group !== undefined){
+            url = setting.url+'muebledescripcion/?format=json';
+            // url = 'scripts/json/muebledescripcion.json';
+          }
+        return API.query(url)
+          .then(function(result){
+            return API.getAll(result);
+          });
       }
+
       self.tipo_mueble = function(){
         var url = setting.url+"tipo_mueble/?format=json";
         // var url = "scripts/json/tipo_mueble.json";
-        return $http.get(url).then(function(data){
-          return data.data;
-        }).catch(function(e){
-          return null;
-        });
+        return API.query(url)
+          .then(function(result){
+            return API.getAll(result);
+          });
       }
       return self;
 
@@ -204,13 +233,13 @@
 
       self.find = function(mueble){
         for(var i = 0;i<collection.length;i++){
-                if(mueble.alto === collection[i].alto && mueble.largo === collection[i].ancho){
-                  object = collection[i];
-                  return object;
-                }
-              };
+          if(mueble.alto === collection[i].alto && mueble.largo === collection[i].ancho){
+            object = collection[i];
+            return object;
+          }
         };
-      });
+      }
+    });
 
     app.service('Cliente', function ($http, setting) {
       var self = this;
@@ -238,8 +267,8 @@
             break;
           default:
             url = 'scripts/json/user.json';
-            break
-        };
+            break;
+        }
 
         return $http.get(url).then(function(data){
           return data.data;
@@ -247,18 +276,19 @@
       }
     });
 
-    app.factory('Direccion', function ($http, setting) {
+    app.factory('Direccion', function (API, setting) {
 
-      var collection = [];
+      var self = this;
 
-      return {
-        all:function(){
-          var url = 'scripts/json/barrioprovincia.json';
-          $http.get(url).then(function(data){
-            collection= data.data;
-          });
-          return collection;
-        }
-      };
+      self.all = function(){
+
+        var url = 'scripts/json/barrioprovincia.json';
+        return API.query(url)
+          .then(function(result){
+              return API.getAll(result);
+              }
+          );
+      }
+        return self;
     })
 })();

@@ -154,17 +154,17 @@
 
       function recur_punto(a_query,object){
         var punto = 0,resta = angular.copy(object),l=a_query.length;
-        if(object.unidad>0){
+        if(Number(object.unidad)>0){
           for(var j = 0;j<l;j++){
-            if(object.unidad >= a_query[j].unidad){
+            if(Number(object.unidad) >= Number(a_query[j].unidad)){
               punto += a_query[j].punto;
-              resta.unidad = object.unidad - a_query[j].unidad;
+              resta.unidad = Number(object.unidad) - Number(a_query[j].unidad);
               return punto += recur_punto(a_query,resta);
             }
 
           }
         }
-        return punto;
+        return Number(punto);
 
       };
 
@@ -239,18 +239,27 @@
 
       function init(contenedor){
         if(contenedor !== undefined){
-          // return Contenedor.all(contenedor).then(function(contenedores){
-          //   $scope.todoscontenedores = contenedores;});
-            return $scope.todoscontenedores = Contenedor.all(contenedor);
-
+          return Contenedor.all(contenedor).then(function(contenedores){
+            $scope.todoscontenedores = contenedores;});
         }else{
           numeros();
           numeros_otros();
           $('.btnsCotizacion').removeClass('hidden');
 
           $scope.materiales = Material.all();
-          $scope.contenedores = Contenedor.all();
 
+        Users.all(1).then(function(r){
+          $scope.cotizadores = r;
+        });
+        Users.all(2).then(function(r){
+          $scope.telefonista = r;
+        });
+        Direccion.all().then(function(r){
+          $scope.barrio_provincias = r;
+        });
+        Contenedor.all().then(function(r){
+          $scope.contenedores = r;
+        });
         Mueble.all('filtrado').then(function(groups){
           $scope.muebles_group = groups;
         });
@@ -260,14 +269,8 @@
         Mueble.tipo_mueble().then(function(muebles){
           $scope.tipo_muebles = muebles;
         });
-        Users.all(1).then(function(r){
-          $scope.cotizadores = r;
-        });
-        Users.all(2).then(function(r){
-          $scope.telefonista = r;
-        });
-          $scope.barrio_provincias = Direccion.all();
-          $scope.fuentes = Cotizacion.all_fuentes();
+
+        $scope.fuentes = Cotizacion.all_fuentes();
 
 
         }
@@ -296,14 +299,14 @@
       $scope.add_contenedor = function(descripcion,uni) {
         var contenedor_temp = {
           contenedor:descripcion,
-          unidad:uni,
+          unidad:Number(uni),
           punto : 0
         };
 
 
         init(descripcion).then(function(){
         if(!buscar_contenedor($scope.contenedores_temp, contenedor_temp)){
-            if(contenedor_temp.unidad>0){
+            if(Number(contenedor_temp.unidad)>0){
               $scope.contenedores_temp.push(contenedor_temp);
             }
         }
@@ -316,20 +319,20 @@
       };
 
       $rootScope.limpiar = function(){
-        // init();
-        // $scope.contenedores_temp = [];
-        // $scope.muebles_temp = [];
-        //
-        // $scope.otros_temp = [];
-        // $scope.otros_temp_campo = [];
+        init();
+        $scope.contenedores_temp = [];
+        $scope.muebles_temp = [];
+
+        $scope.otros_temp = [];
+        $scope.otros_temp_campo = [];
         //
         // //Variables De Totales
-        // $scope.metros3_contenedores = 0;
-        // $scope.unidades_contenedores = 0;
-        // $scope.metros3_muebles = 0;
-        // $scope.unidades_muebles = 0;
-        // $scope.metros3_otros = 0;
-        // $scope.unidades_otros = 0;
+        $scope.metros3_contenedores = 0;
+        $scope.unidades_contenedores = 0;
+        $scope.metros3_muebles = 0;
+        $scope.unidades_muebles = 0;
+        $scope.metros3_otros = 0;
+        $scope.unidades_otros = 0;
       }
 
       $scope.add_mueble = function(mueble,uni) {
