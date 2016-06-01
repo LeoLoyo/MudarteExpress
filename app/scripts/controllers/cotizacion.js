@@ -3,7 +3,7 @@
   var app = angular.module('cotizacionExpressApp');
 
     app.controller('CotizacionCtrl', function ($interval,$rootScope, $state, $scope,Users,Direccion, Material,Cotizacion, Contenedor, Mueble, Bulto, Cliente, $http,setting) {
-      //variables
+      // variables
       $interval(
         function handleInterval() {
             $rootScope.$broadcast( "change" );
@@ -239,40 +239,36 @@
 
       function init(contenedor){
         if(contenedor !== undefined){
-          return Contenedor.all(contenedor).then(function(contenedores){
-            $scope.todoscontenedores = contenedores;
+          // return Contenedor.all(contenedor).then(function(contenedores){
+          //   $scope.todoscontenedores = contenedores;});
+            return $scope.todoscontenedores = Contenedor.all(contenedor);
 
-          });
         }else{
           numeros();
           numeros_otros();
           $('.btnsCotizacion').removeClass('hidden');
 
-          Material.all().then(function(materiales){
-            $scope.materiales = materiales;
-          });
-          Contenedor.all().then(function(contenedores){
-            $scope.contenedores = contenedores;
-          });
-          Mueble.all('filtrado').then(function(groups){
-            $scope.muebles_group = groups;
-          });
-          Mueble.all().then(function(muebles){
-            $scope.muebles = muebles;
-          });
-          Mueble.tipo_mueble().then(function(muebles){
-            $scope.tipo_muebles = muebles;
-          });
-          Users.all(1).then(function(r){
-            $scope.cotizadores = r;
-          });
-          Users.all(2).then(function(r){
-            $scope.telefonista = r;
-          });
-          Direccion.all().then(function(r){
-            $scope.barrio_provincias = r;
-          });
-            $scope.fuentes = Cotizacion.all_fuentes();
+          $scope.materiales = Material.all();
+          $scope.contenedores = Contenedor.all();
+
+        Mueble.all('filtrado').then(function(groups){
+          $scope.muebles_group = groups;
+        });
+        Mueble.all().then(function(muebles){
+          $scope.muebles = muebles;
+        });
+        Mueble.tipo_mueble().then(function(muebles){
+          $scope.tipo_muebles = muebles;
+        });
+        Users.all(1).then(function(r){
+          $scope.cotizadores = r;
+        });
+        Users.all(2).then(function(r){
+          $scope.telefonista = r;
+        });
+          $scope.barrio_provincias = Direccion.all();
+          $scope.fuentes = Cotizacion.all_fuentes();
+
 
         }
         $rootScope.$on('change',function(event){
@@ -320,20 +316,20 @@
       };
 
       $rootScope.limpiar = function(){
-        init();
-        $scope.contenedores_temp = [];
-        $scope.muebles_temp = [];
-
-        $scope.otros_temp = [];
-        $scope.otros_temp_campo = [];
-
-        //Variables De Totales
-        $scope.metros3_contenedores = 0;
-        $scope.unidades_contenedores = 0;
-        $scope.metros3_muebles = 0;
-        $scope.unidades_muebles = 0;
-        $scope.metros3_otros = 0;
-        $scope.unidades_otros = 0;
+        // init();
+        // $scope.contenedores_temp = [];
+        // $scope.muebles_temp = [];
+        //
+        // $scope.otros_temp = [];
+        // $scope.otros_temp_campo = [];
+        //
+        // //Variables De Totales
+        // $scope.metros3_contenedores = 0;
+        // $scope.unidades_contenedores = 0;
+        // $scope.metros3_muebles = 0;
+        // $scope.unidades_muebles = 0;
+        // $scope.metros3_otros = 0;
+        // $scope.unidades_otros = 0;
       }
 
       $scope.add_mueble = function(mueble,uni) {

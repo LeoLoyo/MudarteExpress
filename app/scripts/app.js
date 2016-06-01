@@ -34,7 +34,8 @@ var session = false;
         url:'/cotizacion',
         views:{
           'maincontent':{
-            templateUrl:'views/cotizacion.html',
+            templateUrl:'views/cliente.html',
+            // templateUrl:'views/cotizacion.html',
             controller:'CotizacionCtrl'
           }
         }

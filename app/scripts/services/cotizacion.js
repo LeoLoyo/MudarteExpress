@@ -119,46 +119,52 @@
       return self;
     });
 
-    app.service('Contenedor', function ($http, setting) {
-      var self = this;
-      self.all = function(contenedor){
-        // var url = setting.url + "contenedordescripcion/?format=json"
-        var url = 'scripts/json/contenedordescripcion.json'
-        if(contenedor !== undefined){
-          url = setting.url +"contenedor/?format=json&contenedor="+contenedor;
-          // url = 'scripts/json/contenedor.json';
+    app.factory('Contenedor', function ($http, setting) {
+      var collection = [];
+
+      return {
+        all:function(contenedor){
+          // var url = setting.url + "contenedordescripcion/?format=json"
+          var url = 'scripts/json/contenedordescripcion.json'
+          if(contenedor !== undefined){
+            url = setting.url +"contenedor/?format=json&contenedor="+contenedor;
+            // url = 'scripts/json/contenedor.json';
+          }
+          $http.get(url).then(function(data){
+             collection = data.data;
+          });
+          return collection;
         }
-        return $http.get(url).then(function(data){
-          return data.data;
-        }).catch(function(e){
-          return null;
-        });
-      }
+      };
     });
 
-    app.service('Material', function ($http, setting) {
-      var self = this;
-      self.all = function(){
-          // url = setting.url + "/material/?format=json";
-          var url = "scripts/json/material.json";
-        return $http.get(url).then(function(data){
-          var out =[];
-          angular.forEach(data.data, function(value,key){
-            value.precio = Number(value.precio);
-            out.push(value);
-          },out);
-          // return data.data;
-          return out;
-        }).catch(function(e){
-          return null;
-        });
-      }
+    app.factory('Material', function ($http, setting) {
+      var collection = [];
+
+      return {
+        all:function(){
+            // url = setting.url + "/material/?format=json";
+            var url = "scripts/json/material.json";
+              $http.get(url).then(function(data){
+              var out =[];
+              angular.forEach(data.data, function(value,key){
+              value.precio = Number(value.precio);
+              out.push(value);
+              },out);
+              // return data.data;
+              collection =  out;
+              });
+          return collection
+        }
+      };
     });
 
     app.service('Mueble', function ($http, setting) {
+
       var self = this;
+
       self.all = function(group){
-       // var url = setting.url+"mueble/?format=json";
+      //  var url = setting.url+"mueble/?format=json";
         var url = 'scripts/json/mueble.json';
         if(group !== undefined){
           // url = setting.url+'muebledescripcion/?format=json';
@@ -171,8 +177,8 @@
         });
       }
       self.tipo_mueble = function(){
-        // var url = setting.url+"tipo_mueble/?format=json";
-        var url = "scripts/json/tipo_mueble.json";
+        var url = setting.url+"tipo_mueble/?format=json";
+        // var url = "scripts/json/tipo_mueble.json";
         return $http.get(url).then(function(data){
           return data.data;
         }).catch(function(e){
@@ -241,16 +247,18 @@
       }
     });
 
-    app.service('Direccion', function ($http, setting) {
-      var self = this;
+    app.factory('Direccion', function ($http, setting) {
 
-      self.all = function(){
-        var url = 'scripts/json/barrioprovincia.json';
-        return $http.get(url).then(function(data){
-          return data.data;
-        });
-      }
+      var collection = [];
 
-      return self;
+      return {
+        all:function(){
+          var url = 'scripts/json/barrioprovincia.json';
+          $http.get(url).then(function(data){
+            collection= data.data;
+          });
+          return collection;
+        }
+      };
     })
 })();
