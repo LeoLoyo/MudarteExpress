@@ -1,16 +1,12 @@
 <!doctype html>
-<html ng-app="cotizacionExpressApp">
+<html ng-app="cotizacionExpressApp" ng-init="nav='1'">
 <head>
     <meta content="text/html;" http-equiv="content-type" charset="utf-8">
     <title>Cotización express</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
-    <!-- <link rel="stylesheet" href="styles/main.css"> -->
+
+<!--     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+ -->
     <link rel="stylesheet" href="styles/estilos.css">
     <!-- endbuild -->
 </head>
@@ -50,7 +46,7 @@
 <div id="wrapper" class="toggled">
 
         <!-- Sidebar -->
-        <div id="sidebar-wrapper" ng-init="nav ='1'">
+        <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
                    <img src="logo.png" alt="">
@@ -108,11 +104,10 @@
 </div>
 <!-- /#wrapper -->
 <span class="btnLimpiar" ng-show="resumen">
-                    <button type="button" class="btn-inverse"   ng-click="limpiar()">
+                    <button type="button" class="btn-inverse"   ng-click="limpiar()" data-toggle="tooltip" data-placement="left" title="Limpiar">
                         <span class="glyphicon glyphicon-trash"></span>
                     </button>
                 </span>
-
 <!-- build:js(.) scripts/vendor.js -->
 <!-- bower:js -->
 <script src="bower_components/jquery/dist/jquery.js"></script>

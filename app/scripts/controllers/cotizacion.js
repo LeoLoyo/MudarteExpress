@@ -246,7 +246,14 @@
           numeros_otros();
           $('.btnsCotizacion').removeClass('hidden');
 
-          $scope.materiales = Material.all();
+          Material.all().then(function(r){
+            var out =[];
+            angular.forEach(r, function(value,key){
+            value.precio = Number(value.precio);
+            out.push(value);
+            },out)
+          $scope.materiales = out;
+          });
 
         Users.all(1).then(function(r){
           $scope.cotizadores = r;

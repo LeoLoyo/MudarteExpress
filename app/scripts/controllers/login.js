@@ -1,7 +1,6 @@
 (function(){
   var app = angular.module('cotizacionExpressApp');
     app.controller('LoginCtrl', function ($rootScope, $scope, $state, Auth,setting) {
-      // console.log($state.data.current.session);
       $('.btnsCotizacion').addClass('hidden');
       $rootScope.session = session;
       $scope.ingresar = function(user,pass){
@@ -11,11 +10,13 @@
             $scope.messages ='Bienvenido';
 
               setTimeout(function(){
-                $state.go('cotizacion');
-                session=true;
-                $('.btnsCotizacion').removeClass('hidden');
-                $('.dropdown-toggle').text('').append('<i class="glyphicon glyphicon-user"></i> '+response[0].user.name+'<span class="caret"></span>');
-              },0);
+                $rootScope.$apply(function(){
+                  $state.go('cotizacion');
+                  session=true;
+                  $('.btnsCotizacion').removeClass('hidden');
+                  $('.dropdown-toggle').text('').append('<i class="glyphicon glyphicon-user"></i> '+response[0].user.name+'<span class="caret"></span>');
+                });
+              },500);
 
           }else{
               $scope.messages ='Usuario o contraseña invalido';

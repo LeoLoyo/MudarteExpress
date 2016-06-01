@@ -156,8 +156,8 @@
     app.factory('Contenedor', function (API, setting) {
       var self = this;
       self.all = function (contenedor) {
-        var url = setting.url + "contenedordescripcion/?format=json"
-        // var url = 'scripts/json/contenedordescripcion.json'
+        // var url = setting.url + "contenedordescripcion/?format=json"
+        var url = 'scripts/json/contenedordescripcion.json'
             if(contenedor !== undefined){
               url = setting.url +"contenedor/?format=json&contenedor="+contenedor;
               // url = 'scripts/json/contenedor.json';
@@ -170,36 +170,29 @@
       return self;
     });
 
-    app.factory('Material', function ($http, setting) {
-      var collection = [];
+    app.service('Material', function (API, setting) {
+      var self = this;
+      self.all = function () {
+        // var url = setting.url + "/material/?format=json";
+        var url = "scripts/json/material.json";
 
-      return {
-        all:function(){
-            // url = setting.url + "/material/?format=json";
-            var url = "scripts/json/material.json";
-              $http.get(url).then(function(data){
-              var out =[];
-              angular.forEach(data.data, function(value,key){
-              value.precio = Number(value.precio);
-              out.push(value);
-              },out);
-              // return data.data;
-              collection =  out;
-              });
-          return collection
-        }
-      };
+        return API.query(url)
+          .then(function(result){
+            return API.getAll(result);
+          });
+      }
+      return self;
     });
 
     app.factory('Mueble', function (API, setting) {
 
       var self = this;
       self.all = function (group) {
-         var url = setting.url+"mueble/?format=json";
-          // var url = 'scripts/json/mueble.json';
+        //  var url = setting.url+"mueble/?format=json";
+          var url = 'scripts/json/mueble.json';
           if(group !== undefined){
-            url = setting.url+'muebledescripcion/?format=json';
-            // url = 'scripts/json/muebledescripcion.json';
+            // url = setting.url+'muebledescripcion/?format=json';
+            url = 'scripts/json/muebledescripcion.json';
           }
         return API.query(url)
           .then(function(result){
@@ -208,8 +201,8 @@
       }
 
       self.tipo_mueble = function(){
-        var url = setting.url+"tipo_mueble/?format=json";
-        // var url = "scripts/json/tipo_mueble.json";
+        // var url = setting.url+"tipo_mueble/?format=json";
+        var url = "scripts/json/tipo_mueble.json";
         return API.query(url)
           .then(function(result){
             return API.getAll(result);
