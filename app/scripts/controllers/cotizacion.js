@@ -266,9 +266,11 @@
         Users.all(2).then(function(r){
           $scope.telefonista = r;
         });
-          $scope.barrio_provincias = Direccion.all();
+        //$scope.barrio_provincias = Direccion.all();
+        Direccion.all().then(function(r){
+            $scope.barrio_provincias = r;
+          });
           $scope.fuentes = Cotizacion.all_fuentes();
-
 
         }
         $rootScope.$on('change',function(event){

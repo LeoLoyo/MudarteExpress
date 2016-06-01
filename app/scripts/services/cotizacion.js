@@ -247,18 +247,29 @@
       }
     });
 
-    app.factory('Direccion', function ($http, setting) {
+    // app.factory('Direccion', function ($http, setting) {
 
-      var collection = [];
+    //   var collection = [];
 
-      return {
-        all:function(){
-          var url = 'scripts/json/barrioprovincia.json';
-          $http.get(url).then(function(data){
-            collection= data.data;
-          });
-          return collection;
-        }
-      };
+    //   return {
+    //     all:function(){
+    //       var url = 'scripts/json/barrioprovincia.json';
+    //       $http.get(url).then(function(data){
+    //         collection= data.data;
+    //       });
+    //       return collection;
+    //     }
+    //   };
+    // })
+    app.service('Direccion', function ($http, setting) {
+      var self = this;
+
+      self.all = function(){
+        var url = 'scripts/json/barrioprovincia.json';
+        return $http.get(url).then(function(data){
+          return data.data;
+        });
+      }
+      return self;
     })
 })();
