@@ -1,6 +1,13 @@
 (function(){
   'use strict';
   var app = angular.module('cotizacionExpressApp');
+  app.directive('confirmarCotizacion',function(){
+
+      return {
+        templateUrl: "views/_confirmarCotizacion.html"
+      };
+
+  });
     app.controller('CotizacionCtrl', function (contenedores_resolve,muebles_resolve, $interval,$rootScope, $state, $scope,Users,Direccion, Material,Cotizacion, Contenedor, Mueble, Bulto, Cliente, $http,setting) {
       if(!session){
         $state.go('login');
