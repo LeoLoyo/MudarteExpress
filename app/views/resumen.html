@@ -8,7 +8,7 @@
               <p><strong>4701-1177<strong></p>
               <p><strong>WWW.MUDARTE.COM.AR<strong></p>
               <p>info@mudarte.com.ar </p>
-              <p>3 de Febrero 3455 / Nunez</p>
+              <p>3 de Febrero 3455 / Nuñez</p>
             </td>
             <td rowspan="4">
               <h2>Cotización Express</h2>
@@ -24,7 +24,7 @@
             <td>{{cotizacion.fuente}}</td>
           </tr>
           <tr>
-            <td style="background-color: #fff;" class="tdResumen" align=center>Cp / PV</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>CP / PV</td>
             <td>{{cotizacion.cp_pv}}</td>
           </tr>
           <tr>
@@ -58,7 +58,7 @@
             <td>{{cotizacion.cotizador}}</td>
           </tr>
           <tr>
-            <td style="background-color: #fff;" class="tdResumen" align=center>Fecha estimada de muedanza:</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Fecha estimada de mudanza:</td>
             <td>{{cotizacion.fecha_estimada_mudanza | date:'dd-MM-yyyy'}}</td>
             <td style="background-color: #fff;" class="tdResumen" align=center>Hora:</td>
             <td>{{cotizacion.hora_estimada_mudanza | date:'HH:mm'}}</td>
@@ -292,7 +292,7 @@
               <td align="center" class="tdResumen"><strong style="display:flex;"><span style="flex:10%;margin-top:auto;margin-bottom:auto;">{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}</span><span style="flex:10%;margin-top:auto;margin-bottom:auto;"> m<sup>3</sup></span></strong></td>
             </tr>
             <tr>
-              <td class="paddingNone tdResumen" style="padding:0;display:flex;">
+              <td class="paddingNone tdResumen" style="padding:0;display:flex;width:100px">
                 <input type="number" class="form-control" style="flex:90%;border-radius:0;border:none;" ng-model="margen"><span style="flex:10%;margin-top:auto;margin-bottom:auto;"> %</span>
               </td>
               <th class="tdResumen">Margen</th>
@@ -312,6 +312,7 @@
                <pre><font size=5 face="verdana"><strong>      4701-1177                                                                   <strong></font><font align=rigth color="#CC6202" size=17 face="verdana"><i><u><b>M</b></u></i></font><font size=15 face="verdana"><i><u><b>udarte<b></u></i></font></pre>
                <pre><font size=3 face="verdana"><strong>  WWW.MUDARTE.COM.AR               <strong></font><font size=6 face="verdana">Cotización Express      </font><font size=1/2 face="verdana">mudanzas,embalajes,guardamuebles</font></pre>
                <pre><font size=3 face="verdana">      info@mudarte.com.ar</font></pre>
+               <pre><font size=3 face="verdana"> 3 de Febrero 3455 / Nuñez</font></pre>
              </td>
                <th rowspan=2>N° Cotiz.</th>
                <th rowspan=2 align=center>{{cotizacion.numero_cotizacion}}</th>
@@ -628,7 +629,7 @@
              <td align="center"><strong>{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}</strong></td>
            </tr>
            <tr style="height:35px;">
-             <td>{{margen}}</td>
+             <th>{{margen}}</th>
              <th>Margen</th>
              <td>{{(metros3_contenedores+metros3_muebles+metros3_otros)*(1+(margen/100))|number:2}}</td>
            </tr>

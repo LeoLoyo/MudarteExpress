@@ -16,7 +16,7 @@
     <div ng-repeat="group in muebles">
 
         <item-muebles group="group" cantidades="cantidades"></item-muebles>
-        
+
     </div>
     <br><br>
     <legend></legend>
@@ -87,6 +87,7 @@
     </button>
 </span>
 <div ng-hide="checked" ng-include='"views/resumen.html"'></div>
+<div ng-hide="checked" ng-include='"views/_confirmarCotizacion.html"'></div>
 <script>
 function limpiar(){
   $(function(){
@@ -95,5 +96,4 @@ function limpiar(){
   });
   console.log('aqui');
 }
-
 </script>
