@@ -5,6 +5,7 @@
       if(!session){
         $state.go('login');
       }else{
+        $scope.filter = '';
               angular.element('#ncotizacion').focus();
 
 
@@ -345,11 +346,9 @@
 
             };
 
-            $rootScope.limpiar = function(){
-
+            $scope.limpiar = function(){
               $scope.contenedores_temp = [];
               $scope.muebles_temp = [];
-
               $scope.otros_temp = [];
               $scope.otros_temp_campo = [];
               // //Variables De Totales
@@ -359,10 +358,6 @@
               $scope.unidades_muebles = 0;
               $scope.metros3_otros = 0;
               $scope.unidades_otros = 0;
-
-              init().then(function(){
-                alert("Clear");
-              });
             }
 
             $scope.add_mueble = function(mueble,uni) {
@@ -391,7 +386,8 @@
             };
 
             $scope.add_otros = function(campo,mueble,ancho,largo,alto,cant,descripcion,otro){
-              if(ancho!==undefined && largo!==undefined && alto!==undefined){
+              console.log(mueble);
+              if(ancho!==undefined && largo!==undefined && alto!==undefined && mueble){
                var otro = {
                     id: campo.id,
                     mueble: mueble,
@@ -425,7 +421,7 @@
                 $scope.metros3_otros = calcular_totales($scope.otros_temp,"total_punto")/10;
                 $scope.unidades_otros = calcular_totales($scope.otros_temp,"cantidad");
               }else{
-                alert('Falta Definir Las Dimensiones');
+                alert('Seleccione primero la descripción');
               }
             }
 

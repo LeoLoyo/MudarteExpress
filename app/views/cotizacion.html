@@ -38,7 +38,7 @@
                       <div class="row">
                         <div class="form-group col-md-3">
                           <label for="">Descripción</label>
-                          <select class="form-control"  ng-focus="scrollAnime($event)"  ng-model="otro" ng-init="otro.tipo_mueble = 'Otros'" ng-change="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion,campo)">
+                          <select class="form-control"  ng-focus="scrollAnime($event)"  ng-model="otro" ng-change="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion,campo)">
                             <option>Otros</option>
                             <option ng-repeat="m in tipo_muebles">{{m.tipo_mueble}}</option>
                           </select>
@@ -92,4 +92,19 @@
           </div>
 
 </div>
+<span class="btnLimpiar" ng-show="resumen">
+    <button type="button" class="btn-inverse"  onclick="limpiar()" ng-click="limpiar()" data-toggle="tooltip" data-placement="left" title="Limpiar">
+        <span class="glyphicon glyphicon-trash"></span>
+    </button>
+</span>
 <div ng-hide="checked" ng-include='"views/resumen.html"'></div>
+<script>
+function limpiar(){
+  $(function(){
+    $('.btnSeleccionado').children('.classContenedores').click()
+
+  });
+  console.log('aqui');
+}
+
+</script>
