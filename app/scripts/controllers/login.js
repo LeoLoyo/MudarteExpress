@@ -24,7 +24,7 @@
           }
       }
       $rootScope.logout = function(){
-        // $rootScope.nav = '1';
+        $rootScope.nav = '1';
         session=false;
         $('.dropdown-toggle').text('Login').append('<span class="caret"></span>');
         $state.go('login');
