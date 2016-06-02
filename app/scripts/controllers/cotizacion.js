@@ -23,6 +23,7 @@
                   $scope.cantidades.push({num:i});
               }
               return $scope.cantidades;
+
             }
 
 

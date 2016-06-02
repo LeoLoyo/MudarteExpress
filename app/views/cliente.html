@@ -31,11 +31,11 @@
   <form action="" class="formulario">
     <div class="row">
   <div class="col-md-3 form-group">
-    <label for="id_nombre">Nombre del clente: </label>
+    <label for="id_nombre">Nombre del cliente: </label>
     <input type="text" id="id_nombre" ng-model="cliente.nombre" class="form-control">
   </div>
   <div class="col-md-3 form-group">
-    <label for="id_telefono">Telefono del cliente: </label>
+    <label for="id_telefono">Teléfono del cliente: </label>
     <input type="number" ng-model="cliente.telefono" class="form-control">
   </div>
   <div class="col-md-3 form-group">
@@ -112,7 +112,7 @@
 </div>
 <div class="row">
   <div class="col-md-3 form-group">
-    <label for="id_fecha5">Fecha en que se cerro:</label>
+    <label for="id_fecha5">Fecha en que se cerró:</label>
     <input type="date" ng-model="cotizacion.fecha_de_cierre" class="form-control">
   </div>
   <div class="col-md-3 form-group">
@@ -151,7 +151,7 @@
     <select name="" ng-model="cotizacion.barrio_provincia_origen" class="form-control"><option ng-repeat="item in barrio_provincias">{{item.descripcion}}</option></select>
   </div>
   <div class="col-md-12 form-group">
-    <label for="">observacion de origen</label>
+    <label for="">Observación de origen</label>
     <textarea style="resize:none;" class="form-control" ng-model="cotizacion.observacion_origen"></textarea>
   </div>
   <div class="col-md-8 form-group">
@@ -163,7 +163,7 @@
     <select name="" ng-model="cotizacion.barrio_provincia_destino" class="form-control"><option ng-repeat="item in barrio_provincias">{{item.descripcion}}</option></select>
   </div>
   <div class="col-md-12 form-group">
-    <label for="">observacion de destino</label>
+    <label for="">Observación de destino</label>
     <textarea style="resize:none;" class="form-control" ng-model="cotizacion.observacion_destino"></textarea>
   </div>
 </div>
