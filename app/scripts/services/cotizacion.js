@@ -187,13 +187,10 @@
     app.factory('Mueble', function (API, setting) {
 
       var self = this;
-      self.all = function (group) {
-         var url = setting.url+"mueble/?format=json";
-          // var url = 'scripts/json/mueble.json';
-          if(group !== undefined){
-            url = setting.url+'muebledescripcion/?format=json';
-            // url = 'scripts/json/muebledescripcion.json';
-          }
+      self.all = function () {
+        //  var url = setting.url+"mueble/?format=json";
+          var url = 'scripts/json/mueble.json';
+
         return API.query(url)
           .then(function(result){
             return API.getAll(result);
@@ -256,7 +253,7 @@
             break;
 
           case 2:
-            url = setting.url+"user/?format=json&telefonnista=telefonista";
+            url = setting.url+"user/?format=json&telefonista=telefonista";
             // url = 'scripts/json/telefonista.json';
             break;
           default:
