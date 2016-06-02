@@ -201,39 +201,39 @@
           </tr>
           <tr>
             <td  class="tdResumen" width="40px;" >Mudanza</td>
-            <td style="text-align:right!important;">{{cotizacion.mudanza}}</td>
+            <td style="text-align:right!important;">$ {{cotizacion.mudanza}}</td>
           </tr>
           <tr>
             <td  class="tdResumen" width="20%">Soga</td>
-            <td style="text-align:right!important;">{{cotizacion.soga}}</td>
+            <td style="text-align:right!important;">$ {{cotizacion.soga}}</td>
           </tr>
           <tr>
             <td  class="tdResumen" width="20%">Embalaje</td>
-            <td style="text-align:right!important;">{{cotizacion.embalaje}}</td>
+            <td style="text-align:right!important;">$ {{cotizacion.embalaje}}</td>
           </tr>
           <tr>
             <td  class="tdResumen" width="20%">Desembalaje</td>
-            <td style="text-align:right!important;">{{cotizacion.desembalaje}}</td>
+            <td style="text-align:right!important;">$ {{cotizacion.desembalaje}}</td>
           </tr>
           <tr>
             <td  class="tdResumen" width="20%">Materiales</td>
-            <td style="text-align:right!important;">{{cotizacion.materiales}}</td>
+            <td style="text-align:right!important;">$ {{cotizacion.materiales}}</td>
           </tr>
           <tr>
             <td  class="tdResumen" width="20%">Piano/C.fuerte</td>
-            <td style="text-align:right!important;">{{cotizacion.piano_cajafuerte}}</td>
+            <td style="text-align:right!important;">$ {{cotizacion.piano_cajafuerte}}</td>
           </tr>
           <tr>
             <td  class="tdResumen" width="80%">Ajuste</td>
-            <td style="text-align:right!important;">{{cotizacion.ajuste}}</td>
+            <td style="text-align:right!important;">$ {{cotizacion.ajuste}}</td>
           </tr>
           <tr>
             <td  class="tdResumen" width="80%">IVA</td>
-            <td style="text-align:right!important;">{{cotizacion.iva}}</td>
+            <td style="text-align:right!important;">$ {{cotizacion.iva}}</td>
           </tr>
           <tr>
             <th  class="tdResumen" width="80%">Total</th>
-            <td style="text-align:right!important;">{{cotizacion.total_monto|currency}}</td>
+            <td style="text-align:right!important;"> {{cotizacion.total_monto|currency}}</td>
           </tr>
         </table>
         <legend></legend>
@@ -302,16 +302,24 @@
 
     </div>
 
-    <div id="divExportar" class="col-md-12">
+    <div id="divExportar" class="col-md-12 hidden">
         <h1 style="color:#fff">Resumen</h1>
             <table border=1 style="width:1450;" id="prueba">
               <thead>
               <tr>
-              <td rowspan=8 colspan=10>
-                <pre><font size=5 face="verdana"><strong>      4701-1177                                                                   <strong></font><font align=rigth color="#CC6202" size=17 face="verdana"><i><u><b>M</b></u></i></font><font size=15 face="verdana"><i><u><b>udarte<b></u></i></font></pre>
-                <pre><font size=3 face="verdana"><strong>  WWW.MUDARTE.COM.AR               <strong></font><font size=6 face="verdana">Cotización Express      </font><font size=1/2 face="verdana">mudanzas,embalajes,guardamuebles</font></pre>
-                <pre><font size=3 face="verdana">      info@mudarte.com.ar</font></pre>
-              </td>
+              <th style="border-rigth:none;" rowspan=8 colspan=3>
+                <font align=center size=5 face="verdana"><strong>4701-1177<strong></font><br>
+                <font align=center size=3 face="verdana"><strong>WWW.MUDARTE.COM.AR<strong><br>
+                <font align=center size=3 face="verdana">info@mudarte.com.ar</font><br>
+                <font align=center size=3 face="verdana">3 de Febrero 3455 / Nunez</font>
+              </th>
+              <th rowspan=8 colspan=4>
+                <font size=5 face="verdana">Cotización Express</font>
+              </th>
+              <th rowspan=8 colspan=3>
+                <font color="#CC6202" size=17 face="verdana"><i><u><b>M</b></u></i></font><font size=15 face="verdana"><i><u><b>udarte<b></u></i></font><br>
+                <font size=1/2 face="verdana">mudanzas,embalajes,guardamuebles</font>
+              </th>
                 <th rowspan=2>N° Cotiz.</th>
                 <th rowspan=2 align=center>{{cotizacion.numero_cotizacion}}</th>
               </tr>
@@ -416,8 +424,8 @@
               </tr>
               <tr></tr>
               <tr>
-                <td align=center rowspan=3 colspan=6>{{cotizacion.direccion_origen}}</td>
-                <td align=center rowspan=3 colspan=4>{{cotizacion.barrio_provincia_origen}}</td>
+                <th align=center rowspan=3 colspan=6>{{cotizacion.direccion_origen}}</th>
+                <th align=center rowspan=3 colspan=4>{{cotizacion.barrio_provincia_origen}}</th>
               </tr>
               <tr></tr>
               <tr></tr>
@@ -426,7 +434,7 @@
               </tr>
               <tr></tr>
               <tr>
-                <td rowspan=6 colspan=10>{{cotizacion.observacion_origen}}</td>
+                <th align=center rowspan=6 colspan=10>{{cotizacion.observacion_origen}}</th>
               </tr>
               <tr></tr>
               <tr></tr>
@@ -439,8 +447,8 @@
               </tr>
               <tr></tr>
               <tr>
-                <td align=center rowspan=3 colspan=6>{{cotizacion.direccion_destino}}</td>
-                <td align=center rowspan=3 colspan=4>{{cotizacion.barrio_provincia_destino}}</td>
+                <th align=center rowspan=3 colspan=6>{{cotizacion.direccion_destino}}</th>
+                <th align=center rowspan=3 colspan=4>{{cotizacion.barrio_provincia_destino}}</th>
               </tr>
               <tr></tr>
               <tr></tr>
@@ -449,7 +457,7 @@
               </tr>
               <tr></tr>
               <tr>
-                <td rowspan=6 colspan=10>{{cotizacion.observacion_destino}}</td>
+                <th align=center rowspan=6 colspan=10>{{cotizacion.observacion_destino}}</th>
               </tr>
 
               <tr></tr>
@@ -535,7 +543,7 @@
                 <td rowspan=2 colspan=2 align=center>{{cotizacion.rampa}}</td>
                 <td rowspan=2 colspan=2 align=center></td>
                 <th rowspan=2 colspan=2 style="background-color: #A9A9A9;">Total</th>
-                <td rowspan=2 colspan=2 style="background-color: #A9A9A9;" align=center>{{cotizacion.total_monto|currency}}</td>
+                <th rowspan=2 colspan=2 style="background-color: #A9A9A9;" align=center>{{cotizacion.total_monto|currency}}</th>
               </tr>
               <tr></tr>
             </tbody>
@@ -562,7 +570,7 @@
               </tr>
               <tr height=35 style="background-color: #A9A9A9;">
                 <th colspan="3">Total:</th>
-                <td><strong>{{cotizacion.materiales|currency}}</strong></td>
+                <th><strong>{{cotizacion.materiales|currency}}</strong></th>
               </tr>
             </table>
             <br>
@@ -585,8 +593,8 @@
               </tr>
               <tr height=35 style="background-color: #A9A9A9;">
                 <th>Total</th>
-                <td align=center><strong>{{unidades_contenedores}}</strong></td>
-                <td align=center><strong>{{metros3_contenedores|number:2}}</strong></td>
+                <th align=center><strong>{{unidades_contenedores}}</strong></th>
+                <th align=center><strong>{{metros3_contenedores|number:2}}</strong></th>
               </tr>
 
             </table>
@@ -616,20 +624,20 @@
               </tr>
               <tr style="height:35px; background-color: #A9A9A9;">
                 <th colspan=2>Total</th>
-                <td align=center><strong>{{unidades_muebles + unidades_otros}}</strong></td>
-                <td align=center><strong>{{metros3_muebles + metros3_otros|number:2}}</strong></td>
+                <th align=center><strong>{{unidades_muebles + unidades_otros}}</strong></th>
+                <th align=center><strong>{{metros3_muebles + metros3_otros|number:2}}</strong></th>
               </tr>
             </table>
           <h2>Totales</h2>
           <table border=1 id="tablaTotal">
             <tr style="height:35px; background-color: #A9A9A9;">
               <th colspan="2">Total m<sup>3</sup></th>
-              <td align="center"><strong>{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}</strong></td>
+              <th align="center"><strong>{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}</strong></th>
             </tr>
             <tr style="height:35px;">
-              <td>{{margen}}</td>
+              <th>{{margen}}</th>
               <th>Margen</th>
-              <td>{{(metros3_contenedores+metros3_muebles+metros3_otros)*(1+(margen/100))|number:2}}</td>
+              <th>{{(metros3_contenedores+metros3_muebles+metros3_otros)*(1+(margen/100))|number:2}}</th>
             </tr>
           </table>
     </div>
