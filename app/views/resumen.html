@@ -303,43 +303,28 @@
 
     </div>
 
-    <div id="divExportar" class="hidden col-md-12">
-        <h1>Resumen</h1>
-            <!-- <table border=1 id="tablaTotal" class="hidden">
-              <tr>
-                <th style="background-color: #d9edf7">Nro. Cotizacion</th>
-                <td>{{cotizacion.numero}}</td>
-              </tr>
-              <tr>
-                <th style="background-color: #d9edf7">Cliente</th>
-                <td>{{cliente.nombre}}</td>
-              </tr>
-              <tr>
-                <th style="background-color: #d9edf7">Responsable</th>
-                <td>{{cliente.responsable}}</td>
-              </tr>
-            </table> -->
+    <div id="divExportar" class="col-md-12">
+        <h1 style="color:#fff">Resumen</h1>
             <table border=1 style="width:1450;" id="prueba">
               <thead>
               <tr>
-              <td align=center rowspan=8 colspan=10>
-                <h1>Cotización Express</h1>
-                <p><strong>4701-1177<strong></p>
-                <p><strong>WWW.MUDARTE.COM.AR<strong></p>
-                <p>info@mudarte.com.ar</p>
+              <td rowspan=8 colspan=10>
+                <pre><font size=5 face="verdana"><strong>      4701-1177                                                                   <strong></font><font align=rigth color="#CC6202" size=17 face="verdana"><i><u><b>M</b></u></i></font><font size=15 face="verdana"><i><u><b>udarte<b></u></i></font></pre>
+                <pre><font size=3 face="verdana"><strong>  WWW.MUDARTE.COM.AR               <strong></font><font size=6 face="verdana">Cotización Express      </font><font size=1/2 face="verdana">mudanzas,embalajes,guardamuebles</font></pre>
+                <pre><font size=3 face="verdana">      info@mudarte.com.ar</font></pre>
               </td>
                 <th rowspan=2>N° Cotiz.</th>
-                <td rowspan=2 align=center>{{cotizacion.numero_cotizacion}}</td>
+                <th rowspan=2 align=center>{{cotizacion.numero_cotizacion}}</th>
               </tr>
               <tr></tr>
               <tr>
                 <th rowspan=2>Fuente</th>
-                <td rowspan=2 align=center>{{cotizacion.fuente}}</td>
+                <th rowspan=2 align=center>{{cotizacion.fuente}}</th>
               </tr>
               <tr></tr>
               <tr>
                 <th rowspan=2>CP/PV</th>
-                <td rowspan=2 align=center>{{cotizacion.cp_pv}}</td>
+                <th rowspan=2 align=center>{{cotizacion.cp_pv}}</th>
               </tr>
               <tr></tr>
               <tr>
@@ -613,27 +598,32 @@
             <table border=1 id="tablaMueble">
               <tr style="height:35px;">
                 <th>Mueble</th>
-                <th>Dimensión</th>
+                <th>ALA</th>
                 <th>Cantidad</th>
                 <th>m<sup>3</sup></th>
               </tr>
-              <tr style="height:35px;" ng-repeat="item in muebles_temp">
-                <td align=center ng-if="item.mueble == 'Otros'">Otros-{{item.descripcion}}</td>
-                <td align=center ng-if="item.mueble != 'Otros'">{{item.mueble}}</td>
-                <td align=center>{{item.ancho}}x{{item.largo}}x{{item.alto}}</td>
-                <td align=center>{{item.cantidad}}</td>
-                <td align=center>{{item.total_punto/10|number:2}}</td>
+              <tr ng-repeat="item in muebles_temp">
+                <td  ng-if="item.mueble != ''">{{item.mueble}} {{item.espeficicacion}}</td><!-- cambio leo -->
+                <td align="center">{{item.ancho}}x{{item.largo}}x{{item.alto}}</td>
+                <td align="center">{{item.cantidad}}</td>
+                <td align="center">{{item.total_punto/10|number:2}}</td>
+              </tr>
+              <tr ng-repeat="item in otros_temp">
+                <td ng-if="item.mueble == 'Otros'">Otros-{{item.descripcion}}</td>
+                <td ng-if="item.mueble != 'Otros'">{{item.mueble}}</td>
+                <td align="center">{{item.ancho}}x{{item.largo}}x{{item.alto}}</td>
+                <td align="center">{{item.cantidad}}</td>
+                <td align="center">{{item.total_punto/10|number:2}}</td>
               </tr>
               <tr style="height:35px; background-color: #A9A9A9;">
-              <th colspan=2>Total</th>
-              <td align=center><strong>{{unidades_otros}}</strong></td>
-              <td align=center><strong>{{metros3_otros|number:2}}</strong></td>
+                <th colspan=2>Total</th>
+                <td align=center><strong>{{unidades_muebles + unidades_otros}}</strong></td>
+                <td align=center><strong>{{metros3_muebles + metros3_otros|number:2}}</strong></td>
               </tr>
             </table>
-
           <h2>Totales</h2>
           <table border=1 id="tablaTotal">
-            <tr style="height:35px;">
+            <tr style="height:35px; background-color: #A9A9A9;">
               <th colspan="2">Total m<sup>3</sup></th>
               <td align="center"><strong>{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}</strong></td>
             </tr>

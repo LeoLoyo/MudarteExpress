@@ -15,7 +15,6 @@
         $scope.filter = '';
               angular.element('#ncotizacion').focus();
 
-
             // variables
             $interval(
               function handleInterval() {
@@ -32,7 +31,6 @@
               return $scope.cantidades;
 
             }
-
 
             $scope.cant_otros = [];
             function numeros_otros(){
