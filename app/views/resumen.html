@@ -1,6 +1,7 @@
 <div ng-show="nav==='6'">
     <div class="col-md-12">
       <div class="">
+        <br>
         <table class="tablaResumen" style="max-width:100%;">
           <tr>
             <td rowspan="4">
@@ -32,7 +33,7 @@
           </tr>
           <tr>
             <td style="background-color: #fff;" class="tdResumen" align=center>Nombre y Apellido:</td>
-            <td colspan="3" align=center><strong>{{cliente.nombre}}</strong></td>
+            <td colspan="3">{{cliente.nombre}}</td>
             <td style="background-color: #fff;" class="tdResumen" align=center>Empresa</td>
             <td><strong ng-if="cotizacion.tipo_cliente ==='Empresa'">X</strong></td>
           </tr>
@@ -177,18 +178,18 @@
         <table class="tablaResumen">
           <tr class="active">
             <th>Material</th>
-            <th style="text-align:right!important;">Cantidad</th>
-            <th width="200" style="text-align:right!important;">Precio unit.</th>
+            <th style="text-align:center!important;">Cantidad</th>
+            <th width="200" style="text-align:center!important;">Precio unit.</th>
             <th width="200" style="text-align:right!important;">Totales</th>
           </tr>
           <tr ng-repeat="item in materiales_temp">
             <td>{{item.material}}</td>
-            <td style="text-align:right!important;">{{item.cantidad}}</td>
-            <td style="text-align:right!important;">{{item.precio_unitario}}</td>
+            <td style="text-align:center!important;">{{item.cantidad}}</td>
+            <td style="text-align:center!important;">{{item.precio_unitario}}</td>
             <td style="text-align:right!important;" >{{item.total|currency}}</td>
           </tr>
           <tr class="active">
-            <td colspan="3" style="text-align:right!important;"><strong>Total:</strong></td>
+            <td colspan="3" style="text-align:right!important;border-right: 1px solid #dedede;"><strong>Total:</strong></td>
             <td style="text-align:right!important;"><strong>{{cotizacion.materiales|currency}}</strong></td>
           </tr>
         </table>
@@ -231,8 +232,8 @@
             <td  class="tdResumen" width="80%">IVA</td>
             <td style="text-align:right!important;">{{cotizacion.iva}}</td>
           </tr>
-          <tr>
-            <th  class="tdResumen" width="80%">Total</th>
+          <tr class="active">
+            <th  class="tdResumen" width="80%" style="text-align:right!important;border-right: 1px solid #dedede;">Total:</th>
             <td style="text-align:right!important;">{{cotizacion.total_monto|currency}}</td>
           </tr>
         </table>
@@ -250,7 +251,7 @@
                 <td align="center">{{item.punto/10|number:2}}</td>
               </tr>
               <tr class="active">
-                <td style="text-align:right!important;"><strong>Total:</strong></td>
+                <td style="text-align:right!important;border-right: 1px solid #dedede;"><strong>Total:</strong></td>
                 <td align="center"><strong>{{unidades_contenedores}}</strong></td>
                 <td align="center"><strong>{{metros3_contenedores|number:2}}</strong></td>
               </tr>
@@ -278,7 +279,7 @@
               <td align="center">{{item.total_punto/10|number:2}}</td>
             </tr>
             <tr class="active">
-              <td colspan="2"><strong>Total</strong></td>
+              <td colspan="2" style="text-align:right!important;border-right: 1px solid #dedede;"><strong>Total:</strong></td>
               <td align="center"><strong>{{unidades_muebles + unidades_otros}}</strong></td>
               <td align="center"><strong>{{metros3_muebles + metros3_otros|number:2}}</strong></td>
             </tr>
@@ -287,15 +288,15 @@
           <h2>Totales</h2>
           <table style="width:200px;" class="tablaResumen">
             <tr>
-              <th colspan="2" class="tdResumen">Total m<sup>3</sup></th>
-              <td align="center" class="tdResumen"><strong>{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}</strong></td>
+              <th colspan="2" class="tdResumen">Total m<sup>3</sup>:</th>
+              <td align="center" class="tdResumen"><strong style="display:flex;"><span style="flex:10%;margin-top:auto;margin-bottom:auto;">{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}</span><span style="flex:10%;margin-top:auto;margin-bottom:auto;"> m<sup>3</sup></span></strong></td>
             </tr>
             <tr>
               <td class="paddingNone tdResumen" style="padding:0;display:flex;">
                 <input type="number" class="form-control" style="flex:90%;border-radius:0;border:none;" ng-model="margen"><span style="flex:10%;margin-top:auto;margin-bottom:auto;"> %</span>
               </td>
               <th class="tdResumen">Margen</th>
-              <td class="tdResumen">{{(metros3_contenedores+metros3_muebles+metros3_otros)*(1+(margen/100))|number:2}}</td>
+              <td class="tdResumen"><strong style="display:flex;"><span style="flex:90%;border-radius:0;border:none;">{{(metros3_contenedores+metros3_muebles+metros3_otros)*(1+(margen/100))|number:2}}</span> <span style="flex:10%;margin-top:auto;margin-bottom:auto;">m<sup>3</sup></span></strong></td>
             </tr>
           </table>
           <!-- <button type="submit" ng-disabled="otros_temp.length === 0 && contenedores_temp.length === 0 && muebles_temp.length === 0" class="btn btn-success" onclick="descargarExcel()" ng-click="save(cotizacion,cliente)">Exportar</button> -->
