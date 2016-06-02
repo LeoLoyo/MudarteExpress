@@ -52,7 +52,7 @@
             <td style="background-color: #fff;" class="tdResumen" align=center>Fecha en que se cargó:</td>
             <td>{{cotizacion.fecha_de_carga | date:'dd-MM-yyyy'}}</td>
             <td style="background-color: #fff;" class="tdResumen" align=center>Hora:</td>
-            <td>{{cotizacion.hora_de_carga | date:'h:mma'}}</td>
+            <td>{{cotizacion.hora_de_carga | date:'HH:mm'}}</td>
             <td style="background-color: #fff;" class="tdResumen" align=center>Cotizador</td>
             <td>{{cotizacion.cotizador}}</td>
           </tr>
@@ -60,7 +60,7 @@
             <td style="background-color: #fff;" class="tdResumen" align=center>Fecha estimada de muedanza:</td>
             <td>{{cotizacion.fecha_estimada_mudanza | date:'dd-MM-yyyy'}}</td>
             <td style="background-color: #fff;" class="tdResumen" align=center>Hora:</td>
-            <td>{{cotizacion.hora_estimada_mudanza | date:'h:mma'}}</td>
+            <td>{{cotizacion.hora_estimada_mudanza | date:'HH:mm'}}</td>
             <td style="background-color: #fff;" class="tdResumen" align=center>Forma pago</td>
             <td class="" style="border-bottom: 1px solid #dedede;">{{cotizacion.forma_pago}}</td>
           </tr>
@@ -68,26 +68,26 @@
             <td style="background-color: #fff;" class="tdResumen" align=center>Fecha en que se cotizó:</td>
             <td>{{cotizacion.fecha_de_cotizacion | date:'dd-MM-yyyy'}}</td>
             <td style="background-color: #fff;" class="tdResumen" align=center>Hora:</td>
-            <td>{{cotizacion.hora_de_cotizacion | date:'h:mma'}}</td>
+            <td>{{cotizacion.hora_de_cotizacion | date:'HH:mm'}}</td>
             <td class="tdResumen" rowspan="4"></td>
           </tr>
           <tr>
             <td style="background-color: #fff;" class="tdResumen" align=center>Fecha en que se avisó:</td>
             <td>{{cotizacion.fecha_de_aviso | date:'dd-MM-yyyy'}}</td>
             <td style="background-color: #fff;" class="tdResumen" align=center>Hora:</td>
-            <td>{{cotizacion.hora_de_aviso | date:'h:mma'}}</td>
+            <td>{{cotizacion.hora_de_aviso | date:'HH:mm'}}</td>
           </tr>
           <tr>
             <td style="background-color: #fff;" class="tdResumen" align=center>Fecha en que se cerro:</td>
             <td>{{cotizacion.fecha_de_cierre | date:'dd-MM-yyyy'}}</td>
             <td style="background-color: #fff;" class="tdResumen" align=center>Hora:</td>
-            <td>{{cotizacion.hora_de_cierre | date:'h:mma'}}</td>
+            <td>{{cotizacion.hora_de_cierre | date:'HH:mm'}}</td>
           </tr>
           <tr>
             <td style="background-color: #fff;" class="tdResumen" align=center>Fecha real de mudanza:</td>
             <td>{{cotizacion.fecha_real_mudanza | date:'dd-MM-yyyy'}}</td>
             <td style="background-color: #fff;" class="tdResumen" align=center>Hora:</td>
-            <td>{{cotizacion.hora_real_mudanza | date:'h:mma'}}</td>
+            <td>{{cotizacion.hora_real_mudanza | date:'HH:mm'}}</td>
           </tr>
           <tr>
             <td style="background-color: #fff;" class="tdResumen" align=center>Nombre de quien paso la cotización:</td>
@@ -371,7 +371,7 @@
                 <th align=left rowspan=2 colspan=3>Fecha en que se encargo:</th>
                 <td align=center rowspan=2 colspan=3>{{cotizacion.fecha_de_carga | date:'dd-MM-yyyy'}}</td>
                 <th rowspan=2 colspan=2>Hora:</th>
-                <td rowspan=2 colspan=2 align=center>{{cotizacion.hora_de_carga | date:'h:mma'}}</td>
+                <td rowspan=2 colspan=2 align=center>{{cotizacion.hora_de_carga | date:'HH:mm'}}</td>
                 <th rowspan=2>Cotizador</th>
                 <td rowspan=2 align=center>{{cotizacion.cotizador}}</td>
               </tr>
@@ -380,7 +380,7 @@
                 <th align=left rowspan=2 colspan=3>Fecha estimada de mudanza:</th>
                 <td align=center rowspan=2 colspan=3>{{cotizacion.fecha_estimada_mudanza | date:'dd-MM-yyyy'}}</td>
                 <th rowspan=2 colspan=2>Hora:</th>
-                <td rowspan=2 colspan=2 align=center>{{cotizacion.hora_estimada_mudanza | date:'h:mma'}}</td>
+                <td rowspan=2 colspan=2 align=center>{{cotizacion.hora_estimada_mudanza | date:'HH:mm'}}</td>
                 <th rowspan=2>Forma Pago</th>
                 <td rowspan=2 align=center>{{cotizacion.forma_pago}}</td>
               </tr>
@@ -391,28 +391,28 @@
                 <th align=left rowspan=2 colspan=3>Fecha en que se cotizo:</th>
                 <td align=center rowspan=2 colspan=3>{{cotizacion.fecha_de_cotizacion | date:'dd-MM-yyyy'}}</td>
                 <th rowspan=2 colspan=2>Hora:</th>
-                <td rowspan=2 colspan=2 align=center>{{cotizacion.hora_de_cotizacion | date:'h:mma'}}</td>
+                <td rowspan=2 colspan=2 align=center>{{cotizacion.hora_de_cotizacion | date:'HH:mm'}}</td>
               </tr>
               <tr></tr>
               <tr>
                 <th align=left rowspan=2 colspan=3>Fecha en que se aviso:</th>
                 <td align=center rowspan=2 colspan=3>{{cotizacion.fecha_de_aviso | date:'dd-MM-yyyy'}}</td>
                 <th rowspan=2 colspan=2>Hora:</th>
-                <td rowspan=2 colspan=2 align=center>{{cotizacion.hora_de_aviso | date:'h:mma'}}</td>
+                <td rowspan=2 colspan=2 align=center>{{cotizacion.hora_de_aviso | date:'HH:mm'}}</td>
               </tr>
               <tr></tr>
               <tr>
                 <th align=left rowspan=2 colspan=3>Fecha en que se cerro:</th>
                 <td align=center rowspan=2 colspan=3>{{cotizacion.fecha_de_cierre | date:'dd-MM-yyyy'}}</td>
                 <th rowspan=2 colspan=2>Hora:</th>
-                <td rowspan=2 colspan=2 align=center>{{cotizacion.hora_de_cierre | date:'h:mma'}}</td>
+                <td rowspan=2 colspan=2 align=center>{{cotizacion.hora_de_cierre | date:'HH:mm'}}</td>
               </tr>
               <tr></tr>
               <tr>
                 <th align=left rowspan=2 colspan=3>Fecha real de mudanza:</th>
                 <td align=center rowspan=2 colspan=3>{{cotizacion.fecha_real_mudanza | date:'dd-MM-yyyy'}}</td>
                 <th rowspan=2 colspan=2>Hora:</th>
-                <td rowspan=2 colspan=2 align=center>{{cotizacion.hora_real_mudanza | date:'h:mma'}}</td>
+                <td rowspan=2 colspan=2 align=center>{{cotizacion.hora_real_mudanza | date:'HH:mm'}}</td>
               </tr>
               <tr></tr>
               <tr>
