@@ -299,7 +299,7 @@
               // });
 
               // $scope.muebles = muebles_resolve;
-
+              console.log($scope.muebles );
               Mueble.tipo_mueble().then(function(muebles){
                 $scope.tipo_muebles = muebles;
               }).catch(function(){

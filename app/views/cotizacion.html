@@ -15,14 +15,14 @@
                   <legend></legend>
 
             <h2>Muebles</h2>
-                  <div ng-repeat="group in muebles_group | filter: buscarMueble">
+                  <div ng-repeat="group in muebles">
 
                     <!-- <button style="border:none;background-color: #fff;width:100%;text-align: left;">
                     {{group.descripcion}}</button> -->
-                    <h3>{{group.descripcion}}</h3>
+                    <h3>{{group[0].descripcion}}</h3>
 
                     <!-- Repeat de Muebles por descripcion -->
-                    <div  ng-repeat="c in muebles | filter: { descripcion:group.descripcion}:true " class="btnSeleccion" ng-class="{btnSeleccionado:m.num>0}" ng-init="m.num='0'">
+                    <div  ng-repeat="c in group" class="btnSeleccion" ng-class="{btnSeleccionado:m.num>0}" ng-init="m.num='0'">
                       <span class="classContenedores" ng-click="m.num=check(m.num)" ng-blur="add_mueble(c,m.num)">{{c.especificacion}}</span>
                       <select ng-focus="scrollAnime($event)" ng-model="m.num" ng-change="add_mueble(c,m.num)">
                         <option  ng-repeat="m in cantidades">{{m.num}}</option>
