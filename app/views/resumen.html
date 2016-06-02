@@ -38,7 +38,7 @@
             <td><strong ng-if="cotizacion.tipo_cliente ==='Empresa'">X</strong></td>
           </tr>
           <tr>
-            <td style="background-color: #fff;" class="tdResumen" align=center>Telefono:</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Teléfono:</td>
             <td colspan="3">{{cliente.telefono}}</td>
             <td style="background-color: #fff;" class="tdResumen" align=center>Gobierno</td>
             <td><strong ng-if="cotizacion.tipo_cliente ==='Gobierno'">X</strong></td>
@@ -79,7 +79,7 @@
             <td>{{cotizacion.hora_de_aviso | date:'HH:mm'}}</td>
           </tr>
           <tr>
-            <td style="background-color: #fff;" class="tdResumen" align=center>Fecha en que se cerro:</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Fecha en que se cerró:</td>
             <td>{{cotizacion.fecha_de_cierre | date:'dd-MM-yyyy'}}</td>
             <td style="background-color: #fff;" class="tdResumen" align=center>Hora:</td>
             <td>{{cotizacion.hora_de_cierre | date:'HH:mm'}}</td>
@@ -342,7 +342,7 @@
               </tr>
               <tr></tr>
               <tr>
-                <th align=left rowspan=2 colspan=3>Telefono:</th>
+                <th align=left rowspan=2 colspan=3>Teléfono:</th>
                 <td align=center rowspan=2 colspan=7>{{cliente.telefono}}</td>
                 <th rowspan=2>Gobierno</th>
                 <td rowspan=2 align=center><strong ng-if="cotizacion.tipo_cliente ==='Gobierno'">X</strong></td>
@@ -356,7 +356,7 @@
               </tr>
               <tr></tr>
               <tr>
-                <th align=left rowspan=2 colspan=3>Fecha en que se encargo:</th>
+                <th align=left rowspan=2 colspan=3>Fecha en que se cargó:</th>
                 <td align=center rowspan=2 colspan=3>{{cotizacion.fecha_de_carga | date:'dd-MM-yyyy'}}</td>
                 <th rowspan=2 colspan=2>Hora:</th>
                 <td rowspan=2 colspan=2 align=center>{{cotizacion.hora_de_carga | date:'HH:mm'}}</td>
@@ -376,7 +376,7 @@
               </thead>
               <tbody>
               <tr>
-                <th align=left rowspan=2 colspan=3>Fecha en que se cotizo:</th>
+                <th align=left rowspan=2 colspan=3>Fecha en que se cotizó:</th>
                 <td align=center rowspan=2 colspan=3>{{cotizacion.fecha_de_cotizacion | date:'dd-MM-yyyy'}}</td>
                 <th rowspan=2 colspan=2>Hora:</th>
                 <td rowspan=2 colspan=2 align=center>{{cotizacion.hora_de_cotizacion | date:'HH:mm'}}</td>
@@ -390,7 +390,7 @@
               </tr>
               <tr></tr>
               <tr>
-                <th align=left rowspan=2 colspan=3>Fecha en que se cerro:</th>
+                <th align=left rowspan=2 colspan=3>Fecha en que se cerró:</th>
                 <td align=center rowspan=2 colspan=3>{{cotizacion.fecha_de_cierre | date:'dd-MM-yyyy'}}</td>
                 <th rowspan=2 colspan=2>Hora:</th>
                 <td rowspan=2 colspan=2 align=center>{{cotizacion.hora_de_cierre | date:'HH:mm'}}</td>
@@ -404,12 +404,12 @@
               </tr>
               <tr></tr>
               <tr>
-                <th align=left rowspan=2 colspan=5>Nombre de quien paso la cotizacion:</th>
+                <th align=left rowspan=2 colspan=5>Nombre de quien pasó la cotizacion:</th>
                 <td align=center rowspan=2 colspan=5>{{cotizacion.quien_cotizo}}</td>
               </tr>
               <tr></tr>
               <tr>
-                <th align=left rowspan=2 colspan=5>Nombre de quien llamo al cliente:</th>
+                <th align=left rowspan=2 colspan=5>Nombre de quien llamó al cliente:</th>
                 <td align=center rowspan=2 colspan=5>{{cotizacion.quien_llamo}}</td>
               </tr>
               <tr></tr>
