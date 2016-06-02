@@ -4,6 +4,7 @@
   app.directive('confirmarCotizacion',function(){
 
       return {
+        scope:true,
         templateUrl: "views/_confirmarCotizacion.html"
       };
 
@@ -446,37 +447,38 @@
               $scope.otros_temp_campo.splice($scope.otros_temp_campo.indexOf(campo),1);
             };
 
-            // $scope.save = function(cot, cliente){
-            //   var total_cantidad = $scope.unidades_contenedores + $scope.unidades_muebles + $scope.unidades_otros;
-            //     var total_m3 = $scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros;
-            //     var cotizacion = {
-            //       numero_cotizacion:cot.numero,
-            //       cliente:1,
-            //       responsable:cot.responsable.id,
-            //       total_cantidad:total_cantidad,
-            //       total_m3:total_m3,
-            //       estado:'activo'
-            //     };
-            //     Cotizacion.save(cotizacion).then(function(result){
-            //       var id_cotizacion = result.data.id;
-            //       for(var i=0;i<$scope.contenedores_temp.length;i++){
-            //           Cotizacion.save_contenedores($scope.contenedores_temp[i],id_cotizacion);
-            //       }
-            //       for(var i=0;i<$scope.muebles_temp.length;i++){
-            //           Cotizacion.save_muebles($scope.muebles_temp[i],id_cotizacion);
-            //       }
-            //       for(var i=0;i<$scope.otros_temp.length;i++){
-            //           Cotizacion.save_muebles($scope.otros_temp[i],id_cotizacion);
-            //       }
-            //       // $scope.limpiar();
-            //
-            //       },function(e){
-            //       alert("error");
-            //     });
-            //
-            //
-            //
-            // }
+            $scope.save = function(cot, cliente){
+              console.log(true);
+              var total_cantidad = $scope.unidades_contenedores + $scope.unidades_muebles + $scope.unidades_otros;
+                var total_m3 = $scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros;
+                var cotizacion = {
+                  numero_cotizacion:cot.numero,
+                  cliente:1,
+                  responsable:cot.responsable.id,
+                  total_cantidad:total_cantidad,
+                  total_m3:total_m3,
+                  estado:'activo'
+                };
+                Cotizacion.save(cotizacion).then(function(result){
+                  var id_cotizacion = result.data.id;
+                  for(var i=0;i<$scope.contenedores_temp.length;i++){
+                      Cotizacion.save_contenedores($scope.contenedores_temp[i],id_cotizacion);
+                  }
+                  for(var i=0;i<$scope.muebles_temp.length;i++){
+                      Cotizacion.save_muebles($scope.muebles_temp[i],id_cotizacion);
+                  }
+                  for(var i=0;i<$scope.otros_temp.length;i++){
+                      Cotizacion.save_muebles($scope.otros_temp[i],id_cotizacion);
+                  }
+                  // $scope.limpiar();
+
+                  },function(e){
+                  alert("error");
+                });
+
+
+
+            }
 
             $scope.update_presupuesto = function () {
               $scope.cotizacion.total_monto = Number($scope.cotizacion.mudanza + $scope.cotizacion.soga + $scope.cotizacion.embalaje + $scope.cotizacion.desembalaje + $scope.cotizacion.materiales + $scope.cotizacion.piano_cajafuerte + $scope.cotizacion.ajuste + $scope.cotizacion.iva);
