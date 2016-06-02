@@ -220,6 +220,29 @@ table.tablaResumen {
     }
     padding-left: 210px;
 }
+#modalConfirmacion {
+  div.modal-dialog {
+    div.modal-content {
+      border-radius:0;
+      div.modal-header {
+        background-color: $colorSidebar;
+        color: $colorTextoSidebar;
+        img {
+          position: absolute;
+          top: -17px;
+          height: 90px;
+        }
+      }
+      div.modal-footer {
+        button {
+          @extend .btn;
+          @extend .btn-outline;
+        }
+      }
+
+    }
+  }
+}
 // estilos sidebar
 #wrapper {
   padding-left: 0;
