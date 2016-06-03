@@ -72,25 +72,25 @@
             <td>{{cotizacion.hora_de_cotizacion | date:'HH:mm'}}</td>
             <td class="tdResumen" rowspan="4"></td>
           </tr>
-          <tr>
+          <!-- <tr>
             <td style="background-color: #fff;" class="tdResumen" align=center>Fecha en que se avisó:</td>
             <td>{{cotizacion.fecha_de_aviso | date:'dd-MM-yyyy'}}</td>
             <td style="background-color: #fff;" class="tdResumen" align=center>Hora:</td>
             <td>{{cotizacion.hora_de_aviso | date:'HH:mm'}}</td>
-          </tr>
-          <tr>
+          </tr> -->
+          <!-- <tr>
             <td style="background-color: #fff;" class="tdResumen" align=center>Fecha en que se cerró:</td>
             <td>{{cotizacion.fecha_de_cierre | date:'dd-MM-yyyy'}}</td>
             <td style="background-color: #fff;" class="tdResumen" align=center>Hora:</td>
             <td>{{cotizacion.hora_de_cierre | date:'HH:mm'}}</td>
-          </tr>
-          <tr>
+          </tr> -->
+          <!-- <tr>
             <td style="background-color: #fff;" class="tdResumen" align=center>Fecha real de mudanza:</td>
             <td>{{cotizacion.fecha_real_mudanza | date:'dd-MM-yyyy'}}</td>
             <td style="background-color: #fff;" class="tdResumen" align=center>Hora:</td>
             <td>{{cotizacion.hora_real_mudanza | date:'HH:mm'}}</td>
-          </tr>
-          <tr>
+          </tr> -->
+          <!-- <tr>
             <td style="background-color: #fff;" class="tdResumen" align=center>Nombre de quien pasó la cotización:</td>
             <td>
               {{cotizacion.quien_cotizo}}
@@ -101,7 +101,7 @@
             <td style="background-color: #fff;" class="tdResumen" align=center>Nombre de quien llamó al cliente:</td>
             <td>{{cotizacion.quien_llamo}}</td>
             <td class="tdResumen" colspan="4"></td>
-          </tr>
+          </tr> -->
           <tr>
             <th style="background-color: #fff; border-right: 1px solid #dedede;" class="tdResumen" colspan="2" align=center >Domicilio de Origen:</th>
             <th style="background-color: #fff;align=center;"  class="tdResumen" colspan="4">Barrio/Provincia:</th>
@@ -228,13 +228,17 @@
             <td  class="tdResumen" width="80%">Ajuste</td>
             <td style="text-align:right!important;">$ {{cotizacion.ajuste}}</td>
           </tr>
-          <tr>
+          <tr class="active">
+            <td  class="tdResumen" width="80%">Sub total</td>
+            <td style="text-align:right!important;">$ {{cotizacion.total_monto}}</td>
+          </tr>
+          <tr class="active">
             <td  class="tdResumen" width="80%">IVA</td>
             <td style="text-align:right!important;">$ {{cotizacion.iva}}</td>
           </tr>
           <tr class="active">
             <th  class="tdResumen" width="80%" style="text-align:right!important;border-right: 1px solid #dedede;">Total:</th>
-            <td style="text-align:right!important;">{{cotizacion.total_monto|currency}}</td>
+            <td style="text-align:right!important;"><strong>{{cotizacion.total_monto|currency}}</strong></td>
 
           </tr>
         </table>

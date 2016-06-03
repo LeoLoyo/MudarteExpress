@@ -2,10 +2,10 @@
   <div class="col-md-12">
   <br>
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
       <h2 style="display:inline;">Datos del cliente</h2>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-3">
         <div class="btn-group grupoRadio">
           <label class="btn btn-default" ng-class="{btnSeleccionado:cotizacion.tipo_cliente==='Particular'}">
               <input type="radio"  ng-model="cotizacion.tipo_cliente"  value="Particular" /> Particular
@@ -19,10 +19,18 @@
         </div>
       </div>
       <div class="col-md-3">
+        <div class="form-group">
+      <div class="input-group">
+      <div class="input-group-addon btnSeleccionado">Fecha de carga</div>
+      <input type="text" ng-model="cotizacion.numero_cotizacion" class="form-control" placeholder="" readonly style="background:#fff;" ng-model="cotizacion.fecha_de_carga">
+    </div>
+  </div>
+      </div>
+      <div class="col-md-3">
            <div class="form-group">
       <div class="input-group">
       <div class="input-group-addon btnSeleccionado">N° de cotización</div>
-      <input type="text" ng-model="cotizacion.numero_cotizacion" class="form-control" id="ncotizacion" placeholder="000">
+      <input type="text" ng-model="cotizacion.numero_cotizacion" class="form-control" id="ncotizacion" placeholder="000" autofocus>
     </div>
   </div>
       </div>
@@ -74,14 +82,14 @@
   <legend></legend>
 </div>
 <div class="row">
-  <div class="col-md-3 form-group">
+  <!-- <div class="col-md-3 form-group">
     <label for="id_fecha1">Fecha en que se cargó:</label>
     <input type="date" ng-model="cotizacion.fecha_de_carga" class="form-control">
   </div>
   <div class="col-md-3 form-group">
     <label for="id_hora1">Hora: </label>
     <input type="time" ng-model="cotizacion.hora_de_carga" class="form-control">
-  </div>
+  </div> -->
   <div class="col-md-3 form-group">
     <label for="id_fecha2">Fecha estimada de la mudanza:</label>
     <input type="date" ng-model="cotizacion.fecha_estimada_mudanza" class="form-control">
@@ -90,9 +98,6 @@
     <label for="id_hora2">Hora: </label>
     <input type="time" ng-model="cotizacion.hora_estimada_mudanza" class="form-control">
   </div>
-   </div>
-   <div class="row">
-
   <div class="col-md-3 form-group">
     <label for="id_fecha3">Fecha en que se cotizó</label>
     <input type="date" ng-model="cotizacion.fecha_de_cotizacion" class="form-control">
@@ -175,3 +180,9 @@
 <div ng-include='"views/cotizacion.html"'></div>
 <div ng-include='"views/parcial_1.html"'></div>
 <div ng-include='"views/presupuesto.html"'></div>
+<script>
+  function scroll0(){
+   var scroll = angular.element('#page-content-wrapper');
+        $(scroll).animate({ scrollTop: 0 }, 0);
+  }
+</script>

@@ -1,6 +1,5 @@
-(function () {
+(function(){
   'use strict';
-
   var app = angular.module('cotizacionExpressApp');
   app.controller('LoginCtrl',['$rootScope', '$scope', '$state', 'Auth','Session', function ($rootScope, $scope, $state, Auth, Session) {
     $('.btnsCotizacion').addClass('hidden');

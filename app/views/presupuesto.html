@@ -34,7 +34,11 @@
             <td width="80%">Ajuste</td>
             <td class="paddingNone"><input type="number" ng-change="update_presupuesto()" ng-model="cotizacion.ajuste"></td>
           </tr>
-          <tr>
+          <tr class="active">
+            <td width="80%">Sub total</td>
+            <td class="paddingNone"><input type="number" min="0" value="0" ng-change="update_presupuesto()" ng-model="cotizacion.subTotal"></td>
+          </tr>
+          <tr class="active">
             <td width="80%">IVA</td>
             <td class="paddingNone"><input type="number" min="0" ng-change="update_presupuesto()" ng-model="cotizacion.iva"></td>
           </tr>
