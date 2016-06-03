@@ -88,22 +88,28 @@ form.formulario, div.formulario {
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
   }
 }
-.btnsSiguiente {
+.btnsPaginacion {
   @extend .container-fluid;
   div {
     @extend .row;
     div {
-      @extend .col-md-12;
-       .btnSiguiente {
+      @extend .col-md-10;
+      @extend .col-md-offset-1;
+       button.btnSiguiente {
           @extend .btn;
           @extend .btn-outline;
           @extend .btn-lg;
           float: right;
         }
+        button.btnAnterior {
+          @extend .btn;
+          @extend .btn-outline;
+          @extend .btn-lg;
+          float: left;
+        }
     }
   }
 }
-
 table.tabla {
     @extend .table;
     @extend .table-bordered;
@@ -195,6 +201,16 @@ table.tablaResumen {
           float: right;
         }
     }
+}
+.volver {
+  a {
+    @extend .navbar-brand;
+    @extend .glyphicon;
+    @extend .glyphicon-chevron-left;
+    color: $colorTextoNavbar!important;
+    font-size: 1.6em!important;
+    cursor: pointer;
+  }
 }
 // estilos navbar
 .cabecera {
