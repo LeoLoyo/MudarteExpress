@@ -50,7 +50,6 @@
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
                    <img src="logo.png" alt="">
-
                 </li>
                 <li>
                 </li>
@@ -101,6 +100,17 @@
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div ui-view name="maincontent"></div>
+        </div>
+        <div class="btnsSiguiente">
+            <div>
+                <div>
+                   <button class="btnSiguiente" ng-show="nav==='1' && !loginOn" ng-click="nav='4'" onclick="scroll0();">Siguiente</button>
+                   <button class="btnSiguiente" ng-show="nav==='4' && !loginOn" ng-click="nav='5'" onclick="scroll0();">Siguiente</button>
+                   <button class="btnSiguiente" ng-show="nav==='5' && !loginOn" ng-click="nav='2'" onclick="scroll0();">Siguiente</button>
+                   <button class="btnSiguiente" ng-show="nav==='2' && !loginOn" ng-click="nav='3'" onclick="scroll0();">Siguiente</button>
+                   <button class="btnSiguiente" ng-show="nav==='3' && !loginOn && resumen" ng-click="nav='6'" onclick="scroll0();">Siguiente</button>
+                </div>
+            </div>
         </div>
     </div>
     <!-- /#page-content-wrapper -->

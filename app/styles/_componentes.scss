@@ -88,6 +88,22 @@ form.formulario, div.formulario {
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
   }
 }
+.btnsSiguiente {
+  @extend .container-fluid;
+  div {
+    @extend .row;
+    div {
+      @extend .col-md-12;
+       .btnSiguiente {
+          @extend .btn;
+          @extend .btn-outline;
+          @extend .btn-lg;
+          float: right;
+        }
+    }
+  }
+}
+
 table.tabla {
     @extend .table;
     @extend .table-bordered;

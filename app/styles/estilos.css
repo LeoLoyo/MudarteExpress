@@ -234,11 +234,14 @@ th {
   .navbar, .cabecera nav {
     display: none; }
 
-  .btn > .caret, .login div.cuerpo button > .caret, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button > .caret, .cabecera nav ul.Right li a.dropdown-toggle .btn > span, .login div.cuerpo .cabecera nav ul.Right li a.dropdown-toggle button > span, .cabecera nav ul.Right li a.dropdown-toggle .login div.cuerpo button > span, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .cabecera nav ul.Right li a.dropdown-toggle button > span, .cabecera nav ul.Right li a.dropdown-toggle #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button > span,
+  .btn > .caret, .btnsSiguiente div div .btnSiguiente > .caret, .login div.cuerpo button > .caret, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button > .caret, .cabecera nav ul.Right li a.dropdown-toggle .btn > span, .btnsSiguiente div div .cabecera nav ul.Right li a.dropdown-toggle .btnSiguiente > span, .cabecera nav ul.Right li a.dropdown-toggle .btnsSiguiente div div .btnSiguiente > span, .login div.cuerpo .cabecera nav ul.Right li a.dropdown-toggle button > span, .cabecera nav ul.Right li a.dropdown-toggle .login div.cuerpo button > span, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .cabecera nav ul.Right li a.dropdown-toggle button > span, .cabecera nav ul.Right li a.dropdown-toggle #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button > span,
   .dropup > .btn > .caret,
+  .btnsSiguiente div div .dropup > .btnSiguiente > .caret,
   .login div.cuerpo .dropup > button > .caret,
   #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .dropup > button > .caret,
   .cabecera nav ul.Right li a.dropdown-toggle .dropup > .btn > span,
+  .btnsSiguiente div div .cabecera nav ul.Right li a.dropdown-toggle .dropup > .btnSiguiente > span,
+  .cabecera nav ul.Right li a.dropdown-toggle .btnsSiguiente div div .dropup > .btnSiguiente > span,
   .login div.cuerpo .cabecera nav ul.Right li a.dropdown-toggle .dropup > button > span,
   .cabecera nav ul.Right li a.dropdown-toggle .login div.cuerpo .dropup > button > span,
   #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .cabecera nav ul.Right li a.dropdown-toggle .dropup > button > span,
@@ -1540,27 +1543,27 @@ pre {
     .container {
       width: 1170px; } }
 
-.container-fluid {
+.container-fluid, .btnsSiguiente {
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
   padding-right: 15px; }
-  .container-fluid:before, .container-fluid:after {
+  .container-fluid:before, .btnsSiguiente:before, .container-fluid:after, .btnsSiguiente:after {
     content: " ";
     display: table; }
-  .container-fluid:after {
+  .container-fluid:after, .btnsSiguiente:after {
     clear: both; }
 
-.row {
+.row, .btnsSiguiente div {
   margin-left: -15px;
   margin-right: -15px; }
-  .row:before, .row:after {
+  .row:before, .btnsSiguiente div:before, .row:after, .btnsSiguiente div:after {
     content: " ";
     display: table; }
-  .row:after {
+  .row:after, .btnsSiguiente div:after {
     clear: both; }
 
-.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .btnsSiguiente div div, .col-lg-12 {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
@@ -1879,7 +1882,7 @@ pre {
   .col-sm-offset-12 {
     margin-left: 100%; } }
 @media (min-width: 992px) {
-  .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+  .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .btnsSiguiente div div {
     float: left; }
 
   .col-md-1 {
@@ -1915,7 +1918,7 @@ pre {
   .col-md-11 {
     width: 91.66667%; }
 
-  .col-md-12 {
+  .col-md-12, .btnsSiguiente div div {
     width: 100%; }
 
   .col-md-pull-0 {
@@ -2657,40 +2660,48 @@ input[type="search"] {
     line-height: 34px; }
   input[type="date"].input-sm, .input-group-sm > input[type="date"].form-control,
   .input-group-sm > input[type="date"].input-group-addon,
-  .input-group-sm > .input-group-btn > input[type="date"].btn, .input-group-sm input[type="date"],
+  .input-group-sm > .input-group-btn > input[type="date"].btn,
+  .btnsSiguiente div div .input-group-sm > .input-group-btn > input[type="date"].btnSiguiente, .input-group-sm input[type="date"],
   input[type="time"].input-sm,
   .input-group-sm > input[type="time"].form-control,
   .input-group-sm > input[type="time"].input-group-addon,
-  .input-group-sm > .input-group-btn > input[type="time"].btn, .input-group-sm
+  .input-group-sm > .input-group-btn > input[type="time"].btn,
+  .btnsSiguiente div div .input-group-sm > .input-group-btn > input[type="time"].btnSiguiente, .input-group-sm
   input[type="time"],
   input[type="datetime-local"].input-sm,
   .input-group-sm > input[type="datetime-local"].form-control,
   .input-group-sm > input[type="datetime-local"].input-group-addon,
-  .input-group-sm > .input-group-btn > input[type="datetime-local"].btn, .input-group-sm
+  .input-group-sm > .input-group-btn > input[type="datetime-local"].btn,
+  .btnsSiguiente div div .input-group-sm > .input-group-btn > input[type="datetime-local"].btnSiguiente, .input-group-sm
   input[type="datetime-local"],
   input[type="month"].input-sm,
   .input-group-sm > input[type="month"].form-control,
   .input-group-sm > input[type="month"].input-group-addon,
-  .input-group-sm > .input-group-btn > input[type="month"].btn, .input-group-sm
+  .input-group-sm > .input-group-btn > input[type="month"].btn,
+  .btnsSiguiente div div .input-group-sm > .input-group-btn > input[type="month"].btnSiguiente, .input-group-sm
   input[type="month"] {
     line-height: 30px; }
   input[type="date"].input-lg, .input-group-lg > input[type="date"].form-control,
   .input-group-lg > input[type="date"].input-group-addon,
-  .input-group-lg > .input-group-btn > input[type="date"].btn, .input-group-lg input[type="date"],
+  .input-group-lg > .input-group-btn > input[type="date"].btn,
+  .btnsSiguiente div div .input-group-lg > .input-group-btn > input[type="date"].btnSiguiente, .input-group-lg input[type="date"],
   input[type="time"].input-lg,
   .input-group-lg > input[type="time"].form-control,
   .input-group-lg > input[type="time"].input-group-addon,
-  .input-group-lg > .input-group-btn > input[type="time"].btn, .input-group-lg
+  .input-group-lg > .input-group-btn > input[type="time"].btn,
+  .btnsSiguiente div div .input-group-lg > .input-group-btn > input[type="time"].btnSiguiente, .input-group-lg
   input[type="time"],
   input[type="datetime-local"].input-lg,
   .input-group-lg > input[type="datetime-local"].form-control,
   .input-group-lg > input[type="datetime-local"].input-group-addon,
-  .input-group-lg > .input-group-btn > input[type="datetime-local"].btn, .input-group-lg
+  .input-group-lg > .input-group-btn > input[type="datetime-local"].btn,
+  .btnsSiguiente div div .input-group-lg > .input-group-btn > input[type="datetime-local"].btnSiguiente, .input-group-lg
   input[type="datetime-local"],
   input[type="month"].input-lg,
   .input-group-lg > input[type="month"].form-control,
   .input-group-lg > input[type="month"].input-group-addon,
-  .input-group-lg > .input-group-btn > input[type="month"].btn, .input-group-lg
+  .input-group-lg > .input-group-btn > input[type="month"].btn,
+  .btnsSiguiente div div .input-group-lg > .input-group-btn > input[type="month"].btnSiguiente, .input-group-lg
   input[type="month"] {
     line-height: 46px; } }
 .form-group, .login div.cuerpo div {
@@ -2761,10 +2772,12 @@ input[type="checkbox"] {
   .form-control-static.input-lg, .input-group-lg > .form-control-static.form-control,
   .input-group-lg > .form-control-static.input-group-addon,
   .input-group-lg > .input-group-btn > .form-control-static.btn,
+  .btnsSiguiente div div .input-group-lg > .input-group-btn > .form-control-static.btnSiguiente,
   .login div.cuerpo .input-group-lg > .input-group-btn > button.form-control-static,
   #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-lg > .input-group-btn > button.form-control-static, .form-control-static.input-sm, .input-group-sm > .form-control-static.form-control,
   .input-group-sm > .form-control-static.input-group-addon,
   .input-group-sm > .input-group-btn > .form-control-static.btn,
+  .btnsSiguiente div div .input-group-sm > .input-group-btn > .form-control-static.btnSiguiente,
   .login div.cuerpo .input-group-sm > .input-group-btn > button.form-control-static,
   #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-sm > .input-group-btn > button.form-control-static {
     padding-left: 0;
@@ -2773,6 +2786,7 @@ input[type="checkbox"] {
 .input-sm, .input-group-sm > .form-control,
 .input-group-sm > .input-group-addon,
 .input-group-sm > .input-group-btn > .btn,
+.btnsSiguiente div div .input-group-sm > .input-group-btn > .btnSiguiente,
 .login div.cuerpo .input-group-sm > .input-group-btn > button,
 #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-sm > .input-group-btn > button {
   height: 30px;
@@ -2783,17 +2797,20 @@ input[type="checkbox"] {
 
 select.input-sm, .input-group-sm > select.form-control,
 .input-group-sm > select.input-group-addon,
-.input-group-sm > .input-group-btn > select.btn {
+.input-group-sm > .input-group-btn > select.btn,
+.btnsSiguiente div div .input-group-sm > .input-group-btn > select.btnSiguiente {
   height: 30px;
   line-height: 30px; }
 
 textarea.input-sm, .input-group-sm > textarea.form-control,
 .input-group-sm > textarea.input-group-addon,
 .input-group-sm > .input-group-btn > textarea.btn,
+.btnsSiguiente div div .input-group-sm > .input-group-btn > textarea.btnSiguiente,
 select[multiple].input-sm,
 .input-group-sm > select[multiple].form-control,
 .input-group-sm > select[multiple].input-group-addon,
-.input-group-sm > .input-group-btn > select[multiple].btn {
+.input-group-sm > .input-group-btn > select[multiple].btn,
+.btnsSiguiente div div .input-group-sm > .input-group-btn > select[multiple].btnSiguiente {
   height: auto; }
 
 .form-group-sm .form-control {
@@ -2818,6 +2835,7 @@ select[multiple].input-sm,
 .input-lg, .input-group-lg > .form-control,
 .input-group-lg > .input-group-addon,
 .input-group-lg > .input-group-btn > .btn,
+.btnsSiguiente div div .input-group-lg > .input-group-btn > .btnSiguiente,
 .login div.cuerpo .input-group-lg > .input-group-btn > button,
 #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-lg > .input-group-btn > button {
   height: 46px;
@@ -2828,17 +2846,20 @@ select[multiple].input-sm,
 
 select.input-lg, .input-group-lg > select.form-control,
 .input-group-lg > select.input-group-addon,
-.input-group-lg > .input-group-btn > select.btn {
+.input-group-lg > .input-group-btn > select.btn,
+.btnsSiguiente div div .input-group-lg > .input-group-btn > select.btnSiguiente {
   height: 46px;
   line-height: 46px; }
 
 textarea.input-lg, .input-group-lg > textarea.form-control,
 .input-group-lg > textarea.input-group-addon,
 .input-group-lg > .input-group-btn > textarea.btn,
+.btnsSiguiente div div .input-group-lg > .input-group-btn > textarea.btnSiguiente,
 select[multiple].input-lg,
 .input-group-lg > select[multiple].form-control,
 .input-group-lg > select[multiple].input-group-addon,
-.input-group-lg > .input-group-btn > select[multiple].btn {
+.input-group-lg > .input-group-btn > select[multiple].btn,
+.btnsSiguiente div div .input-group-lg > .input-group-btn > select[multiple].btnSiguiente {
   height: auto; }
 
 .form-group-lg .form-control {
@@ -2880,6 +2901,7 @@ select[multiple].input-lg,
 .input-lg + .form-control-feedback, .input-group-lg > .form-control + .form-control-feedback,
 .input-group-lg > .input-group-addon + .form-control-feedback,
 .input-group-lg > .input-group-btn > .btn + .form-control-feedback,
+.btnsSiguiente div div .input-group-lg > .input-group-btn > .btnSiguiente + .form-control-feedback,
 .login div.cuerpo .input-group-lg > .input-group-btn > button + .form-control-feedback,
 #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-lg > .input-group-btn > button + .form-control-feedback,
 .input-group-lg + .form-control-feedback,
@@ -2891,6 +2913,7 @@ select[multiple].input-lg,
 .input-sm + .form-control-feedback, .input-group-sm > .form-control + .form-control-feedback,
 .input-group-sm > .input-group-addon + .form-control-feedback,
 .input-group-sm > .input-group-btn > .btn + .form-control-feedback,
+.btnsSiguiente div div .input-group-sm > .input-group-btn > .btnSiguiente + .form-control-feedback,
 .login div.cuerpo .input-group-sm > .input-group-btn > button + .form-control-feedback,
 #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-sm > .input-group-btn > button + .form-control-feedback,
 .input-group-sm + .form-control-feedback,
@@ -3049,7 +3072,7 @@ select[multiple].input-lg,
     padding-top: 6px;
     font-size: 12px; } }
 
-.btn, .login div.cuerpo button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button {
+.btn, .btnsSiguiente div div .btnSiguiente, .login div.cuerpo button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button {
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
@@ -3068,26 +3091,26 @@ select[multiple].input-lg,
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none; }
-  .btn:focus, .login div.cuerpo button:focus, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button:focus, .btn.focus, .login div.cuerpo button.focus, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button.focus, .btn:active:focus, .login div.cuerpo button:active:focus, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button:active:focus, .btn:active.focus, .login div.cuerpo button:active.focus, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button:active.focus, .btn.active:focus, table.tabla tr.btn.totales:focus, .login div.cuerpo button.active:focus, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button.active:focus, .btn.active.focus, table.tabla tr.btn.focus.totales, .login div.cuerpo button.active.focus, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button.active.focus {
+  .btn:focus, .btnsSiguiente div div .btnSiguiente:focus, .login div.cuerpo button:focus, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button:focus, .btn.focus, .btnsSiguiente div div .focus.btnSiguiente, .login div.cuerpo button.focus, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button.focus, .btn:active:focus, .btnsSiguiente div div .btnSiguiente:active:focus, .login div.cuerpo button:active:focus, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button:active:focus, .btn:active.focus, .btnsSiguiente div div .btnSiguiente:active.focus, .login div.cuerpo button:active.focus, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button:active.focus, .btn.active:focus, .btnsSiguiente div div .active.btnSiguiente:focus, .btnsSiguiente div div table.tabla tr.btnSiguiente.totales:focus, table.tabla .btnsSiguiente div div tr.btnSiguiente.totales:focus, table.tabla tr.btn.totales:focus, .login div.cuerpo button.active:focus, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button.active:focus, .btn.active.focus, .btnsSiguiente div div .active.focus.btnSiguiente, .btnsSiguiente div div table.tabla tr.focus.btnSiguiente.totales, table.tabla .btnsSiguiente div div tr.focus.btnSiguiente.totales, table.tabla tr.btn.focus.totales, .login div.cuerpo button.active.focus, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button.active.focus {
     outline: thin dotted;
     outline: 5px auto -webkit-focus-ring-color;
     outline-offset: -2px; }
-  .btn:hover, .login div.cuerpo button:hover, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button:hover, .btn:focus, .login div.cuerpo button:focus, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button:focus, .btn.focus, .login div.cuerpo button.focus, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button.focus {
+  .btn:hover, .btnsSiguiente div div .btnSiguiente:hover, .login div.cuerpo button:hover, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button:hover, .btn:focus, .btnsSiguiente div div .btnSiguiente:focus, .login div.cuerpo button:focus, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button:focus, .btn.focus, .btnsSiguiente div div .focus.btnSiguiente, .login div.cuerpo button.focus, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button.focus {
     color: #333;
     text-decoration: none; }
-  .btn:active, .login div.cuerpo button:active, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button:active, .btn.active, table.tabla tr.btn.totales, .login div.cuerpo button.active, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button.active {
+  .btn:active, .btnsSiguiente div div .btnSiguiente:active, .login div.cuerpo button:active, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button:active, .btn.active, .btnsSiguiente div div .active.btnSiguiente, .btnsSiguiente div div table.tabla tr.btnSiguiente.totales, table.tabla .btnsSiguiente div div tr.btnSiguiente.totales, table.tabla tr.btn.totales, .login div.cuerpo button.active, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button.active {
     outline: 0;
     background-image: none;
     -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
     box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); }
-  .btn.disabled, .login div.cuerpo button.disabled, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button.disabled, .btn[disabled], .login div.cuerpo button[disabled], #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button[disabled], fieldset[disabled] .btn, fieldset[disabled] .login div.cuerpo button, .login div.cuerpo fieldset[disabled] button, fieldset[disabled] #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer fieldset[disabled] button {
+  .btn.disabled, .btnsSiguiente div div .disabled.btnSiguiente, .login div.cuerpo button.disabled, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button.disabled, .btn[disabled], .btnsSiguiente div div [disabled].btnSiguiente, .login div.cuerpo button[disabled], #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button[disabled], fieldset[disabled] .btn, fieldset[disabled] .btnsSiguiente div div .btnSiguiente, .btnsSiguiente div div fieldset[disabled] .btnSiguiente, fieldset[disabled] .login div.cuerpo button, .login div.cuerpo fieldset[disabled] button, fieldset[disabled] #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer fieldset[disabled] button {
     cursor: not-allowed;
     opacity: 0.65;
     filter: alpha(opacity=65);
     -webkit-box-shadow: none;
     box-shadow: none; }
 
-a.btn.disabled, fieldset[disabled] a.btn {
+a.btn.disabled, .btnsSiguiente div div a.disabled.btnSiguiente, fieldset[disabled] a.btn, fieldset[disabled] .btnsSiguiente div div a.btnSiguiente, .btnsSiguiente div div fieldset[disabled] a.btnSiguiente {
   pointer-events: none; }
 
 .btn-default {
@@ -3282,19 +3305,19 @@ a.btn.disabled, fieldset[disabled] a.btn {
     color: #777777;
     text-decoration: none; }
 
-.btn-lg, .btn-group-lg > .btn, .login div.cuerpo .btn-group-lg > button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-lg > button {
+.btn-lg, .btn-group-lg > .btn, .login div.cuerpo .btn-group-lg > button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-lg > button, .btnsSiguiente div div .btnSiguiente {
   padding: 10px 16px;
   font-size: 18px;
   line-height: 1.33333;
   border-radius: 6px; }
 
-.btn-sm, .btn-group-sm > .btn, .login div.cuerpo .btn-group-sm > button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-sm > button {
+.btn-sm, .btn-group-sm > .btn, .btnsSiguiente div div .btn-group-sm > .btnSiguiente, .login div.cuerpo .btn-group-sm > button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-sm > button {
   padding: 5px 10px;
   font-size: 12px;
   line-height: 1.5;
   border-radius: 3px; }
 
-.btn-xs, .btn-group-xs > .btn, .login div.cuerpo .btn-group-xs > button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-xs > button {
+.btn-xs, .btn-group-xs > .btn, .btnsSiguiente div div .btn-group-xs > .btnSiguiente, .login div.cuerpo .btn-group-xs > button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-xs > button {
   padding: 1px 5px;
   font-size: 12px;
   line-height: 1.5;
@@ -3476,35 +3499,46 @@ tbody.collapse.in {
   position: relative;
   display: inline-block;
   vertical-align: middle; }
-  .btn-group > .btn, .login div.cuerpo .btn-group > button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group > button,
+  .btn-group > .btn, .btnsSiguiente div div .btn-group > .btnSiguiente, .login div.cuerpo .btn-group > button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group > button,
   .btn-group-vertical > .btn,
+  .btnsSiguiente div div .btn-group-vertical > .btnSiguiente,
   .login div.cuerpo .btn-group-vertical > button,
   #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-vertical > button {
     position: relative;
     float: left; }
-    .btn-group > .btn:hover, .login div.cuerpo .btn-group > button:hover, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group > button:hover, .btn-group > .btn:focus, .login div.cuerpo .btn-group > button:focus, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group > button:focus, .btn-group > .btn:active, .login div.cuerpo .btn-group > button:active, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group > button:active, .btn-group > .btn.active, table.tabla .btn-group > tr.btn.totales, .login div.cuerpo .btn-group > button.active, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group > button.active,
+    .btn-group > .btn:hover, .btnsSiguiente div div .btn-group > .btnSiguiente:hover, .login div.cuerpo .btn-group > button:hover, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group > button:hover, .btn-group > .btn:focus, .btnsSiguiente div div .btn-group > .btnSiguiente:focus, .login div.cuerpo .btn-group > button:focus, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group > button:focus, .btn-group > .btn:active, .btnsSiguiente div div .btn-group > .btnSiguiente:active, .login div.cuerpo .btn-group > button:active, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group > button:active, .btn-group > .btn.active, .btnsSiguiente div div .btn-group > .active.btnSiguiente, .btnsSiguiente div div table.tabla .btn-group > tr.btnSiguiente.totales, table.tabla .btnsSiguiente div div .btn-group > tr.btnSiguiente.totales, table.tabla .btn-group > tr.btn.totales, .login div.cuerpo .btn-group > button.active, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group > button.active,
     .btn-group-vertical > .btn:hover,
+    .btnsSiguiente div div .btn-group-vertical > .btnSiguiente:hover,
     .login div.cuerpo .btn-group-vertical > button:hover,
     #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-vertical > button:hover,
     .btn-group-vertical > .btn:focus,
+    .btnsSiguiente div div .btn-group-vertical > .btnSiguiente:focus,
     .login div.cuerpo .btn-group-vertical > button:focus,
     #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-vertical > button:focus,
     .btn-group-vertical > .btn:active,
+    .btnsSiguiente div div .btn-group-vertical > .btnSiguiente:active,
     .login div.cuerpo .btn-group-vertical > button:active,
     #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-vertical > button:active,
     .btn-group-vertical > .btn.active,
+    .btnsSiguiente div div .btn-group-vertical > .active.btnSiguiente,
+    .btnsSiguiente div div table.tabla .btn-group-vertical > tr.btnSiguiente.totales,
+    table.tabla .btnsSiguiente div div .btn-group-vertical > tr.btnSiguiente.totales,
     table.tabla .btn-group-vertical > tr.btn.totales,
     .login div.cuerpo .btn-group-vertical > button.active,
     #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-vertical > button.active {
       z-index: 2; }
 
-.btn-group .btn + .btn, .btn-group .login div.cuerpo button + .btn, .login div.cuerpo .btn-group button + .btn, .btn-group #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button + .btn, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group button + .btn, .btn-group .login div.cuerpo .btn + button, .login div.cuerpo .btn-group .btn + button, .btn-group .login div.cuerpo button + button, .login div.cuerpo .btn-group button + button, .btn-group #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .login div.cuerpo button + button, .btn-group #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn + button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group .btn + button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group .login div.cuerpo button + button, .btn-group #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button + button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group button + button,
+.btn-group .btn + .btn, .btn-group .btnsSiguiente div div .btnSiguiente + .btn, .btnsSiguiente div div .btn-group .btnSiguiente + .btn, .btn-group .login div.cuerpo button + .btn, .login div.cuerpo .btn-group button + .btn, .btn-group #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button + .btn, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group button + .btn, .btn-group .btnsSiguiente div div .btn + .btnSiguiente, .btnsSiguiente div div .btn-group .btn + .btnSiguiente, .btn-group .btnsSiguiente div div .btnSiguiente + .btnSiguiente, .btnsSiguiente div div .btn-group .btnSiguiente + .btnSiguiente, .btn-group .login .btnsSiguiente div.cuerpo div button + .btnSiguiente, .btnsSiguiente .btn-group .login div.cuerpo div button + .btnSiguiente, .login .btnsSiguiente div.cuerpo .btn-group div button + .btnSiguiente, .btnsSiguiente .login div.cuerpo .btn-group div button + .btnSiguiente, .login .btnsSiguiente div.cuerpo div .btn-group button + .btnSiguiente, .btnsSiguiente .login div.cuerpo div .btn-group button + .btnSiguiente, .btn-group #modalConfirmacion div.modal-dialog .btnsSiguiente div.modal-content div.modal-footer button + .btnSiguiente, .btnsSiguiente .btn-group #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button + .btnSiguiente, #modalConfirmacion div.modal-dialog .btnsSiguiente div.modal-content div.modal-footer .btn-group button + .btnSiguiente, .btnsSiguiente #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group button + .btnSiguiente, .btn-group .login div.cuerpo .btn + button, .login div.cuerpo .btn-group .btn + button, .btn-group .btnsSiguiente .login div.cuerpo div .btnSiguiente + button, .login .btn-group .btnsSiguiente div.cuerpo div .btnSiguiente + button, .btnsSiguiente .login div.cuerpo div .btn-group .btnSiguiente + button, .login .btnsSiguiente div.cuerpo div .btn-group .btnSiguiente + button, .btn-group .login div.cuerpo button + button, .login div.cuerpo .btn-group button + button, .btn-group #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .login div.cuerpo button + button, .btn-group #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn + button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group .btn + button, .btn-group .btnsSiguiente #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btnSiguiente + button, #modalConfirmacion div.modal-dialog .btn-group .btnsSiguiente div.modal-content div.modal-footer .btnSiguiente + button, .btnsSiguiente #modalConfirmacion div.modal-dialog div.modal-content .btn-group div.modal-footer .btnSiguiente + button, #modalConfirmacion .btnsSiguiente div.modal-dialog div.modal-content .btn-group div.modal-footer .btnSiguiente + button, .btnsSiguiente #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group .btnSiguiente + button, #modalConfirmacion .btnsSiguiente div.modal-dialog div.modal-content div.modal-footer .btn-group .btnSiguiente + button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group .login div.cuerpo button + button, .btn-group #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button + button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group button + button,
 .btn-group .btn + .btn-group,
+.btn-group .btnsSiguiente div div .btnSiguiente + .btn-group,
+.btnsSiguiente div div .btn-group .btnSiguiente + .btn-group,
 .btn-group .login div.cuerpo button + .btn-group,
 .login div.cuerpo .btn-group button + .btn-group,
 .btn-group #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button + .btn-group,
 #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group button + .btn-group,
 .btn-group .btn-group + .btn,
+.btn-group .btnsSiguiente div div .btn-group + .btnSiguiente,
+.btnsSiguiente div div .btn-group .btn-group + .btnSiguiente,
 .btn-group .login div.cuerpo .btn-group + button,
 .login div.cuerpo .btn-group .btn-group + button,
 .btn-group #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group + button,
@@ -3519,25 +3553,25 @@ tbody.collapse.in {
     display: table; }
   .btn-toolbar:after {
     clear: both; }
-  .btn-toolbar .btn, .btn-toolbar .login div.cuerpo button, .login div.cuerpo .btn-toolbar button, .btn-toolbar #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-toolbar button,
+  .btn-toolbar .btn, .btn-toolbar .btnsSiguiente div div .btnSiguiente, .btnsSiguiente div div .btn-toolbar .btnSiguiente, .btn-toolbar .login div.cuerpo button, .login div.cuerpo .btn-toolbar button, .btn-toolbar #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-toolbar button,
   .btn-toolbar .btn-group,
   .btn-toolbar .input-group {
     float: left; }
-  .btn-toolbar > .btn, .login div.cuerpo .btn-toolbar > button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-toolbar > button,
+  .btn-toolbar > .btn, .btnsSiguiente div div .btn-toolbar > .btnSiguiente, .login div.cuerpo .btn-toolbar > button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-toolbar > button,
   .btn-toolbar > .btn-group,
   .btn-toolbar > .input-group {
     margin-left: 5px; }
 
-.btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle), .login div.cuerpo .btn-group > button:not(:first-child):not(:last-child):not(.dropdown-toggle), #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group > button:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+.btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle), .btnsSiguiente div div .btn-group > .btnSiguiente:not(:first-child):not(:last-child):not(.dropdown-toggle), .login div.cuerpo .btn-group > button:not(:first-child):not(:last-child):not(.dropdown-toggle), #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group > button:not(:first-child):not(:last-child):not(.dropdown-toggle) {
   border-radius: 0; }
 
-.btn-group > .btn:first-child, .login div.cuerpo .btn-group > button:first-child, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group > button:first-child {
+.btn-group > .btn:first-child, .btnsSiguiente div div .btn-group > .btnSiguiente:first-child, .login div.cuerpo .btn-group > button:first-child, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group > button:first-child {
   margin-left: 0; }
-  .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle), .login div.cuerpo .btn-group > button:first-child:not(:last-child):not(.dropdown-toggle), #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group > button:first-child:not(:last-child):not(.dropdown-toggle) {
+  .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle), .btnsSiguiente div div .btn-group > .btnSiguiente:first-child:not(:last-child):not(.dropdown-toggle), .login div.cuerpo .btn-group > button:first-child:not(:last-child):not(.dropdown-toggle), #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group > button:first-child:not(:last-child):not(.dropdown-toggle) {
     border-bottom-right-radius: 0;
     border-top-right-radius: 0; }
 
-.btn-group > .btn:last-child:not(:first-child), .login div.cuerpo .btn-group > button:last-child:not(:first-child), #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group > button:last-child:not(:first-child),
+.btn-group > .btn:last-child:not(:first-child), .btnsSiguiente div div .btn-group > .btnSiguiente:last-child:not(:first-child), .login div.cuerpo .btn-group > button:last-child:not(:first-child), #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group > button:last-child:not(:first-child),
 .btn-group > .dropdown-toggle:not(:first-child) {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0; }
@@ -3545,15 +3579,15 @@ tbody.collapse.in {
 .btn-group > .btn-group {
   float: left; }
 
-.btn-group > .btn-group:not(:first-child):not(:last-child) > .btn, .login div.cuerpo .btn-group > .btn-group:not(:first-child):not(:last-child) > button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group > .btn-group:not(:first-child):not(:last-child) > button {
+.btn-group > .btn-group:not(:first-child):not(:last-child) > .btn, .btnsSiguiente div div .btn-group > .btn-group:not(:first-child):not(:last-child) > .btnSiguiente, .login div.cuerpo .btn-group > .btn-group:not(:first-child):not(:last-child) > button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group > .btn-group:not(:first-child):not(:last-child) > button {
   border-radius: 0; }
 
-.btn-group > .btn-group:first-child:not(:last-child) > .btn:last-child, .login div.cuerpo .btn-group > .btn-group:first-child:not(:last-child) > button:last-child, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group > .btn-group:first-child:not(:last-child) > button:last-child,
+.btn-group > .btn-group:first-child:not(:last-child) > .btn:last-child, .btnsSiguiente div div .btn-group > .btn-group:first-child:not(:last-child) > .btnSiguiente:last-child, .login div.cuerpo .btn-group > .btn-group:first-child:not(:last-child) > button:last-child, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group > .btn-group:first-child:not(:last-child) > button:last-child,
 .btn-group > .btn-group:first-child:not(:last-child) > .dropdown-toggle {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0; }
 
-.btn-group > .btn-group:last-child:not(:first-child) > .btn:first-child, .login div.cuerpo .btn-group > .btn-group:last-child:not(:first-child) > button:first-child, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group > .btn-group:last-child:not(:first-child) > button:first-child {
+.btn-group > .btn-group:last-child:not(:first-child) > .btn:first-child, .btnsSiguiente div div .btn-group > .btn-group:last-child:not(:first-child) > .btnSiguiente:first-child, .login div.cuerpo .btn-group > .btn-group:last-child:not(:first-child) > button:first-child, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group > .btn-group:last-child:not(:first-child) > button:first-child {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0; }
 
@@ -3561,11 +3595,11 @@ tbody.collapse.in {
 .btn-group.open .dropdown-toggle {
   outline: 0; }
 
-.btn-group > .btn + .dropdown-toggle, .login div.cuerpo .btn-group > button + .dropdown-toggle, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group > button + .dropdown-toggle {
+.btn-group > .btn + .dropdown-toggle, .btnsSiguiente div div .btn-group > .btnSiguiente + .dropdown-toggle, .login div.cuerpo .btn-group > button + .dropdown-toggle, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group > button + .dropdown-toggle {
   padding-left: 8px;
   padding-right: 8px; }
 
-.btn-group > .btn-lg + .dropdown-toggle, .btn-group-lg.btn-group > .btn + .dropdown-toggle, .login div.cuerpo .btn-group-lg.btn-group > button + .dropdown-toggle, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-lg.btn-group > button + .dropdown-toggle {
+.btn-group > .btn-lg + .dropdown-toggle, .btn-group-lg.btn-group > .btn + .dropdown-toggle, .login div.cuerpo .btn-group-lg.btn-group > button + .dropdown-toggle, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-lg.btn-group > button + .dropdown-toggle, .btnsSiguiente div div .btn-group > .btnSiguiente + .dropdown-toggle {
   padding-left: 12px;
   padding-right: 12px; }
 
@@ -3576,19 +3610,20 @@ tbody.collapse.in {
     -webkit-box-shadow: none;
     box-shadow: none; }
 
-.btn .caret, .login div.cuerpo button .caret, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button .caret, .btn .cabecera nav ul.Right li a.dropdown-toggle span, .cabecera nav ul.Right li a.dropdown-toggle .btn span, .login div.cuerpo button .cabecera nav ul.Right li a.dropdown-toggle span, .cabecera nav ul.Right li a.dropdown-toggle .login div.cuerpo button span, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button .cabecera nav ul.Right li a.dropdown-toggle span, .cabecera nav ul.Right li a.dropdown-toggle #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button span {
+.btn .caret, .btnsSiguiente div div .btnSiguiente .caret, .login div.cuerpo button .caret, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button .caret, .btn .cabecera nav ul.Right li a.dropdown-toggle span, .cabecera nav ul.Right li a.dropdown-toggle .btn span, .btnsSiguiente div div .btnSiguiente .cabecera nav ul.Right li a.dropdown-toggle span, .cabecera nav ul.Right li a.dropdown-toggle .btnsSiguiente div div .btnSiguiente span, .login div.cuerpo button .cabecera nav ul.Right li a.dropdown-toggle span, .cabecera nav ul.Right li a.dropdown-toggle .login div.cuerpo button span, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button .cabecera nav ul.Right li a.dropdown-toggle span, .cabecera nav ul.Right li a.dropdown-toggle #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button span {
   margin-left: 0; }
 
-.btn-lg .caret, .btn-group-lg > .btn .caret, .login div.cuerpo .btn-group-lg > button .caret, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-lg > button .caret, .btn-lg .cabecera nav ul.Right li a.dropdown-toggle span, .cabecera nav ul.Right li a.dropdown-toggle .btn-lg span, .btn-group-lg > .btn .cabecera nav ul.Right li a.dropdown-toggle span, .cabecera nav ul.Right li a.dropdown-toggle .btn-group-lg > .btn span, .login div.cuerpo .btn-group-lg > button .cabecera nav ul.Right li a.dropdown-toggle span, .cabecera nav ul.Right li a.dropdown-toggle .login div.cuerpo .btn-group-lg > button span, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-lg > button .cabecera nav ul.Right li a.dropdown-toggle span, .cabecera nav ul.Right li a.dropdown-toggle #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-lg > button span {
+.btn-lg .caret, .btn-group-lg > .btn .caret, .login div.cuerpo .btn-group-lg > button .caret, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-lg > button .caret, .btnsSiguiente div div .btnSiguiente .caret, .btn-lg .cabecera nav ul.Right li a.dropdown-toggle span, .cabecera nav ul.Right li a.dropdown-toggle .btn-lg span, .btn-group-lg > .btn .cabecera nav ul.Right li a.dropdown-toggle span, .cabecera nav ul.Right li a.dropdown-toggle .btn-group-lg > .btn span, .login div.cuerpo .btn-group-lg > button .cabecera nav ul.Right li a.dropdown-toggle span, .cabecera nav ul.Right li a.dropdown-toggle .login div.cuerpo .btn-group-lg > button span, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-lg > button .cabecera nav ul.Right li a.dropdown-toggle span, .cabecera nav ul.Right li a.dropdown-toggle #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-lg > button span, .btnsSiguiente div div .btnSiguiente .cabecera nav ul.Right li a.dropdown-toggle span, .cabecera nav ul.Right li a.dropdown-toggle .btnsSiguiente div div .btnSiguiente span {
   border-width: 5px 5px 0;
   border-bottom-width: 0; }
 
-.dropup .btn-lg .caret, .dropup .btn-group-lg > .btn .caret, .dropup .login div.cuerpo .btn-group-lg > button .caret, .login div.cuerpo .dropup .btn-group-lg > button .caret, .dropup #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-lg > button .caret, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .dropup .btn-group-lg > button .caret, .dropup .btn-lg .cabecera nav ul.Right li a.dropdown-toggle span, .cabecera nav ul.Right li a.dropdown-toggle .dropup .btn-lg span, .dropup .btn-group-lg > .btn .cabecera nav ul.Right li a.dropdown-toggle span, .cabecera nav ul.Right li a.dropdown-toggle .dropup .btn-group-lg > .btn span, .dropup .login div.cuerpo .btn-group-lg > button .cabecera nav ul.Right li a.dropdown-toggle span, .cabecera nav ul.Right li a.dropdown-toggle .dropup .login div.cuerpo .btn-group-lg > button span, .login div.cuerpo .dropup .btn-group-lg > button .cabecera nav ul.Right li a.dropdown-toggle span, .cabecera nav ul.Right li a.dropdown-toggle .login div.cuerpo .dropup .btn-group-lg > button span, .dropup #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-lg > button .cabecera nav ul.Right li a.dropdown-toggle span, .cabecera nav ul.Right li a.dropdown-toggle .dropup #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-lg > button span, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .dropup .btn-group-lg > button .cabecera nav ul.Right li a.dropdown-toggle span, .cabecera nav ul.Right li a.dropdown-toggle #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .dropup .btn-group-lg > button span {
+.dropup .btn-lg .caret, .dropup .btn-group-lg > .btn .caret, .dropup .login div.cuerpo .btn-group-lg > button .caret, .login div.cuerpo .dropup .btn-group-lg > button .caret, .dropup #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-lg > button .caret, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .dropup .btn-group-lg > button .caret, .dropup .btnsSiguiente div div .btnSiguiente .caret, .btnsSiguiente div div .dropup .btnSiguiente .caret, .dropup .btn-lg .cabecera nav ul.Right li a.dropdown-toggle span, .cabecera nav ul.Right li a.dropdown-toggle .dropup .btn-lg span, .dropup .btn-group-lg > .btn .cabecera nav ul.Right li a.dropdown-toggle span, .cabecera nav ul.Right li a.dropdown-toggle .dropup .btn-group-lg > .btn span, .dropup .login div.cuerpo .btn-group-lg > button .cabecera nav ul.Right li a.dropdown-toggle span, .cabecera nav ul.Right li a.dropdown-toggle .dropup .login div.cuerpo .btn-group-lg > button span, .login div.cuerpo .dropup .btn-group-lg > button .cabecera nav ul.Right li a.dropdown-toggle span, .cabecera nav ul.Right li a.dropdown-toggle .login div.cuerpo .dropup .btn-group-lg > button span, .dropup #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-lg > button .cabecera nav ul.Right li a.dropdown-toggle span, .cabecera nav ul.Right li a.dropdown-toggle .dropup #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-lg > button span, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .dropup .btn-group-lg > button .cabecera nav ul.Right li a.dropdown-toggle span, .cabecera nav ul.Right li a.dropdown-toggle #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .dropup .btn-group-lg > button span, .dropup .btnsSiguiente div div .btnSiguiente .cabecera nav ul.Right li a.dropdown-toggle span, .cabecera nav ul.Right li a.dropdown-toggle .dropup .btnsSiguiente div div .btnSiguiente span, .btnsSiguiente div div .dropup .btnSiguiente .cabecera nav ul.Right li a.dropdown-toggle span, .cabecera nav ul.Right li a.dropdown-toggle .btnsSiguiente div div .dropup .btnSiguiente span {
   border-width: 0 5px 5px; }
 
-.btn-group-vertical > .btn, .login div.cuerpo .btn-group-vertical > button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-vertical > button,
+.btn-group-vertical > .btn, .btnsSiguiente div div .btn-group-vertical > .btnSiguiente, .login div.cuerpo .btn-group-vertical > button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-vertical > button,
 .btn-group-vertical > .btn-group,
 .btn-group-vertical > .btn-group > .btn,
+.btnsSiguiente div div .btn-group-vertical > .btn-group > .btnSiguiente,
 .login div.cuerpo .btn-group-vertical > .btn-group > button,
 #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-vertical > .btn-group > button {
   display: block;
@@ -3600,41 +3635,43 @@ tbody.collapse.in {
   display: table; }
 .btn-group-vertical > .btn-group:after {
   clear: both; }
-.btn-group-vertical > .btn-group > .btn, .login div.cuerpo .btn-group-vertical > .btn-group > button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-vertical > .btn-group > button {
+.btn-group-vertical > .btn-group > .btn, .btnsSiguiente div div .btn-group-vertical > .btn-group > .btnSiguiente, .login div.cuerpo .btn-group-vertical > .btn-group > button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-vertical > .btn-group > button {
   float: none; }
-.btn-group-vertical > .btn + .btn, .login div.cuerpo .btn-group-vertical > button + .btn, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-vertical > button + .btn, .login div.cuerpo .btn-group-vertical > .btn + button, .login div.cuerpo .btn-group-vertical > button + button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-vertical > .btn + button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-vertical > button + button,
+.btn-group-vertical > .btn + .btn, .btnsSiguiente div div .btn-group-vertical > .btnSiguiente + .btn, .login div.cuerpo .btn-group-vertical > button + .btn, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-vertical > button + .btn, .btnsSiguiente div div .btn-group-vertical > .btn + .btnSiguiente, .btnsSiguiente div div .btn-group-vertical > .btnSiguiente + .btnSiguiente, .login .btnsSiguiente div.cuerpo div .btn-group-vertical > button + .btnSiguiente, .btnsSiguiente .login div.cuerpo div .btn-group-vertical > button + .btnSiguiente, #modalConfirmacion div.modal-dialog .btnsSiguiente div.modal-content div.modal-footer .btn-group-vertical > button + .btnSiguiente, .btnsSiguiente #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-vertical > button + .btnSiguiente, .login div.cuerpo .btn-group-vertical > .btn + button, .btnsSiguiente .login div.cuerpo div .btn-group-vertical > .btnSiguiente + button, .login .btnsSiguiente div.cuerpo div .btn-group-vertical > .btnSiguiente + button, .login div.cuerpo .btn-group-vertical > button + button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-vertical > .btn + button, .btnsSiguiente #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-vertical > .btnSiguiente + button, #modalConfirmacion div.modal-dialog .btnsSiguiente div.modal-content div.modal-footer .btn-group-vertical > .btnSiguiente + button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-vertical > button + button,
 .btn-group-vertical > .btn + .btn-group,
+.btnsSiguiente div div .btn-group-vertical > .btnSiguiente + .btn-group,
 .login div.cuerpo .btn-group-vertical > button + .btn-group,
 #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-vertical > button + .btn-group,
 .btn-group-vertical > .btn-group + .btn,
+.btnsSiguiente div div .btn-group-vertical > .btn-group + .btnSiguiente,
 .login div.cuerpo .btn-group-vertical > .btn-group + button,
 #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-vertical > .btn-group + button,
 .btn-group-vertical > .btn-group + .btn-group {
   margin-top: -1px;
   margin-left: 0; }
 
-.btn-group-vertical > .btn:not(:first-child):not(:last-child), .login div.cuerpo .btn-group-vertical > button:not(:first-child):not(:last-child), #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-vertical > button:not(:first-child):not(:last-child) {
+.btn-group-vertical > .btn:not(:first-child):not(:last-child), .btnsSiguiente div div .btn-group-vertical > .btnSiguiente:not(:first-child):not(:last-child), .login div.cuerpo .btn-group-vertical > button:not(:first-child):not(:last-child), #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-vertical > button:not(:first-child):not(:last-child) {
   border-radius: 0; }
-.btn-group-vertical > .btn:first-child:not(:last-child), .login div.cuerpo .btn-group-vertical > button:first-child:not(:last-child), #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-vertical > button:first-child:not(:last-child) {
+.btn-group-vertical > .btn:first-child:not(:last-child), .btnsSiguiente div div .btn-group-vertical > .btnSiguiente:first-child:not(:last-child), .login div.cuerpo .btn-group-vertical > button:first-child:not(:last-child), #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-vertical > button:first-child:not(:last-child) {
   border-top-right-radius: 4px;
   border-top-left-radius: 4px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0; }
-.btn-group-vertical > .btn:last-child:not(:first-child), .login div.cuerpo .btn-group-vertical > button:last-child:not(:first-child), #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-vertical > button:last-child:not(:first-child) {
+.btn-group-vertical > .btn:last-child:not(:first-child), .btnsSiguiente div div .btn-group-vertical > .btnSiguiente:last-child:not(:first-child), .login div.cuerpo .btn-group-vertical > button:last-child:not(:first-child), #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-vertical > button:last-child:not(:first-child) {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
   border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px; }
 
-.btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn, .login div.cuerpo .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > button {
+.btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn, .btnsSiguiente div div .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btnSiguiente, .login div.cuerpo .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > button {
   border-radius: 0; }
 
-.btn-group-vertical > .btn-group:first-child:not(:last-child) > .btn:last-child, .login div.cuerpo .btn-group-vertical > .btn-group:first-child:not(:last-child) > button:last-child, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-vertical > .btn-group:first-child:not(:last-child) > button:last-child,
+.btn-group-vertical > .btn-group:first-child:not(:last-child) > .btn:last-child, .btnsSiguiente div div .btn-group-vertical > .btn-group:first-child:not(:last-child) > .btnSiguiente:last-child, .login div.cuerpo .btn-group-vertical > .btn-group:first-child:not(:last-child) > button:last-child, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-vertical > .btn-group:first-child:not(:last-child) > button:last-child,
 .btn-group-vertical > .btn-group:first-child:not(:last-child) > .dropdown-toggle {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0; }
 
-.btn-group-vertical > .btn-group:last-child:not(:first-child) > .btn:first-child, .login div.cuerpo .btn-group-vertical > .btn-group:last-child:not(:first-child) > button:first-child, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-vertical > .btn-group:last-child:not(:first-child) > button:first-child {
+.btn-group-vertical > .btn-group:last-child:not(:first-child) > .btn:first-child, .btnsSiguiente div div .btn-group-vertical > .btn-group:last-child:not(:first-child) > .btnSiguiente:first-child, .login div.cuerpo .btn-group-vertical > .btn-group:last-child:not(:first-child) > button:first-child, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-vertical > .btn-group:last-child:not(:first-child) > button:first-child {
   border-top-right-radius: 0;
   border-top-left-radius: 0; }
 
@@ -3643,24 +3680,27 @@ tbody.collapse.in {
   width: 100%;
   table-layout: fixed;
   border-collapse: separate; }
-  .btn-group-justified > .btn, .login div.cuerpo .btn-group-justified > button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-justified > button,
+  .btn-group-justified > .btn, .btnsSiguiente div div .btn-group-justified > .btnSiguiente, .login div.cuerpo .btn-group-justified > button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-justified > button,
   .btn-group-justified > .btn-group {
     float: none;
     display: table-cell;
     width: 1%; }
-  .btn-group-justified > .btn-group .btn, .btn-group-justified > .btn-group .login div.cuerpo button, .login div.cuerpo .btn-group-justified > .btn-group button, .btn-group-justified > .btn-group #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-justified > .btn-group button {
+  .btn-group-justified > .btn-group .btn, .btn-group-justified > .btn-group .btnsSiguiente div div .btnSiguiente, .btnsSiguiente div div .btn-group-justified > .btn-group .btnSiguiente, .btn-group-justified > .btn-group .login div.cuerpo button, .login div.cuerpo .btn-group-justified > .btn-group button, .btn-group-justified > .btn-group #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-justified > .btn-group button {
     width: 100%; }
   .btn-group-justified > .btn-group .dropdown-menu {
     left: auto; }
 
-[data-toggle="buttons"] > .btn input[type="radio"], .login div.cuerpo [data-toggle="buttons"] > button input[type="radio"], #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer [data-toggle="buttons"] > button input[type="radio"],
+[data-toggle="buttons"] > .btn input[type="radio"], .btnsSiguiente div div [data-toggle="buttons"] > .btnSiguiente input[type="radio"], .login div.cuerpo [data-toggle="buttons"] > button input[type="radio"], #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer [data-toggle="buttons"] > button input[type="radio"],
 [data-toggle="buttons"] > .btn input[type="checkbox"],
+.btnsSiguiente div div [data-toggle="buttons"] > .btnSiguiente input[type="checkbox"],
 .login div.cuerpo [data-toggle="buttons"] > button input[type="checkbox"],
 #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer [data-toggle="buttons"] > button input[type="checkbox"],
 [data-toggle="buttons"] > .btn-group > .btn input[type="radio"],
+.btnsSiguiente div div [data-toggle="buttons"] > .btn-group > .btnSiguiente input[type="radio"],
 .login div.cuerpo [data-toggle="buttons"] > .btn-group > button input[type="radio"],
 #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer [data-toggle="buttons"] > .btn-group > button input[type="radio"],
 [data-toggle="buttons"] > .btn-group > .btn input[type="checkbox"],
+.btnsSiguiente div div [data-toggle="buttons"] > .btn-group > .btnSiguiente input[type="checkbox"],
 .login div.cuerpo [data-toggle="buttons"] > .btn-group > button input[type="checkbox"],
 #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer [data-toggle="buttons"] > .btn-group > button input[type="checkbox"] {
   position: absolute;
@@ -3712,6 +3752,7 @@ tbody.collapse.in {
   .input-group-addon.input-sm,
   .input-group-sm > .input-group-addon,
   .input-group-sm > .input-group-btn > .input-group-addon.btn,
+  .btnsSiguiente div div .input-group-sm > .input-group-btn > .input-group-addon.btnSiguiente,
   .login div.cuerpo .input-group-sm > .input-group-btn > button.input-group-addon,
   #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-sm > .input-group-btn > button.input-group-addon {
     padding: 5px 10px;
@@ -3720,6 +3761,7 @@ tbody.collapse.in {
   .input-group-addon.input-lg,
   .input-group-lg > .input-group-addon,
   .input-group-lg > .input-group-btn > .input-group-addon.btn,
+  .btnsSiguiente div div .input-group-lg > .input-group-btn > .input-group-addon.btnSiguiente,
   .login div.cuerpo .input-group-lg > .input-group-btn > button.input-group-addon,
   #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-lg > .input-group-btn > button.input-group-addon {
     padding: 10px 16px;
@@ -3732,16 +3774,20 @@ tbody.collapse.in {
 .input-group .form-control:first-child,
 .input-group-addon:first-child,
 .input-group-btn:first-child > .btn,
+.btnsSiguiente div div .input-group-btn:first-child > .btnSiguiente,
 .login div.cuerpo .input-group-btn:first-child > button,
 #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-btn:first-child > button,
 .input-group-btn:first-child > .btn-group > .btn,
+.btnsSiguiente div div .input-group-btn:first-child > .btn-group > .btnSiguiente,
 .login div.cuerpo .input-group-btn:first-child > .btn-group > button,
 #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-btn:first-child > .btn-group > button,
 .input-group-btn:first-child > .dropdown-toggle,
 .input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle),
+.btnsSiguiente div div .input-group-btn:last-child > .btnSiguiente:not(:last-child):not(.dropdown-toggle),
 .login div.cuerpo .input-group-btn:last-child > button:not(:last-child):not(.dropdown-toggle),
 #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-btn:last-child > button:not(:last-child):not(.dropdown-toggle),
 .input-group-btn:last-child > .btn-group:not(:last-child) > .btn,
+.btnsSiguiente div div .input-group-btn:last-child > .btn-group:not(:last-child) > .btnSiguiente,
 .login div.cuerpo .input-group-btn:last-child > .btn-group:not(:last-child) > button,
 #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-btn:last-child > .btn-group:not(:last-child) > button {
   border-bottom-right-radius: 0;
@@ -3753,16 +3799,20 @@ tbody.collapse.in {
 .input-group .form-control:last-child,
 .input-group-addon:last-child,
 .input-group-btn:last-child > .btn,
+.btnsSiguiente div div .input-group-btn:last-child > .btnSiguiente,
 .login div.cuerpo .input-group-btn:last-child > button,
 #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-btn:last-child > button,
 .input-group-btn:last-child > .btn-group > .btn,
+.btnsSiguiente div div .input-group-btn:last-child > .btn-group > .btnSiguiente,
 .login div.cuerpo .input-group-btn:last-child > .btn-group > button,
 #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-btn:last-child > .btn-group > button,
 .input-group-btn:last-child > .dropdown-toggle,
 .input-group-btn:first-child > .btn:not(:first-child),
+.btnsSiguiente div div .input-group-btn:first-child > .btnSiguiente:not(:first-child),
 .login div.cuerpo .input-group-btn:first-child > button:not(:first-child),
 #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-btn:first-child > button:not(:first-child),
 .input-group-btn:first-child > .btn-group:not(:first-child) > .btn,
+.btnsSiguiente div div .input-group-btn:first-child > .btn-group:not(:first-child) > .btnSiguiente,
 .login div.cuerpo .input-group-btn:first-child > .btn-group:not(:first-child) > button,
 #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-btn:first-child > .btn-group:not(:first-child) > button {
   border-bottom-left-radius: 0;
@@ -3775,16 +3825,16 @@ tbody.collapse.in {
   position: relative;
   font-size: 0;
   white-space: nowrap; }
-  .input-group-btn > .btn, .login div.cuerpo .input-group-btn > button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-btn > button {
+  .input-group-btn > .btn, .btnsSiguiente div div .input-group-btn > .btnSiguiente, .login div.cuerpo .input-group-btn > button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-btn > button {
     position: relative; }
-    .input-group-btn > .btn + .btn, .login div.cuerpo .input-group-btn > button + .btn, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-btn > button + .btn, .login div.cuerpo .input-group-btn > .btn + button, .login div.cuerpo .input-group-btn > button + button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-btn > .btn + button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-btn > button + button {
+    .input-group-btn > .btn + .btn, .btnsSiguiente div div .input-group-btn > .btnSiguiente + .btn, .login div.cuerpo .input-group-btn > button + .btn, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-btn > button + .btn, .btnsSiguiente div div .input-group-btn > .btn + .btnSiguiente, .btnsSiguiente div div .input-group-btn > .btnSiguiente + .btnSiguiente, .login .btnsSiguiente div.cuerpo div .input-group-btn > button + .btnSiguiente, .btnsSiguiente .login div.cuerpo div .input-group-btn > button + .btnSiguiente, #modalConfirmacion div.modal-dialog .btnsSiguiente div.modal-content div.modal-footer .input-group-btn > button + .btnSiguiente, .btnsSiguiente #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-btn > button + .btnSiguiente, .login div.cuerpo .input-group-btn > .btn + button, .btnsSiguiente .login div.cuerpo div .input-group-btn > .btnSiguiente + button, .login .btnsSiguiente div.cuerpo div .input-group-btn > .btnSiguiente + button, .login div.cuerpo .input-group-btn > button + button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-btn > .btn + button, .btnsSiguiente #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-btn > .btnSiguiente + button, #modalConfirmacion div.modal-dialog .btnsSiguiente div.modal-content div.modal-footer .input-group-btn > .btnSiguiente + button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-btn > button + button {
       margin-left: -1px; }
-    .input-group-btn > .btn:hover, .login div.cuerpo .input-group-btn > button:hover, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-btn > button:hover, .input-group-btn > .btn:focus, .login div.cuerpo .input-group-btn > button:focus, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-btn > button:focus, .input-group-btn > .btn:active, .login div.cuerpo .input-group-btn > button:active, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-btn > button:active {
+    .input-group-btn > .btn:hover, .btnsSiguiente div div .input-group-btn > .btnSiguiente:hover, .login div.cuerpo .input-group-btn > button:hover, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-btn > button:hover, .input-group-btn > .btn:focus, .btnsSiguiente div div .input-group-btn > .btnSiguiente:focus, .login div.cuerpo .input-group-btn > button:focus, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-btn > button:focus, .input-group-btn > .btn:active, .btnsSiguiente div div .input-group-btn > .btnSiguiente:active, .login div.cuerpo .input-group-btn > button:active, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-btn > button:active {
       z-index: 2; }
-  .input-group-btn:first-child > .btn, .login div.cuerpo .input-group-btn:first-child > button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-btn:first-child > button,
+  .input-group-btn:first-child > .btn, .btnsSiguiente div div .input-group-btn:first-child > .btnSiguiente, .login div.cuerpo .input-group-btn:first-child > button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-btn:first-child > button,
   .input-group-btn:first-child > .btn-group {
     margin-right: -1px; }
-  .input-group-btn:last-child > .btn, .login div.cuerpo .input-group-btn:last-child > button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-btn:last-child > button,
+  .input-group-btn:last-child > .btn, .btnsSiguiente div div .input-group-btn:last-child > .btnSiguiente, .login div.cuerpo .input-group-btn:last-child > button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .input-group-btn:last-child > button,
   .input-group-btn:last-child > .btn-group {
     z-index: 2;
     margin-left: -1px; }
@@ -3982,16 +4032,22 @@ tbody.collapse.in {
 .container > .navbar-header, .cabecera nav .container > div,
 .container > .navbar-collapse,
 .container-fluid > .navbar-header,
+.btnsSiguiente > .navbar-header,
 .cabecera nav .container-fluid > div,
-.container-fluid > .navbar-collapse {
+.cabecera nav .btnsSiguiente > div,
+.container-fluid > .navbar-collapse,
+.btnsSiguiente > .navbar-collapse {
   margin-right: -15px;
   margin-left: -15px; }
   @media (min-width: 768px) {
     .container > .navbar-header, .cabecera nav .container > div,
     .container > .navbar-collapse,
     .container-fluid > .navbar-header,
+    .btnsSiguiente > .navbar-header,
     .cabecera nav .container-fluid > div,
-    .container-fluid > .navbar-collapse {
+    .cabecera nav .btnsSiguiente > div,
+    .container-fluid > .navbar-collapse,
+    .btnsSiguiente > .navbar-collapse {
       margin-right: 0;
       margin-left: 0; } }
 
@@ -4033,7 +4089,7 @@ tbody.collapse.in {
   .navbar-brand > img, .cabecera nav div a > img {
     display: block; }
   @media (min-width: 768px) {
-    .navbar > .container .navbar-brand, .cabecera nav > .container .navbar-brand, .navbar > .container .cabecera nav div a, .cabecera nav div .navbar > .container a, .cabecera nav > .container div a, .navbar > .container-fluid .navbar-brand, .cabecera nav > .container-fluid .navbar-brand, .navbar > .container-fluid .cabecera nav div a, .cabecera nav div .navbar > .container-fluid a, .cabecera nav > .container-fluid div a {
+    .navbar > .container .navbar-brand, .cabecera nav > .container .navbar-brand, .navbar > .container .cabecera nav div a, .cabecera nav div .navbar > .container a, .cabecera nav > .container div a, .navbar > .container-fluid .navbar-brand, .cabecera nav > .container-fluid .navbar-brand, .navbar > .btnsSiguiente .navbar-brand, .cabecera nav > .btnsSiguiente .navbar-brand, .navbar > .container-fluid .cabecera nav div a, .cabecera nav div .navbar > .container-fluid a, .cabecera nav > .container-fluid div a, .navbar > .btnsSiguiente .cabecera nav div a, .cabecera nav div .navbar > .btnsSiguiente a, .cabecera nav > .btnsSiguiente div a {
       margin-left: -15px; } }
 
 .navbar-toggle {
@@ -4172,10 +4228,10 @@ tbody.collapse.in {
 .navbar-btn {
   margin-top: 18px;
   margin-bottom: 18px; }
-  .navbar-btn.btn-sm, .btn-group-sm > .navbar-btn.btn, .login div.cuerpo .btn-group-sm > button.navbar-btn, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-sm > button.navbar-btn {
+  .navbar-btn.btn-sm, .btn-group-sm > .navbar-btn.btn, .btnsSiguiente div div .btn-group-sm > .navbar-btn.btnSiguiente, .login div.cuerpo .btn-group-sm > button.navbar-btn, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-sm > button.navbar-btn {
     margin-top: 20px;
     margin-bottom: 20px; }
-  .navbar-btn.btn-xs, .btn-group-xs > .navbar-btn.btn, .login div.cuerpo .btn-group-xs > button.navbar-btn, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-xs > button.navbar-btn {
+  .navbar-btn.btn-xs, .btn-group-xs > .navbar-btn.btn, .btnsSiguiente div div .btn-group-xs > .navbar-btn.btnSiguiente, .login div.cuerpo .btn-group-xs > button.navbar-btn, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-xs > button.navbar-btn {
     margin-top: 24px;
     margin-bottom: 24px; }
 
@@ -4464,7 +4520,7 @@ tbody.collapse.in {
   border-radius: .25em; }
   .label:empty {
     display: none; }
-  .btn .label, .login div.cuerpo button .label, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button .label {
+  .btn .label, .btnsSiguiente div div .btnSiguiente .label, .login div.cuerpo button .label, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button .label {
     position: relative;
     top: -1px; }
 
@@ -4518,10 +4574,10 @@ a.label:hover, a.label:focus {
   border-radius: 10px; }
   .badge:empty {
     display: none; }
-  .btn .badge, .login div.cuerpo button .badge, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button .badge {
+  .btn .badge, .btnsSiguiente div div .btnSiguiente .badge, .login div.cuerpo button .badge, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button .badge {
     position: relative;
     top: -1px; }
-  .btn-xs .badge, .btn-group-xs > .btn .badge, .login div.cuerpo .btn-group-xs > button .badge, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-xs > button .badge, .btn-group-xs > .btn .badge, .login div.cuerpo .btn-group-xs > button .badge, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-xs > button .badge {
+  .btn-xs .badge, .btn-group-xs > .btn .badge, .btnsSiguiente div div .btn-group-xs > .btnSiguiente .badge, .login div.cuerpo .btn-group-xs > button .badge, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-xs > button .badge, .btn-group-xs > .btn .badge, .btnsSiguiente div div .btn-group-xs > .btnSiguiente .badge, .login div.cuerpo .btn-group-xs > button .badge, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-xs > button .badge {
     top: 0;
     padding: 1px 5px; }
   .list-group-item.active > .badge, table.tabla tr.list-group-item.totales > .badge, .nav-pills > .active > a > .badge, table.tabla .nav-pills > tr.totales > a > .badge {
@@ -4554,7 +4610,7 @@ a.badge:hover, a.badge:focus {
     font-weight: 200; }
   .jumbotron > hr {
     border-top-color: #d5d5d5; }
-  .container .jumbotron, .container-fluid .jumbotron {
+  .container .jumbotron, .container-fluid .jumbotron, .btnsSiguiente .jumbotron {
     border-radius: 6px;
     padding-left: 15px;
     padding-right: 15px; }
@@ -4564,7 +4620,7 @@ a.badge:hover, a.badge:focus {
     .jumbotron {
       padding-top: 48px;
       padding-bottom: 48px; }
-      .container .jumbotron, .container-fluid .jumbotron {
+      .container .jumbotron, .container-fluid .jumbotron, .btnsSiguiente .jumbotron {
         padding-left: 60px;
         padding-right: 60px; }
       .jumbotron h1,
@@ -5744,10 +5800,10 @@ button.close {
     display: table; }
   .modal-footer:after {
     clear: both; }
-  .modal-footer .btn + .btn, .modal-footer .login div.cuerpo button + .btn, .login div.cuerpo .modal-footer button + .btn, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button + .btn, .modal-footer .login div.cuerpo .btn + button, .login div.cuerpo .modal-footer .btn + button, .modal-footer .login div.cuerpo button + button, .login div.cuerpo .modal-footer button + button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn + button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .login div.cuerpo button + button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button + button {
+  .modal-footer .btn + .btn, .modal-footer .btnsSiguiente div div .btnSiguiente + .btn, .btnsSiguiente div div .modal-footer .btnSiguiente + .btn, .modal-footer .login div.cuerpo button + .btn, .login div.cuerpo .modal-footer button + .btn, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button + .btn, .modal-footer .btnsSiguiente div div .btn + .btnSiguiente, .btnsSiguiente div div .modal-footer .btn + .btnSiguiente, .modal-footer .btnsSiguiente div div .btnSiguiente + .btnSiguiente, .btnsSiguiente div div .modal-footer .btnSiguiente + .btnSiguiente, .modal-footer .login .btnsSiguiente div.cuerpo div button + .btnSiguiente, .btnsSiguiente .modal-footer .login div.cuerpo div button + .btnSiguiente, .login .btnsSiguiente div.cuerpo .modal-footer div button + .btnSiguiente, .btnsSiguiente .login div.cuerpo .modal-footer div button + .btnSiguiente, .login .btnsSiguiente div.cuerpo div .modal-footer button + .btnSiguiente, .btnsSiguiente .login div.cuerpo div .modal-footer button + .btnSiguiente, #modalConfirmacion div.modal-dialog .btnsSiguiente div.modal-content div.modal-footer button + .btnSiguiente, .btnsSiguiente #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button + .btnSiguiente, .modal-footer .login div.cuerpo .btn + button, .login div.cuerpo .modal-footer .btn + button, .modal-footer .btnsSiguiente .login div.cuerpo div .btnSiguiente + button, .login .modal-footer .btnsSiguiente div.cuerpo div .btnSiguiente + button, .btnsSiguiente .login div.cuerpo div .modal-footer .btnSiguiente + button, .login .btnsSiguiente div.cuerpo div .modal-footer .btnSiguiente + button, .modal-footer .login div.cuerpo button + button, .login div.cuerpo .modal-footer button + button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn + button, .modal-footer .btnsSiguiente #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btnSiguiente + button, #modalConfirmacion div.modal-dialog .modal-footer .btnsSiguiente div.modal-content div.modal-footer .btnSiguiente + button, .btnsSiguiente #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btnSiguiente + button, #modalConfirmacion .btnsSiguiente div.modal-dialog div.modal-content div.modal-footer .btnSiguiente + button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .login div.cuerpo button + button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button + button {
     margin-left: 5px;
     margin-bottom: 0; }
-  .modal-footer .btn-group .btn + .btn, .modal-footer .btn-group .login div.cuerpo button + .btn, .login div.cuerpo .modal-footer .btn-group button + .btn, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group button + .btn, .modal-footer .btn-group .login div.cuerpo .btn + button, .login div.cuerpo .modal-footer .btn-group .btn + button, .modal-footer .btn-group .login div.cuerpo button + button, .login div.cuerpo .modal-footer .btn-group button + button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group .btn + button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group .login div.cuerpo button + button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group button + button {
+  .modal-footer .btn-group .btn + .btn, .modal-footer .btn-group .btnsSiguiente div div .btnSiguiente + .btn, .btnsSiguiente div div .modal-footer .btn-group .btnSiguiente + .btn, .modal-footer .btn-group .login div.cuerpo button + .btn, .login div.cuerpo .modal-footer .btn-group button + .btn, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group button + .btn, .modal-footer .btn-group .btnsSiguiente div div .btn + .btnSiguiente, .btnsSiguiente div div .modal-footer .btn-group .btn + .btnSiguiente, .modal-footer .btn-group .btnsSiguiente div div .btnSiguiente + .btnSiguiente, .btnsSiguiente div div .modal-footer .btn-group .btnSiguiente + .btnSiguiente, .modal-footer .btn-group .login .btnsSiguiente div.cuerpo div button + .btnSiguiente, .btnsSiguiente .modal-footer .btn-group .login div.cuerpo div button + .btnSiguiente, .login .btnsSiguiente div.cuerpo .modal-footer .btn-group div button + .btnSiguiente, .btnsSiguiente .login div.cuerpo .modal-footer .btn-group div button + .btnSiguiente, .login .btnsSiguiente div.cuerpo div .modal-footer .btn-group button + .btnSiguiente, .btnsSiguiente .login div.cuerpo div .modal-footer .btn-group button + .btnSiguiente, #modalConfirmacion div.modal-dialog .btnsSiguiente div.modal-content div.modal-footer .btn-group button + .btnSiguiente, .btnsSiguiente #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group button + .btnSiguiente, .modal-footer .btn-group .login div.cuerpo .btn + button, .login div.cuerpo .modal-footer .btn-group .btn + button, .modal-footer .btn-group .btnsSiguiente .login div.cuerpo div .btnSiguiente + button, .login .modal-footer .btn-group .btnsSiguiente div.cuerpo div .btnSiguiente + button, .btnsSiguiente .login div.cuerpo div .modal-footer .btn-group .btnSiguiente + button, .login .btnsSiguiente div.cuerpo div .modal-footer .btn-group .btnSiguiente + button, .modal-footer .btn-group .login div.cuerpo button + button, .login div.cuerpo .modal-footer .btn-group button + button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group .btn + button, .modal-footer .btn-group .btnsSiguiente #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btnSiguiente + button, #modalConfirmacion div.modal-dialog .modal-footer .btn-group .btnsSiguiente div.modal-content div.modal-footer .btnSiguiente + button, .btnsSiguiente #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group .btnSiguiente + button, #modalConfirmacion .btnsSiguiente div.modal-dialog div.modal-content div.modal-footer .btn-group .btnSiguiente + button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group .login div.cuerpo button + button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group button + button {
     margin-left: -1px; }
   .modal-footer .btn-block + .btn-block {
     margin-left: 0; }
@@ -6159,7 +6215,7 @@ button.close {
   color: #fff;
   text-align: center;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6); }
-  .carousel-caption .btn, .carousel-caption .login div.cuerpo button, .login div.cuerpo .carousel-caption button, .carousel-caption #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .carousel-caption button {
+  .carousel-caption .btn, .carousel-caption .btnsSiguiente div div .btnSiguiente, .btnsSiguiente div div .carousel-caption .btnSiguiente, .carousel-caption .login div.cuerpo button, .login div.cuerpo .carousel-caption button, .carousel-caption #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .carousel-caption button {
     text-shadow: none; }
 
 @media screen and (min-width: 768px) {
@@ -6457,11 +6513,11 @@ form.formulario, div.formulario {
     color: #fff;
     background-color: red; }
 
-.btn-outline, .login div.cuerpo button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button {
+.btn-outline, .btnsSiguiente div div .btnSiguiente, .login div.cuerpo button, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button {
   color: #000;
   border-color: #000;
   background-color: transparent; }
-  .btn-outline:hover, .login div.cuerpo button:hover, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button:hover, .btn-outline:focus, .login div.cuerpo button:focus, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button:focus, .btn-outline:active, .login div.cuerpo button:active, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button:active {
+  .btn-outline:hover, .btnsSiguiente div div .btnSiguiente:hover, .login div.cuerpo button:hover, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button:hover, .btn-outline:focus, .btnsSiguiente div div .btnSiguiente:focus, .login div.cuerpo button:focus, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button:focus, .btn-outline:active, .btnsSiguiente div div .btnSiguiente:active, .login div.cuerpo button:active, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button:active {
     color: #fff;
     border-color: #fff;
     background-color: #363636;
@@ -6476,6 +6532,9 @@ form.formulario, div.formulario {
     border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff444444', endColorstr='#ff222222', GradientType=0);
     filter: progid:DXImageTransform.Microsoft.gradient(enabled=false); }
+
+.btnsSiguiente div div .btnSiguiente {
+  float: right; }
 
 table.tabla {
   background: #fff;

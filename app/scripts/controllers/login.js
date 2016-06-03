@@ -3,6 +3,7 @@
     app.controller('LoginCtrl', function ($rootScope, $scope, $state, Auth,setting) {
       $('.btnsCotizacion').addClass('hidden');
       $rootScope.session = session;
+      $rootScope.loginOn = true;
       $scope.ingresar = function(user,pass){
         var response;
         response = Auth.valid(user);

@@ -16,6 +16,7 @@
         $state.go('login');
       }else{
         $scope.limpiarM = true;
+        $rootScope.loginOn = false;
               angular.element('#ncotizacion').focus();
             // variables
             $interval(
@@ -326,7 +327,7 @@
               })
             };
 
-            init();
+           init();
 
             //Methods
             $scope.check = function (n) {
