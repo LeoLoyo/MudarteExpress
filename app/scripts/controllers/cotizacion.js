@@ -355,7 +355,7 @@
 
             };
 
-            $scope.limpiar = function(){
+            $rootScope.limpiar = function(){
               $scope.contenedores_temp = [];
               $scope.muebles_temp = [];
               $scope.otros_temp = [];

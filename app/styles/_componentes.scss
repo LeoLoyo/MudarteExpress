@@ -58,6 +58,15 @@ form.formulario, div.formulario {
   box-shadow: $sombra_1;
   color: #fff;
 }
+.btn-limpiar {
+  color: red;
+  border-color: red;
+  background-color: transparent;
+  &:hover, &:focus, &:active {
+    color: #fff;
+    background-color: red;
+  }
+}
 .btn-outline {
   color: $colorTexto_2;
   border-color: $colorTexto_2;
@@ -111,6 +120,9 @@ table.tabla {
               background: transparent;
               &.selectMoneda {
                 text-align-last: end;
+                option {
+                  text-align-last: end;
+                }
               }
             }
         &.paddingNone {
@@ -141,6 +153,12 @@ table.tablaResumen {
       text-align: left;
     }
   }
+}
+.agregarOtro {
+  @extend .glyphicon;
+  @extend .glyphicon-plus;
+  font-size: 30px;
+  cursor: pointer;
 }
 .login {
     @extend .panel;
@@ -297,19 +315,6 @@ table.tablaResumen {
     button {
       border-radius: 0;
     }
-  }
-}
-.btnLimpiar {
-  display: block;
-  position: fixed;
-  z-index: 1100;
-  bottom: 30px;
-  right: 50px;
-  button {
-    border-radius: 50%;
-    height: 50px;
-    width: 50px;
-    box-shadow: $sombra_2;
   }
 }
 #wrapper.toggled #sidebar-wrapper {

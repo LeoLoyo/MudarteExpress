@@ -36,7 +36,7 @@
   </div>
   <div class="col-md-3 form-group">
     <label for="id_telefono">Teléfono del cliente: </label>
-    <input type="number" ng-model="cliente.telefono" class="form-control">
+    <input type="text" ng-model="cliente.telefono" class="form-control">
   </div>
   <div class="col-md-3 form-group">
     <label for="id_email">Correo del cliente:</label>
@@ -101,16 +101,16 @@
     <label for="id_hora3">Hora: </label>
     <input type="time" ng-model="cotizacion.hora_de_cotizacion" class="form-control">
   </div>
-  <div class="col-md-3 form-group">
+  <!-- <div class="col-md-3 form-group">
     <label for="id_fecha4">Fecha en que se avisó:</label>
     <input type="date" ng-model="cotizacion.fecha_de_aviso" class="form-control">
   </div>
   <div class="col-md-3 form-group">
     <label for="id_hora4">Hora: </label>
     <input type="time" ng-model="cotizacion.hora_de_aviso" class="form-control">
-  </div>
+  </div> -->
 </div>
-<div class="row">
+<!-- <div class="row">
   <div class="col-md-3 form-group">
     <label for="id_fecha5">Fecha en que se cerró:</label>
     <input type="date" ng-model="cotizacion.fecha_de_cierre" class="form-control">
@@ -127,9 +127,9 @@
     <label for="id_hora6">Hora: </label>
     <input type="time" ng-model="cotizacion.hora_real_mudanza" class="form-control">
   </div>
-</div>
-<legend></legend>
-<div class="row">
+</div> -->
+
+<!-- <div class="row">
   <div class="col-md-3 form-group">
     <label for="">Nombre de quien pasó la cotización:</label>
     <select ng-model="cotizacion.quien_cotizo" class="form-control"><option ng-repeat="item in telefonista">{{item.first_name}} {{item.last_name}}</option></select>
@@ -139,7 +139,7 @@
     <select class="form-control" ng-model="cotizacion.quien_llamo"><option ng-repeat="item in telefonista">{{item.first_name}} {{item.last_name}}</option></select>
   </div>
 
-</div>
+</div> -->
 <div class="row">
   <legend></legend>
   <div class="col-md-8 form-group">
