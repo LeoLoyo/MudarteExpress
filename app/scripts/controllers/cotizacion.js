@@ -500,6 +500,18 @@
 
             }
 
+            $scope.exportAction = function(typess){
+              console.log(typess);
+            // switch(typess){
+            //   case 'pdf': $scope.$broadcast('export-pdf', {});
+            //           break;
+            //   case 'excel': $scope.$broadcast('export-excel', {});
+            //           break;
+            //   case 'doc': $scope.$broadcast('export-doc', {});
+            //           break;
+            //   default: console.log('no event caught');
+            }
+
             $scope.update_presupuesto = function () {
               $scope.cotizacion.total_monto = Number($scope.cotizacion.mudanza + $scope.cotizacion.soga + $scope.cotizacion.embalaje + $scope.cotizacion.desembalaje + $scope.cotizacion.materiales + $scope.cotizacion.piano_cajafuerte + $scope.cotizacion.ajuste + $scope.cotizacion.iva);
             }
@@ -551,6 +563,7 @@
             // console.log($scope.cotizacion);
             $scope.cotizacion.monto_km = Number($scope.cotizacion.recorrido_km * $scope.cotizacion.precio_km);
           }
+}
   }
 
     });

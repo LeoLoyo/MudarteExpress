@@ -300,11 +300,11 @@
               <td class="tdResumen"><strong style="display:flex;"><span style="flex:90%;border-radius:0;border:none;">{{(metros3_contenedores+metros3_muebles+metros3_otros)*(1+(margen/100))|number:2}}</span> <span style="flex:10%;margin-top:auto;margin-bottom:auto;">m<sup>3</sup></span></strong></td>
             </tr>
           </table>
-          <!-- <button type="submit" ng-disabled="otros_temp.length === 0 && contenedores_temp.length === 0 && muebles_temp.length === 0" class="btn btn-success" onclick="descargarExcel()" ng-click="save(cotizacion,cliente)">Exportar</button> -->
+          <button type="submit" class="btn btn-success" onclick="descargarExcel('pdf');" ng-click="exportAction()">Exportar</button>
 
     </div>
 
-    <div id="divExportar" class="col-md-12 hidden">
+    <div id="content" class="col-md-12 hidden export-table">
              <h1 style="color:#fff">Resumen</h1>
                  <table border=1 style="width:1450;" id="prueba">
                    <thead>
@@ -313,10 +313,10 @@
                      <font align=center size=5 face="verdana"><strong>4701-1177<strong></font><br>
                      <font align=center size=3 face="verdana"><strong>WWW.MUDARTE.COM.AR<strong><br>
                      <font align=center size=3 face="verdana">info@mudarte.com.ar</font><br>
-                     <pre><font size=3 face="verdana"> 3 de Febrero 3455 / Nuñez</font></pre>
+                     <font align=center size=3 face="verdana">3 de Febrero 3455 / Nuñez</font>
                    </th>
                    <th rowspan=8 colspan=4>
-                     <font size=5 face="verdana">Cotización Express</font>
+                     <font size=5 face="verdana">Cotización</font>
                    </th>
                    <th rowspan=8 colspan=3>
                      <font color="#CC6202" size=17 face="verdana"><i><u><b>M</b></u></i></font><font size=15 face="verdana"><i><u><b>udarte<b></u></i></font><br>
@@ -545,7 +545,7 @@
                <td rowspan=2 colspan=2 align=center>{{cotizacion.rampa}}</td>
                <td rowspan=2 colspan=2 align=center></td>
                <th rowspan=2 colspan=2 style="background-color: #A9A9A9;">Total</th>
-               <td rowspan=2 colspan=2 style="background-color: #A9A9A9;" align=center>{{cotizacion.total_monto|currency}}</td>
+               <th rowspan=2 colspan=2 style="background-color: #A9A9A9;" align=center>{{cotizacion.total_monto|currency}}</th>
              </tr>
              <tr></tr>
            </tbody>
@@ -626,8 +626,8 @@
              </tr>
              <tr style="height:35px; background-color: #A9A9A9;">
                <th colspan=2>Total</th>
-               <td align=center><strong>{{unidades_muebles + unidades_otros}}</strong></td>
-               <td align=center><strong>{{metros3_muebles + metros3_otros|number:2}}</strong></td>
+               <th align=center><strong>{{unidades_muebles + unidades_otros}}</strong></th>
+               <th align=center><strong>{{metros3_muebles + metros3_otros|number:2}}</strong></th>
              </tr>
            </table>
          <h2>Totales</h2>
@@ -644,12 +644,4 @@
          </table>
    </div>
 </div>
-
-<script>
-function descargarExcel(){
- var table= document.getElementById('divExportar');
- var html = table.outerHTML;
- window.open('data:application/vnd.ms-excel,' + escape(html));
-   }
-</script>
 </div>
