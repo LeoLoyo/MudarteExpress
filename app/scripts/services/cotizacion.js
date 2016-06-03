@@ -240,6 +240,13 @@
           return data.data[0];
         });
       }
+      self.save = function(cliente){
+        return $http.post(setting.url+"cliente/",cliente).success(function(responde){
+          return responde.id;
+        }).error(function(e){
+          return e;
+        });
+      }
     });
 
     app.service('Users', function ($http, setting) {
