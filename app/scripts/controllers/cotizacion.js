@@ -65,8 +65,8 @@
               tipo_cliente:'Particular',
               cargo:'',
               forma_pago:'',
-              fecha_de_carga:'',
-              hora_de_carga:'',
+              fecha_de_carga: new Date(),
+              hora_de_carga:new Date(),
               fecha_estimada_mudanza:'',
               hora_estimada_mudanza:'',
               fecha_de_cotizacion:'',
@@ -451,7 +451,8 @@
               $scope.otros_temp_campo.splice($scope.otros_temp_campo.indexOf(campo),1);
             };
 
-            $scope.save = function(cot, cliente){
+            $scope.save = function(coti, cliente){
+              var cot = angular.copy(coti);
 
               var cliente_add = {
                   nombre: cliente.nombre,
@@ -459,31 +460,21 @@
                   email:cliente.email,
                   estado:'activo'
                 }
-                /*var total_cantidad = $scope.unidades_contenedores + $scope.unidades_muebles + $scope.unidades_otros;
+                var total_cantidad = $scope.unidades_contenedores + $scope.unidades_muebles + $scope.unidades_otros;
                 var total_m3 = $scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros;
-
                 var cotizacion = {
+
                   numero_cotizacion:cot.numero,
-                  cliente:id_cliente,
-                  responsable:1,//cot.cotizador.id,
-                  quien_llamo:1,
-                  quien_cotizo:1,
+                  cliente:1,
+                  cotizadores:1,//cot.cotizador.id,
                   fuente:cot.fuente,
                   cp_pv:cot.cp_pv,
                   cargo:cot.cargo,
                   forma_pago:cot.forma_pago,
-                  fecha_de_carga:cot.fecha_de_carga,
-                  hora_de_carga:cot.hora_de_carga,
                   fecha_estimada_mudanza:cot.fecha_estimada_mudanza,
                   hora_estimada_mudanza:cot.hora_estimada_mudanza,
                   fecha_de_cotizacion:cot.fecha_de_cotizacion,
                   hora_de_cotizacion:cot.hora_de_cotizacion,
-                  fecha_de_aviso:cot.fecha_de_aviso,
-                  hora_de_aviso:cot.hora_de_aviso,
-                  fecha_de_cierre:cot.fecha_de_cierre,
-                  hora_de_cierre:cot.hora_de_cierre,
-                  fecha_real_mudanza:cot.fecha_real_mudanza,
-                  hora_real_mudanza:cot.hora_real_mudanza,
                   direccion_origen:cot.direccion_origen,
                   barrio_provincia_origen:cot.barrio_provincia_origen,
                   observacion_origen:cot.observacion_origen,
@@ -518,33 +509,51 @@
                   estado:'activo'
                 };
 
-                if(cot.tipo_cliente === 'Particular'){
-                  cotizacion.particular = true;
+                if(cot.seguro === 'Si'){
+                  cotizacion.seguro = true;
                 }else{
-                  cotizacion.particular = false;
+                  cotizacion.seguro = false;
                 }
-                if(cot.tipo_cliente === 'Gobierno'){
-                  cotizacion.gobierno = true;
+                if(cot.desarme_mueble === 'Si'){
+                  cotizacion.desarme_mueble = true;
                 }else{
-                  cotizacion.gobierno = false;
+                  cotizacion.desarme_mueble = false;
                 }
-                if(cot.tipo_cliente === 'Empresa'){
-                  cotizacion.empresa = true;
+                if(cot.rampa === 'Si'){
+                  cotizacion.rampa = true;
                 }else{
-                  cotizacion.empresa = false;
-                }*/
+                  cotizacion.rampa = false;
+                }
+
+                function fecha_format(f){
+                  f = new Date(f);
+                  var fecha = ""+f.getFullYear()+ "-" + (f.getMonth() +1) + "-" + f.getDate()+"";
+                  return fecha;
+                }
+
+                function hora_format(f){
+                  f = new Date(f);
+                  var hora = ("0" + f.getHours()).slice(-2)+ ":" + ("0" + f.getMinutes()).slice(-2);
+                  return hora;
+                }
+
+                //cotizacion.fecha_estimada_mudanza = fecha_format(cotizacion.fecha_estimada_mudanza);
+
+                // cotizacion.fecha_de_cotizacion = fecha_format(cotizacion.fecha_de_cotizacion);
+                // cotizacion.hora_estimada_mudanza = hora_format(cotizacion.hora_estimada_mudanza);
+                // cotizacion.hora_de_cotizacion = hora_format(cotizacion.hora_de_cotizacion);
+                // console.log(cotizacion.fecha_estimada_mudanza);
+
 
 
                 var id_cliente='';
                 Cliente.save(cliente_add).then(function(result){
                   id_cliente = result.data.id;
 
-                },function(e){
-                  alert("error");
-                });
+                  cotizacion.cliente=id_cliente;
+                  console.log(cotizacion);
 
-
-                 /*Cotizacion.save(cotizacion).then(function(result){
+                  Cotizacion.save(cotizacion).then(function(result){
                   var id_cotizacion = result.data.id;
                   for(var i=0;i<$scope.contenedores_temp.length;i++){
                       Cotizacion.save_contenedores($scope.contenedores_temp[i],id_cotizacion);
@@ -559,7 +568,14 @@
 
                   },function(e){
                   alert("error");
-                });*/
+                });
+
+
+                },function(e){
+                  alert("error");
+                });
+
+
 
               console.log($scope.materiales_temp);
               $rootScope.nav = '1';
