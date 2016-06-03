@@ -46,7 +46,7 @@
     "user": { "name": "admin", "pass": "admin" }
   });
   app.service('Session', function () {
-    var session = true;
+    var session = false;
     return {
       get: function () {
         return session;
