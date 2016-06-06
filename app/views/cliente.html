@@ -28,7 +28,7 @@
         <div class="form-group">
       <div class="input-group">
       <div class="input-group-addon btnSeleccionado">Fecha de carga</div>
-      <input type="text" class="form-control" placeholder="" readonly style="background:#fff;" ng-model="cotizacion.fecha_de_carga">
+      <input type="text" class="form-control" placeholder="{{cotizacion.fecha_de_carga| date:'dd-MM-yyyy HH:mm'}}" readonly style="background:#fff;" >
     </div>
   </div>
       </div>
@@ -63,11 +63,12 @@
   </div>
 
   <div class="col-md-3 form-group">
-    <label for="id_cp">CP/PV:</label>
-    <select class="form-control" ng-model="cotizacion.cp_pv" id="id_cp">
+    <label for="id_cp">Empresa:</label>
+    <input type="text" class="form-control" ng-model="cotizacion.cp_pv" id="id_cp">
+    <!-- <select class="form-control" ng-model="cotizacion.cp_pv" id="id_cp">
       <option value="CP">CP</option>
       <option value="PV">PV</option>
-    </select>
+    </select> -->
   </div>
   <div class="col-md-3 form-group">
     <label for="id_cargo">Cargo:</label>
