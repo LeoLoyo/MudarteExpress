@@ -268,9 +268,9 @@
         });
       }
 
-      // $scope.muebles = groupBy(muebles_resolve, function (item) {
-      //   return [item.espeficicacion, item.descripcion];
-      // });
+      $scope.muebles = groupBy(muebles_resolve, function (item) {
+        return [item.espeficicacion, item.descripcion];
+      });
 
       function init(contenedor) {
         if (contenedor !== undefined) {
@@ -458,10 +458,7 @@
 
             $scope.cliente.id = r.data.id;
 
-
-            console.log(self.ambiente);
-            console.log(self.numero_ayudante);
-            var cotizacion = {
+            var cotizacion_temp = {
 
               "numero_cotizacion": self.numero_cotizacion,
               "cliente": $scope.cliente.id,
@@ -482,8 +479,8 @@
               "barrio_provincia_destino": self.barrio_provincia_destino,
               "observacion_destino": self.observacion_destino,
               "recorrido_km": self.recorrido_km,
-              "precio_km": self.precio_km,
-              "monto_km": self.monto_km,
+              "precio_km": Number(self.precio_km,2),
+              "monto_km": Number(self.monto_km,2),
               "tiempo_de_carga": self.tiempo_de_carga,
               "tiempo_de_descarga": self.tiempo_de_descarga,
               "numero_camion": self.numero_camion,
@@ -491,53 +488,56 @@
               "seguro": self.seguro,
               "desarme_mueble": self.desarme_mueble,
               "ambiente": Number(self.ambiente.num),
-              "rampa": self.rampa,
-              "mudanza": self.mudanza,
-              "soga": self.soga,
-              "embalaje": self.embalaje,
-              "desembalaje": self.desembalaje,
-              "materiales": self.materiales,
-              "piano_cajafuerte": self.piano_cajafuerte,
-              "ajuste": self.ajuste,
-              "iva": self.iva,
-              "total_monto": self.total_monto,
+              "rampa": Number(self.rampa,2),
+              "mudanza": Number(self.mudanza,2),
+              "soga": Number(self.soga,2),
+              "embalaje": Number(self.embalaje,2),
+              "desembalaje": Number(self.desembalaje,2),
+              "materiales": Number(self.materiales,2),
+              "piano_cajafuerte": Number(self.piano_cajafuerte,2),
+              "ajuste": Number(self.ajuste,2),
+              "iva": Number(self.iva,2),
+              "total_monto": Number(self.total_monto,2),
               "observacion": self.observacion,
               "total_cantidad": Number($scope.unidades_contenedores + $scope.unidades_muebles + $scope.unidades_otros),
-              "total_m3": Number($scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros),
+              "total_m3": Number($scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros,2),
               "porcentaje_margen": self.porcentaje_margen,
               "total_margen": self.total_margen,
               "estado": "activo"
             };
-
+console.log(cotizacion_temp.total_m3);
             if(self.seguro === 'Si'){
-              cotizacion.seguro = true;
+              cotizacion_temp.seguro = true;
             }else{
-              cotizacion.seguro = false;
+              cotizacion_temp.seguro = false;
             }
             if(self.desarme_mueble === 'Si'){
-              cotizacion.desarme_mueble = true;
+              cotizacion_temp.desarme_mueble = true;
             }else{
-              cotizacion.desarme_mueble = false;
+              cotizacion_temp.desarme_mueble = false;
             }
             if(self.rampa === 'Si'){
-              cotizacion.rampa = true;
+              cotizacion_temp.rampa = true;
             }else{
-              cotizacion.rampa = false;
+              cotizacion_temp.rampa = false;
             }
 
-            Cotizacion.save(cotizacion).then(function(cot){
+            Cotizacion.save(cotizacion_temp).then(function(cot){
 
               if(cot.status===201){
 
                 for(var i=0;i<$scope.contenedores_temp.length;i++){
                     Cotizacion.save_contenedores($scope.contenedores_temp[i],cot.data.id);
                 }
-                // for(var i=0;i<$scope.muebles_temp.length;i++){
-                //     Cotizacion.save_muebles($scope.muebles_temp[i],cot.data.id);
-                // }
-                // for(var i=0;i<$scope.otros_temp.length;i++){
-                //     Cotizacion.save_muebles($scope.otros_temp[i],cot.data.id);
-                // }
+                for(var i=0;i<$scope.muebles_temp.length;i++){
+                    Cotizacion.save_muebles($scope.muebles_temp[i],cot.data.id);
+                }
+                for(var i=0;i<$scope.otros_temp.length;i++){
+                    Cotizacion.save_muebles($scope.otros_temp[i],cot.data.id);
+                }
+                for(var i=0;i<$scope.materiales_temp.length;i++){
+                    Cotizacion.save_materiales($scope.materiales_temp[i],cot.data.id);
+                }
 
                 $rootScope.nav = '1';
                 $scope.limpiar();
@@ -550,6 +550,9 @@
                 $('#ncotizacion').focus();
                 $scope.limpiarM = false;
                 setTimeout(function () {
+                  $scope.cotizacion = angular.copy(cotizacion);
+                  $scope.cotizacion.numero_ayudante ={num:0};
+                  $scope.cotizacion.ambiente ={num:0};
                   // $('.btnSeleccionado').children('.classContenedores').click();
                   $scope.limpiarM = true;
                   $scope.$apply();

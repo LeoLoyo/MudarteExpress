@@ -73,6 +73,7 @@
   app.service('Cotizacion',['$http', 'setting', function ($http, setting) {
     var self = this;
     self.save = function (cotizacion) {
+      console.log(cotizacion.total_m3);
       return $http.post(setting.url + "cotizacion/", cotizacion).success(function (responde) {
         return responde;
       }).error(function (e) {
@@ -93,11 +94,27 @@
         return false;
       });
     };
+    self.save_materiales = function (material, id_cotizacion) {
+      var data = {};
+      data.cotizacion = id_cotizacion;
+      data.material = material.material;
+      data.cantidad = material.cantidad;
+      data.precio_unitario = material.precio_unitario;
+      data.total = material.total;
+      data.estado = 'activo';
+
+      return $http.post(setting.url + "materialcotizacion/", data).success(function () {
+        return true;
+      }).error(function () {
+        return false;
+      });
+    };
     self.save_muebles = function (muebles, id_cotizacion) {
       var data = {};
       var url = setting.url + "mueblecotizacion/";
       data.cotizacion = id_cotizacion;
       data.mueble = muebles.mueble;
+      data.especificacion = muebles.espeficicacion || "  ";
       data.descripcion = muebles.descripcion;
       data.alto = muebles.alto;
       data.ancho = muebles.ancho;
