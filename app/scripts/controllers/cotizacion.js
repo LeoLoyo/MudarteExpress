@@ -16,6 +16,7 @@
     if (!Session.get()) {
       $state.go('login');
     } else {
+
       $scope.limpiarM = true;
       angular.element('#ncotizacion').focus();
       // variables
@@ -310,6 +311,10 @@
             $scope.tipo_muebles = [];
           });
           $scope.fuentes = Cotizacion.all_fuentes();
+
+          setTimeout(function () {
+         $('select.selectPicker').selectpicker();
+        }, 100);
         }
 
         $rootScope.$on('change', function (event) {
