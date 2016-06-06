@@ -142,15 +142,15 @@
           </tr>
           <tr>
             <td class="tdResumen" align="center">Tiempo de carga</td>
-            <td align="center" colspan="2" class="tdResumen">{{cotizacion.tiempo_de_carga.num}}</td>
+            <td align="center" colspan="2" class="tdResumen">{{cotizacion.tiempo_de_carga}}</td>
           </tr>
           <tr>
             <td class="tdResumen" align="center">Tiempo de descarga</td>
-            <td align="center" colspan="2" class="tdResumen">{{cotizacion.tiempo_de_descarga.num}}</td>
+            <td align="center" colspan="2" class="tdResumen">{{cotizacion.tiempo_de_descarga}}</td>
           </tr>
           <tr>
-            <td class="tdResumen" align="center">Camión n°</td>
-            <td align="center" colspan="2" class="tdResumen">{{cotizacion.numero_camion.num}}</td>
+            <td class="tdResumen" align="center">Camión</td>
+            <td align="center" colspan="2" class="tdResumen">{{cotizacion.numero_camion}}</td>
           </tr>
           <tr>
             <td class="tdResumen" align="center">Ayudantes</td>
@@ -198,7 +198,7 @@
         <table class="tablaResumen">
           <tr class="active">
             <th  class="tdResumen">Descripción</th>
-            <th  class="tdResumen">Montos $</th>
+            <th  class="tdResumen" style="width:400px;">Montos $</th>
           </tr>
           <tr>
             <td  class="tdResumen" width="40px;" >Mudanza</td>
@@ -230,8 +230,8 @@
           </tr>
           <tr>
             <td  class="tdResumen" width="80%">Ajuste</td>
-            <td style="text-align:right!important;">{{cotizacion.ajuste|currency}}</td>
-            <td>{{cotizacion.porcentaje_ajuste|number:2}}%</td>
+            <td><span style="text-align:start;">
+              % {{cotizacion.porcentaje_ajuste|number:2}}</span> <span style="float:right!important;"> {{cotizacion.ajuste|currency}}</span></td>
           </tr>
           <tr class="active">
             <td  class="tdResumen" width="80%">Sub total</td>
@@ -239,8 +239,8 @@
           </tr>
           <tr class="active">
             <td  class="tdResumen" width="80%">IVA</td>
-            <td style="text-align:right!important;">{{cotizacion.iva|currency}}</td>
-            <td>{{cotizacion.porcentaje_iva|number:2}}%</td>
+            <td><span style="text-align:start;">% {{cotizacion.porcentaje_iva|number:2}}</span>
+              <span style="float:right!important;">{{cotizacion.iva|currency}}</span></td>
           </tr>
           <tr class="active">
             <th  class="tdResumen" width="80%" style="text-align:right!important;border-right: 1px solid #dedede;">Total:</th>
