@@ -74,7 +74,7 @@
     var self = this;
     self.save = function (cotizacion) {
       return $http.post(setting.url + "cotizacion/", cotizacion).success(function (responde) {
-        return responde.id;
+        return responde;
       }).error(function (e) {
         return e;
       });

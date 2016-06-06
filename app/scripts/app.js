@@ -9,7 +9,12 @@
       views: {
         'maincontent': {
           templateUrl: 'views/login.html',
-          controller: 'LoginCtrl'
+          controller: 'LoginCtrl',
+          resolve:{
+            Session_resolve:function(Session){
+              return Session.get();
+            }
+          }
         }
       }
     }).state('app', {
