@@ -50,8 +50,6 @@
         cotizador: 2,
         quien_llamo: '',
         quien_cotizo: '',
-        // fecha_registro:fecha_format(new Date()),
-        // hora_registro: hora_format(new Date()),
         fuente: '',
         cp_pv: '',
         tipo_cliente: 'Particular',
@@ -270,9 +268,9 @@
         });
       }
 
-      $scope.muebles = groupBy(muebles_resolve, function (item) {
-        return [item.espeficicacion, item.descripcion];
-      });
+      // $scope.muebles = groupBy(muebles_resolve, function (item) {
+      //   return [item.espeficicacion, item.descripcion];
+      // });
 
       function init(contenedor) {
         if (contenedor !== undefined) {
@@ -369,8 +367,8 @@
           $scope.unidades_muebles = 0;
           $scope.metros3_otros = 0;
           $scope.unidades_otros = 0;
+          $scope.$apply();
         },50);
-        $scope.$apply();
 
       };
 
@@ -461,7 +459,8 @@
             $scope.cliente.id = r.data.id;
 
 
-
+            console.log(self.ambiente);
+            console.log(self.numero_ayudante);
             var cotizacion = {
 
               "numero_cotizacion": self.numero_cotizacion,
@@ -488,10 +487,10 @@
               "tiempo_de_carga": self.tiempo_de_carga,
               "tiempo_de_descarga": self.tiempo_de_descarga,
               "numero_camion": self.numero_camion,
-              "numero_ayudante": self.numero_ayudante.num,
+              "numero_ayudante": Number(self.numero_ayudante.num),
               "seguro": self.seguro,
               "desarme_mueble": self.desarme_mueble,
-              "ambiente": self.ambiente.num,
+              "ambiente": Number(self.ambiente.num),
               "rampa": self.rampa,
               "mudanza": self.mudanza,
               "soga": self.soga,
@@ -533,12 +532,12 @@
                 for(var i=0;i<$scope.contenedores_temp.length;i++){
                     Cotizacion.save_contenedores($scope.contenedores_temp[i],cot.data.id);
                 }
-                for(var i=0;i<$scope.muebles_temp.length;i++){
-                    Cotizacion.save_muebles($scope.muebles_temp[i],cot.data.id);
-                }
-                for(var i=0;i<$scope.otros_temp.length;i++){
-                    Cotizacion.save_muebles($scope.otros_temp[i],cot.data.id);
-                }
+                // for(var i=0;i<$scope.muebles_temp.length;i++){
+                //     Cotizacion.save_muebles($scope.muebles_temp[i],cot.data.id);
+                // }
+                // for(var i=0;i<$scope.otros_temp.length;i++){
+                //     Cotizacion.save_muebles($scope.otros_temp[i],cot.data.id);
+                // }
 
                 $rootScope.nav = '1';
                 $scope.limpiar();
@@ -548,10 +547,10 @@
                 $scope.materiales_temp = null;
                 $scope.materiales_temp = [];
                 // $scope.cotizacion = angular.copy(cotizacion);
-                angular.element('#ncotizacion').focus();
+                $('#ncotizacion').focus();
                 $scope.limpiarM = false;
                 setTimeout(function () {
-                  $('.btnSeleccionado').children('.classContenedores').click();
+                  // $('.btnSeleccionado').children('.classContenedores').click();
                   $scope.limpiarM = true;
                   $scope.$apply();
                 }, 1000);
@@ -567,153 +566,6 @@
         });
 
       }
-
-
-
-      // $rootScope.save = function (coti, cliente) {
-      //   console.log(coti);
-      //   console.log(cliente);
-        // var cot = angular.copy(coti);
-        //
-        // var cliente_add = {
-        //     nombre: cliente.nombre,
-        //     telefono: cliente.telefono,
-        //     email:cliente.email,
-        //     estado:'activo'
-        //   }
-        //   var total_cantidad = $scope.unidades_contenedores + $scope.unidades_muebles + $scope.unidades_otros;
-        //   var total_m3 = $scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros;
-        //   var cotizacion = {
-        //
-        //     numero_cotizacion:cot.numero,
-        //     cliente:1,
-        //     cotizadores:1,//cot.cotizador.id,
-        //     fuente:cot.fuente,
-        //     cp_pv:cot.cp_pv,
-        //     cargo:cot.cargo,
-        //     forma_pago:cot.forma_pago,
-        //     fecha_estimada_mudanza:cot.fecha_estimada_mudanza,
-        //     hora_estimada_mudanza:cot.hora_estimada_mudanza,
-        //     fecha_de_cotizacion:cot.fecha_de_cotizacion,
-        //     hora_de_cotizacion:cot.hora_de_cotizacion,
-        //     direccion_origen:cot.direccion_origen,
-        //     barrio_provincia_origen:cot.barrio_provincia_origen,
-        //     observacion_origen:cot.observacion_origen,
-        //     direccion_destino:cot.direccion_destino,
-        //     barrio_provincia_destino:cot.barrio_provincia_destino,
-        //     observacion_destino:cot.observacion_destino,
-        //     recorrido_km:cot.recorrido_km,
-        //     precio_km:cot.precio_km,
-        //     monto_km:cot.monto_km,
-        //     tiempo_de_carga:cot.tiempo_de_carga.num,
-        //     tiempo_de_descarga:cot.tiempo_de_descarga.num,
-        //     numero_camion:cot.numero_camion.num,
-        //     numero_ayudante:cot.numero_ayudante.num,
-        //     seguro:cot.seguro,
-        //     desarme_mueble:cot.desarme_mueble,
-        //     ambiente:cot.ambiente.num,
-        //     rampa:cot.rampa,
-        //     mudanza:cot.mudanza,
-        //     soga:cot.soga,
-        //     embalaje:cot.embalaje,
-        //     desembalaje:cot.desembalaje,
-        //     materiales:cot.materiales,
-        //     piano_cajafuerte:cot.piano_cajafuerte,
-        //     ajuste:cot.ajuste,
-        //     iva:cot.iva,
-        //     total_monto:cot.total_monto,
-        //     observacion:cot.observacion,
-        //     total_cantidad:total_cantidad,
-        //     total_m3:total_m3,
-        //     porcentaje_margen:cot.total_cantidad,
-        //     total_margen:cot.total_margen,
-        //     estado:'activo'
-        //   };
-        //
-        //   if(cot.seguro === 'Si'){
-        //     cotizacion.seguro = true;
-        //   }else{
-        //     cotizacion.seguro = false;
-        //   }
-        //   if(cot.desarme_mueble === 'Si'){
-        //     cotizacion.desarme_mueble = true;
-        //   }else{
-        //     cotizacion.desarme_mueble = false;
-        //   }
-        //   if(cot.rampa === 'Si'){
-        //     cotizacion.rampa = true;
-        //   }else{
-        //     cotizacion.rampa = false;
-        //   }
-        //
-        //   function fecha_format(f){
-        //     f = new Date(f);
-        //     var fecha = ""+f.getFullYear()+ "-" + (f.getMonth() +1) + "-" + f.getDate()+"";
-        //     return fecha;
-        //   }
-        //
-        //   function hora_format(f){
-        //     f = new Date(f);
-        //     var hora = ("0" + f.getHours()).slice(-2)+ ":" + ("0" + f.getMinutes()).slice(-2);
-        //     return hora;
-        //   }
-        //
-        //   //cotizacion.fecha_estimada_mudanza = fecha_format(cotizacion.fecha_estimada_mudanza);
-        //
-        //   // cotizacion.fecha_de_cotizacion = fecha_format(cotizacion.fecha_de_cotizacion);
-        //   // cotizacion.hora_estimada_mudanza = hora_format(cotizacion.hora_estimada_mudanza);
-        //   // cotizacion.hora_de_cotizacion = hora_format(cotizacion.hora_de_cotizacion);
-        //   // console.log(cotizacion.fecha_estimada_mudanza);
-        //
-        //
-        //
-        //   var id_cliente='';
-        //   Cliente.save(cliente_add).then(function(result){
-        //     id_cliente = result.data.id;
-        //
-        //     cotizacion.cliente=id_cliente;
-        //     console.log(cotizacion);
-        //
-        //     Cotizacion.save(cotizacion).then(function(result){
-        //     var id_cotizacion = result.data.id;
-        //     for(var i=0;i<$scope.contenedores_temp.length;i++){
-        //         Cotizacion.save_contenedores($scope.contenedores_temp[i],id_cotizacion);
-        //     }
-        //     for(var i=0;i<$scope.muebles_temp.length;i++){
-        //         Cotizacion.save_muebles($scope.muebles_temp[i],id_cotizacion);
-        //     }
-        //     for(var i=0;i<$scope.otros_temp.length;i++){
-        //         Cotizacion.save_muebles($scope.otros_temp[i],id_cotizacion);
-        //     }
-        //     // $scope.limpiar();
-        //
-        //     },function(e){
-        //     alert("error");
-        //   });
-        //
-        //
-        //   },function(e){
-        //     alert("error");
-        //   });
-        //
-        //
-        //
-        // console.log($scope.materiales_temp);
-      //   $rootScope.nav = '1';
-      //   $scope.limpiar();
-      //   $scope.cotizacion = {};
-      //   $scope.cliente = {};
-      //   $scope.materiales_temp = null;
-      //   $scope.materiales_temp = [];
-      //   $scope.cotizacion = angular.copy(cotizacion);
-      //   angular.element('#ncotizacion').focus();
-      //   $scope.limpiarM = false;
-      //   setTimeout(function () {
-      //     $scope.$apply(function () {
-      //       $scope.limpiarM = true;
-      //     });
-      //   }, 1000);
-      // };
       $scope.calcular_ajuste  = function () {
         var resultado=0;
         resultado=($scope.cotizacion.ajuste/$scope.cotizacion.subTotal1)*100;
