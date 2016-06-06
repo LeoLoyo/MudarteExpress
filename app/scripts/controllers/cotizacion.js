@@ -306,6 +306,10 @@
             $scope.tipo_muebles = [];
           });
           $scope.fuentes = Cotizacion.all_fuentes();
+
+          setTimeout(function () {
+         $('select.selectPicker').selectpicker();
+       }, 50);
         }
 
         $rootScope.$on('change', function (event) {

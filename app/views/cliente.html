@@ -2,10 +2,15 @@
   <div class="col-md-12">
   <br>
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-12">
       <h2 style="display:inline;">Datos del cliente</h2>
       </div>
-      <div class="col-md-3">
+
+
+  </div>
+  <br>
+<div class="row">
+  <div class="col-md-12 col-lg-4 col-sm-12">
         <div class="btn-group grupoRadio">
           <label class="btn btn-default" ng-class="{btnSeleccionado:cotizacion.tipo_cliente==='Particular'}">
               <input type="radio"  ng-model="cotizacion.tipo_cliente"  value="Particular" /> Particular
@@ -17,16 +22,17 @@
               <input type="radio"  ng-model="cotizacion.tipo_cliente" value="Gobierno" /> Gobierno
           </label>
         </div>
+        <br><br>
       </div>
-      <div class="col-md-3">
+  <div class="col-md-12 col-lg-4 col-sm-12">
         <div class="form-group">
       <div class="input-group">
       <div class="input-group-addon btnSeleccionado">Fecha de carga</div>
-      <input type="text" ng-model="cotizacion.numero_cotizacion" class="form-control" placeholder="" readonly style="background:#fff;" ng-model="cotizacion.fecha_de_carga">
+      <input type="text" class="form-control" placeholder="" readonly style="background:#fff;" ng-model="cotizacion.fecha_de_carga">
     </div>
   </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-12 col-lg-4 col-sm-12">
            <div class="form-group">
       <div class="input-group">
       <div class="input-group-addon btnSeleccionado">N° de cotización</div>
@@ -34,8 +40,7 @@
     </div>
   </div>
       </div>
-  </div>
-
+</div>
   <form action="" class="formulario">
     <div class="row">
   <div class="col-md-3 form-group">
@@ -52,7 +57,8 @@
   </div>
   <div class="col-md-3 form-group">
     <label for="id_promocion">Fuente de promoción:</label>
-    <select class="form-control" ng-model="cotizacion.fuente" id="id_promocion">
+    <select class="form-control selectPicker show-tick" data-live-search="true" data-size="10" title="Seleccione fuente de promoción" ng-model="cotizacion.fuente" id="id_promocion">
+      <option value=""></option>
       <option  ng-repeat="item in fuentes">{{item}}</option></select>
   </div>
 
@@ -153,7 +159,10 @@
   </div>
   <div class="col-md-4 form-group">
     <label for="">Barrio/Provincia</label>
-    <select name="" ng-model="cotizacion.barrio_provincia_origen" class="form-control"><option ng-repeat="item in barrio_provincias">{{item.descripcion}}</option></select>
+    <select name="" ng-model="cotizacion.barrio_provincia_origen" class="form-control selectPicker show-tick" data-live-search="true" data-size="10" title="Seleccione barrio">
+      <option value=""></option>
+      <option ng-repeat="item in barrio_provincias">{{item.descripcion}}</option>
+    </select>
   </div>
   <div class="col-md-12 form-group">
     <label for="">Observación de origen</label>
@@ -165,7 +174,10 @@
   </div>
   <div class="col-md-4 form-group">
     <label for="">Barrio/Provincia</label>
-    <select name="" ng-model="cotizacion.barrio_provincia_destino" class="form-control"><option ng-repeat="item in barrio_provincias">{{item.descripcion}}</option></select>
+    <select name="" ng-model="cotizacion.barrio_provincia_destino" class="form-control selectPicker show-tick" data-live-search="true" data-size="10" title="Seleccione barrio">
+      <option value=""></option>
+      <option ng-repeat="item in barrio_provincias">{{item.descripcion}}</option>
+    </select>
   </div>
   <div class="col-md-12 form-group">
     <label for="">Observación de destino</label>
