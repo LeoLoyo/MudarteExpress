@@ -202,39 +202,45 @@
           </tr>
           <tr>
             <td  class="tdResumen" width="40px;" >Mudanza</td>
-            <td style="text-align:right!important;">$ {{cotizacion.mudanza}}</td>
+            <td style="text-align:right!important;">{{cotizacion.mudanza|currency}}</td>
           </tr>
           <tr>
             <td  class="tdResumen" width="20%">Soga</td>
-            <td style="text-align:right!important;">$ {{cotizacion.soga}}</td>
+            <td style="text-align:right!important;">{{cotizacion.soga|currency}}</td>
           </tr>
           <tr>
             <td  class="tdResumen" width="20%">Embalaje</td>
-            <td style="text-align:right!important;">$ {{cotizacion.embalaje}}</td>
+            <td style="text-align:right!important;">{{cotizacion.embalaje|currency}}</td>
           </tr>
           <tr>
             <td  class="tdResumen" width="20%">Desembalaje</td>
-            <td style="text-align:right!important;">$ {{cotizacion.desembalaje}}</td>
+            <td style="text-align:right!important;">{{cotizacion.desembalaje|currency}}</td>
           </tr>
           <tr>
             <td  class="tdResumen" width="20%">Materiales</td>
-            <td style="text-align:right!important;">$ {{cotizacion.materiales}}</td>
+            <td style="text-align:right!important;">{{cotizacion.materiales|currency}}</td>
           </tr>
           <tr>
             <td  class="tdResumen" width="20%">Piano/C.fuerte</td>
-            <td style="text-align:right!important;">$ {{cotizacion.piano_cajafuerte}}</td>
-          </tr>
-          <tr>
-            <td  class="tdResumen" width="80%">Ajuste</td>
-            <td style="text-align:right!important;">$ {{cotizacion.ajuste}}</td>
+            <td style="text-align:right!important;">{{cotizacion.piano_cajafuerte|currency}}</td>
           </tr>
           <tr class="active">
             <td  class="tdResumen" width="80%">Sub total</td>
-            <td style="text-align:right!important;">$ {{cotizacion.total_monto}}</td>
+            <td style="text-align:right!important;">{{cotizacion.subTotal1|currency}}</td>
+          </tr>
+          <tr>
+            <td  class="tdResumen" width="80%">Ajuste</td>
+            <td style="text-align:right!important;">{{cotizacion.ajuste|currency}}</td>
+            <td>{{cotizacion.porcentaje_ajuste|number:2}}%</td>
+          </tr>
+          <tr class="active">
+            <td  class="tdResumen" width="80%">Sub total</td>
+            <td style="text-align:right!important;">{{cotizacion.subTotal2|currency}}</td>
           </tr>
           <tr class="active">
             <td  class="tdResumen" width="80%">IVA</td>
-            <td style="text-align:right!important;">$ {{cotizacion.iva}}</td>
+            <td style="text-align:right!important;">{{cotizacion.iva|currency}}</td>
+            <td>{{cotizacion.porcentaje_iva|number:2}}%</td>
           </tr>
           <tr class="active">
             <th  class="tdResumen" width="80%" style="text-align:right!important;border-right: 1px solid #dedede;">Total:</th>
@@ -532,27 +538,46 @@
                <th rowspan=2 colspan=2>Desarme de Muebles</th>
                <td rowspan=2 colspan=2 align=center>{{cotizacion.desarme_mueble}}</td>
                <td rowspan=2 colspan=2 align=center></td>
-               <th rowspan=2 colspan=2>Ajuste</th>
-               <td rowspan=2 colspan=2 align=center>{{cotizacion.ajuste}}</td>
+               <th rowspan=2 colspan=2>Sub total</th>
+               <td rowspan=2 colspan=2 align=center>{{cotizacion.subTotal1}}</td>
              </tr>
              <tr></tr>
              <tr>
                <th rowspan=2 colspan=2>Ambientes</th>
                <td rowspan=2 colspan=2 align=center>{{cotizacion.ambiente.num}}</td>
                <td rowspan=2 colspan=2 align=center></td>
-               <th rowspan=2 colspan=2>IVA</th>
-               <td rowspan=2 colspan=2 align=center>{{cotizacion.iva}}</td>
+               <th rowspan=2 colspan=2>Ajuste</th>
+               <td rowspan=2 colspan=2 align=center>{{cotizacion.ajuste}}</td>
+               <td>{{cotizacion.porcentaje_ajuste|number:2}}%</td>
              </tr>
              <tr></tr>
              <tr>
                <th rowspan=2 colspan=2>Rampa</th>
                <td rowspan=2 colspan=2 align=center>{{cotizacion.rampa}}</td>
                <td rowspan=2 colspan=2 align=center></td>
+               <th rowspan=2 colspan=2>Sub total</th>
+               <td rowspan=2 colspan=2 align=center>{{cotizacion.subTotal2|currency}}</td>
+             </tr>
+             <tr></tr>
+             <tr>
+               <th rowspan=2 colspan=2></th>
+               <td rowspan=2 colspan=2 align=center></td>
+               <td rowspan=2 colspan=2 align=center></td>
+               <th rowspan=2 colspan=2>IVA</th>
+               <td rowspan=2 colspan=2 align=center>{{cotizacion.iva|currency}}</td>
+               <td>{{cotizacion.porcentaje_iva|number:2}}%</td>
+             </tr>
+             <tr></tr>
+              <tr>
+               <th rowspan=2 colspan=2></th>
+               <td rowspan=2 colspan=2 align=center></td>
+               <td rowspan=2 colspan=2 align=center></td>
                <th rowspan=2 colspan=2 style="background-color: #A9A9A9;">Total</th>
                <td rowspan=2 colspan=2 style="background-color: #A9A9A9;" align=center>{{cotizacion.total_monto|currency}}</td>
              </tr>
              <tr></tr>
            </tbody>
+           </tr>
            </table>
            <br>
            <br>
