@@ -27,11 +27,11 @@
                     <span class="icon-bar"></span>
                 </button> -->
                 <div class="volver">
-                    <a ng-show="nav==='4' && session" ng-if="nav==='4' && session" ng-click="nav='1'"></a>
-                    <a ng-show="nav==='5' && session" ng-if="nav==='5' && session" ng-click="nav='4'"></a>
-                    <a ng-show="nav==='2' && session" ng-if="nav==='2' && session" ng-click="nav='5'"></a>
-                    <a ng-show="nav==='3' && session" ng-if="nav==='3' && session" ng-click="nav='2'"></a>
-                    <a ng-show="nav==='6' && session" ng-if="nav==='6' && session" ng-click="nav='3'"></a>
+                    <a class="btnsCotizacion hidden" ng-show="nav==='4' && session" ng-if="nav==='4' && session" ng-click="nav='1'"></a>
+                    <a class="btnsCotizacion hidden" ng-show="nav==='5' && session" ng-if="nav==='5' && session" ng-click="nav='4'"></a>
+                    <a class="btnsCotizacion hidden" ng-show="nav==='2' && session" ng-if="nav==='2' && session" ng-click="nav='5'"></a>
+                    <a class="btnsCotizacion hidden" ng-show="nav==='3' && session" ng-if="nav==='3' && session" ng-click="nav='2'"></a>
+                    <a class="btnsCotizacion hidden" ng-show="nav==='6' && session" ng-if="nav==='6' && session" ng-click="nav='3'"></a>
                 </div>
             </div>
 
@@ -85,17 +85,17 @@
                 </li>
             </ul>
             <ul class="btnAccion">
-                <li ng-show="nav==='4' && resumen" ng-if="nav==='4' && resumen">
+                <li class="btnsCotizacion hidden" ng-show="nav==='4' && resumen" ng-if="nav==='4' && resumen">
                     <button type="button" class="btn btn-limpiar btn-lg btn-block"  ng-click="limpiar()" title="Limpiar">
                     <!-- <button type="button" class="btn btn-limpiar btn-lg btn-block" onclick="limpiar()" ng-click="limpiar()" title="Limpiar"> -->
                     Limpiar
                     </button>
                 </li>
-                <li ng-show="nav==='6'" ng-if="nav==='6'">
+                <li class="btnsCotizacion hidden" ng-show="nav==='6'" ng-if="nav==='6'">
                     <!-- <button type="submit" ng-disabled="otros_temp.length === 0 && contenedores_temp.length === 0 && muebles_temp.length === 0" class="btn btn-outline btn-lg btn-block" onclick="descargarExcel()" ng-click="save(cotizacion,cliente)">Exportar</button> -->
                     <button type="submit" ng-disabled="otros_temp.length === 0 && contenedores_temp.length === 0 && muebles_temp.length === 0" class="btn btn-outline btn-lg btn-block" onclick="descargarExcel()">Exportar</button>
                 </li>
-                <li ng-show="nav==='6'" ng-if="nav==='6'">
+                <li class="btnsCotizacion hidden" ng-show="nav==='6'" ng-if="nav==='6'">
                     <!-- <button type="submit" ng-disabled="otros_temp.length === 0 && contenedores_temp.length === 0 && muebles_temp.length === 0" class="btn btn-outline btn-lg btn-block" ng-click="save(cotizacion,cliente)" data-toggle="modal" data-target="#myModal">Procesar</button> -->
                     <button type="submit" ng-disabled="otros_temp.length === 0 && contenedores_temp.length === 0 && muebles_temp.length === 0" class="btn btn-outline btn-lg btn-block"  data-toggle="modal" data-target="#modalConfirmacion">Procesar</button>
                 </li>
