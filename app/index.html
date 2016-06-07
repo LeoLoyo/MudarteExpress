@@ -85,6 +85,9 @@
                 </li>
             </ul>
             <ul class="btnAccion">
+                <li align=center ng-show="resumen" style="width:100%;" class="btn btn-outline btn-lg btn-block">
+                    <label align=left>Total m<sup>3</sup> :<input style="width:40px; border-color:transparent; background-color:transparent;" id="id_m3" type="text" value="{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}"></label>
+                </li>
                 <li ng-show="nav==='4' && resumen" ng-if="nav==='4' && resumen">
                     <button type="button" class="btn btn-limpiar btn-lg btn-block"  ng-click="limpiar()" title="Limpiar">
                     <!-- <button type="button" class="btn btn-limpiar btn-lg btn-block" onclick="limpiar()" ng-click="limpiar()" title="Limpiar"> -->
