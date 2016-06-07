@@ -1,19 +1,19 @@
-<div ng-show="nav==='6'">
+<div ng-show="nav==='6'" ng-if="nav==='6'">
     <div class="col-md-12">
       <div class="">
         <br>
-        <table class="tablaResumen" style="max-width:100%;">
+        <table class="tablaResumen" style="max-width:100%!important;">
           <tr>
-            <td rowspan="4">
+            <td rowspan="3">
               <p><strong>4701-1177<strong></p>
               <p><strong>WWW.MUDARTE.COM.AR<strong></p>
               <p>info@mudarte.com.ar </p>
               <p>3 de Febrero 3455 / Nuñez</p>
             </td>
-            <td rowspan="4">
+            <td rowspan="3">
               <h2>Cotización Express</h2>
             </td>
-            <td rowspan="4" colspan="2">
+            <td rowspan="3" colspan="2">
               <img src="img/LogoMudarte.png" alt="">
             </td>
             <td style="background-color: #fff;" class="tdResumen" align=center>N° Cotiz.</td>
@@ -22,10 +22,6 @@
           <tr>
             <td style="background-color: #fff;" class="tdResumen" align=center>Fuente</td>
             <td>{{cotizacion.fuente}}</td>
-          </tr>
-          <tr>
-            <td style="background-color: #fff;" class="tdResumen" align=center>CP / PV</td>
-            <td>{{cotizacion.cp_pv}}</td>
           </tr>
           <tr>
             <td style="background-color: #fff;" class="tdResumen" align=center>Particular</td>
@@ -50,27 +46,30 @@
             <td>{{cotizacion.cargo}}</td>
           </tr>
           <tr>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Nombre de la empresa: </td>
+            <td colspan="3">{{cotizacion.cp_pv}}</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Cotizador</td>
+            <td>{{cotizacion.cotizador}}</td>
+          </tr>
+          <tr>
             <td style="background-color: #fff;" class="tdResumen" align=center>Fecha en que se cargó:</td>
             <td>{{cotizacion.fecha_de_carga | date:'dd-MM-yyyy'}}</td>
             <td style="background-color: #fff;" class="tdResumen" align=center>Hora:</td>
             <td>{{cotizacion.hora_de_carga | date:'HH:mm'}}</td>
-            <td style="background-color: #fff;" class="tdResumen" align=center>Cotizador</td>
-            <td>{{cotizacion.cotizador}}</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Forma pago</td>
+            <td class="" style="border-bottom: 1px solid #dedede;">{{cotizacion.forma_pago}}</td>
           </tr>
           <tr>
             <td style="background-color: #fff;" class="tdResumen" align=center>Fecha estimada de mudanza:</td>
             <td>{{cotizacion.fecha_estimada_mudanza | date:'dd-MM-yyyy'}}</td>
             <td style="background-color: #fff;" class="tdResumen" align=center>Hora:</td>
-            <td>{{cotizacion.hora_estimada_mudanza | date:'HH:mm'}}</td>
-            <td style="background-color: #fff;" class="tdResumen" align=center>Forma pago</td>
-            <td class="" style="border-bottom: 1px solid #dedede;">{{cotizacion.forma_pago}}</td>
+            <td style="border-right:1px solid #dedede;">{{cotizacion.hora_estimada_mudanza | date:'HH:mm'}}</td>
           </tr>
           <tr>
             <td style="background-color: #fff;" class="tdResumen" align=center>Fecha en que se cotizó:</td>
             <td>{{cotizacion.fecha_de_cotizacion | date:'dd-MM-yyyy'}}</td>
             <td style="background-color: #fff;" class="tdResumen" align=center>Hora:</td>
-            <td>{{cotizacion.hora_de_cotizacion | date:'HH:mm'}}</td>
-            <td class="tdResumen" rowspan="4"></td>
+            <td style="border-right:1px solid #dedede;">{{cotizacion.hora_de_cotizacion | date:'HH:mm'}}</td>
           </tr>
           <!-- <tr>
             <td style="background-color: #fff;" class="tdResumen" align=center>Fecha en que se avisó:</td>

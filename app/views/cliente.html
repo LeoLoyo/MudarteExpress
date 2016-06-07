@@ -1,4 +1,4 @@
-<div ng-show="nav==='1'" >
+<div ng-show="nav==='1'" ng-if="nav==='1'" >
   <div class="col-md-12">
   <br>
   <div class="row">
@@ -63,7 +63,7 @@
   </div>
 
   <div class="col-md-3 form-group">
-    <label for="id_cp">Empresa:</label>
+    <label for="id_cp">Nombre de la empresa:</label>
     <input type="text" class="form-control" ng-model="cotizacion.cp_pv" id="id_cp">
     <!-- <select class="form-control" ng-model="cotizacion.cp_pv" id="id_cp">
       <option value="CP">CP</option>

@@ -1,18 +1,9 @@
 
 <div ng-show="nav==='4'"  class="col-md-12">
   <!-- Muebles y contenedores -->
-  <br>
+  <h2>Muebles</h2>
   <div class="formulario">
-    <h2>Contenedores</h2>
-    <div ng-repeat="c in contenedores" style="display:inline-block">
 
-      <item-Contenedor c="c" cantidades="cantidades"></item-Contenedor>
-
-    </div>
-    <br><br>
-    <legend></legend>
-
-    <h2>Muebles</h2>
     <div ng-repeat="group in muebles">
 
         <item-muebles group="group" cantidades="cantidades"></item-muebles>
@@ -79,6 +70,13 @@
                 <a ng-if="otros_temp_campo!=''" class="agregarOtro" titulo="Agregar otro" ng-click="add_campo()">
                 </a>
                 <br><br><br>
+                <h2>Contenedores</h2>
+    <div ng-repeat="c in contenedores" style="display:inline-block">
+
+      <item-Contenedor c="c" cantidades="cantidades"></item-Contenedor>
+
+    </div>
+    <br><br>
           </div>
 </div>
 <div ng-hide="checked" ng-include='"views/resumen.html"'></div>

@@ -100,7 +100,7 @@
         observacion: '',
         total_cantidad: 0,
         total_m3: '0.00',
-        porcentaje_margen: '0.00',
+        porcentaje_margen: Number(25),
         total_margen: '0.00',
         estado: 'activo'
       };

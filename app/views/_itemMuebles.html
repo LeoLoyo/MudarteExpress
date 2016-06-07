@@ -3,6 +3,5 @@
   <span class="classContenedores" ng-click="m.num=check(m.num)" ng-blur="add_mueble(c,m.num)">{{c.especificacion}}</span>
   <select ng-focus="scrollAnime($event)" ng-model="m.num" ng-change="add_mueble(c,m.num)">
     <option  ng-repeat="m in cantidades">{{m.num}}</option>
-    <!-- <option  ng-repeat="m in [{num:1},{num:2},{num:3}]">{{m.num}}</option> -->
   </select>
 </div>
