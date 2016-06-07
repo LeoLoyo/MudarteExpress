@@ -1,0 +1,97 @@
+<div ng-show="nav==='2'" ng-if="nav==='2'">
+
+    <div class="col-md-12">
+      <h2>Detalle de la mudanza</h2>
+        <table class="tabla">
+          <tr class="active">
+            <th>Descripción</th>
+            <th colspan="2">Km a recorrer</th>
+            <th>Monto km</th>
+            <th>Total</th>
+          </tr>
+          <tr>
+            <td align="center">km</td>
+            <td class="paddingNone" colspan="2">
+              <input type="number" style="text-align:center!important;font-weight:bold;" name="recorrido_km" ng-model="cotizacion.recorrido_km" ng-change="add_parcial1()">
+            </td>
+            <td align="center" class="paddingNone">
+              <select class="selectMoneda" name="precio_km" id="precio_km" ng-init="cotizacion.precio_km = '30'"ng-model="cotizacion.precio_km" ng-change="add_parcial1()">
+
+                <option value="30">$30.00</option>
+                <option value="33">$33.00</option>
+                <option value="37">$37.00</option>
+                <option value="41">$41.00</option>
+
+              </select>
+            </td>
+            <td align="center" class="ancho "><strong>{{cotizacion.monto_km|currency}}</strong></td>
+
+          </tr>
+          <tr>
+            <td align="center">Tiempo de carga</td>
+            <td align="center" colspan="2" class="paddingNone">
+              <input type="number" ng-model="cotizacion.tiempo_de_carga" style="text-align-last: center;font-weight: bold;">
+              <!-- <select ng-focus="scrollAnime($event)" ng-model="cotizacion.tiempo_de_carga" ng-options="m.num for m in cantidades" ng-init="cotizacion.tiempo_de_carga=cantidades[0]" style="text-align-last: center;">
+              </select> -->
+
+          </tr>
+          <tr>
+            <td align="center">Tiempo de descarga</td>
+            <td align="center" colspan="2" class="paddingNone">
+              <input type="number" ng-model="cotizacion.tiempo_de_descarga" style="text-align-last: center;font-weight: bold;">
+              <!-- <select ng-focus="scrollAnime($event)" ng-model="cotizacion.tiempo_de_descarga" ng-options="m.num for m in cantidades" ng-init="cotizacion.tiempo_de_descarga=cantidades[0]" style="text-align-last: center;">
+              </select> -->
+
+          </tr>
+          <tr>
+            <td align="center">Camión</td>
+            <td align="center" colspan="2" class="paddingNone">
+              <input type="text" ng-model="cotizacion.numero_camion" style="text-align-last: center;padding-right:17px;font-weight: bold;">
+              <!-- <select ng-focus="scrollAnime($event)" ng-model="cotizacion.numero_camion" ng-options="m.num for m in cantidades" ng-init="cotizacion.numero_camion=cantidades[0]" style="text-align-last: center;">
+              </select> -->
+
+          </tr>
+          <tr>
+            <td align="center">Ayudantes</td>
+            <td align="center" colspan="2" class="paddingNone">
+              <select ng-focus="scrollAnime($event)" ng-model="cotizacion.numero_ayudante" ng-options="m.num for m in cantidades" ng-init="cotizacion.numero_ayudante=cantidades[0]" style="text-align-last: center;">
+              </select>
+
+          </tr>
+          <tr>
+            <td align="center">Seguro</td>
+            <td align="center" colspan="2" class="paddingNone">
+              <select name="seguro" id="seguro" ng-model="cotizacion.seguro" style="text-align-last: center;">
+                <option value="Si" selected>Si</option>
+                <option value="No">No</option>
+              </select>
+
+          </tr>
+          <tr>
+            <td align="center">Desarme de Muebles</td>
+            <td align="center" colspan="2" class="paddingNone">
+              <select name="desarme_mueble" id="desarme_mueble" ng-model="cotizacion.desarme_mueble" style="text-align-last: center;">
+                <option value="Si" selected>Si</option>
+                <option value="No">No</option>
+              </select>
+
+          </tr>
+          <tr>
+            <td align="center">Ambientes</td>
+            <td align="center" colspan="2" class="paddingNone">
+              <select ng-focus="scrollAnime($event)" ng-model="cotizacion.ambiente" ng-options="m.num for m in cantidades" ng-init="cotizacion.ambiente=cantidades[0]" style="text-align-last: center;">
+              </select>
+
+          </tr>
+          <tr>
+            <td align="center">Rampa</td>
+            <td align="center" colspan="2" class="paddingNone">
+             <select name="rampa" id="rampa" ng-model="cotizacion.rampa"  style="text-align-last: center;">
+                 <option value="Si" selected>Si</option>
+                <option value="No">No</option>
+              </select>
+
+          </tr>
+        </table>
+    </div>
+</div>

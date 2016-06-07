@@ -1,18 +1,13 @@
 <!doctype html>
-<html ng-app="cotizacionExpressApp">
+<html ng-app="cotizacionExpressApp" ng-init="nav='1'">
 <head>
-    <meta charset="utf-8">
+    <meta content="text/html;" http-equiv="content-type" charset="utf-8">
     <title>Cotización express</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!--     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+ -->
+    <link rel="stylesheet" href="styles/style.css">
     <!-- endbuild -->
 </head>
 <body>
@@ -21,62 +16,91 @@
 <![endif]-->
 
 <!-- Add your site or application content here -->
-<div class="header">
-    <nav class="navbar navbar-personalizado">
-        <div class="container-fluid">
+<div class="cabecera">
+    <nav>
             <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <div>
+                <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse-navbar" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/#/" tabindex="-1">Mudarte</a>
+                </button> -->
+                <div class="volver">
+                    <a  ng-show="nav==='4' && session" ng-click="nav='1'"></a>
+                    <a  ng-show="nav==='5' && session" ng-click="nav='4'"></a>
+                    <a  ng-show="nav==='2' && session" ng-click="nav='5'"></a>
+                    <a  ng-show="nav==='3' && session" ng-click="nav='2'"></a>
+                    <a  ng-show="nav==='6' && session" ng-click="nav='3'"></a>
+                </div>
             </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
+<ul>
 </ul>
-<ul class="nav navbar-nav navbar-right">
+<ul class="Right">
     <li class="dropdown">
-        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" tabindex="-1">Login <span ng-if="session">{{cotizacion.responsable.name}}</span><span class="caret"></span></a>
+        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true" tabindex="-1">Login
+        </a>
         <ul class="dropdown-menu">
-            <!-- <li><a href="/#/login">Iniciar sección</a></li> -->
-            <!-- <li role="separator" class="divider"></li> -->
             <li><a  ng-click="logout()">Cerrar sesión</a></li>
         </ul>
     </li>
 </ul>
-</div><!-- /.navbar-collapse -->
-</div><!-- /.container-fluid -->
 </nav>
 </div>
 
 <div id="wrapper" class="toggled">
 
         <!-- Sidebar -->
-        <div id="sidebar-wrapper" ng-init="checked = true">
+        <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="#" tabindex="-1">
-                        App cotización express
-                    </a>
+                   <img src="logo.png" alt="">
                 </li>
                 <li>
                 </li>
-                <li >
-                    <a class="btnsCotizacion hidden" ng-click="checked=true">Cotización</a>
+                <li class="btnsCotizacion hidden" >
+                    <label for="id_cabecera" ng-class="{activo:nav==='1'}" onclick="scroll0();">Datos del cliente</label>
+                    <input tabindex="-1" id="id_cabecera" type="radio" ng-model="nav" value="1">
                 </li>
-                <li>
-                    <a class="btnsCotizacion hidden" ng-show="resumen" ng-click="checked=false">Resumen</a>
+                <li class="btnsCotizacion hidden">
+                    <label for="id_muebles" ng-class="{activo:nav==='4'}" onclick="scroll0();">Muebles y Contenedores</label>
+                    <input id="id_muebles" type="radio" ng-model="nav" value="4">
                 </li>
-                <li>
-                    <a class="btnsCotizacion hidden"  ng-show="checked && resumen " ng-click="limpiar()">Limpiar</a>
+                <li class="btnsCotizacion hidden">
+                    <label for="id_materiales" ng-class="{activo:nav==='5'}" onclick="scroll0();">Materiales</label>
+                    <input id="id_materiales" type="radio" ng-model="nav" value="5">
+                </li>
+                <li class="btnsCotizacion hidden">
+                    <label for="id_detalle" ng-class="{activo:nav==='2'}" onclick="scroll0();">Detalle Mudanza</label>
+                    <input id="id_detalle" type="radio" ng-model="nav" value="2">
+                </li>
+                <li class="btnsCotizacion hidden">
+                    <label for="id_presupuesto" ng-class="{activo:nav==='3'}" onclick="scroll0();">Presupuesto</label>
+                    <input id="id_presupuesto" type="radio" ng-model="nav" value="3">
+                </li>
+                <li class="btnsCotizacion hidden" ng-show="resumen" ng-click="checked=false">
+                    <label for="id_resumen" ng-class="{activo:nav==='6'}" onclick="scroll0();">Resumen</label>
+                     <input id="id_resumen" type="radio" ng-model="nav" value="6">
                 </li>
             </ul>
-            <div class="pie">Derechos reservados @2016</div>
+            <ul class="btnAccion">
+                <li ng-show="nav==='4' && resumen" ng-if="nav==='4' && resumen">
+                    <button type="button" class="btn btn-limpiar btn-lg btn-block"  ng-click="limpiar()" title="Limpiar">
+                    <!-- <button type="button" class="btn btn-limpiar btn-lg btn-block" onclick="limpiar()" ng-click="limpiar()" title="Limpiar"> -->
+                    Limpiar
+                    </button>
+                </li>
+                <li ng-show="nav==='6'" ng-if="nav==='6'">
+                    <!-- <button type="submit" ng-disabled="otros_temp.length === 0 && contenedores_temp.length === 0 && muebles_temp.length === 0" class="btn btn-outline btn-lg btn-block" onclick="descargarExcel()" ng-click="save(cotizacion,cliente)">Exportar</button> -->
+                    <button type="submit" ng-disabled="otros_temp.length === 0 && contenedores_temp.length === 0 && muebles_temp.length === 0" class="btn btn-outline btn-lg btn-block" data-toggle="modal" data-target="#modalConfirmacionExportar">Exportar</button>
+                </li>
+                <li ng-show="nav==='6'" ng-if="nav==='6'">
+                    <!-- <button type="submit" ng-disabled="otros_temp.length === 0 && contenedores_temp.length === 0 && muebles_temp.length === 0" class="btn btn-outline btn-lg btn-block" ng-click="save(cotizacion,cliente)" data-toggle="modal" data-target="#myModal">Procesar</button> -->
+                    <button type="submit" ng-disabled="otros_temp.length === 0 && contenedores_temp.length === 0 && muebles_temp.length === 0" class="btn btn-outline btn-lg btn-block"  data-toggle="modal" data-target="#modalConfirmacion">Procesar</button>
+                </li>
+            </ul>
+            <div>Derechos reservados @2016</div>
         </div>
         <!-- /#sidebar-wrapper -->
 
@@ -85,18 +109,33 @@
             <div class="container-fluid">
                 <div ui-view name="maincontent"></div>
         </div>
+        <div class="btnsPaginacion">
+            <div>
+                <div class="btnsCotizacion hidden">
+                    <button class="btnAnterior" ng-show="nav==='4' && session"  ng-click="nav='1'" onclick="scroll0();">Anterior</button>
+                    <button class="btnAnterior" ng-show="nav==='5' && session"  ng-click="nav='4'" onclick="scroll0();">Anterior</button>
+                    <button class="btnAnterior" ng-show="nav==='2' && session"  ng-click="nav='5'" onclick="scroll0();">Anterior</button>
+                    <button class="btnAnterior" ng-show="nav==='3' && session"  ng-click="nav='2'" onclick="scroll0();">Anterior</button>
+                    <button class="btnAnterior" ng-show="nav==='6' && session && resumen" ng-click="nav='3'" onclick="scroll0();">Anterior</button>
+
+                   <button class="btnSiguiente" ng-show="nav==='1' && session" ng-click="nav='4'" onclick="scroll0();">Siguiente</button>
+                   <button class="btnSiguiente" ng-show="nav==='4' && session"  ng-click="nav='5'" onclick="scroll0();">Siguiente</button>
+                   <button class="btnSiguiente" ng-show="nav==='5' && session"  ng-click="nav='2'" onclick="scroll0();">Siguiente</button>
+                   <button class="btnSiguiente" ng-show="nav==='2' && session"  ng-click="nav='3'" onclick="scroll0();">Siguiente</button>
+                   <button class="btnSiguiente" ng-show="nav==='3' && session && resumen" ng-click="nav='6'" onclick="scroll0();">Siguiente</button>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- /#page-content-wrapper -->
-
+<!-- <confirmar-cotizacion></confirmar-cotizacion> -->
 </div>
 <!-- /#wrapper -->
-
 
 <!-- build:js(.) scripts/vendor.js -->
 <!-- bower:js -->
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <script src="bower_components/angular-animate/angular-animate.js"></script>
 <script src="bower_components/angular-aria/angular-aria.js"></script>
 <script src="bower_components/angular-cookies/angular-cookies.js"></script>
@@ -106,7 +145,8 @@
 <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
 <script src="bower_components/angular-touch/angular-touch.js"></script>
 <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-<script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+<script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
+<script src="bower_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
@@ -115,4 +155,6 @@
 <script src="scripts/services/cotizacion.js"></script>
 <script src="scripts/controllers/login.js"></script>
 <script src="scripts/controllers/cotizacion.js"></script>
+<script src="scripts/directives/itemmuebles.js"></script>
+<script src="scripts/directives/itemcontenedor.js"></script>
 <!-- endbuild -->
