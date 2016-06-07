@@ -365,7 +365,7 @@
           $scope.unidades_contenedores = 0;
           $scope.metros3_muebles = 0;
           $scope.unidades_muebles = 0;
-          $scope.metros3_otros = 0;
+          $rootScope.metros3_otros = 0;
           $scope.unidades_otros = 0;
           $scope.$apply();
         },50);
@@ -391,7 +391,7 @@
             $scope.muebles_temp.push(mueble_temp);
           }
         }
-        $scope.metros3_muebles = calcular_totales($scope.muebles_temp, "total_punto") / 10;
+        $rootScope.metros3_muebles = calcular_totales($scope.muebles_temp, "total_punto") / 10;
         $scope.unidades_muebles = calcular_totales($scope.muebles_temp, "cantidad");
       };
 
@@ -428,7 +428,7 @@
               $scope.otros_temp.push(otro);
             }
           }
-          $scope.metros3_otros = calcular_totales($scope.otros_temp, "total_punto") / 10;
+          $rootScope.metros3_otros = calcular_totales($scope.otros_temp, "total_punto") / 10;
           $scope.unidades_otros = calcular_totales($scope.otros_temp, "cantidad");
         } else {
           alert('Seleccione primero la descripción');
