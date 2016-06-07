@@ -310,11 +310,11 @@
               <td class="tdResumen"><strong style="display:flex;"><span style="flex:90%;border-radius:0;border:none;">{{(metros3_contenedores+metros3_muebles+metros3_otros)*(1+(margen/100))|number:2}}</span> <span style="flex:10%;margin-top:auto;margin-bottom:auto;">m<sup>3</sup></span></strong></td>
             </tr>
           </table>
-          <button type="submit" class="btn btn-success" onclick="descargarExcel('pdf');" ng-click="exportAction()">Exportar</button>
+          <!-- <button type="submit" ng-disabled="otros_temp.length === 0 && contenedores_temp.length === 0 && muebles_temp.length === 0" class="btn btn-success" onclick="descargarExcel()" ng-click="save(cotizacion,cliente)">Exportar</button> -->
 
     </div>
 
-    <div id="content" class="col-md-12 hidden export-table">
+    <div id="divExportar" class="col-md-12 hidden">
              <h1 style="color:#fff">Resumen</h1>
                  <table border=1 style="width:1450;" id="prueba">
                    <thead>
@@ -323,10 +323,10 @@
                      <font align=center size=5 face="verdana"><strong>4701-1177<strong></font><br>
                      <font align=center size=3 face="verdana"><strong>WWW.MUDARTE.COM.AR<strong><br>
                      <font align=center size=3 face="verdana">info@mudarte.com.ar</font><br>
-                     <font align=center size=3 face="verdana">3 de Febrero 3455 / Nuñez</font>
+                     <font align=center size=3 face="verdana"> 3 de Febrero 3455 / Nuñez</font>
                    </th>
                    <th rowspan=8 colspan=4>
-                     <font size=5 face="verdana">Cotización</font>
+                     <font size=5 face="verdana">Cotización Express</font>
                    </th>
                    <th rowspan=8 colspan=3>
                      <font color="#CC6202" size=17 face="verdana"><i><u><b>M</b></u></i></font><font size=15 face="verdana"><i><u><b>udarte<b></u></i></font><br>
@@ -342,34 +342,41 @@
              </tr>
              <tr></tr>
              <tr>
-               <th rowspan=2>CP/PV</th>
-               <th rowspan=2 align=center>{{cotizacion.cp_pv}}</th>
-             </tr>
-             <tr></tr>
-             <tr>
                <th rowspan=2>Particular</th>
                <td rowspan=2 align=center><strong ng-if="cotizacion.tipo_cliente ==='Particular'">X</strong></td>
              </tr>
              <tr></tr>
              <tr>
-               <th align=left rowspan=2 colspan=3>Nombre y apellido:</th>
-               <td align=center rowspan=2 colspan=7><h2>{{cliente.nombre}}</h2></td>
                <th rowspan=2>Empresa</th>
                <td rowspan=2 align=center><strong ng-if="cotizacion.tipo_cliente ==='Empresa'">X</strong></td>
              </tr>
              <tr></tr>
              <tr>
-               <th align=left rowspan=2 colspan=3>Teléfono:</th>
-               <td align=center rowspan=2 colspan=7>{{cliente.telefono}}</td>
+               <th align=left rowspan=2 colspan=3>Nombre y apellido:</th>
+               <td align=center rowspan=2 colspan=7><h2>{{cliente.nombre}}</h2></td>
                <th rowspan=2>Gobierno</th>
                <td rowspan=2 align=center><strong ng-if="cotizacion.tipo_cliente ==='Gobierno'">X</strong></td>
              </tr>
              <tr></tr>
              <tr>
-               <th align=left rowspan=2 colspan=3>Correo electrónico:</th>
-               <td align=center rowspan=2 colspan=7>{{cliente.email}}</td>
+               <th align=left rowspan=2 colspan=3>Teléfono:</th>
+               <td align=center rowspan=2 colspan=7>{{cliente.telefono}}</td>
                <th rowspan=2>Cargo</th>
                <td rowspan=2 align=center>{{cotizacion.cargo}}</td>
+             </tr>
+             <tr></tr>
+             <tr>
+               <th align=left rowspan=2 colspan=3>Correo electrónico:</th>
+               <td align=center rowspan=2 colspan=7>{{cliente.email}}</td>
+               <th rowspan=2>Cotizador</th>
+               <td rowspan=2 align=center>{{cotizacion.cotizador}}</td>
+             </tr>
+             <tr></tr>
+             <tr>
+               <th align=left rowspan=2 colspan=3>Nombre de la empresa:</th>
+               <td align=center rowspan=2 colspan=7>{{cotizacion.cp_pv}}</td>
+               <th rowspan=2>Forma Pago</th>
+               <td rowspan=2 align=center>{{cotizacion.forma_pago}}</td>
              </tr>
              <tr></tr>
              <tr>
@@ -377,8 +384,6 @@
                <td align=center rowspan=2 colspan=3>{{cotizacion.fecha_de_carga | date:'dd-MM-yyyy'}}</td>
                <th rowspan=2 colspan=2>Hora:</th>
                <td rowspan=2 colspan=2 align=center>{{cotizacion.hora_de_carga | date: 'HH:mm'}}</td>
-               <th rowspan=2>Cotizador</th>
-               <td rowspan=2 align=center>{{cotizacion.cotizador}}</td>
              </tr>
              <tr></tr>
              <tr>
@@ -386,8 +391,6 @@
                <td align=center rowspan=2 colspan=3>{{cotizacion.fecha_estimada_mudanza | date:'dd-MM-yyyy'}}</td>
                <th rowspan=2 colspan=2>Hora:</th>
                <td rowspan=2 colspan=2 align=center>{{cotizacion.hora_estimada_mudanza | date: 'HH:mm'}}</td>
-               <th rowspan=2>Forma Pago</th>
-               <td rowspan=2 align=center>{{cotizacion.forma_pago}}</td>
              </tr>
              <tr></tr>
              </thead>
@@ -418,16 +421,6 @@
                <td align=center rowspan=2 colspan=3>{{cotizacion.fecha_real_mudanza | date:'dd-MM-yyyy'}}</td>
                <th rowspan=2 colspan=2>Hora:</th>
                <td rowspan=2 colspan=2 align=center>{{cotizacion.hora_real_mudanza | date: 'HH:mm'}}</td>
-             </tr>
-             <tr></tr>
-             <tr>
-               <th align=left rowspan=2 colspan=5>Nombre de quien pasó la cotizacion:</th>
-               <td align=center rowspan=2 colspan=5>{{cotizacion.quien_cotizo}}</td>
-             </tr>
-             <tr></tr>
-             <tr>
-               <th align=left rowspan=2 colspan=5>Nombre de quien llamó al cliente:</th>
-               <td align=center rowspan=2 colspan=5>{{cotizacion.quien_llamo}}</td>
              </tr>
              <tr></tr>
              <tr>
@@ -547,8 +540,8 @@
                <td rowspan=2 colspan=2 align=center>{{cotizacion.ambiente.num}}</td>
                <td rowspan=2 colspan=2 align=center></td>
                <th rowspan=2 colspan=2>Ajuste</th>
-               <td rowspan=2 colspan=2 align=center>{{cotizacion.ajuste}}</td>
-               <td>{{cotizacion.porcentaje_ajuste|number:2}}%</td>
+               <td rowspan=2 colspan=1 align=center>% {{cotizacion.porcentaje_ajuste|number:2}}</td>
+               <td rowspan=2 colspan=1 align=center>{{cotizacion.ajuste|currency}}</td>
              </tr>
              <tr></tr>
              <tr>
@@ -564,8 +557,8 @@
                <td rowspan=2 colspan=2 align=center></td>
                <td rowspan=2 colspan=2 align=center></td>
                <th rowspan=2 colspan=2>IVA</th>
-               <td rowspan=2 colspan=2 align=center>{{cotizacion.iva|currency}}</td>
-               <td>{{cotizacion.porcentaje_iva|number:2}}%</td>
+               <td rowspan=2 colspan=1 align=center>% {{cotizacion.porcentaje_iva|number:2}}</td>
+               <td rowspan=2 colspan=1 align=center>{{cotizacion.iva|currency}}</td>
              </tr>
              <tr></tr>
               <tr>
@@ -573,7 +566,7 @@
                <td rowspan=2 colspan=2 align=center></td>
                <td rowspan=2 colspan=2 align=center></td>
                <th rowspan=2 colspan=2 style="background-color: #A9A9A9;">Total</th>
-               <th rowspan=2 colspan=2 style="background-color: #A9A9A9;" align=center>{{cotizacion.total_monto|currency}}</th>
+               <td rowspan=2 colspan=2 style="background-color: #A9A9A9;" align=center>{{cotizacion.total_monto|currency}}</td>
              </tr>
              <tr></tr>
            </tbody>
@@ -589,7 +582,7 @@
                <th width=50>Materiales</th>
                <th width=60>Cantidad</th>
                <th width=70>Precio unit.</th>
-               <th width=70>Totales</th>
+               <th width=80 colspan="2">Totales</th>
              </tr>
              </thead>
              <tbody>
@@ -597,11 +590,11 @@
                <td align=center>{{item.material}}</td>
                <td align=center>{{item.cantidad}}</td>
                <td align=center>{{item.precio_unitario}}</td>
-               <td align=center>{{item.total|currency}}</td>
+               <td align=center colspan="2">{{item.total|currency}}</td>
              </tr>
              <tr height=35 style="background-color: #A9A9A9;">
                <th colspan="3">Total:</th>
-               <th><strong>{{cotizacion.materiales|currency}}</strong></th>
+               <th colspan="2"><strong>{{cotizacion.materiales|currency}}</strong></th>
              </tr>
            </table>
            <br>
@@ -636,7 +629,7 @@
            <table border=1 id="tablaMueble">
              <tr style="height:35px;">
                <th>Mueble</th>
-               <th>ALA</th>
+               <th>Medidas Aprox.</th>
                <th>Cantidad</th>
                <th>m<sup>3</sup></th>
              </tr>
@@ -655,8 +648,8 @@
              </tr>
              <tr style="height:35px; background-color: #A9A9A9;">
                <th colspan=2>Total</th>
-               <th align=center><strong>{{unidades_muebles + unidades_otros}}</strong></th>
-               <th align=center><strong>{{metros3_muebles + metros3_otros|number:2}}</strong></th>
+               <td align=center><strong>{{unidades_muebles + unidades_otros}}</strong></td>
+               <td align=center><strong>{{metros3_muebles + metros3_otros|number:2}}</strong></td>
              </tr>
            </table>
          <h2>Totales</h2>
@@ -666,11 +659,54 @@
              <th align="center"><strong>{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}</strong></th>
            </tr>
            <tr style="height:35px;">
-             <th>{{margen}}</th>
+             <th>{{cotizacion.porcentaje_margen}}</th>
              <th>Margen</th>
-             <th>{{(metros3_contenedores+metros3_muebles+metros3_otros)*(1+(margen/100))|number:2}}</th>
+             <th>{{(metros3_contenedores+metros3_muebles+metros3_otros)*(1+(cotizacion.porcentaje_margen/100))|number:2}}</th>
            </tr>
+         </table>
+        <br>
+        <br>
+        <br>
+         <table border=1 id="tablaObs">
+           <tr style="height:35px; background-color: #A9A9A9;">
+             <th rowspan=2 colspan=10>Observaciones</th>
+           </tr>
+           <tr></tr>
+           <tr>
+             <th rowspan=4 colspan=10></th>
+           </tr>
+           <tr></tr>
+           <tr></tr>
+           <tr></tr>
+           <tr>
+             <th rowspan=3 colspan=10>El valor de este trabajo es teniendo en cuenta lo detallado y proporcionado por usted. Si al momento de la realización existe alguna variación, el valor será modificado indefectiblemente.</th>
+           </tr>
+           <tr></tr>
+           <tr></tr>
+           <tr>
+             <th rowspan=8 colspan=10>Los precios cotizados no incluyen el I.V.A., que será adicionado en oportunidad de la factura. Los canastos y las cajas, seran entregados 2 dias antes de la fecha de trabajo. Los canastos tendran que ser devueltos luego de tres dias de finalizado el trabajo. Pasados estos, el cliente debera abonar la suma de $30,00 por canasto por dia, mas $500 por el servicio de retiro. La cantidad de materiales cotizados son estimados. Lo que significa que puede variar la cantidad y por consecuencia, el precio. (Los percheros se entregan y se retiran el dia de la mudanza. Atencion: los trabajos que sean realizados al interior o a alguna provincia que supere los 70km de Capital Federal, deberan hacer entrega de los canastos al finalizar el mismo. O bien pagar un canon por su retiro que lo dispondra la empresa. Si en destino hubiera que subir algun tipo de mueble por medio de sogas y no fue cotizado en la visita, se deja explicitamente aclarado que el valor queda por fuera de este presupuesto. Y el precio del mismo se definira teniendo en cuenta la complejidad y la cantidad de elementos a elevar. Una vez que el camion y el personal de MUDARTE se retira del domicilio final, no se aceptaran reclamos de ningun tipo. El cliente debera firmar el comprobante de conformidad. La cotizacion tiene una validez de 15 dias, cumplido el plazo, el cliente debera ponerse en contacto con MUDARTE para una recotizacion.</th>
+           </tr>
+           <tr></tr>
+           <tr></tr>
+           <tr></tr>
+           <tr></tr>
+           <tr></tr>
+           <tr></tr>
+           <tr></tr>
+           <tr>
+             <th rowspan=3 colspan=10></th>
+           </tr>
+           <tr></tr>
+           <tr></tr>
          </table>
    </div>
 </div>
+
+<script>
+function descargarExcel(){
+ var table= document.getElementById('divExportar');
+ var html = table.outerHTML;
+ window.open('data:application/vnd.ms-excel,' + escape(html));
+   }
+</script>
 </div>
