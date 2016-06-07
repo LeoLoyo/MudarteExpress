@@ -20,22 +20,22 @@
     </div>
     <br><br>
     <legend></legend>
-                  <h2>Otros <a ng-class="{hidden:otros_temp_campo!=''}" class="glyphicon glyphicon-plus" titulo="Agregar otro" style="font-size: 25px;" ng-click="add_campo()"></a>
+                  <h2>Otros <a class="agregarOtro" titulo="Agregar otro" ng-click="add_campo()"></a>
                   </h2>
                   <div ng-repeat="campo in otros_temp_campo">
                     <form name="form_otro">
                       <div class="row">
                         <div class="form-group col-md-3">
-                          <label for="">Descripción</label>
-                          <select class="form-control"  ng-focus="scrollAnime($event)"  ng-model="otro" ng-change="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion,campo)">
-                            <option>Otros</option>
+                          <label for="id_descripcion">Descripción</label>
+                          <select class="form-control" ng-init="otro='Otros'" ng-focus="scrollAnime($event)"  ng-model="otro" ng-change="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion,campo)">
+                            <option value="Otros">Otros</option>
                             <option ng-repeat="m in tipo_muebles">{{m.tipo_mueble}}</option>
                           </select>
 
                       </div>
                       <div class="col-md-3" ng-class="{hidden:otro !='Otros',error:!descripcion}">
-                        <label for="">Descripción</label>
-                        <input type="text"  placeholder="Descripción requerida" ng-model="descripcion" ng-blur="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion,campo)" class="form-control" >
+                        <label for="id_descripcione">Descripción</label>
+                        <input type="text" autofocus  placeholder="Descripción requerida" ng-model="descripcion" ng-blur="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion,campo)" class="form-control">
                       </div>
 
                       <div class="form-group col-md-1">
@@ -76,24 +76,10 @@
                   </form>
                 </div>
 <legend></legend>
-                <a ng-if="otros_temp_campo!=''" class="glyphicon glyphicon-plus" titulo="Agregar otro" style="font-size: 25px;" ng-click="add_campo()"></a>
+                <a ng-if="otros_temp_campo!=''" class="agregarOtro" titulo="Agregar otro" ng-click="add_campo()">
+                </a>
                 <br><br><br>
           </div>
-
 </div>
-<span class="btnLimpiar" ng-show="nav==='4' && resumen">
-    <button type="button" class="btn-inverse"  onclick="limpiar()" ng-click="limpiar()" data-toggle="tooltip" data-placement="left" title="Limpiar">
-        <span class="glyphicon glyphicon-trash"></span>
-    </button>
-</span>
 <div ng-hide="checked" ng-include='"views/resumen.html"'></div>
 <div ng-hide="checked" ng-include='"views/_confirmarCotizacion.html"'></div>
-<script>
-function limpiar(){
-  $(function(){
-    $('.btnSeleccionado').children('.classContenedores').click()
-
-  });
-  console.log('aqui');
-}
-</script>

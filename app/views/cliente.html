@@ -2,10 +2,15 @@
   <div class="col-md-12">
   <br>
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12">
       <h2 style="display:inline;">Datos del cliente</h2>
       </div>
-      <div class="col-md-5">
+
+
+  </div>
+  <br>
+<div class="row">
+  <div class="col-md-12 col-lg-4 col-sm-12">
         <div class="btn-group grupoRadio">
           <label class="btn btn-default" ng-class="{btnSeleccionado:cotizacion.tipo_cliente==='Particular'}">
               <input type="radio"  ng-model="cotizacion.tipo_cliente"  value="Particular" /> Particular
@@ -17,17 +22,25 @@
               <input type="radio"  ng-model="cotizacion.tipo_cliente" value="Gobierno" /> Gobierno
           </label>
         </div>
+        <br><br>
       </div>
-      <div class="col-md-3">
-           <div class="form-group">
+  <div class="col-md-12 col-lg-4 col-sm-12">
+        <div class="form-group">
       <div class="input-group">
-      <div class="input-group-addon btnSeleccionado">N° de cotización</div>
-      <input type="text" ng-model="cotizacion.numero_cotizacion" class="form-control" id="ncotizacion" placeholder="000">
+      <div class="input-group-addon btnSeleccionado">Fecha de carga</div>
+      <input type="text" class="form-control" placeholder="{{cotizacion.fecha_de_carga| date:'dd-MM-yyyy HH:mm'}}" readonly style="background:#fff;" >
     </div>
   </div>
       </div>
+      <div class="col-md-12 col-lg-4 col-sm-12">
+           <div class="form-group">
+      <div class="input-group">
+      <div class="input-group-addon btnSeleccionado">N° de cotización</div>
+      <input type="text" ng-model="cotizacion.numero_cotizacion" class="form-control" id="ncotizacion" placeholder="000" autofocus>
+    </div>
   </div>
-
+      </div>
+</div>
   <form action="" class="formulario">
     <div class="row">
   <div class="col-md-3 form-group">
@@ -36,7 +49,7 @@
   </div>
   <div class="col-md-3 form-group">
     <label for="id_telefono">Teléfono del cliente: </label>
-    <input type="number" ng-model="cliente.telefono" class="form-control">
+    <input type="text" ng-model="cliente.telefono" class="form-control">
   </div>
   <div class="col-md-3 form-group">
     <label for="id_email">Correo del cliente:</label>
@@ -44,16 +57,18 @@
   </div>
   <div class="col-md-3 form-group">
     <label for="id_promocion">Fuente de promoción:</label>
-    <select class="form-control" ng-model="cotizacion.fuente" id="id_promocion">
+    <select class="form-control selectPicker show-tick" data-live-search="true" data-size="10" title="Seleccione fuente de promoción" ng-model="cotizacion.fuente" id="id_promocion">
+      <option value=""></option>
       <option  ng-repeat="item in fuentes">{{item}}</option></select>
   </div>
 
   <div class="col-md-3 form-group">
-    <label for="id_cp">CP/PV:</label>
-    <select class="form-control" ng-model="cotizacion.cp_pv" id="id_cp">
+    <label for="id_cp">Empresa:</label>
+    <input type="text" class="form-control" ng-model="cotizacion.cp_pv" id="id_cp">
+    <!-- <select class="form-control" ng-model="cotizacion.cp_pv" id="id_cp">
       <option value="CP">CP</option>
       <option value="PV">PV</option>
-    </select>
+    </select> -->
   </div>
   <div class="col-md-3 form-group">
     <label for="id_cargo">Cargo:</label>
@@ -74,14 +89,14 @@
   <legend></legend>
 </div>
 <div class="row">
-  <div class="col-md-3 form-group">
+  <!-- <div class="col-md-3 form-group">
     <label for="id_fecha1">Fecha en que se cargó:</label>
     <input type="date" ng-model="cotizacion.fecha_de_carga" class="form-control">
   </div>
   <div class="col-md-3 form-group">
     <label for="id_hora1">Hora: </label>
     <input type="time" ng-model="cotizacion.hora_de_carga" class="form-control">
-  </div>
+  </div> -->
   <div class="col-md-3 form-group">
     <label for="id_fecha2">Fecha estimada de la mudanza:</label>
     <input type="date" ng-model="cotizacion.fecha_estimada_mudanza" class="form-control">
@@ -90,9 +105,6 @@
     <label for="id_hora2">Hora: </label>
     <input type="time" ng-model="cotizacion.hora_estimada_mudanza" class="form-control">
   </div>
-   </div>
-   <div class="row">
-
   <div class="col-md-3 form-group">
     <label for="id_fecha3">Fecha en que se cotizó</label>
     <input type="date" ng-model="cotizacion.fecha_de_cotizacion" class="form-control">
@@ -101,16 +113,16 @@
     <label for="id_hora3">Hora: </label>
     <input type="time" ng-model="cotizacion.hora_de_cotizacion" class="form-control">
   </div>
-  <div class="col-md-3 form-group">
+  <!-- <div class="col-md-3 form-group">
     <label for="id_fecha4">Fecha en que se avisó:</label>
     <input type="date" ng-model="cotizacion.fecha_de_aviso" class="form-control">
   </div>
   <div class="col-md-3 form-group">
     <label for="id_hora4">Hora: </label>
     <input type="time" ng-model="cotizacion.hora_de_aviso" class="form-control">
-  </div>
+  </div> -->
 </div>
-<div class="row">
+<!-- <div class="row">
   <div class="col-md-3 form-group">
     <label for="id_fecha5">Fecha en que se cerró:</label>
     <input type="date" ng-model="cotizacion.fecha_de_cierre" class="form-control">
@@ -127,9 +139,9 @@
     <label for="id_hora6">Hora: </label>
     <input type="time" ng-model="cotizacion.hora_real_mudanza" class="form-control">
   </div>
-</div>
-<legend></legend>
-<div class="row">
+</div> -->
+
+<!-- <div class="row">
   <div class="col-md-3 form-group">
     <label for="">Nombre de quien pasó la cotización:</label>
     <select ng-model="cotizacion.quien_cotizo" class="form-control"><option ng-repeat="item in telefonista">{{item.first_name}} {{item.last_name}}</option></select>
@@ -139,7 +151,7 @@
     <select class="form-control" ng-model="cotizacion.quien_llamo"><option ng-repeat="item in telefonista">{{item.first_name}} {{item.last_name}}</option></select>
   </div>
 
-</div>
+</div> -->
 <div class="row">
   <legend></legend>
   <div class="col-md-8 form-group">
@@ -148,7 +160,10 @@
   </div>
   <div class="col-md-4 form-group">
     <label for="">Barrio/Provincia</label>
-    <select name="" ng-model="cotizacion.barrio_provincia_origen" class="form-control"><option ng-repeat="item in barrio_provincias">{{item.descripcion}}</option></select>
+    <select name="" ng-model="cotizacion.barrio_provincia_origen" class="form-control selectPicker show-tick" data-live-search="true" data-size="10" title="Seleccione barrio">
+      <option value=""></option>
+      <option ng-repeat="item in barrio_provincias">{{item.descripcion}}</option>
+    </select>
   </div>
   <div class="col-md-12 form-group">
     <label for="">Observación de origen</label>
@@ -160,7 +175,10 @@
   </div>
   <div class="col-md-4 form-group">
     <label for="">Barrio/Provincia</label>
-    <select name="" ng-model="cotizacion.barrio_provincia_destino" class="form-control"><option ng-repeat="item in barrio_provincias">{{item.descripcion}}</option></select>
+    <select name="" ng-model="cotizacion.barrio_provincia_destino" class="form-control selectPicker show-tick" data-live-search="true" data-size="10" title="Seleccione barrio">
+      <option value=""></option>
+      <option ng-repeat="item in barrio_provincias">{{item.descripcion}}</option>
+    </select>
   </div>
   <div class="col-md-12 form-group">
     <label for="">Observación de destino</label>
@@ -175,3 +193,9 @@
 <div ng-include='"views/cotizacion.html"'></div>
 <div ng-include='"views/parcial_1.html"'></div>
 <div ng-include='"views/presupuesto.html"'></div>
+<script>
+  function scroll0(){
+   var scroll = angular.element('#page-content-wrapper');
+        $(scroll).animate({ scrollTop: 0 }, 0);
+  }
+</script>

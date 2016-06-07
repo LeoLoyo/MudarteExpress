@@ -58,6 +58,15 @@ form.formulario, div.formulario {
   box-shadow: $sombra_1;
   color: #fff;
 }
+.btn-limpiar {
+  color: red;
+  border-color: red;
+  background-color: transparent;
+  &:hover, &:focus, &:active {
+    color: #fff;
+    background-color: red;
+  }
+}
 .btn-outline {
   color: $colorTexto_2;
   border-color: $colorTexto_2;
@@ -77,6 +86,28 @@ form.formulario, div.formulario {
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff444444', endColorstr='#ff222222', GradientType=0);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+  }
+}
+.btnsPaginacion {
+  @extend .container-fluid;
+  div {
+    @extend .row;
+    div {
+      @extend .col-md-10;
+      @extend .col-md-offset-1;
+       button.btnSiguiente {
+          @extend .btn;
+          @extend .btn-outline;
+          @extend .btn-lg;
+          float: right;
+        }
+        button.btnAnterior {
+          @extend .btn;
+          @extend .btn-outline;
+          @extend .btn-lg;
+          float: left;
+        }
+    }
   }
 }
 table.tabla {
@@ -111,6 +142,9 @@ table.tabla {
               background: transparent;
               &.selectMoneda {
                 text-align-last: end;
+                option {
+                  text-align-last: end;
+                }
               }
             }
         &.paddingNone {
@@ -142,6 +176,12 @@ table.tablaResumen {
     }
   }
 }
+.agregarOtro {
+  @extend .glyphicon;
+  @extend .glyphicon-plus;
+  font-size: 30px;
+  cursor: pointer;
+}
 .login {
     @extend .panel;
     box-shadow: $sombra_1;
@@ -161,6 +201,16 @@ table.tablaResumen {
           float: right;
         }
     }
+}
+.volver {
+  a {
+    @extend .navbar-brand;
+    @extend .glyphicon;
+    @extend .glyphicon-chevron-left;
+    color: $colorTextoNavbar!important;
+    font-size: 1.6em!important;
+    cursor: pointer;
+  }
 }
 // estilos navbar
 .cabecera {
@@ -299,19 +349,6 @@ table.tablaResumen {
     }
   }
 }
-.btnLimpiar {
-  display: block;
-  position: fixed;
-  z-index: 1100;
-  bottom: 30px;
-  right: 50px;
-  button {
-    border-radius: 50%;
-    height: 50px;
-    width: 50px;
-    box-shadow: $sombra_2;
-  }
-}
 #wrapper.toggled #sidebar-wrapper {
   width: 210px;
   right: 0;
@@ -446,3 +483,4 @@ table.tablaResumen {
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   visibility: hidden!important;
 }
+@import "bootstrap-select.scss";
