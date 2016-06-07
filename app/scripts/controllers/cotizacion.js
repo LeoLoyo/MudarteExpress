@@ -479,7 +479,7 @@
               "barrio_provincia_destino": self.barrio_provincia_destino,
               "observacion_destino": self.observacion_destino,
               "recorrido_km": self.recorrido_km,
-              "precio_km": Number(self.precio_km).toFixed(2);
+              "precio_km": Number(self.precio_km).toFixed(2),
               "monto_km": Number(self.monto_km).toFixed(2),
               "tiempo_de_carga": self.tiempo_de_carga,
               "tiempo_de_descarga": self.tiempo_de_descarga,
