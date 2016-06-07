@@ -664,6 +664,7 @@ console.log(cotizacion_temp.total_m3);
           } else {
             return item;
           }
+
         };
 
         angular.forEach(items, function (item) {
