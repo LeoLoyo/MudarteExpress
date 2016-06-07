@@ -6533,7 +6533,7 @@ form.formulario, div.formulario {
 .btnSeleccion {
   background: #eee;
   display: inline-flex;
-  width: 200px;
+  width: 250px;
   height: 50px;
   text-align: center;
   border: 1px solid #dedede;
@@ -6555,6 +6555,52 @@ form.formulario, div.formulario {
     color: #000; }
   .btnSeleccion:hover {
     box-shadow: 0 2px 3px 0 #777; }
+
+.btnSeleccionMueble {
+  background: #eee;
+  display: inline-flex;
+  width: 160px;
+  height: 50px;
+  text-align: center;
+  border: 1px solid #dedede;
+  font-size: 1em;
+  margin-right: 20px;
+  margin-bottom: 0;
+  margin-top: 0; }
+  .btnSeleccionMueble span.boton {
+    flex: 70%;
+    padding: 13px 0;
+    margin: 3px;
+    line-height: 15px; }
+  .btnSeleccionMueble span.classContenedores {
+    margin-top: auto;
+    margin-bottom: auto; }
+  .btnSeleccionMueble select {
+    flex: 10%;
+    padding: 0;
+    border-color: transparent;
+    color: #000; }
+  .btnSeleccionMueble:hover {
+    box-shadow: 0 2px 3px 0 #777; }
+  .btnSeleccionMueble div {
+    flex: 20%;
+    background: #fff;
+    height: 100%; }
+    .btnSeleccionMueble div span {
+      margin-top: 13px;
+      margin-bottom: auto;
+      color: #000;
+      display: block;
+      visibility: hidden; }
+    .btnSeleccionMueble div:hover > span {
+      visibility: visible; }
+
+.conMueble {
+  border-bottom: 1px solid #dedede;
+  padding: 3px;
+  margin-top: -1px; }
+  .conMueble:hover {
+    background: rgba(0, 0, 0, 0.5); }
 
 .btnSeleccionado {
   background: #CC6202;
@@ -6695,11 +6741,7 @@ table.tablaResumen {
       height: 90px; }
 
 #wrapper {
-  padding-left: 0;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease; }
+  padding-left: 0; }
 
 #wrapper.toggled {
   padding-left: 210px; }
@@ -6715,11 +6757,7 @@ table.tablaResumen {
   overflow-y: auto;
   background: #BAB9B9;
   border-right: 0px solid #dedede;
-  box-shadow: 0 5px 20px 0 black;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease; }
+  box-shadow: 0 5px 20px 0 black; }
   #sidebar-wrapper div {
     display: block;
     position: absolute;
@@ -6752,11 +6790,7 @@ table.tablaResumen {
   width: 100%;
   position: absolute;
   height: calc(100% - 75px);
-  overflow-y: scroll;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease; }
+  overflow-y: scroll; }
 
 #wrapper.toggled #page-content-wrapper {
   width: calc(100% - 210px);

@@ -26,7 +26,7 @@ form.formulario, div.formulario {
 .btnSeleccion{
   background: #eee;
   display: inline-flex;
-  width: 200px;
+  width: 250px;
   height: 50px;
   text-align: center;
   border: 1px solid #dedede;
@@ -51,6 +51,61 @@ form.formulario, div.formulario {
   }
   &:hover {
     box-shadow: $sombra_1;
+  }
+}
+.btnSeleccionMueble {
+  background: #eee;
+  display: inline-flex;
+  width: 160px;
+  height: 50px;
+  text-align: center;
+  border: 1px solid #dedede;
+  font-size: 1em;
+  margin-right: 20px;
+  margin-bottom: 0;
+  margin-top: 0;
+  span.boton {
+    flex: 70%;
+    padding: 13px 0;
+    margin: 3px;
+    line-height: 15px;
+  }
+  span.classContenedores {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+  select {
+    flex: 10%;
+    padding: 0;
+    border-color: transparent;
+    color: $colorTexto_2;
+  }
+  &:hover {
+    box-shadow: $sombra_1;
+  }
+  div {
+    flex: 20%;
+    background: #fff;
+    height: 100%;
+    span {
+      margin-top: 13px;
+      margin-bottom: auto;
+      color: #000;
+      display: block;
+      visibility: hidden;
+      cursor: pointer;
+    }
+    &:hover > span {
+      visibility: visible;
+    }
+  }
+}
+.conMueble {
+  border-bottom: 1px solid #dedede;
+  padding: 3px;
+  margin-top: -1px;
+  &:hover {
+    background: rgba(0,0,0,0.5);
   }
 }
 .btnSeleccionado {
@@ -296,10 +351,6 @@ table.tablaResumen {
 // estilos sidebar
 #wrapper {
   padding-left: 0;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
 }
 
 #wrapper.toggled {
@@ -318,10 +369,6 @@ table.tablaResumen {
   background: $colorSidebar;
   border-right: 0px solid #dedede;
   box-shadow: $sombra_2;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
   div {
     display: block;
     position: absolute;
@@ -359,10 +406,6 @@ table.tablaResumen {
   position: absolute;
   height: calc(100% - 75px);
   overflow-y: scroll;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
 }
 
 #wrapper.toggled #page-content-wrapper {
