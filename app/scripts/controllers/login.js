@@ -6,6 +6,7 @@
     $rootScope.session = Session_resolve;
 
     $('.btnsCotizacion').addClass('hidden');
+    angular.element('.cargando').addClass('hidden');
 
     // $rootScope.session = Session.get();
 
@@ -21,6 +22,7 @@
             Session.set(true);
             // $('.btnsCotizacion').removeClass('hidden');
             angular.element('.btnsCotizacion').removeClass('hidden');
+            angular.element('.cargando').removeClass('hidden');
             angular.element('.dropdown-toggle').text('').append('<i class="glyphicon glyphicon-user"></i> ' + response[0].user.name + '<span class="caret"></span>');
             // $('.dropdown-toggle').text('').append('<i class="glyphicon glyphicon-user"></i> ' + response[0].user.name + '<span class="caret"></span>');
           });
@@ -32,6 +34,7 @@
     };
 
     $rootScope.logout = function () {
+      $('.cargando').removeClass('hidden');
       $rootScope.nav = '1';
       Session.set(false);
       $('.dropdown-toggle').text('Login').append('<span class="caret"></span>');

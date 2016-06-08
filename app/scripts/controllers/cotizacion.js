@@ -60,7 +60,7 @@
         fecha_estimada_mudanza: '',
         hora_estimada_mudanza: '',
         fecha_de_cotizacion: new Date(),
-        hora_de_cotizacion: '',
+        hora_de_cotizacion: new Date(),
         fecha_de_aviso:new Date(),
         hora_de_aviso: '',
         fecha_de_cierre:'',
