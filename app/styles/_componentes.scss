@@ -62,8 +62,8 @@ form.formulario, div.formulario {
   border: 1px solid #dedede;
   font-size: 1em;
   margin-right: 20px;
-  margin-bottom: 0;
-  margin-top: 0;
+  margin-bottom: 3px;
+  margin-top: 3px;
   span.boton {
     flex: 70%;
     padding: 13px 0;
@@ -80,15 +80,13 @@ form.formulario, div.formulario {
     border-color: transparent;
     color: $colorTexto_2;
   }
-  &:hover {
-    box-shadow: $sombra_1;
-  }
   div {
     flex: 20%;
     background: #fff;
     height: 100%;
     span {
-      margin-top: 13px;
+      font-size: 20px;
+      margin-top: 10px;
       margin-bottom: auto;
       color: #000;
       display: block;
@@ -96,8 +94,14 @@ form.formulario, div.formulario {
       cursor: pointer;
     }
     &:hover > span {
-      visibility: visible;
+
     }
+  }
+  &:hover {
+    box-shadow: $sombra_1;
+  }
+  &:hover > div > span {
+    visibility: visible;
   }
 }
 .conMueble {
@@ -105,7 +109,8 @@ form.formulario, div.formulario {
   padding: 3px;
   margin-top: -1px;
   &:hover {
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,.4);
+    color: #000;
   }
 }
 .btnSeleccionado {

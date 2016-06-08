@@ -80,7 +80,7 @@
                     <input id="id_presupuesto" type="radio" ng-model="nav" value="3">
                 </li>
                 <li class="btnsCotizacion hidden" ng-show="resumen" ng-click="checked=false">
-                    <label for="id_resumen" ng-class="{activo:nav==='6'}" onclick="scroll0();">Resumen</label>
+                    <label for="id_resumen" ng-class="{activo:nav==='6'}" onclick="scroll0();" ng-click="actFecha();">Resumen</label>
                      <input id="id_resumen" type="radio" ng-model="nav" value="6">
                 </li>
             </ul>
