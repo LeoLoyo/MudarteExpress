@@ -1,5 +1,5 @@
 <div class="btnSeleccion" ng-init="n.num='0'" ng-class="{btnSeleccionado:n.num>0}" >
-    <span class="classContenedores" ng-click="n.num=check(n.num)" ng-blur="add_contenedor(c.contenedor,n.num)">{{c.contenedor}}</span>
+    <span class="classContenedores" ng-click="n.num=checkc(n.num);add_contenedor(c.contenedor,n.num)" >{{c.contenedor}}</span>
     <select ng-focus="scrollAnime($event)" ng-model="n.num"  ng-change="add_contenedor(c.contenedor,n.num)">
       <option  ng-repeat="n in cantidades">{{n.num}}</option>
     </select>

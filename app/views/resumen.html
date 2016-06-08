@@ -51,19 +51,20 @@
             <td style="background-color: #fff;" class="tdResumen" align=center>Cotizador</td>
             <td>{{cotizacion.cotizador}}</td>
           </tr>
-          <tr>
+          <!-- <tr>
             <td style="background-color: #fff;" class="tdResumen" align=center>Fecha en que se cargó:</td>
             <td>{{cotizacion.fecha_de_carga | date:'dd-MM-yyyy'}}</td>
             <td style="background-color: #fff;" class="tdResumen" align=center>Hora:</td>
             <td>{{cotizacion.hora_de_carga | date:'HH:mm'}}</td>
-            <td style="background-color: #fff;" class="tdResumen" align=center>Forma pago</td>
-            <td class="" style="border-bottom: 1px solid #dedede;">{{cotizacion.forma_pago}}</td>
-          </tr>
+
+          </tr> -->
           <tr>
             <td style="background-color: #fff;" class="tdResumen" align=center>Fecha estimada de mudanza:</td>
             <td>{{cotizacion.fecha_estimada_mudanza | date:'dd-MM-yyyy'}}</td>
             <td style="background-color: #fff;" class="tdResumen" align=center>Hora:</td>
             <td style="border-right:1px solid #dedede;">{{cotizacion.hora_estimada_mudanza | date:'HH:mm'}}</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Forma pago</td>
+            <td class="" style="border-bottom: 1px solid #dedede;">{{cotizacion.forma_pago}}</td>
           </tr>
           <tr>
             <td style="background-color: #fff;" class="tdResumen" align=center>Fecha en que se cotizó:</td>
@@ -303,10 +304,10 @@
             </tr>
             <tr>
               <td class="paddingNone tdResumen" style="padding:0;display:flex;width:100px">
-                <input type="number" class="form-control" style="flex:90%;border-radius:0;border:none;" ng-model="margen"><span style="flex:10%;margin-top:auto;margin-bottom:auto;"> %</span>
+                <input type="number" class="form-control" style="flex:90%;border-radius:0;border:none;" min="0" ng-change="$emit('change_margen')" ng-model="cotizacion.porcentaje_margen"><span style="flex:10%;margin-top:auto;margin-bottom:auto;"> %</span>
               </td>
               <th class="tdResumen">Margen</th>
-              <td class="tdResumen"><strong style="display:flex;"><span style="flex:90%;border-radius:0;border:none;">{{(metros3_contenedores+metros3_muebles+metros3_otros)*(1+(margen/100))|number:2}}</span> <span style="flex:10%;margin-top:auto;margin-bottom:auto;">m<sup>3</sup></span></strong></td>
+              <td class="tdResumen"><strong style="display:flex;"><span style="flex:90%;border-radius:0;border:none;">{{(metros3_contenedores+metros3_muebles+metros3_otros)*(1+(cotizacion.porcentaje_margen/100))|number:2}}</span> <span style="flex:10%;margin-top:auto;margin-bottom:auto;">m<sup>3</sup></span></strong></td>
             </tr>
           </table>
           <button type="submit" ng-disabled="otros_temp.length === 0 && contenedores_temp.length === 0 && muebles_temp.length === 0" class="btn btn-success" ng-click="exportAction('pdf')">Exportar</button>

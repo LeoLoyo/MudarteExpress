@@ -78,7 +78,7 @@
         fecha_estimada_mudanza: '',
         hora_estimada_mudanza: '',
         fecha_de_cotizacion: new Date(),
-        hora_de_cotizacion: '',
+        hora_de_cotizacion: new Date(),
         fecha_de_aviso:new Date(),
         hora_de_aviso: '',
         fecha_de_cierre:'',
@@ -97,10 +97,10 @@
         tiempo_de_carga: Number(0),
         tiempo_de_descarga: Number(0),
         numero_camion: Number(0),
-        numero_ayudante: Number(0),
+        numero_ayudante: {num:'0'},
         seguro: 'No',
         desarme_mueble: 'No',
-        ambiente: Number(0),
+        ambiente: {num:'0'},
         rampa: 'No',
         mudanza: Number(0),
         soga: Number(0),
@@ -241,8 +241,9 @@
         var l = ms_tmp.length;
         for (var i = 0; i < l; i++) {
           if (m.mueble === ms_tmp[i].mueble && m.espeficicacion === ms_tmp[i].espeficicacion) {
-            if (m.cantidad > 0) {
+            if (Number(m.cantidad) > 0) {
               ms_tmp[i].cantidad = m.cantidad;
+              ms_tmp[i].total_punto = m.total_punto;
             } else {
               ms_tmp.splice(ms_tmp.indexOf(ms_tmp[i]), 1);
             }
@@ -342,7 +343,7 @@
 
           setTimeout(function () {
          $('select.selectPicker').selectpicker();
-       }, 50);
+       }, 0);
         }
 
         $rootScope.$on('change', function (event) {
@@ -356,11 +357,28 @@
 
       init();
 
+      $rootScope.total_m3 = 0.00;
+
+      $rootScope.margen = Number($scope.cotizacion.porcentaje_margen);
+
+      $scope.$on('change_margen',function(){
+        setTimeout(function(){
+          $rootScope.margen = Number($scope.cotizacion.porcentaje_margen);
+          $scope.$apply();
+        },0)
+      })
+
+
       //Methods
       $scope.check = function (n) {
         n = Number(n) + 1;
         // n === '0' ? n = '1' : n = '0';
         return n.toString();
+      };
+      $scope.checkc = function (n) {
+        // n = Number(n) + 1;
+        n === '0' ? n = '1' : n = '0';
+        return n;
       };
 
       $scope.add_contenedor = function (descripcion, uni) {
@@ -380,27 +398,28 @@
           $scope.metros3_contenedores = calcular_totales($scope.contenedores_temp, "punto") / 10;
           $scope.unidades_contenedores = calcular_totales($scope.contenedores_temp, "unidad");
         });
+        $rootScope.total_m3 = Number($scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros);
       };
 
       $rootScope.limpiar = function () {
         setTimeout(function(){
+          $('.btnSeleccionado').children('div').children('span.remover').click();
           $('.btnSeleccionado').children('.classContenedores').click();
           $scope.contenedores_temp = [];
           $scope.muebles_temp = [];
           $scope.otros_temp = [];
           $scope.otros_temp_campo = [];
           $scope.materiales_temp = [];
-          $scope.cotizacion = {};
 
           // //Variables De Totales
           $scope.metros3_contenedores = 0;
           $scope.unidades_contenedores = 0;
           $scope.metros3_muebles = 0;
           $scope.unidades_muebles = 0;
-          $rootScope.metros3_otros = 0;
+          $scope.metros3_otros = 0;
           $scope.unidades_otros = 0;
           $scope.$apply();
-        },50);
+        },0);
 
       };
 
@@ -414,21 +433,21 @@
           alto: Number(mueble.alto),
           cantidad: Number(uni),
           punto: Number(mueble.punto),
-          total_punto: Number(uni * mueble.punto),
+          total_punto: Number(Number(uni) * Number(mueble.punto)),
           estado: "activo"
         };
 
         if (buscar_mueble($scope.muebles_temp, mueble_temp) !== true) {
-          if (mueble_temp.cantidad > 0) {
+          if (Number(mueble_temp.cantidad) > 0) {
             $scope.muebles_temp.push(mueble_temp);
           }
         }
-        $rootScope.metros3_muebles = calcular_totales($scope.muebles_temp, "total_punto") / 10;
+        $scope.metros3_muebles = calcular_totales($scope.muebles_temp, "total_punto") / 10;
         $scope.unidades_muebles = calcular_totales($scope.muebles_temp, "cantidad");
+        $rootScope.total_m3 = Number($scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros);
       };
 
       $scope.add_otros = function (campo, mueble, ancho, largo, alto, cant, descripcion, otro) {
-        console.log(mueble);
         if (ancho !== undefined && largo !== undefined && alto !== undefined && mueble) {
           var otro = {
             id: campo.id,
@@ -460,11 +479,13 @@
               $scope.otros_temp.push(otro);
             }
           }
-          $rootScope.metros3_otros = calcular_totales($scope.otros_temp, "total_punto") / 10;
+          $scope.metros3_otros = calcular_totales($scope.otros_temp, "total_punto") / 10;
           $scope.unidades_otros = calcular_totales($scope.otros_temp, "cantidad");
+          $rootScope.total_m3 = Number($scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros);
         } else {
           alert('Seleccione primero la descripción');
         }
+
       };
 
       $scope.add_campo = function () {
@@ -480,7 +501,13 @@
         }
         $scope.otros_temp_campo.splice($scope.otros_temp_campo.indexOf(campo), 1);
       };
-
+$rootScope.actFecha = function(){
+  setTimeout(function(){
+    $scope.cotizacion.hora_de_cotizacion = new Date();
+    $scope.cotizacion.fecha_de_cotizacion = new Date();
+    $scope.$apply();
+  },0);
+}
       $rootScope.save = function() {
         var self = $scope.cotizacion;
 
@@ -588,7 +615,7 @@
                   // $('.btnSeleccionado').children('.classContenedores').click();
                   $scope.limpiarM = true;
                   $scope.$apply();
-                }, 1000);
+                }, 0);
               }
             }).catch(function(){
                 alert('ocurrio un error con el servidor');
@@ -649,7 +676,6 @@
           }
         }
         $scope.cotizacion.materiales = calcular_totales($scope.materiales_temp, "total");
-        // console.log($scope.materiales_temp);
       $scope.cotizacion.subTotal1 = $scope.cotizacion.mudanza + $scope.cotizacion.soga + $scope.cotizacion.embalaje + $scope.cotizacion.desembalaje + $scope.cotizacion.materiales + $scope.cotizacion.piano_cajafuerte
           };
 
@@ -672,7 +698,6 @@
       // temporal parcial_1
       // $scope.parcial1_temp = {};
       $scope.add_parcial1 = function () {
-        // console.log($scope.cotizacion);
         $scope.cotizacion.monto_km = Number($scope.cotizacion.recorrido_km * $scope.cotizacion.precio_km);
       };
     }
