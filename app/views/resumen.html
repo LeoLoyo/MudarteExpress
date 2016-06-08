@@ -310,7 +310,13 @@
             </tr>
           </table>
           <button type="submit" ng-disabled="otros_temp.length === 0 && contenedores_temp.length === 0 && muebles_temp.length === 0" class="btn btn-success" ng-click="exportAction('pdf')">Exportar</button>
-
+ <table class="export-table" id="tableID">
+  <tr>
+    <td>
+      prueba
+    </td>
+  </tr>
+ </table>
     </div>
 
     <div id="divExportar" class="col-md-12 hidden">
@@ -600,7 +606,7 @@
            <br>
            <h2>Contenedores</h2>
            <legend></legend>
-           <table border=1 id="tablaContenedor" class="export-table">
+           <table border=1 id="tablaContenedor">
              <thead>
              <tr style="height:35px;">
                <th width=50>Contenedor</th>
