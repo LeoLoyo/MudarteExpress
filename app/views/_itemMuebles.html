@@ -9,6 +9,8 @@
             <div>
                 <span ng-show="m.num>0" ng-click="m.num='0';add_mueble(c,m.num);" title="Remover"><b>X</b></span>
             </div>
+
       </span>
   </td>
   </tr>
+<script ng-if="$last">$('.cargando').addClass('hidden');$('select.selectPicker').selectpicker();$('#ncotizacion').focus();</script>

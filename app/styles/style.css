@@ -7121,4 +7121,19 @@ select.selectpicker {
   width: 100%;
   float: none; }
 
+.cargando {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  z-index: 1100; }
+  .cargando p {
+    display: block;
+    margin-top: 23%;
+    text-align: center;
+    display: block;
+    color: #CC6202;
+    font-size: 30px; }
+
 /*# sourceMappingURL=style.css.map */

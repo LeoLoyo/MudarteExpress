@@ -532,3 +532,19 @@ table.tablaResumen {
   visibility: hidden!important;
 }
 @import "bootstrap-select.scss";
+.cargando {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  z-index: 1100;
+  p {
+    display: block;
+    margin-top: 23%;
+    text-align: center;
+    display: block;
+    color: $colorNavbar;
+    font-size: 30px;
+    }
+}
