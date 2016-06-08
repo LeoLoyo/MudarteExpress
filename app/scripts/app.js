@@ -3,7 +3,7 @@
 
   var app = angular.module('cotizacionExpressApp', ['Express.services', 'ngAnimate', 'ngAria', 'ngCookies', 'ngMessages', 'ngResource', 'ngRoute', 'ngSanitize', 'ngTouch', 'ui.router']);
   app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-    // 'use strict'
+    'use strict'
     $stateProvider.state('login', {
       url: '/login',
       views: {
@@ -17,15 +17,52 @@
           }
         }
       }
-    }).state('app', {
+    })
+    .state('app', {
       url: '/',
       templateUrl: 'index.html'
-    }).state('cotizacion', {
+    })
+    .state('show', {
+      url: '/show',
+      views:{
+        "maincontent":{
+          templateUrl: 'views/CotizacionView.html',
+          resolve:{
+            cotizaciones: function (Cotizacion) {
+              return Cotizacion.all().then(function(r){
+                return r;
+              });
+            },
+            clientes: function (Cliente) {
+              return Cliente.all().then(function(c){
+                return c;
+              });
+            },
+            contenedores: function (Cotizacion) {
+              return Cotizacion.contenedores().then(function(c){
+                return c;
+              });
+            },
+            materiales: function (Cotizacion) {
+              return Cotizacion.materiales().then(function(c){
+                return c;
+              });
+            },
+            muebles: function (Cotizacion) {
+              return Cotizacion.muebles().then(function(c){
+                return c;
+              });
+            }
+          },
+        controller:'CotizacionViewCtrl'
+        }
+      }
+    })
+    .state('cotizacion', {
       url: '/cotizacion',
       views: {
         'maincontent': {
           templateUrl: 'views/cliente.html',
-          // templateUrl:'views/cotizacion.html',
           controller: 'CotizacionCtrl',
 
           resolve: {
@@ -43,7 +80,8 @@
         }
       }
     });
-    $urlRouterProvider.otherwise('/login');
+    // $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/show');
   }]);
   app.constant('setting', {
     "url": "http://localhost:8000/api/v1/",
@@ -62,4 +100,5 @@
       }
     };
   });
+
 })();
