@@ -70,8 +70,16 @@
     };
   });
 
-  app.service('Cotizacion',['$http', 'setting', function ($http, setting) {
+  app.service('Cotizacion',['$http', 'setting','API', function ($http, setting,API) {
     var self = this;
+
+    self.all = function () {
+      var url = setting.url + "cotizacion/?format=json";
+      return API.query(url).then(function (result) {
+        return API.getAll(result);
+      });
+    };
+
     self.save = function (cotizacion) {
       console.log(cotizacion.total_m3);
       return $http.post(setting.url + "cotizacion/", cotizacion).success(function (responde) {
@@ -135,6 +143,26 @@
       var collection = ['Internet Google', 'Internet Otro buscador', 'Internet Banner', 'Cartel Via Publica', 'Recomendado Cliente', 'Cliente', 'Volante diario/revista', 'Volante via publica', 'Volante en casa', 'Volante en evento', 'Publ. Diario/revista', 'Public. Email', 'Public. Via Publica', 'Publicidad TV', 'Pulicidad Radio', 'Publicidad Cine', 'Camion Mudarte', 'Telemercadeo', 'Deposito Belgrano', 'Inmobiliaria', 'Tarjeta descuento', 'Otros', 'My Home Planners'];
       return collection;
     };
+    self.materiales = function () {
+      var url = setting.url + "materialcotizacion/?format=json";
+      return API.query(url).then(function (result) {
+        return API.getAll(result);
+      });
+    };
+    self.contenedores = function () {
+      var url = setting.url + "contenedorcotizacion/?format=json";
+      return API.query(url).then(function (result) {
+        return API.getAll(result);
+      });
+    };
+    self.muebles = function () {
+      var url = setting.url + "mueblecotizacion/?format=json";
+      return API.query(url).then(function (result) {
+        return API.getAll(result);
+      });
+    };
+
+
     return self;
   }]);
 
@@ -212,12 +240,12 @@
     };
   }]);
 
-  app.service('Cliente',['$http', 'setting', function ($http, setting) {
+  app.service('Cliente',['$http', 'setting','API', function ($http, setting, API) {
     var self = this;
     self.all = function () {
-      return $http.get(setting.url + "cliente/?format=json").then(function (data) {
-        // console.log(data.data[0]);
-        return data.data[0];
+      var url = setting.url + "cliente/?format=json";
+      return API.query(url).then(function (result) {
+        return API.getAll(result);
       });
     };
     self.save = function(cliente){
