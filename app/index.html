@@ -86,7 +86,7 @@
             </ul>
             <ul class="btnAccion">
                 <li align=center ng-show="resumen" style="width:100%;" class="btn btn-outline btn-lg btn-block">
-                    <label align=left>Total m<sup>3</sup> :<input style="width:40px; border-color:transparent; background-color:transparent;" id="id_m3" type="text" value="{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}"></label>
+                    <label align=left>Total m<sup>3</sup><p> {{total_m3|number:2}} - {{total_m3 * (1+(margen/100))|number:2}}</p></label>
                 </li>
                 <li ng-show="nav==='4' && resumen" ng-if="nav==='4' && resumen">
                     <button type="button" class="btn btn-limpiar btn-lg btn-block"  ng-click="limpiar()" title="Limpiar">

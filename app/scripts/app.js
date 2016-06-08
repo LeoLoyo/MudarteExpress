@@ -80,8 +80,8 @@
         }
       }
     });
-    // $urlRouterProvider.otherwise('/login');
-    $urlRouterProvider.otherwise('/show');
+    $urlRouterProvider.otherwise('/login');
+    // $urlRouterProvider.otherwise('/show');
   }]);
   app.constant('setting', {
     "url": "http://localhost:8000/api/v1/",
