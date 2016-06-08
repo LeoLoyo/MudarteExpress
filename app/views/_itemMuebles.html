@@ -2,12 +2,12 @@
     <th style="width:150px;text-align:center;">{{group[0].descripcion}}: </th>
   <td>
       <span ng-repeat="c in group" class="btnSeleccionMueble" ng-class="{btnSeleccionado:m.num>0}" ng-init="m.num='0'">
-          <span class="classContenedores boton" ng-click="m.num=check(m.num)" ng-blur="add_mueble(c,m.num)">{{c.especificacion}}</span>
+          <span class="classContenedores boton" ng-click="m.num=check(m.num);add_mueble(c,m.num)">{{c.especificacion}}</span>
             <select ng-focus="scrollAnime($event)" ng-model="m.num" ng-change="add_mueble(c,m.num)">
               <option  ng-repeat="m in cantidades">{{m.num}}</option>
             </select>
             <div>
-                <span ng-show="m.num>0" ng-click="m.num='0';add_mueble(c,m.num);" title="Remover"><b>X</b></span>
+                <span class="remover" ng-show="m.num>0" ng-click="m.num='0';add_mueble(c,m.num);" title="Remover"><b>X</b></span>
             </div>
 
       </span>

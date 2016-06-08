@@ -97,10 +97,10 @@
         tiempo_de_carga: Number(0),
         tiempo_de_descarga: Number(0),
         numero_camion: Number(0),
-        numero_ayudante: Number(0),
+        numero_ayudante: {num:'0'},
         seguro: 'No',
         desarme_mueble: 'No',
-        ambiente: Number(0),
+        ambiente: {num:'0'},
         rampa: 'No',
         mudanza: Number(0),
         soga: Number(0),
@@ -371,13 +371,12 @@
 
       $rootScope.limpiar = function () {
         setTimeout(function(){
-          $('.btnSeleccionado').children('.classContenedores').click();
+          $('.btnSeleccionado').children('div').children('span.remover').click();
           $scope.contenedores_temp = [];
           $scope.muebles_temp = [];
           $scope.otros_temp = [];
           $scope.otros_temp_campo = [];
           $scope.materiales_temp = [];
-          $scope.cotizacion = {};
 
           // //Variables De Totales
           $scope.metros3_contenedores = 0;
@@ -467,7 +466,13 @@
         }
         $scope.otros_temp_campo.splice($scope.otros_temp_campo.indexOf(campo), 1);
       };
-
+$rootScope.acFecha = function(){
+  setTimeout(function(){
+    $scope.cotizacion.hora_de_cotizacion = new Date();
+    $scope.cotizacion.fecha_de_cotizacion = new Date();
+    $scope.$apply();
+  },5);
+}
       $rootScope.save = function() {
         var self = $scope.cotizacion;
 
