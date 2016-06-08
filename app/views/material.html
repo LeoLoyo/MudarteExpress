@@ -11,15 +11,17 @@
           <tr ng-repeat="item in materiales">
             <td>{{item.descripcion}}</td>
             <td align="center" class="paddingNone">
-              <!-- <select ng-focus="scrollAnime($event)" ng-model="cantidad" ng-options="m.num for m in cantidades"  ng-change="add_material(item,cantidad.num, item.precio)" class="selectMoneda" style="text-align-last: center;"> -->
-              <select ng-focus="scrollAnime($event)" ng-model="cantidad" ng-options="m.num for m in cantidades" ng-init="cantidad=cantidades[0]" ng-change="add_material(item,cantidad.num, item.precio)" class="selectMoneda" style="text-align-last: center;">
-              </select>
+
+              <!-- <select ng-focus="scrollAnime($event)" ng-model="cantidad" ng-options="m.num for m in cantidades" ng-init="cantidad=cantidades[0]" ng-change="add_material(item,cantidad.num, item.precio)" class="selectMoneda" style="text-align-last: center;"> -->
+              <select ng-focus="scrollAnime($event)" ng-model="item.cantidad" ng-options="m.num for m in cantidades" ng-init="item.cantidad = item.cantidad" ng-change="add_material(item)" class="selectMoneda" style="text-align-last: center;"></select>
             <td align="center" class="paddingNone">
 
-              <input type="number" ng-show="cantidad.num!=0" ng-model="item.precio" ng-change="add_material(item,cantidad.num, item.precio)" >
+              <input type="number" ng-show="item.cantidad!=0" ng-model="item.precio" ng-change="add_material(item)" >
+              <!-- <input type="number" ng-show="cantidad.num!=0" ng-model="item.precio" ng-change="add_material(item,cantidad.num, item.precio)" > -->
 
             </td>
-            <td style="text-align:right!important;" >{{item.precio * cantidad.num|currency}}</td>
+            <!-- <td style="text-align:right!important;" >{{item.precio * cantidad.num|currency}}</td> -->
+            <td style="text-align:right!important;" >{{item.precio * item.cantidad|currency}}</td>
           </tr>
           <tr class="active">
             <td colspan="3" style="text-align:right!important;"><strong>Total: </strong></td>
