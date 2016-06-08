@@ -2,7 +2,25 @@
   'use strict';
 
   var app = angular.module('cotizacionExpressApp');
-  app.controller('CotizacionCtrl', ['Session', 'contenedores_resolve', 'muebles_resolve', '$interval', '$rootScope', '$state', '$scope', 'Users', 'Direccion', 'Material', 'Cotizacion', 'Contenedor', 'Mueble', 'Bulto', 'Cliente', '$http', 'setting', function (Session, contenedores_resolve, muebles_resolve, $interval, $rootScope, $state, $scope, Users, Direccion, Material, Cotizacion, Contenedor, Mueble, Bulto, Cliente, $http, setting) {
+
+  app.controller('CotizacionCtrl', [
+    'Session',
+    'contenedores_resolve',
+    'muebles_resolve',
+    '$interval',
+    '$rootScope',
+    '$state',
+    '$scope',
+    'Users',
+    'Direccion',
+    'Material',
+    'Cotizacion',
+    'Contenedor',
+    'Mueble',
+    'Bulto',
+    'Cliente',
+    'setting', function (Session, contenedores_resolve, muebles_resolve, $interval, $rootScope, $state, $scope, Users, Direccion, Material, Cotizacion, Contenedor, Mueble, Bulto, Cliente, setting) {
+
     var today = new Date().toDateString();
     if (!Session.get()) {
       $state.go('login');
@@ -327,8 +345,9 @@
 
       //Methods
       $scope.check = function (n) {
-        n === '0' ? n = '1' : n = '0';
-        return n;
+        n = Number(n) + 1;
+        // n === '0' ? n = '1' : n = '0';
+        return n.toString();
       };
 
       $scope.add_contenedor = function (descripcion, uni) {
@@ -505,7 +524,7 @@
               "total_margen": self.total_margen,
               "estado": "activo"
             };
-console.log(cotizacion_temp.total_m3);
+
             if(self.seguro === 'Si'){
               cotizacion_temp.seguro = true;
             }else{
