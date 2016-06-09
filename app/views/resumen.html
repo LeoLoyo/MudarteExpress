@@ -495,7 +495,7 @@
              <tr></tr>
              <tr>
                <th rowspan=2 colspan=2>Tiempo de carga</th>
-               <td rowspan=2 colspan=2 align=center>{{cotizacion.tiempo_de_carga.num}}</td>
+               <td rowspan=2 colspan=2 align=center>{{cotizacion.tiempo_de_carga}}</td>
                <td rowspan=2 colspan=2 align=center></td>
                <th rowspan=2 colspan=2>Soga</th>
                <td rowspan=2 colspan=2 align=center>{{cotizacion.soga}}</td>
@@ -503,7 +503,7 @@
              <tr></tr>
              <tr>
                <th rowspan=2 colspan=2>Tiempo de descarga</th>
-               <td rowspan=2 colspan=2 align=center>{{cotizacion.tiempo_de_descarga.num}}</td>
+               <td rowspan=2 colspan=2 align=center>{{cotizacion.tiempo_de_descarga}}</td>
                <td rowspan=2 colspan=2 align=center></td>
                <th rowspan=2 colspan=2>Embalaje</th>
                <td rowspan=2 colspan=2 align=center>{{cotizacion.embalaje}}</td>
@@ -710,7 +710,7 @@
 
 <script>
 function descargarExcel(){
- var table= document.getElementById('divExportar');
+ var table= document.getElementById('divExportar; charset=UTF-8');
  var html = table.outerHTML;
  window.open('data:application/vnd.ms-excel,' + escape(html));
    }
