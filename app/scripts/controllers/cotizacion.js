@@ -670,7 +670,10 @@ $rootScope.actFecha = function(){
       }
 
       $scope.update_presupuesto = function () {
-        $scope.cotizacion.subTotal1 = Number($scope.cotizacion.mudanza + $scope.cotizacion.soga + $scope.cotizacion.embalaje + $scope.cotizacion.desembalaje + $scope.cotizacion.materiales + $scope.cotizacion.piano_cajafuerte)
+        setTimeout(function(){
+            $scope.cotizacion.subTotal1 = $scope.cotizacion.mudanza + $scope.cotizacion.soga + $scope.cotizacion.embalaje + $scope.cotizacion.desembalaje + $scope.cotizacion.materiales + $scope.cotizacion.piano_cajafuerte + $scope.cotizacion.monto_km;
+            $scope.$apply();
+        },0);
         $scope.calcular_ajuste();
         $scope.calcular_iva();
 
@@ -740,7 +743,8 @@ console.log(material);
           }
         }
         $scope.cotizacion.materiales = calcular_totales($scope.materiales_temp, "total");
-      $scope.cotizacion.subTotal1 = $scope.cotizacion.mudanza + $scope.cotizacion.soga + $scope.cotizacion.embalaje + $scope.cotizacion.desembalaje + $scope.cotizacion.materiales + $scope.cotizacion.piano_cajafuerte
+        $scope.update_presupuesto();
+
           };
 
       function buscar_material(ms_tmp, m) {
@@ -763,6 +767,7 @@ console.log(material);
       // $scope.parcial1_temp = {};
       $scope.add_parcial1 = function () {
         $scope.cotizacion.monto_km = Number($scope.cotizacion.recorrido_km * $scope.cotizacion.precio_km);
+        $scope.update_presupuesto();
       };
     }
   }]);
