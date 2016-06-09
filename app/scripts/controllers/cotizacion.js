@@ -265,6 +265,19 @@
         }
         return false;
       }
+//Controlador para generar PDF
+      $scope.exportAction = function(event){
+        console.log(event)
+      switch(event){
+          case "pdf": $scope.$broadcast("export-pdf", {});
+                      break;
+          case "excel": $scope.$broadcast("export-excel", {});
+                      break;
+          case "doc": $scope.$broadcast("export-doc", {});
+                      break;
+          default: console.log("no event caught");
+       }
+      }
 
       function groupBy(array, f) {
         var groups = {};
