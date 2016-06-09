@@ -185,9 +185,9 @@
   app.service('Material',['API', 'setting', function (API, setting) {
     var self = this;
     self.all = function () {
-      var url = setting.url + "material/?format=json";
-      // var url = "scripts/json/material.json";
 
+      var url = setting.url + "material/?format=json";
+      
       return API.query(url).then(function (result) {
         return API.getAll(result);
       });

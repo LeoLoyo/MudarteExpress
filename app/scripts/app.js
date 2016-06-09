@@ -19,14 +19,22 @@
       }
     })
     .state('app', {
+
       url: '/',
+
       templateUrl: 'index.html'
+
     })
     .state('show', {
+
       url: '/show',
+
       views:{
+
         "maincontent":{
+
           templateUrl: 'views/CotizacionView.html',
+
           resolve:{
             cotizaciones: function (Cotizacion) {
               return Cotizacion.all().then(function(r){
@@ -54,15 +62,21 @@
               });
             }
           },
-        controller:'CotizacionViewCtrl'
+
+          controller:'CotizacionViewCtrl'
         }
       }
     })
     .state('cotizacion', {
+
       url: '/cotizacion',
+
       views: {
+
         'maincontent': {
+
           templateUrl: 'views/cliente.html',
+
           controller: 'CotizacionCtrl',
 
           resolve: {
@@ -74,6 +88,18 @@
             contenedores_resolve: function (API, Contenedor) {
               return Contenedor.all().then(function (r) {
                 return r;
+              });
+            },
+            materiales_resolve: function (API, Material) {
+              return Material.all().then(function (r) {
+                var out = [];
+                angular.forEach(r,function(v, k){
+                  var m = angular.copy(v)
+                  m.precio = Number(m.precio);
+                  m.cantidad = 0;
+                  out.push(m);
+                },out)
+                return out;
               });
             }
           }

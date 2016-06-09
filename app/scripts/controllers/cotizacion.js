@@ -7,19 +7,19 @@
     'Session',
     'contenedores_resolve',
     'muebles_resolve',
+    'materiales_resolve',
     '$interval',
     '$rootScope',
     '$state',
     '$scope',
     'Users',
     'Direccion',
-    'Material',
     'Cotizacion',
     'Contenedor',
     'Mueble',
     'Bulto',
     'Cliente',
-    'setting', function (Session, contenedores_resolve, muebles_resolve, $interval, $rootScope, $state, $scope, Users, Direccion, Material, Cotizacion, Contenedor, Mueble, Bulto, Cliente, setting) {
+    'setting', function (Session, contenedores_resolve, muebles_resolve, materiales_resolve, $interval, $rootScope, $state, $scope, Users, Direccion, Cotizacion, Contenedor, Mueble, Bulto, Cliente, setting) {
 
     var today = new Date().toDateString();
     if (!Session.get()) {
@@ -131,9 +131,6 @@
       $scope.telefonistas = [];
       $scope.telefonistas = null;
 
-      $scope.materiales = [];
-      $scope.materiales = null;
-
       $scope.contenedores = [];
       $scope.contenedores = null;
 
@@ -146,11 +143,6 @@
       $scope.barrio_provincias = [];
       $scope.barrio_provincias = null;
 
-      $scope.mueble = [];
-      $scope.mueble = null;
-
-      $scope.muebles_group = [];
-      $scope.muebles_group = null;
 
       $scope.contenedores_temp = [];
       $scope.muebles_temp = [];
@@ -303,6 +295,7 @@
       $scope.muebles = groupBy(muebles_resolve, function (item) {
         return [item.espeficicacion, item.descripcion];
       });
+      $scope.materiales = materiales_resolve;
 
       function init(contenedor) {
         if (contenedor !== undefined) {
@@ -313,14 +306,14 @@
           numeros();
           numeros_otros();
 
-          Material.all().then(function (r) {
-            var out = [];
-            angular.forEach(r, function (value, key) {
-              value.precio = Number(value.precio);
-              out.push(value);
-            }, out);
-            $scope.materiales = out;
-          });
+          // Material.all().then(function (r) {
+          //   var out = [];
+          //   angular.forEach(r, function (value, key) {
+          //     value.precio = Number(value.precio);
+          //     out.push(value);
+          //   }, out);
+          //   $scope.materiales = out;
+          // });
 
           Users.all(1).then(function (r) {
             $scope.cotizadores = r;
@@ -357,7 +350,7 @@
 
       init();
 
-      $rootScope.total_m3 = 0.00;
+      $rootScope.total_m3 = Number($scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros);
 
       $rootScope.margen = Number($scope.cotizacion.porcentaje_margen);
 
@@ -376,7 +369,6 @@
         return n.toString();
       };
       $scope.checkc = function (n) {
-        // n = Number(n) + 1;
         n === '0' ? n = '1' : n = '0';
         return n;
       };
@@ -394,12 +386,36 @@
               $scope.contenedores_temp.push(contenedor_temp);
             }
           }
+
+          //chequear que no sea un material
+
+
           $scope.contenedores_temp = cal_punto($scope.contenedores_temp, $scope.todoscontenedores);
           $scope.metros3_contenedores = calcular_totales($scope.contenedores_temp, "punto") / 10;
           $scope.unidades_contenedores = calcular_totales($scope.contenedores_temp, "unidad");
+          check_material(contenedor_temp);
+          $rootScope.total_m3 = Number($scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros);
         });
-        $rootScope.total_m3 = Number($scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros);
+
       };
+
+      function check_material(contenedor){
+        angular.forEach($scope.materiales, function(v,k){
+          var mat = angular.copy(v);
+          if(mat.descripcion === contenedor.contenedor){
+            console.log(contenedor.unidad);
+            setTimeout(function(){
+              mat.cantidad = contenedor.unidad;
+              $scope.materiales.splice($scope.materiales.indexOf(v),1);
+              $scope.materiales.push(mat);
+                $scope.$apply();
+            },0)
+            console.log($scope.materiales);
+
+      return true;
+          }
+        })
+      }
 
       $rootScope.limpiar = function () {
         setTimeout(function(){
@@ -659,14 +675,14 @@ $rootScope.actFecha = function(){
 
       //temploral de material
       $scope.materiales_temp = [];
-      $scope.add_material = function (material, uni, precio) {
+      $scope.add_material = function (material) {
         var material_temp = {
           // id: 1,
           // cotizacion: 1,
           material: material.descripcion,
-          cantidad: Number(uni),
-          precio_unitario: Number(precio),
-          total: Number(uni * precio),
+          cantidad: Number(material.cantidad),
+          precio_unitario: Number(material.precio),
+          total: Number(material.cantidad * material.precio),
           estado: "activo"
         };
 
