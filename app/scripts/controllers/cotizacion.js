@@ -282,7 +282,9 @@
       $scope.muebles = groupBy(muebles_resolve, function (item) {
         return [item.espeficicacion, item.descripcion];
       });
-      $scope.materiales = materiales_resolve;
+
+      $scope.mater=materiales_resolve;
+      $scope.materiales = angular.copy(materiales_resolve);
 
       function init(contenedor) {
         if (contenedor !== undefined) {
@@ -393,11 +395,13 @@
             console.log(contenedor.unidad);
             setTimeout(function(){
               mat.cantidad = contenedor.unidad;
+              console.log(mat.cantidad);
+              mat.contenedor = true;
               $scope.materiales.splice($scope.materiales.indexOf(v),1);
               $scope.materiales.push(mat);
+              $scope.add_material(mat);
                 $scope.$apply();
-            },0)
-            console.log($scope.materiales);
+            },0);
 
       return true;
           }
@@ -662,14 +666,58 @@ $rootScope.actFecha = function(){
 
       //temploral de material
       $scope.materiales_temp = [];
+
+      $scope.getIndexFromValue = function(value) {
+       for(var i=0; i<$scope.cantidades.length; i++) {
+           if($scope.cantidades[i].num === value) return i;
+       }
+      };
+      $scope.filtrado = function(cantidad){
+        return function (item) {
+
+        //  if ((item.num) !== Number(cantidad))
+        //  {          console.log(cantidad);
+        //          console.log(item);
+        //       return true;
+        // }
+        return false;
+    };
+      }
+      $scope.check_object = function(cantidad){
+
+        if(typeof(cantidad) === 'object'){
+
+          return true;
+
+        }else{
+
+          return false;
+
+        }
+
+      }
       $scope.add_material = function (material) {
+console.log(material);
+
+        if(typeof(material.cantidad) === 'object'){
+
+          var cant =   angular.copy(material.cantidad.num);
+
+        }else{
+
+          var cant =   angular.copy(material.cantidad);
+
+        }
+
+        console.log(cant);
+
         var material_temp = {
           // id: 1,
           // cotizacion: 1,
           material: material.descripcion,
-          cantidad: Number(material.cantidad),
+          cantidad: Number(cant),
           precio_unitario: Number(material.precio),
-          total: Number(material.cantidad * material.precio),
+          total: Number(cant * material.precio),
           estado: "activo"
         };
 
