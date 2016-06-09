@@ -6540,7 +6540,7 @@ form.formulario, div.formulario {
   font-size: 1em;
   margin-left: 10px;
   margin-bottom: 10px; }
-  .btnSeleccion span {
+  .btnSeleccion span.boton {
     flex: 70%;
     padding: 13px;
     margin: 8px;
@@ -6549,12 +6549,26 @@ form.formulario, div.formulario {
     margin-top: auto;
     margin-bottom: auto; }
   .btnSeleccion select {
-    flex: 30%;
+    flex: 10%;
     padding: 3px;
     border-color: transparent;
     color: #000; }
+  .btnSeleccion div {
+    flex: 20%;
+    background: #fff;
+    height: 100%; }
+    .btnSeleccion div span {
+      font-size: 20px;
+      margin-top: 10px;
+      margin-bottom: auto;
+      color: #000;
+      display: block;
+      visibility: hidden;
+      cursor: pointer; }
   .btnSeleccion:hover {
     box-shadow: 0 2px 3px 0 #777; }
+  .btnSeleccion:hover > div > span {
+    visibility: visible; }
 
 .btnSeleccionMueble {
   background: #eee;
@@ -7135,5 +7149,29 @@ select.selectpicker {
     display: block;
     color: #CC6202;
     font-size: 30px; }
+
+.totalm3 {
+  padding: 5px;
+  color: #fff;
+  border-color: #fff;
+  background-color: #363636;
+  *background-color: #222222;
+  background-image: -moz-linear-gradient(top, #444444, #222222);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#444444), to(#222222));
+  background-image: -webkit-linear-gradient(top, #444444, #222222);
+  background-image: -o-linear-gradient(top, #444444, #222222);
+  background-image: linear-gradient(to bottom, #444444, #222222);
+  background-repeat: repeat-x;
+  border-color: #222222 #222222 #000000;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff444444', endColorstr='#ff222222', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false); }
+  .totalm3 table {
+    width: 100%;
+    font-size: 12px; }
+    .totalm3 table tr {
+      border-bottom: 1px solid #fff; }
+      .totalm3 table tr td.montos {
+        text-align: right; }
 
 /*# sourceMappingURL=style.css.map */
