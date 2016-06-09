@@ -27,6 +27,10 @@
             <td class="paddingNone" colspan="2"><input type="number" min="0" ng-change="update_presupuesto()" ng-model="cotizacion.materiales" disabled></td>
           </tr>
           <tr>
+            <td width="50%">Km</td>
+            <td style="text-align:right!important;" colspan="2">{{cotizacion.monto_km|currency}}s</td>
+          </tr>
+          <tr>
             <td width="50%">Piano/C.fuerte</td>
             <td class="paddingNone" colspan="2"><input type="number" min="0" ng-change="update_presupuesto()" ng-model="cotizacion.piano_cajafuerte"></td>
           </tr>
