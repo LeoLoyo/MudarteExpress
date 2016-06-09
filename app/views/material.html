@@ -9,15 +9,15 @@
             <th width="200">Totales</th>
           </tr>
           <tr ng-repeat="item in materiales">
-            <td>{{item.descripcion}} - {{item.cantidad}}</td>
+            <td>{{item.descripcion}}</td>
             <td align="center" class="paddingNone">
 
-              <select  ng-focus="scrollAnime($event)" ng-model="item.cantidad" ng-options="m.num for m in cantidades" ng-init="item.cantidad = cantidades[getIndexFromValue(item.cantidad)]" ng-change="add_material(item)" class="selectMoneda" style="text-align-last: center;"></select>
+              <!-- <select  ng-focus="scrollAnime($event)" ng-model="item.cantidad" ng-options="m.num for m in cantidades" ng-init="item.cantidad = cantidades[getIndexFromValue(item.cantidad)]" ng-change="add_material(item)" class="selectMoneda" style="text-align-last: center;"></select> -->
 
 
-              <!-- <select ng-model="item.cantidad">
-        <option ng-selected="{{operator.value == filterCondition.operator}}" ng-repeat="operator in operators" value="{{operator.value}}">{{operator.displayName}}</option>
-    </select> -->
+              <select ng-model="item.cantidad">
+                <option ng-selected="{{m.num == item.cantidad}}" ng-repeat="m in cantidades" value="{{m.num}}">{{m.num}}</option>
+            </select>
 
 
               </select>

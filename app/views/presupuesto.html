@@ -36,7 +36,10 @@
           </tr>
           <tr class="active">
             <td width="50%">Sub Total</td>
-            <td class="paddingNone" colspan="2"><input type="number" tabindex="-1" min="0" ng-change="update_presupuesto()" ng-model="cotizacion.subTotal1" class="disabled"></td>
+            <td style="text-align:right!important;" colspan="2">
+              {{cotizacion.subTotal1 | currency}}
+              <!-- <input type="number" tabindex="-1" min="0" ng-change="update_presupuesto()" ng-model="cotizacion.subTotal1" class="disabled"> -->
+            </td>
           </tr>
           <tr>
             <td width="50%">Ajuste</td>
@@ -49,8 +52,9 @@
           </tr>
           <tr class="active">
             <td width="50%">Sub total</td>
-            <td class="paddingNone" colspan="2">
-              <input type="number" min="0" value="0" tabindex="-1" ng-change="update_presupuesto()" ng-model="cotizacion.subTotal2" class="disabled">
+            <td style="text-align:right!important;" colspan="2">
+              {{cotizacion.subTotal2 | currency}}
+              <!-- <input type="number" min="0" value="0" tabindex="-1" ng-change="update_presupuesto()" ng-model="cotizacion.subTotal2" class="disabled"> -->
             </td>
           </tr>
           <tr class="active">

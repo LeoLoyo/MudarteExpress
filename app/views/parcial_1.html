@@ -12,7 +12,7 @@
           <tr>
             <td align="center">km</td>
             <td class="paddingNone" colspan="2">
-              <input type="number" style="text-align:center!important;font-weight:bold;" name="recorrido_km" ng-model="cotizacion.recorrido_km" ng-change="add_parcial1()">
+              <input type="number" min="0" style="text-align:center!important;font-weight:bold;" name="recorrido_km" ng-model="cotizacion.recorrido_km" ng-change="add_parcial1()">
             </td>
             <td align="center" class="paddingNone">
               <select class="selectMoneda" name="precio_km" id="precio_km" ng-init="cotizacion.precio_km = '30'"ng-model="cotizacion.precio_km" ng-change="add_parcial1()">
