@@ -407,7 +407,7 @@
       $rootScope.limpiar = function () {
         setTimeout(function(){
           $('.btnSeleccionado').children('div').children('span.remover').click();
-          $('.btnSeleccionado').children('.classContenedores').click();
+          $('.btnSeleccionado').children('.classContenedores').children('span.remover').click();
           $scope.contenedores_temp = [];
           $scope.muebles_temp = [];
           $scope.otros_temp = [];
