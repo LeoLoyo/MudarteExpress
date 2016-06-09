@@ -6,7 +6,10 @@
     $rootScope.session = Session_resolve;
 
     $('.btnsCotizacion').addClass('hidden');
-    angular.element('.cargando').addClass('hidden');
+    angular.element('.cargando').removeClass('hidden');
+    setTimeout(function(){
+      angular.element('.cargando').addClass('hidden');
+    }, 1000);
 
     // $rootScope.session = Session.get();
 
@@ -31,6 +34,13 @@
         $scope.messages = 'Usuario o contraseña invalido';
         // $('.spanErrorUser').removeClass('hidden');
       }
+      setTimeout(function(){
+      angular.element('.cargando span').text('No se pueden cargar los muebles.').css('left', '35%');
+      setTimeout(function(){
+      angular.element('.cargando').addClass('hidden');
+      angular.element('.cargando span').text('Cargando...').css('left', '43%');
+    }, 10000);
+    }, 30000);
     };
 
     $rootScope.logout = function () {

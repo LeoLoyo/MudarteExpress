@@ -323,7 +323,7 @@
 
           setTimeout(function () {
          $('select.selectPicker').selectpicker();
-       }, 0);
+       }, 500);
         }
 
         $rootScope.$on('change', function (event) {
