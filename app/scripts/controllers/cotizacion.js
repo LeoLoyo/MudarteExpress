@@ -62,7 +62,7 @@
       function numeros_otros() {
         var i = 40;
         while (i <= 300) {
-          $scope.cantidades.push({ num: i});
+          $scope.cant_otros.push({ num: i, cantidad: i });
           i += 10;
         }
         return $scope.cant_otros;
