@@ -9,7 +9,7 @@
  */
 var app = angular.module('cotizacionExpressApp');
 
-  app.controller('CotizacionViewCtrl', ['$scope', 'cotizaciones', 'clientes', 'muebles', 'contenedores', 'materiales', function($scope, cotizaciones, clientes, muebles, contenedores, materiales){
+  app.controller('CotizacionViewCtrl', ['$scope', '$state', 'cotizaciones', 'clientes', 'muebles', 'contenedores', 'materiales', function($scope, $state, cotizaciones, clientes, muebles, contenedores, materiales){
 
     $scope.cotizacion_total  = {
 
@@ -83,6 +83,15 @@ var app = angular.module('cotizacionExpressApp');
     };
 
     init();
+    $scope.GoCotizacion = function (ID) {
+      console.log(ID);
+      $state.go('show',{id_cotizacion:ID});
+    }
 
 
   }])
+
+  app.controller('ShowCtrl', ['$scope', '$stateParams', function ($scope, $stateParams) {
+    console.log('aqui' + $stateParams.id_cotizacion);
+
+  }]);

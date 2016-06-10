@@ -1,6 +1,6 @@
 <h1>Cotizaciones Realizadas</h1>
 
-<div class="well" ng-repeat="cotizacion in cotizaciones_totales">
+<!-- <div class="well" ng-repeat="cotizacion in cotizaciones_totales">
   <p>Numero de Cotizacion : {{cotizacion.cotizacion.numero_cotizacion | json}} </p>
 
   <p>Nombre del Ciente de Muebles : {{cotizacion.cliente.nombre | json}} </p>
@@ -10,4 +10,20 @@
   <p>Numero de Contenedores : {{cotizacion.contenedores.length | json}} </p>
 
   <p>Numero de Materiales : {{cotizacion.materiales.length | json}} </p>
+</div> -->
+
+<div class="well" ng-click="GoCotizacion(25)">
+  <a ng-click="GoCotizacion(25)">
+    <span class="well">Cotizacion 25</span>
+  </a>
+</div>
+<div class="well">
+  <a ng-click="GoCotizacion(30)" ng-click="GoCotizacion(40)">
+    <span class="well">Cotizacion 30</span>
+  </a>
+</div>
+<div class="well">
+  <a ng-click="GoCotizacion(40)" ng-click="GoCotizacion(40)">
+    <span class="well">Cotizacion 40</span>
+  </a>
 </div>

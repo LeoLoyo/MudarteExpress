@@ -4,7 +4,8 @@
   var app = angular.module('cotizacionExpressApp', ['Express.services', 'ngAnimate', 'ngAria', 'ngCookies', 'ngMessages', 'ngResource', 'ngRoute', 'ngSanitize', 'ngTouch', 'ui.router']);
   app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     'use strict'
-    $stateProvider.state('login', {
+    $stateProvider
+    .state('login', {
       url: '/login',
       views: {
         'maincontent': {
@@ -25,9 +26,9 @@
       templateUrl: 'index.html'
 
     })
-    .state('show', {
+    .state('list', {
 
-      url: '/show',
+      url: '/list',
 
       views:{
 
@@ -66,6 +67,11 @@
           controller:'CotizacionViewCtrl'
         }
       }
+    })
+    .state('show', {
+      url:'show/:id_cotizacion',
+      templateUrl:'views/resumen.html',
+      controller: 'ShowCtrl'
     })
     .state('cotizacion', {
 
