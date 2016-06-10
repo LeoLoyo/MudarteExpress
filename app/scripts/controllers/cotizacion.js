@@ -642,10 +642,12 @@ $rootScope.actFecha = function(){
                 $scope.cliente = {};
                 $scope.materiales_temp = null;
                 $scope.materiales_temp = [];
+                $scope.materiales = [];
                 // $scope.cotizacion = angular.copy(cotizacion);
                 $('#ncotizacion').focus();
                 $scope.limpiarM = false;
                 setTimeout(function () {
+                  $scope.materiales = angular.copy(materiales_resolve);
                   $scope.cotizacion = angular.copy(cotizacion);
                   $scope.cotizacion.numero_ayudante ={num:0};
                   $scope.cotizacion.ambiente ={num:0};

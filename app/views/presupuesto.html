@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td width="50%">Km</td>
-            <td colspan="2">{{cotizacion.monto_km}}</td>
+            <td class="paddingNone" colspan="2"><input type="number" min="0" ng-change="update_presupuesto()" ng-model="cotizacion.monto_km" disabled></td>
           </tr>
           <tr>
             <td width="50%">Piano/C.fuerte</td>
