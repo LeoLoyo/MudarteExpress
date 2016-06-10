@@ -25,6 +25,21 @@
     if (!Session.get()) {
       $state.go('login');
     } else {
+
+      var select = function () {
+
+
+         setTimeout(function(){
+           console.log($scope.cotizacion.fuente);
+          //  $('select.selectPicker').selectpicker();
+           $('select.selectPicker').selectpicker('destroy');
+          //  $('select.selectPicker').selectpicker('destroy');
+           $('select.selectPicker').selectpicker();
+           $scope.$apply();
+         },50);
+
+      }
+
       $rootScope.session = Session.set(true);
       $scope.limpiarM = true;
       angular.element('#ncotizacion').focus();
@@ -38,7 +53,7 @@
       function numeros() {
 
         for (var i = 0; i < 100; i++) {
-          $scope.cantidades.push({ num: i });
+          $scope.cantidades.push({ num: i, cantidad: i });
         }
         return $scope.cantidades;
       }
@@ -47,7 +62,7 @@
       function numeros_otros() {
         var i = 40;
         while (i <= 300) {
-          $scope.cant_otros.push({ num: i });
+          $scope.cantidades.push({ num: i});
           i += 10;
         }
         return $scope.cant_otros;
@@ -141,7 +156,7 @@
       $scope.tipo_muebles = null;
 
       $scope.barrio_provincias = [];
-      $scope.barrio_provincias = null;
+      // $scope.barrio_provincias = null;
 
 
       $scope.contenedores_temp = [];
@@ -336,9 +351,7 @@
           });
           $scope.fuentes = Cotizacion.all_fuentes();
 
-          setTimeout(function () {
-         $('select.selectPicker').selectpicker();
-       }, 500);
+
         }
 
         $rootScope.$on('change', function (event) {
@@ -348,6 +361,7 @@
             $rootScope.resumen = true;
           }
         });
+        select();
       };
 
       init();
@@ -411,6 +425,7 @@
               mat.cantidad = contenedor.unidad;
               console.log(mat.cantidad);
               mat.contenedor = true;
+              mat.ncontenedor = contenedor.unidad;
               $scope.materiales.splice($scope.materiales.indexOf(v),1);
               $scope.materiales.push(mat);
               $scope.add_material(mat);
@@ -623,6 +638,7 @@ $rootScope.actFecha = function(){
                 $scope.limpiar();
 
                 $scope.cotizacion = {};
+                select();
                 $scope.cliente = {};
                 $scope.materiales_temp = null;
                 $scope.materiales_temp = [];

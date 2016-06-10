@@ -102,7 +102,8 @@
                 angular.forEach(r,function(v, k){
                   var m = angular.copy(v)
                   m.precio = Number(m.precio);
-                  m.cantidad = 0;
+                  m.cantidad = 0;                  
+                  m.ncontenedor = 0;
                   m.contenedor = false;
                   out.push(m);
                 },out)

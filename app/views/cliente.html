@@ -1,4 +1,4 @@
-<div ng-show="nav==='1'">
+<div ng-show="nav==='1'" >
   <div class="col-md-12">
   <br>
   <div class="row">
@@ -44,7 +44,7 @@
   </div>
   <div class="col-md-3 form-group">
     <label for="id_promocion">Fuente de promoción:</label>
-    <select class="form-control selectPicker show-tick" data-live-search="true" data-size="10" title="Seleccione fuente de promoción" ng-model="cotizacion.fuente" id="id_promocion">
+    <select  class="form-control selectPicker show-tick" data-live-search="true" data-size="10" title="Seleccione fuente de promoción" ng-model="cotizacion.fuente" id="id_promocion">
       <option value=""></option>
       <option  ng-repeat="item in fuentes">{{item}}</option></select>
   </div>
