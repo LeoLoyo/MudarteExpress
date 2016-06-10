@@ -69,10 +69,39 @@
       }
     })
     .state('show', {
-      url:'show/:id_cotizacion',
-      templateUrl:'views/resumen.html',
-      controller: 'ShowCtrl'
-    })
+
+      url: '/show',
+
+      views:{
+
+        "maincontent":{
+
+          templateUrl: 'views/resumen1.html',
+
+          controller: 'ShowCtrl',
+
+          resolve: {
+
+            cotizacion: function () {
+              
+            },
+            muebles_temp: function () {
+
+            },
+            contenedores_temp: function () {
+
+            },
+            materiales_temp: function () {
+
+            },
+            contenedores_temp: function () {
+
+            },
+
+          }
+        }
+      }
+  })
     .state('cotizacion', {
 
       url: '/cotizacion',
@@ -102,7 +131,7 @@
                 angular.forEach(r,function(v, k){
                   var m = angular.copy(v)
                   m.precio = Number(m.precio);
-                  m.cantidad = 0;                  
+                  m.cantidad = 0;
                   m.ncontenedor = 0;
                   m.contenedor = false;
                   out.push(m);
@@ -114,8 +143,8 @@
         }
       }
     });
-    $urlRouterProvider.otherwise('/login');
-    // $urlRouterProvider.otherwise('/show');
+    // $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/list');
   }]);
   app.constant('setting', {
     "url": "http://localhost:8000/api/v1/",

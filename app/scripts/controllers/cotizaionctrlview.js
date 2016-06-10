@@ -83,15 +83,22 @@ var app = angular.module('cotizacionExpressApp');
     };
 
     init();
+
     $scope.GoCotizacion = function (ID) {
+
       console.log(ID);
-      $state.go('show',{id_cotizacion:ID});
+
+      // $state.go('show',{id_cotizacion:ID});
+
+      $state.go('show');
+
     }
 
 
   }])
 
   app.controller('ShowCtrl', ['$scope', '$stateParams', function ($scope, $stateParams) {
+    
     console.log('aqui' + $stateParams.id_cotizacion);
 
   }]);
