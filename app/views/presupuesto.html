@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td width="50%">Km</td>
-            <td style="text-align:right!important;" colspan="2">{{cotizacion.monto_km|currency}}</td>
+            <td style="text-align:right!important;" colspan="2">{{cotizacion.monto_km}}</td>
           </tr>
           <tr>
             <td width="50%">Piano/C.fuerte</td>
@@ -46,7 +46,7 @@
             <td colspan="2" style="display:flex;" class="paddingNone">
               <span style="flex:50%;margin-top:8px;text-align:start;">% {{cotizacion.porcentaje_ajuste|number:2}}</span>
 
-              <input type="number" style="flex:50%;height:34px;max-width:150px;" ng-change="calcular_ajuste()" ng-model="cotizacion.ajuste" >
+              <input type="number" style="flex:50%;height:34px;max-width:150px;" ng-disabled="cotizacion.subTotal1<=0" ng-change="calcular_ajuste()" ng-model="cotizacion.ajuste" >
 
             </td>
           </tr>

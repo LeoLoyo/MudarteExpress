@@ -397,6 +397,7 @@
           $scope.unidades_contenedores = calcular_totales($scope.contenedores_temp, "unidad");
           check_material(contenedor_temp);
           $rootScope.total_m3 = Number($scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros);
+          $scope.update_presupuesto()
         });
 
       };
@@ -651,9 +652,6 @@ $rootScope.actFecha = function(){
       $scope.calcular_ajuste  = function () {
         var resultado=0;
         resultado=($scope.cotizacion.ajuste/$scope.cotizacion.subTotal1)*100;
-        if (isNaN(parseFloat(resultado))) {
-          resultado=0;
-        }
         $scope.cotizacion.porcentaje_ajuste = resultado;
         $scope.cotizacion.subTotal2 = Number($scope.cotizacion.subTotal1 + $scope.cotizacion.ajuste)
         $scope.cotizacion.total_monto = Number($scope.cotizacion.subTotal2 + $scope.cotizacion.iva)
@@ -662,9 +660,6 @@ $rootScope.actFecha = function(){
       $scope.calcular_iva  = function () {
         var resultado=0;
         resultado=Number(($scope.cotizacion.subTotal2*$scope.cotizacion.porcentaje_iva)/100);
-        if (isNaN(parseFloat(resultado))) {
-          resultado=0;
-        }
         $scope.cotizacion.iva = resultado;
         $scope.cotizacion.total_monto = Number($scope.cotizacion.subTotal2 + $scope.cotizacion.iva)
       }
@@ -672,10 +667,11 @@ $rootScope.actFecha = function(){
       $scope.update_presupuesto = function () {
         setTimeout(function(){
             $scope.cotizacion.subTotal1 = $scope.cotizacion.mudanza + $scope.cotizacion.soga + $scope.cotizacion.embalaje + $scope.cotizacion.desembalaje + $scope.cotizacion.materiales + $scope.cotizacion.piano_cajafuerte + $scope.cotizacion.monto_km;
+            $scope.calcular_ajuste();
+            $scope.calcular_iva();
             $scope.$apply();
         },0);
-        $scope.calcular_ajuste();
-        $scope.calcular_iva();
+
 
       }
       angular.element('#nCotizacion').focus();
