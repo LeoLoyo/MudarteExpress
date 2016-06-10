@@ -1,7 +1,6 @@
 <div ng-show="nav==='5'" ng-if="limpiarM">
     <div class="col-md-12">
       <h2>Materiales de la mudanza</h2>
-      <input type="text" ng-model="prueba.num" ng-init="">
         <table class="tabla">
           <tr class="active">
             <th>Material</th>
@@ -29,8 +28,8 @@
               <input type="number" ng-model="item.precio" ng-change="add_material(item)" >
 
             </td>
-            <td style="text-align:right!important;" ng-if="check_object(item.cantidad)">{{item.precio * item.cantidad.num|currency}}</td>
-            <td style="text-align:right!important;" ng-if="!check_object(item.cantidad)">{{item.precio * item.cantidad|currency}}</td>
+            <td style="text-align:right!important;" ng-if="check_object(item.cantidad)"><span ng-show="item.cantidad.num!=0">{{item.precio * item.cantidad.num|currency}}</span></td>
+            <td style="text-align:right!important;" ng-if="!check_object(item.cantidad)"><span ng-show="item.cantidad!=0">{{item.precio * item.cantidad|currency}}</span></td>
 
           </tr>
           <tr class="active">
