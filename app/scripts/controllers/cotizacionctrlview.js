@@ -134,5 +134,4 @@ app.controller('ShowCtrl', ['$scope', '$stateParams', 'BackendCotizacion', funct
   $scope.muebles_temp = cotizacion_total.muebles;
 
   $scope.cliente = cotizacion_total.cliente;
-  
 }]);
