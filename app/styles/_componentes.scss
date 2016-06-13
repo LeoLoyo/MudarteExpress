@@ -168,6 +168,7 @@ form.formulario, div.formulario {
 }
 .btnsPaginacion {
   @extend .container-fluid;
+  margin-bottom: 20px;
   div {
     @extend .row;
     div {

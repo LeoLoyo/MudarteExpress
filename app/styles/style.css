@@ -6684,10 +6684,12 @@ form.formulario, div.formulario {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff444444', endColorstr='#ff222222', GradientType=0);
     filter: progid:DXImageTransform.Microsoft.gradient(enabled=false); }
 
-.btnsPaginacion div div button.btnSiguiente {
-  float: right; }
-.btnsPaginacion div div button.btnAnterior {
-  float: left; }
+.btnsPaginacion {
+  margin-bottom: 20px; }
+  .btnsPaginacion div div button.btnSiguiente {
+    float: right; }
+  .btnsPaginacion div div button.btnAnterior {
+    float: left; }
 
 table.tabla {
   background: #fff;
