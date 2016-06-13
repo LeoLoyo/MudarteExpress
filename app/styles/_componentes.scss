@@ -663,3 +663,96 @@ table.tablaResumen {
     transform: rotate(360deg);
   }
 }
+.listCotizacion {
+  background: #fff;
+  box-shadow: $sombra_1;
+  margin-bottom: 20px;
+  div {
+    div {
+      div.fecha {
+        display: block;
+        background: transparent;
+        height: 110px;
+        border-right: 1px solid #dedede;
+        p.fecha1{
+          font-size: 40px;
+          text-align: center;
+          margin-bottom: 0px;
+        }
+        p.fecha2 {
+          text-align: center;
+          font-size: 20px;
+          padding: 0;
+          margin: 0;
+        }
+        p.fecha3 {
+          text-align: center;
+        }
+          .detalle {
+          background: rgba(0,0,0,.0);
+          position: absolute;
+          top: 0;
+          height: 100%;
+          width: calc(100% - 30px);
+          display: block;
+          -webkit-transition: background 500ms ease-in-out;
+          -moz-transition: background 500ms ease-in-out;
+          -ms-transition: background 500ms ease-in-out;
+          -o-transition: background 500ms ease-in-out;
+          transition: background 500ms ease-in-out;
+          a {
+            @extend .btn;
+            @extend .btn-default;
+            @extend .btn-lg;
+            @extend .btn-block;
+            position: absolute;
+            border-radius: 0;
+            top: 30%;
+            display: none;
+            margin-left: 5px;
+            width: calc(100% - 10px)!important;
+            padding: 5px!important;
+            -webkit-transition: all 500ms ease-in-out;
+            -moz-transition: all 500ms ease-in-out;
+            -ms-transition: all 500ms ease-in-out;
+            -o-transition: all 500ms ease-in-out;
+            transition: all 500ms ease-in-out;
+          }
+        }
+      }
+    }
+    div {
+        div.cotiza {
+          display: block;
+          background: transparent;
+          height: 100%;
+          padding-top: 10px;
+          padding-left: 10px;
+          -webkit-transition: all 500ms ease-in-out;
+          -moz-transition: all 500ms ease-in-out;
+          -ms-transition: all 500ms ease-in-out;
+          -o-transition: all 500ms ease-in-out;
+          transition: all 500ms ease-in-out;
+          p.cotiza1 {
+            font-size: 20px;
+            text-align: left;
+          }
+        }
+      }
+  }
+  &:hover .fecha div.detalle {
+    display: block;
+    top: 0;
+    background: rgba(0,0,0,.7);
+  }
+  &:hover .fecha div.detalle a {
+    display: block;
+  }
+  &:hover div.cotiza {
+    opacity: .5;
+  }
+}
+.buscar {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
