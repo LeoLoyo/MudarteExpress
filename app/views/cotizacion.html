@@ -1,4 +1,3 @@
-
 <div ng-show="nav==='4'"  class="col-md-12">
   <!-- Muebles y contenedores -->
   <h2>Muebles</h2>
@@ -87,5 +86,5 @@
 
           </script>
 </div>
-<div ng-hide="checked" ng-include='"views/resumen.html"'></div>
+<div ng-hide="checked"  ng-show="nav==='6'" ng-if="nav==='6'" ng-include='"views/resumen.html"'></div>
 <div ng-hide="checked" ng-include='"views/_confirmarCotizacion.html"'></div>

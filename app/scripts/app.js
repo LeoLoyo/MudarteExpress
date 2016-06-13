@@ -1,108 +1,100 @@
 (function () {
   'use strict';
 
-  var app = angular.module('cotizacionExpressApp', ['Express.services', 'ngAnimate', 'ngAria', 'ngCookies', 'ngMessages', 'ngResource', 'ngRoute', 'ngSanitize', 'ngTouch', 'ui.router']);
+  var app = angular.module('cotizacionExpressApp', ['Express.controllers', 'Express.services', 'ngAnimate', 'ngAria', 'ngCookies', 'ngMessages', 'ngResource', 'ngRoute', 'ngSanitize', 'ngTouch', 'ui.router']);
+
   app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-    'use strict'
-    $stateProvider
-    .state('login', {
+    'use strict';
+
+    $stateProvider.state('login', {
       url: '/login',
       views: {
         'maincontent': {
           templateUrl: 'views/login.html',
           controller: 'LoginCtrl',
-          resolve:{
-            Session_resolve:function(Session){
+          resolve: {
+            Session_resolve: function (Session) {
               return Session.get();
             }
           }
         }
       }
-    })
-    .state('app', {
+    }).state('app', {
 
       url: '/',
 
       templateUrl: 'index.html'
 
-    })
-    .state('list', {
+    }).state('list', {
 
       url: '/list',
 
-      views:{
+      views: {
 
-        "maincontent":{
+        "maincontent": {
 
           templateUrl: 'views/CotizacionView.html',
 
-          resolve:{
-            cotizaciones: function (Cotizacion) {
-              return Cotizacion.all().then(function(r){
-                return r;
-              });
-            },
-            clientes: function (Cliente) {
-              return Cliente.all().then(function(c){
-                return c;
-              });
-            },
-            contenedores: function (Cotizacion) {
-              return Cotizacion.contenedores().then(function(c){
-                return c;
-              });
-            },
-            materiales: function (Cotizacion) {
-              return Cotizacion.materiales().then(function(c){
-                return c;
-              });
-            },
-            muebles: function (Cotizacion) {
-              return Cotizacion.muebles().then(function(c){
-                return c;
-              });
-            }
-          },
-
-          controller:'CotizacionViewCtrl'
-        }
-      }
-    })
-    .state('show', {
-
-      url: '/show',
-
-      views:{
-
-        "maincontent":{
-
-          templateUrl: 'views/resumen1.html',
-
-          controller: 'ShowCtrl',
+          controller: 'CotizacionViewCtrl',
 
           resolve: {
 
-            cotizacion: function () {
-              
-            },
-            muebles_temp: function () {
+            cotizaciones: function (API, Cotizacion) {
 
-            },
-            contenedores_temp: function () {
+              return Cotizacion.all().then(function (r) {
 
+                return r;
+              });
             },
-            materiales_temp: function () {
+            clientes: function (API, Cliente) {
 
-            },
-            contenedores_temp: function () {
+              return Cliente.all().then(function (r) {
 
+                return r;
+              });
             },
+            muebles: function (API, Cotizacion) {
+
+              return Cotizacion.muebles().then(function (r) {
+
+                return r;
+              });
+            },
+            materiales: function (API, Cotizacion) {
+
+              return Cotizacion.materiales().then(function (r) {
+
+                return r;
+              });
+            },
+            contenedores: function (API, Cotizacion) {
+
+              return Cotizacion.contenedores().then(function (r) {
+
+                return r;
+              });
+            }
 
           }
         }
+
       }
-  })
-    .state('cotizacion', {
+
+    }).state('show', {
+
+      url: '/show/:id_cotizacion',
+
+      views: {
+
+        "maincontent": {
+
+          templateUrl: 'views/resumen.html',
+
+          controller: 'ShowCtrl'
+
+        }
+      }
+    }).state('cotizacion', {
 
       url: '/cotizacion',
 
@@ -128,14 +120,14 @@
             materiales_resolve: function (API, Material) {
               return Material.all().then(function (r) {
                 var out = [];
-                angular.forEach(r,function(v, k){
-                  var m = angular.copy(v)
+                angular.forEach(r, function (v, k) {
+                  var m = angular.copy(v);
                   m.precio = Number(m.precio);
                   m.cantidad = 0;
                   m.ncontenedor = 0;
                   m.contenedor = false;
                   out.push(m);
-                },out)
+                }, out);
                 return out;
               });
             }
@@ -146,11 +138,13 @@
     // $urlRouterProvider.otherwise('/login');
     $urlRouterProvider.otherwise('/list');
   }]);
+
   app.constant('setting', {
     "url": "http://localhost:8000/api/v1/",
     //"url":"http://192.168.0.115:8000/api/v1/",
     "user": { "name": "admin", "pass": "admin" }
   });
+
   app.service('Session', function () {
     var session = false;
     return {
@@ -164,4 +158,5 @@
     };
   });
 
+  angular.module('Express.controllers', ['Backend']);
 })();

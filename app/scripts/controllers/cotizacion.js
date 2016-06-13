@@ -280,7 +280,7 @@
         }
         return false;
       }
-//Controlador para generar PDF
+    //Controlador para generar PDF
       $scope.exportAction = function(event){
         console.log(event)
       switch(event){
@@ -537,13 +537,13 @@
         }
         $scope.otros_temp_campo.splice($scope.otros_temp_campo.indexOf(campo), 1);
       };
-$rootScope.actFecha = function(){
-  setTimeout(function(){
-    $scope.cotizacion.hora_de_cotizacion = new Date();
-    $scope.cotizacion.fecha_de_cotizacion = new Date();
-    $scope.$apply();
-  },0);
-}
+    $rootScope.actFecha = function(){
+      setTimeout(function(){
+        $scope.cotizacion.hora_de_cotizacion = new Date();
+        $scope.cotizacion.fecha_de_cotizacion = new Date();
+        $scope.$apply();
+      },0);
+    }
       $rootScope.save = function() {
         var self = $scope.cotizacion;
 
@@ -727,7 +727,7 @@ $rootScope.actFecha = function(){
 
       }
       $scope.add_material = function (material) {
-console.log(material);
+
 
         if(typeof(material.cantidad) === 'object'){
 
@@ -826,4 +826,5 @@ console.log(material);
       return items;
     };
   });
+
 })();

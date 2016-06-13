@@ -1,3 +1,4 @@
+<pre>{{muebles_temp}}</pre>
 <div>
     <div class="col-md-12">
       <div class="">
@@ -260,8 +261,10 @@
                 <th style="width:80px; padding:10px; padding-left:30px;">m<sup>3</sup></th>
               </tr>
               <tr ng-repeat="item in contenedores_temp">
-                <td>{{item.contenedor}}</td>
-                <td align="center">{{item.unidad}}</td>
+                <td ng-if="item.descripcion">{{item.descripcion}}</td>
+                <td ng-if="item.contenedor">{{item.contenedor}}</td>
+                <td ng-if="item.cantidad" align="center">{{item.cantidad}}</td>
+                <td ng-if="item.unidad" align="center">{{item.unidad}}</td>
                 <td align="center">{{item.punto/10|number:2}}</td>
               </tr>
               <tr class="active">
@@ -307,7 +310,8 @@
             </tr>
             <tr>
               <td class="paddingNone tdResumen" style="padding:0;display:flex;width:100px">
-                <input type="number" class="form-control" style="flex:90%;border-radius:0;border:none;" min="0" ng-change="$emit('change_margen')" ng-model="cotizacion.porcentaje_margen"><span style="flex:10%;margin-top:auto;margin-bottom:auto;"> %</span>
+                <span style="flex:10%;margin-top:auto;margin-bottom:auto;">{{cotizacion.porcentaje_margen}} %</span>
+                <!-- <input ng-show="nav==='6'" type="number" class="form-control" style="flex:90%;border-radius:0;border:none;" min="0" ng-change="$emit('change_margen')" ng-model="cotizacion.porcentaje_margen"><span style="flex:10%;margin-top:auto;margin-bottom:auto;"> %</span> -->
               </td>
               <th class="tdResumen">Margen</th>
               <td class="tdResumen"><strong style="display:flex;"><span style="flex:90%;border-radius:0;border:none;">{{(metros3_contenedores+metros3_muebles+metros3_otros)*(1+(cotizacion.porcentaje_margen/100))|number:2}}</span> <span style="flex:10%;margin-top:auto;margin-bottom:auto;">m<sup>3</sup></span></strong></td>
