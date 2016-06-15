@@ -23,7 +23,23 @@ app.service('BackendCotizacion', function () {
 
   self.setCotizaciones = function (data) {
 
-    cotizaciones = data;
+    cotizaciones = [];
+
+    angular.forEach(data, function(value, key){
+
+      (value.seguro)? value.seguro = 'Si': value.seguro='No';
+
+      (value.desarme_mueble)? value.desarme_mueble = 'Si':value.desarme_mueble='No';
+
+      (value.rampa)? value.rampa = 'Si':value.rampa='No';
+
+      value.numero_ayudante = {num:value.numero_ayudante};
+
+      value.ambiente = {num:value.ambiente};
+
+      cotizaciones.push(value);
+
+    },cotizaciones);
 
     return cotizaciones;
   };
@@ -34,10 +50,12 @@ app.service('BackendCotizacion', function () {
   };
 
   self.getById = function (ID) {
+
     var enc = false,
         i = 0;
 
     while (!enc) {
+      
       if (cotizaciones[i].id === Number(ID)) {
         enc = true;
         return cotizaciones[i];
