@@ -1,9 +1,9 @@
 <div class="btnSeleccion" ng-init="n.num='0'" ng-class="{btnSeleccionado:n.num>0}" >
-    <span class="classContenedores boton" ng-click="n.num=check(n.num);add_contenedor(c.contenedor,n.num)" >{{c.contenedor}}</span>
-    <select ng-focus="scrollAnime($event)" ng-model="n.num"  ng-change="add_contenedor(c.contenedor,n.num)">
+    <span class="classContenedores boton" ng-click="n.num=check(n.num);add_contenedor(c,n.num)" >{{c.contenedor}}</span>
+    <select ng-focus="scrollAnime($event)" ng-model="n.num"  ng-change="add_contenedor(c,n.num)">
       <option  ng-repeat="n in cantidades">{{n.num}}</option>
     </select>
     <div>
-    <span class="remover" ng-show="n.num>0" ng-click="n.num='0';add_contenedor(c.contenedor,n.num);" title="Remover"><b>X</b></span>
+    <span class="remover" ng-show="n.num>0" ng-click="n.num='0';add_contenedor(c,n.num);" title="Remover"><b>X</b></span>
     </div>
 </div>

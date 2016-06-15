@@ -1,29 +1,42 @@
-<h1>Cotizaciones Realizadas</h1>
 
-<div class="well" ng-repeat="cotizacion in cotizaciones_totales">
-  <p>Numero de Cotizacion : {{cotizacion.cotizacion.numero_cotizacion | json}} </p>
-
-  <p>Nombre del Ciente de Muebles : {{cotizacion.cliente.nombre | json}} </p>
-
-  <p>Numero de Muebles : {{cotizacion.muebles.length | json}} </p>
-
-  <p>Numero de Contenedores : {{cotizacion.contenedores.length | json}} </p>
-
-  <p>Numero de Materiales : {{cotizacion.materiales.length | json}} </p>
+<div class="row">
+  <div class="col-md-6">
+    <h1>Lista de cotizaciones</h1>
+  </div>
+  <div class="col-md-6">
+    <div class="buscar">
+    <input type="search" class="form-control" placeholder="Buscar" ng-model="searchText" autofocus>
+    </div>
+  </div>
 </div>
 
-<!-- <div class="well" ng-click="GoCotizacion(25)">
-  <a ng-click="GoCotizacion(25)">
-    <span class="well">Cotizacion 25</span>
-  </a>
+<div class="row">
+  <div ng-repeat="cotizacion in cotizaciones_totales | filter:searchText">
+  <div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="listCotizacion">
+      <div class="row">
+        <div class="col-md-3 col-sm-12 col-xm-12">
+          <div class="fecha">
+          <p class="fecha1">{{cotizacion.cotizacion.fecha_de_cotizacion | date:"dd"}}</p>
+          <p class="fecha2">{{cotizacion.cotizacion.fecha_de_cotizacion | date:"MMMM"}}</p>
+          <p class="fecha3">  {{cotizacion.cotizacion.fecha_de_cotizacion | date:"yyyy"}}</p>
+          <div class="detalle">
+
+            <a tabindex="-1" ng-click="GoCotizacion(cotizacion.cotizacion.id)">Ver</a>
+
+          </div>
+        </div>
+
+        </div>
+        <div class="col-md-9 col-sm-12 col-xs-12">
+          <div class="cotiza">
+          <p class="cotiza1">Cotización n°: <b>{{cotizacion.cotizacion.numero_cotizacion}}</b></p>
+          <p class="cotiza2">{{cotizacion.cliente.nombre}} </p>
+          <p class="cotiza3">{{cotizacion.cotizacion.total_m3}} m3</p>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="well">
-  <a ng-click="GoCotizacion(30)" ng-click="GoCotizacion(40)">
-    <span class="well">Cotizacion 30</span>
-  </a>
 </div>
-<div class="well">
-  <a ng-click="GoCotizacion(40)" ng-click="GoCotizacion(40)">
-    <span class="well">Cotizacion 40</span>
-  </a>
-</div> -->

@@ -1,4 +1,4 @@
-<div ng-show="nav==='6'" ng-if="nav==='6'">
+<div>
     <div class="col-md-12">
       <div class="">
         <br>
@@ -49,7 +49,7 @@
             <td style="background-color: #fff;" class="tdResumen" align=center>Nombre de la empresa: </td>
             <td colspan="3">{{cotizacion.cp_pv}}</td>
             <td style="background-color: #fff;" class="tdResumen" align=center>Cotizador</td>
-            <td>{{cotizacion.cotizador}}</td>
+            <td>{{cotizacion.cotizador.first_name}} {{cotizacion.cotizador.last_name}}</td>
           </tr>
           <!-- <tr>
             <td style="background-color: #fff;" class="tdResumen" align=center>Fecha en que se cargó:</td>
@@ -230,7 +230,7 @@
           </tr>
           <tr class="active">
             <td  class="tdResumen" width="80%">Sub total</td>
-            <td style="text-align:right!important;">{{cotizacion.subTotal1|currency}}</td>
+            <td style="text-align:right!important;">{{cotizacion.subtotal1|currency}}</td>
           </tr>
           <tr>
             <td  class="tdResumen" width="80%">Ajuste</td>
@@ -239,7 +239,7 @@
           </tr>
           <tr class="active">
             <td  class="tdResumen" width="80%">Sub total</td>
-            <td style="text-align:right!important;">{{cotizacion.subTotal2|currency}}</td>
+            <td style="text-align:right!important;">{{cotizacion.subtotal2|currency}}</td>
           </tr>
           <tr class="active">
             <td  class="tdResumen" width="80%">IVA</td>
@@ -260,8 +260,8 @@
                 <th style="width:80px; padding:10px; padding-left:30px;">m<sup>3</sup></th>
               </tr>
               <tr ng-repeat="item in contenedores_temp">
-                <td>{{item.contenedor}}</td>
-                <td align="center">{{item.unidad}}</td>
+                <td >{{item.descripcion}}</td>
+                <td align="center">{{item.cantidad}}</td>
                 <td align="center">{{item.punto/10|number:2}}</td>
               </tr>
               <tr class="active">
@@ -307,7 +307,8 @@
             </tr>
             <tr>
               <td class="paddingNone tdResumen" style="padding:0;display:flex;width:100px">
-                <input type="number" class="form-control" style="flex:90%;border-radius:0;border:none;" min="0" ng-change="$emit('change_margen')" ng-model="cotizacion.porcentaje_margen"><span style="flex:10%;margin-top:auto;margin-bottom:auto;"> %</span>
+                <span ng-if="nav==='7'" ng-show="nav==='7'" style="flex:10%;margin-top:auto;margin-bottom:auto;">{{cotizacion.porcentaje_margen}} %</span>
+                <input ng-if="nav==='6'" ng-show="nav==='6'" type="number" class="form-control" style="flex:90%;border-radius:0;border:none;" min="0" ng-change="$emit('change_margen')" ng-model="cotizacion.porcentaje_margen"><span ng-if="nav==='6'" ng-show="nav==='6'" style="flex:10%;margin-top:auto;margin-bottom:auto;"> %</span>
               </td>
               <th class="tdResumen">Margen</th>
               <td class="tdResumen"><strong style="display:flex;"><span style="flex:90%;border-radius:0;border:none;">{{(metros3_contenedores+metros3_muebles+metros3_otros)*(1+(cotizacion.porcentaje_margen/100))|number:2}}</span> <span style="flex:10%;margin-top:auto;margin-bottom:auto;">m<sup>3</sup></span></strong></td>
@@ -499,7 +500,7 @@
                <td rowspan=2 colspan=2 align=center>{{cotizacion.desarme_mueble}}</td>
                <td rowspan=2 colspan=2 align=center></td>
                <th rowspan=2 colspan=1>Sub total</th>
-               <td rowspan=2 colspan=2 align=center>{{cotizacion.subTotal1}}</td>
+               <td rowspan=2 colspan=2 align=center>{{cotizacion.subtotal1}}</td>
              </tr>
              <tr></tr>
              <tr>
@@ -516,7 +517,7 @@
                <td rowspan=2 colspan=2 align=center>{{cotizacion.rampa}}</td>
                <td rowspan=2 colspan=2 align=center></td>
                <th rowspan=2 colspan=1>Sub total</th>
-               <td rowspan=2 colspan=2 align=center>{{cotizacion.subTotal2|currency}}</td>
+               <td rowspan=2 colspan=2 align=center>{{cotizacion.subtotal2|currency}}</td>
              </tr>
              <tr></tr>
              <tr>
@@ -573,8 +574,8 @@
              </thead>
              <tbody>
              <tr ng-repeat="item in contenedores_temp">
-               <td height=35 align=center>{{item.contenedor}}</td>
-               <td align=center>{{item.unidad}}</td>
+               <td height=35 align=center>{{item.descripcion}}</td>
+               <td align=center>{{item.cantidad}}</td>
                <td align=center>{{item.punto/10|number:2}}</td>
              </tr>
              <tr height=35 style="background-color: #A9A9A9;">

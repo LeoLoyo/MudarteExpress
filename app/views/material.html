@@ -15,10 +15,10 @@
               <!-- <select  ng-focus="scrollAnime($event)" ng-model="item.cantidad" ng-options="m.num for m in cantidades" ng-init="item.cantidad = cantidades[getIndexFromValue(item.cantidad)]" ng-change="add_material(item)" class="selectMoneda" style="text-align-last: center;"></select> -->
 
 
-              <select ng-if="item.contenedor" convert-number ng-model="item.cantidad" ng-change="add_material(item)">
+              <select ng-if="item.iscontenedor" convert-number ng-model="item.cantidad" ng-change="add_material(item)">
                 <option ng-show="item.ncontenedor<=m.num" ng-selected="{{m.num == item.cantidad}}" ng-repeat="m in cantidades" value="{{m.num}}">{{m.cantidad}}</option>
               </select>
-              <select ng-if="!item.contenedor" convert-number ng-model="item.cantidad" ng-change="add_material(item)">
+              <select ng-if="!item.iscontenedor" convert-number ng-model="item.cantidad" ng-change="add_material(item)">
                 <option ng-selected="{{m.num == item.cantidad}}" ng-repeat="m in cantidades" value="{{m.num}}">{{m.cantidad}}</option>
               </select>
 
