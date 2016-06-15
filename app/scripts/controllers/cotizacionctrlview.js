@@ -50,12 +50,18 @@ app.service('BackendCotizacion', function () {
   return self;
 });
 
-app.controller('CotizacionViewCtrl', ['$scope', '$state', 'Cotizacion', 'Cliente', 'BackendCotizacion', function ($scope, $state, Cotizacion, Cliente, BackendCotizacion) {
+app.controller('CotizacionViewCtrl', ['$scope', '$state', 'Cotizacion', 'Cliente', 'Users', 'BackendCotizacion', function ($scope, $state, Cotizacion, Cliente, Users, BackendCotizacion) {
   var cotizaciones = [],
       clientes = [],
       muebles = [],
       contenedores = [],
-      materiales = [];
+      materiales = [],
+      cotizadores = [];
+
+  Users.all(1).then(function (r) {
+
+    cotizadores = r;
+  });
 
   Cotizacion.all().then(function (r) {
 
@@ -106,6 +112,24 @@ app.controller('CotizacionViewCtrl', ['$scope', '$state', 'Cotizacion', 'Cliente
         var cotizacion_temp = angular.copy($scope.cotizacion_total);
 
         cotizacion_temp.cotizacion = cotizacion;
+
+        (cotizacion_temp.cotizacion.seguro)?cotizacion_temp.cotizacion.seguro = 'Si':cotizacion_temp.cotizacion.seguro='No';
+
+        (cotizacion_temp.cotizacion.desarme_mueble)?cotizacion_temp.cotizacion.desarme_mueble = 'Si':cotizacion_temp.cotizacion.desarme_mueble='No';
+
+        (cotizacion_temp.cotizacion.rampa)?cotizacion_temp.cotizacion.rampa = 'Si':cotizacion_temp.cotizacion.rampa='No';
+
+        cotizacion_temp.cotizacion.numero_ayudante = {num:cotizacion_temp.cotizacion.numero_ayudante};
+
+        cotizacion_temp.cotizacion.ambiente = {num:cotizacion_temp.cotizacion.ambiente};
+
+        angular.forEach(cotizadores, function (cotizador, key_cotizador) {
+
+          if (cotizacion_temp.cotizacion.cotizador === cotizador.id) {
+
+            cotizacion_temp.cotizacion.cotizador = cotizador;
+          }
+        });
 
         angular.forEach(contenedores, function (contenedor, key_contenedor) {
 
@@ -163,6 +187,14 @@ app.controller('CotizacionViewCtrl', ['$scope', '$state', 'Cotizacion', 'Cliente
 
 app.controller('ShowCtrl', ['$scope', '$stateParams', 'BackendCotizacion', function ($scope, $stateParams, BackendCotizacion) {
 
+  function calcular_totales(array, attr) {
+    var result = 0;
+    for (var i = 0; i < array.length; i++) {
+      result += array[i][attr];
+    }
+    return result;
+  }
+
   var cotizacion_total = BackendCotizacion.getById($stateParams.id_cotizacion);
 
   $scope.cotizacion = cotizacion_total.cotizacion;
@@ -175,9 +207,11 @@ app.controller('ShowCtrl', ['$scope', '$stateParams', 'BackendCotizacion', funct
 
   $scope.cliente = cotizacion_total.cliente;
 
-  $scope.subTotal1 = cotizacion_total.cotizacion.subtotal1;
+  $scope.metros3_contenedores = calcular_totales(cotizacion_total.contenedores, "punto") / 10;
 
-  $scope.subTotal2 = cotizacion_total.cotizacion.subtotal2;
+  $scope.metros3_muebles = calcular_totales(cotizacion_total.muebles, "punto") / 10;
 
-  console.log($scope.contenedores_temp);
+  $scope.subtotal1 = cotizacion_total.cotizacion.subtotal1;
+
+  $scope.subtotal2 = cotizacion_total.cotizacion.subtotal2;
 }]);

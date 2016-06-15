@@ -68,11 +68,14 @@
         direccion: ''
       };
 
+
+
       // objecto direccion
+
       var cotizacion = {
         numero_cotizacion: '',
         cliente: '',
-        cotizador: 2,
+        cotizador: 1,
         quien_llamo: '',
         quien_cotizo: '',
         fuente: '',
@@ -421,7 +424,10 @@
       function check_material(contenedor){
         angular.forEach($scope.materiales, function(v,k){
           var mat = angular.copy(v);
-          if(mat.contenedor === contenedor.id){
+console.log(contenedor);
+// console.log();
+          if(Number(mat.contenedor) === Number(contenedor.contenedor)){
+                      console.log("mat");
             setTimeout(function(){
               mat.cantidad = contenedor.cantidad;
               mat.iscontenedor = true;
@@ -557,7 +563,7 @@
 
               "numero_cotizacion": self.numero_cotizacion,
               "cliente": $scope.cliente.id,
-              "cotizador": 2,
+              "cotizador": self.cotizador.id,
               "fuente": self.fuente,
               "cp_pv": self.cp_pv,
               "tipo_cliente": self.tipo_cliente,
@@ -590,8 +596,12 @@
               "desembalaje": Number(self.desembalaje).toFixed(2),
               "materiales": Number(self.materiales).toFixed(2),
               "piano_cajafuerte": Number(self.piano_cajafuerte).toFixed(2),
+              "porcentaje_ajuste":Number(self.porcentaje_ajuste).toFixed(2),
+              "porcentaje_iva":Number(self.porcentaje_iva).toFixed(2),
               "ajuste": Number(self.ajuste).toFixed(2),
               "iva": Number(self.iva).toFixed(2),
+              "subtotal1":Number(self.subtotal1).toFixed(2),
+              "subtotal2":Number(self.subtotal2).toFixed(2),
               "total_monto": Number(self.total_monto).toFixed(2),
               "observacion": self.observacion,
               "total_cantidad": Number($scope.unidades_contenedores + $scope.unidades_muebles + $scope.unidades_otros),

@@ -2,6 +2,20 @@
  @import "../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
  //@import url(../../bower_components/bootstrap-sass/assets/fonts/bootstrap/Roboto-Medium.ttf);
  //@import url(https://fonts.googleapis.com/css?family=Roboto:400,300);
+ //variables
+ //lista de cotización--------------------------
+$colorBgList:           #fff;
+$colorBgFecha:          $colorNavbar;
+$colorTxFecha:          #000;
+$colorTxDetalle:        #fff;
+@mixin transicion($time) {
+  -webkit-transition: all $time ease-in-out;
+  -moz-transition: all $time ease-in-out;
+  -ms-transition: all $time ease-in-out;
+  -o-transition: all $time ease-in-out;
+  transition: all $time ease-in-out;
+}
+//fin lista de cotización-----------------------
 // estilos generales
 @font-face {
 font-family: Roboto;
@@ -665,59 +679,65 @@ table.tablaResumen {
   }
 }
 .listCotizacion {
-  background: #fff;
+  background: $colorBgList;
   box-shadow: $sombra_1;
   margin-bottom: 20px;
   div {
+    margin: 0;
     div {
+      padding: 0;
       div.fecha {
         display: block;
-        background: transparent;
+        background: $colorBgFecha;
         height: 110px;
         border-right: 1px solid #dedede;
+        overflow: hidden;
         p.fecha1{
           font-size: 40px;
           text-align: center;
           margin-bottom: 0px;
+          color: $colorTxFecha!important;
+          @include transicion(500ms);
         }
         p.fecha2 {
           text-align: center;
           font-size: 20px;
           padding: 0;
           margin: 0;
+          color: $colorTxFecha!important;
+          @include transicion(500ms);
         }
         p.fecha3 {
           text-align: center;
+          color: $colorTxFecha!important;
+          @include transicion(500ms);
         }
           .detalle {
           background: rgba(0,0,0,.0);
           position: absolute;
           top: 0;
           height: 100%;
-          width: calc(100% - 30px);
+          width: calc(100%);
           display: block;
-          -webkit-transition: background 500ms ease-in-out;
-          -moz-transition: background 500ms ease-in-out;
-          -ms-transition: background 500ms ease-in-out;
-          -o-transition: background 500ms ease-in-out;
-          transition: background 500ms ease-in-out;
+          @include transicion(500ms);
           a {
             @extend .btn;
             @extend .btn-default;
             @extend .btn-lg;
             @extend .btn-block;
+            background-color: transparent;
+            border: 2px solid $colorTxDetalle;
+            color: $colorTxDetalle;
             position: absolute;
             border-radius: 0;
-            top: 30%;
-            display: none;
+            top: 45%;
+            display: block;
+            opacity: 0;
             margin-left: 5px;
             width: calc(100% - 10px)!important;
             padding: 5px!important;
-            -webkit-transition: all 500ms ease-in-out;
-            -moz-transition: all 500ms ease-in-out;
-            -ms-transition: all 500ms ease-in-out;
-            -o-transition: all 500ms ease-in-out;
-            transition: all 500ms ease-in-out;
+            cursor: pointer;
+            @include transicion(500ms);
           }
         }
       }
@@ -727,13 +747,8 @@ table.tablaResumen {
           display: block;
           background: transparent;
           height: 100%;
-          padding-top: 10px;
-          padding-left: 10px;
-          -webkit-transition: all 500ms ease-in-out;
-          -moz-transition: all 500ms ease-in-out;
-          -ms-transition: all 500ms ease-in-out;
-          -o-transition: all 500ms ease-in-out;
-          transition: all 500ms ease-in-out;
+          padding: 7px;
+          @include transicion(500ms);
           p.cotiza1 {
             font-size: 20px;
             text-align: left;
@@ -744,13 +759,27 @@ table.tablaResumen {
   &:hover .fecha div.detalle {
     display: block;
     top: 0;
-    background: rgba(0,0,0,.7);
+    background: rgba(0,0,0,.3);
   }
   &:hover .fecha div.detalle a {
     display: block;
+    top:30%;
+    opacity: 1;
   }
   &:hover div.cotiza {
     opacity: .5;
+  }
+  &:hover div.fecha p.fecha1 {
+    font-size:350%!important;
+    @include transicion(500ms);
+  }
+  &:hover div.fecha p.fecha2 {
+    font-size:200%!important;
+    @include transicion(500ms);
+  }
+  &:hover div.fecha p.fecha3 {
+    font-size:150%!important;
+    @include transicion(500ms);
   }
 }
 .buscar {

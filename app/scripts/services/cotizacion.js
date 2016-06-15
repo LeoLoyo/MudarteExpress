@@ -96,7 +96,7 @@
       data.cantidad = contenedor.cantidad;
       data.punto = contenedor.punto;
       data.estado = 'activo';
-      return $http.post(setting.url + "contenedorcotizacion/", data).success(function () {
+      return $http.post(setting.url + "contenedorcotizacion/", data).success(function (res) {
         return true;
       }).error(function () {
         return false;
