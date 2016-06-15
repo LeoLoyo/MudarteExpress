@@ -63,7 +63,8 @@
   </div>
   <div class="col-md-3 form-group">
     <label for="id_cotizador">Cotizador:</label>
-    <select class="form-control" ng-model="cotizacion.cotizador" id="id_cotizador"><option ng-value="{{item}}" ng-repeat="item in cotizadores">{{item.first_name}} {{item.last_name}}</option></select>
+    <select class="form-control" ng-model="cotizacion.cotizador" ng-options="item.first_name for item in cotizadores"></select>
+    <!-- <select class="form-control" ng-model="cotizacion.cotizador" id="id_cotizador"><option ng-repeat="item in cotizadores">{{item.first_name}} {{item.last_name}}</option></select> -->
   </div>
   <div class="col-md-3 form-group">
     <label for="id_cotizador">Forma de pago:</label>

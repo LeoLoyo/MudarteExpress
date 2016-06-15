@@ -92,11 +92,11 @@
     self.save_contenedores = function (contenedor, id_cotizacion) {
       var data = {};
       data.cotizacion = id_cotizacion;
-      data.descripcion = contenedor.contenedor;
-      data.cantidad = contenedor.unidad;
+      data.descripcion = contenedor.descripcion;
+      data.cantidad = contenedor.cantidad;
       data.punto = contenedor.punto;
       data.estado = 'activo';
-      return $http.post(setting.url + "contenedorcotizacion/", data).success(function () {
+      return $http.post(setting.url + "contenedorcotizacion/", data).success(function (res) {
         return true;
       }).error(function () {
         return false;
@@ -172,6 +172,7 @@
       var url = setting.url + "contenedordescripcion/?format=json";
       // var url = 'scripts/json/contenedordescripcion.json'
       if (contenedor !== undefined) {
+        console.log(contenedor);
         url = setting.url + "contenedor/?format=json&contenedor=" + contenedor;
         // url = 'scripts/json/contenedor.json';
       }
@@ -187,7 +188,7 @@
     self.all = function () {
 
       var url = setting.url + "material/?format=json";
-      
+
       return API.query(url).then(function (result) {
         return API.getAll(result);
       });

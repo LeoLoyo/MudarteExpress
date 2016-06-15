@@ -5,9 +5,6 @@
 
   app.controller('CotizacionCtrl', [
     'Session',
-    'contenedores_resolve',
-    'muebles_resolve',
-    'materiales_resolve',
     '$interval',
     '$rootScope',
     '$state',
@@ -17,20 +14,15 @@
     'Cotizacion',
     'Contenedor',
     'Mueble',
+    'Material',
     'Bulto',
     'Cliente',
-    'setting', function (Session, contenedores_resolve, muebles_resolve, materiales_resolve, $interval, $rootScope, $state, $scope, Users, Direccion, Cotizacion, Contenedor, Mueble, Bulto, Cliente, setting) {
-
-    var today = new Date().toDateString();
-    if (!Session.get()) {
-      $state.go('login');
-    } else {
+    'setting', function (Session, $interval, $rootScope, $state, $scope, Users, Direccion, Cotizacion, Contenedor, Mueble, Material, Bulto, Cliente, setting) {
 
       var select = function () {
 
 
          setTimeout(function(){
-           console.log($scope.cotizacion.fuente);
           //  $('select.selectPicker').selectpicker();
            $('select.selectPicker').selectpicker('destroy');
           //  $('select.selectPicker').selectpicker('destroy');
@@ -76,11 +68,14 @@
         direccion: ''
       };
 
+
+
       // objecto direccion
+
       var cotizacion = {
         numero_cotizacion: '',
         cliente: '',
-        cotizador: 2,
+        cotizador: 1,
         quien_llamo: '',
         quien_cotizo: '',
         fuente: '',
@@ -123,9 +118,9 @@
         desembalaje: Number(0),
         materiales: Number(0),
         piano_cajafuerte: Number(0),
-        subTotal1:Number(0),
+        subtotal1:Number(0),
         porcentaje_ajuste: Number(0),
-        subTotal2: Number(0),
+        subtotal2: Number(0),
         porcentaje_iva: Number(0),
         ajuste: Number(0),
         iva: Number(0),
@@ -199,11 +194,11 @@
         var punto = 0,
             resta = angular.copy(object),
             l = a_query.length;
-        if (Number(object.unidad) > 0) {
+        if (Number(object.cantidad) > 0) {
           for (var j = 0; j < l; j++) {
-            if (Number(object.unidad) >= Number(a_query[j].unidad)) {
+            if (Number(object.cantidad) >= Number(a_query[j].cantidad)) {
               punto += a_query[j].punto;
-              resta.unidad = Number(object.unidad) - Number(a_query[j].unidad);
+              resta.cantidad = Number(object.cantidad) - Number(a_query[j].cantidad);
               return punto += recur_punto(a_query, resta);
             }
           }
@@ -233,8 +228,8 @@
         var l = cs_tmp.length;
         for (var i = 0; i < l; i++) {
           if (cont.contenedor === cs_tmp[i].contenedor) {
-            if (cont.unidad > 0) {
-              cs_tmp[i].unidad = cont.unidad;
+            if (cont.cantidad > 0) {
+              cs_tmp[i].cantidad = cont.cantidad;
             } else {
               cs_tmp.splice(cs_tmp.indexOf(cs_tmp[i]), 1);
             }
@@ -280,7 +275,7 @@
         }
         return false;
       }
-//Controlador para generar PDF
+    //Controlador para generar PDF
       $scope.exportAction = function(event){
         console.log(event)
       switch(event){
@@ -306,13 +301,17 @@
           return groups[group];
         });
       }
-
-      $scope.muebles = groupBy(muebles_resolve, function (item) {
-        return [item.espeficicacion, item.descripcion];
+      Mueble.all().then(function (r) {
+        $scope.muebles = groupBy(r, function (item) {
+          return [item.espeficicacion, item.descripcion];
+        });
       });
+      // $scope.muebles = groupBy(muebles_resolve, function (item) {
+      //   return [item.espeficicacion, item.descripcion];
+      // });
 
-      $scope.mater=materiales_resolve;
-      $scope.materiales = angular.copy(materiales_resolve);
+      // $scope.mater=materiales_resolve;
+      // $scope.materiales = angular.copy(materiales_resolve);
 
       function init(contenedor) {
         if (contenedor !== undefined) {
@@ -323,14 +322,18 @@
           numeros();
           numeros_otros();
 
-          // Material.all().then(function (r) {
-          //   var out = [];
-          //   angular.forEach(r, function (value, key) {
-          //     value.precio = Number(value.precio);
-          //     out.push(value);
-          //   }, out);
-          //   $scope.materiales = out;
-          // });
+          Material.all().then(function (r) {
+            var out = [];
+            angular.forEach(r, function (v, k) {
+              var m = angular.copy(v);
+              m.precio = Number(m.precio);
+              m.cantidad = 0;
+              m.ncontenedor = 0;
+              m.iscontenedor = false;
+              out.push(m);
+            }, out);
+            $scope.materiales = out;
+          });
 
           Users.all(1).then(function (r) {
             $scope.cotizadores = r;
@@ -341,8 +344,9 @@
           Direccion.all().then(function (r) {
             $scope.barrio_provincias = r;
           });
-
-          $scope.contenedores = contenedores_resolve;
+          Contenedor.all().then(function (contenedores) {
+            $scope.contenedores = contenedores;
+          });
 
           Mueble.tipo_mueble().then(function (muebles) {
             $scope.tipo_muebles = muebles;
@@ -389,16 +393,17 @@
         return n;
       };
 
-      $scope.add_contenedor = function (descripcion, uni) {
+      $scope.add_contenedor = function (contenedor, uni) {
         var contenedor_temp = {
-          contenedor: descripcion,
-          unidad: Number(uni),
+          descripcion: contenedor.contenedor,
+          contenedor: contenedor.id,
+          cantidad: Number(uni),
           punto: 0
         };
 
-        init(descripcion).then(function () {
+        init(contenedor.id).then(function () {
           if (!buscar_contenedor($scope.contenedores_temp, contenedor_temp)) {
-            if (Number(contenedor_temp.unidad) > 0) {
+            if (Number(contenedor_temp.cantidad) > 0) {
               $scope.contenedores_temp.push(contenedor_temp);
             }
           }
@@ -408,7 +413,7 @@
 
           $scope.contenedores_temp = cal_punto($scope.contenedores_temp, $scope.todoscontenedores);
           $scope.metros3_contenedores = calcular_totales($scope.contenedores_temp, "punto") / 10;
-          $scope.unidades_contenedores = calcular_totales($scope.contenedores_temp, "unidad");
+          $scope.unidades_contenedores = calcular_totales($scope.contenedores_temp, "cantidad");
           check_material(contenedor_temp);
           $rootScope.total_m3 = Number($scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros);
           $scope.update_presupuesto()
@@ -419,13 +424,14 @@
       function check_material(contenedor){
         angular.forEach($scope.materiales, function(v,k){
           var mat = angular.copy(v);
-          if(mat.descripcion === contenedor.contenedor){
-            console.log(contenedor.unidad);
+console.log(contenedor);
+// console.log();
+          if(Number(mat.contenedor) === Number(contenedor.contenedor)){
+                      console.log("mat");
             setTimeout(function(){
-              mat.cantidad = contenedor.unidad;
-              console.log(mat.cantidad);
-              mat.contenedor = true;
-              mat.ncontenedor = contenedor.unidad;
+              mat.cantidad = contenedor.cantidad;
+              mat.iscontenedor = true;
+              mat.ncontenedor = contenedor.cantidad;
               $scope.materiales.splice($scope.materiales.indexOf(v),1);
               $scope.materiales.push(mat);
               $scope.add_material(mat);
@@ -537,13 +543,13 @@
         }
         $scope.otros_temp_campo.splice($scope.otros_temp_campo.indexOf(campo), 1);
       };
-$rootScope.actFecha = function(){
-  setTimeout(function(){
-    $scope.cotizacion.hora_de_cotizacion = new Date();
-    $scope.cotizacion.fecha_de_cotizacion = new Date();
-    $scope.$apply();
-  },0);
-}
+    $rootScope.actFecha = function(){
+      setTimeout(function(){
+        $scope.cotizacion.hora_de_cotizacion = new Date();
+        $scope.cotizacion.fecha_de_cotizacion = new Date();
+        $scope.$apply();
+      },0);
+    }
       $rootScope.save = function() {
         var self = $scope.cotizacion;
 
@@ -557,7 +563,7 @@ $rootScope.actFecha = function(){
 
               "numero_cotizacion": self.numero_cotizacion,
               "cliente": $scope.cliente.id,
-              "cotizador": 2,
+              "cotizador": self.cotizador.id,
               "fuente": self.fuente,
               "cp_pv": self.cp_pv,
               "tipo_cliente": self.tipo_cliente,
@@ -590,8 +596,12 @@ $rootScope.actFecha = function(){
               "desembalaje": Number(self.desembalaje).toFixed(2),
               "materiales": Number(self.materiales).toFixed(2),
               "piano_cajafuerte": Number(self.piano_cajafuerte).toFixed(2),
+              "porcentaje_ajuste":Number(self.porcentaje_ajuste).toFixed(2),
+              "porcentaje_iva":Number(self.porcentaje_iva).toFixed(2),
               "ajuste": Number(self.ajuste).toFixed(2),
               "iva": Number(self.iva).toFixed(2),
+              "subtotal1":Number(self.subtotal1).toFixed(2),
+              "subtotal2":Number(self.subtotal2).toFixed(2),
               "total_monto": Number(self.total_monto).toFixed(2),
               "observacion": self.observacion,
               "total_cantidad": Number($scope.unidades_contenedores + $scope.unidades_muebles + $scope.unidades_otros),
@@ -634,7 +644,8 @@ $rootScope.actFecha = function(){
                     Cotizacion.save_materiales($scope.materiales_temp[i],cot.data.id);
                 }
 
-                $rootScope.nav = '1';
+                // $rootScope.nav = '1';
+                $state.go('list');
                 $scope.limpiar();
 
                 $scope.cotizacion = {};
@@ -642,12 +653,12 @@ $rootScope.actFecha = function(){
                 $scope.cliente = {};
                 $scope.materiales_temp = null;
                 $scope.materiales_temp = [];
-                $scope.materiales = [];
+                // $scope.materiales = [];
                 // $scope.cotizacion = angular.copy(cotizacion);
                 $('#ncotizacion').focus();
                 $scope.limpiarM = false;
                 setTimeout(function () {
-                  $scope.materiales = angular.copy(materiales_resolve);
+                  // $scope.materiales = angular.copy(materiales_resolve);
                   $scope.cotizacion = angular.copy(cotizacion);
                   $scope.cotizacion.numero_ayudante ={num:0};
                   $scope.cotizacion.ambiente ={num:0};
@@ -669,22 +680,22 @@ $rootScope.actFecha = function(){
       }
       $scope.calcular_ajuste  = function () {
         var resultado=0;
-        resultado=($scope.cotizacion.ajuste/$scope.cotizacion.subTotal1)*100;
+        resultado=($scope.cotizacion.ajuste/$scope.cotizacion.subtotal1)*100;
         $scope.cotizacion.porcentaje_ajuste = resultado;
-        $scope.cotizacion.subTotal2 = Number($scope.cotizacion.subTotal1 + $scope.cotizacion.ajuste)
-        $scope.cotizacion.total_monto = Number($scope.cotizacion.subTotal2 + $scope.cotizacion.iva)
+        $scope.cotizacion.subtotal2 = Number($scope.cotizacion.subtotal1 + $scope.cotizacion.ajuste)
+        $scope.cotizacion.total_monto = Number($scope.cotizacion.subtotal2 + $scope.cotizacion.iva)
       }
 
       $scope.calcular_iva  = function () {
         var resultado=0;
-        resultado=Number(($scope.cotizacion.subTotal2*$scope.cotizacion.porcentaje_iva)/100);
+        resultado=Number(($scope.cotizacion.subtotal2*$scope.cotizacion.porcentaje_iva)/100);
         $scope.cotizacion.iva = resultado;
-        $scope.cotizacion.total_monto = Number($scope.cotizacion.subTotal2 + $scope.cotizacion.iva)
+        $scope.cotizacion.total_monto = Number($scope.cotizacion.subtotal2 + $scope.cotizacion.iva)
       }
 
       $scope.update_presupuesto = function () {
         setTimeout(function(){
-            $scope.cotizacion.subTotal1 = $scope.cotizacion.mudanza + $scope.cotizacion.soga + $scope.cotizacion.embalaje + $scope.cotizacion.desembalaje + $scope.cotizacion.materiales + $scope.cotizacion.piano_cajafuerte + $scope.cotizacion.monto_km;
+            $scope.cotizacion.subtotal1 = $scope.cotizacion.mudanza + $scope.cotizacion.soga + $scope.cotizacion.embalaje + $scope.cotizacion.desembalaje + $scope.cotizacion.materiales + $scope.cotizacion.piano_cajafuerte + $scope.cotizacion.monto_km;
             $scope.calcular_ajuste();
             $scope.calcular_iva();
             $scope.$apply();
@@ -727,7 +738,7 @@ $rootScope.actFecha = function(){
 
       }
       $scope.add_material = function (material) {
-console.log(material);
+
 
         if(typeof(material.cantidad) === 'object'){
 
@@ -783,7 +794,7 @@ console.log(material);
         $scope.cotizacion.monto_km = Number($scope.cotizacion.recorrido_km * $scope.cotizacion.precio_km);
         $scope.update_presupuesto();
       };
-    }
+
   }]);
 
   app.filter('unique', function () {
@@ -826,4 +837,5 @@ console.log(material);
       return items;
     };
   });
+
 })();
