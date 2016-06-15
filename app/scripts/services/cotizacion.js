@@ -122,7 +122,7 @@
       var url = setting.url + "mueblecotizacion/";
       data.cotizacion = id_cotizacion;
       data.mueble = muebles.mueble;
-      data.especificacion = muebles.espeficicacion || "  ";
+      data.especificacion = muebles.especificacion;
       data.descripcion = muebles.descripcion;
       data.alto = muebles.alto;
       data.ancho = muebles.ancho;
