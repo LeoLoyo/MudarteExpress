@@ -27,11 +27,8 @@
                     <span class="icon-bar"></span>
                 </button> -->
                 <div class="volver btnsCotizacion hidden">
-                    <a  ng-show="nav==='4' && session" ng-click="nav='1'"></a>
-                    <a  ng-show="nav==='5' && session" ng-click="nav='4'"></a>
-                    <a  ng-show="nav==='2' && session" ng-click="nav='5'"></a>
-                    <a  ng-show="nav==='3' && session" ng-click="nav='2'"></a>
-                    <a  ng-show="nav==='6' && session" ng-click="nav='3'"></a>
+                    <a  ng-if="nav!=='7'" ng-show="nav!=='7' && session" ng-click="Go('list')"></a>
+
                 </div>
             </div>
 
@@ -84,7 +81,15 @@
                      <input id="id_resumen" type="radio" ng-model="nav" value="6">
                 </li>
             </ul>
-            <ul class="btnAccion btnsCotizacion hidden">
+            <ul class="btnAccion" ng-show="nav==='7'" ng-if="nav==='7'">
+              <li >
+                <button class="btn btn-lg btn-block btn-outline" ng-click="Go('list')">Ver Lista</button>
+              </li>
+              <li >
+                <button class="btn btn-lg btn-block btn-outline" ng-click="Go('cotizacion')">Nueva</button>
+              </li>
+            </ul>
+            <ul class="btnAccion btnsCotizacion">
                 <li ng-show="resumen" class="totalm3 btnsCotizacion">
                     <table>
                         <tr>
@@ -106,6 +111,8 @@
                         Total con margen: {{total_m3 * (1+(margen/100))|number:2}}
                     </label> -->
                 </li>
+
+
                 <li ng-show="nav==='4' && resumen" ng-if="nav==='4' && resumen">
                     <button type="button" class="btn btn-limpiar btn-lg btn-block"  ng-click="limpiar()" title="Limpiar">
                     <!-- <button type="button" class="btn btn-limpiar btn-lg btn-block" onclick="limpiar()" ng-click="limpiar()" title="Limpiar"> -->
@@ -174,6 +181,7 @@
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 <script src="scripts/app.js"></script>
+<script src="scripts/router.js"></script>
 <script src="scripts/services/cotizacion.js"></script>
 <script src="scripts/controllers/login.js"></script>
 <script src="scripts/controllers/cotizacion.js"></script>
@@ -182,6 +190,7 @@
 <script src="scripts/directives/itemresumen.js"></script>
 <script src="scripts/controllers/cotizacionctrlview.js"></script>
 <!-- endbuild -->
+<script src="/bower_components/angular-i18n/angular-locale_es-ar.js"></script>
 <div class="cargando hidden">
     <span>Cargando...</span>
     <div class="loader" id="loader">Loading...</div>
