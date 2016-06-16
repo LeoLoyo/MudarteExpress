@@ -200,7 +200,7 @@
 
     var self = this;
     self.all = function () {
-       var url = setting.url+"mueble/?format=json";
+       var url = setting.url+"muebledescripcion/?format=json";
       // var url = 'scripts/json/mueble.json';
 
       return API.query(url).then(function (result) {

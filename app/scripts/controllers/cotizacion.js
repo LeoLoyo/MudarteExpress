@@ -75,7 +75,7 @@
       var cotizacion = {
         numero_cotizacion: '',
         cliente: '',
-        cotizador: {},
+        cotizador: {id:""},
         quien_llamo: '',
         quien_cotizo: '',
         fuente: '',
@@ -301,11 +301,16 @@
           return groups[group];
         });
       }
-      Mueble.all().then(function (r) {
-        $scope.muebles = groupBy(r, function (item) {
-          return [item.mueble, item.descripcion];
-        });
-      });
+setTimeout(function(){
+  Mueble.all().then(function (r) {
+    // $scope.muebles = groupBy(r, function (item) {
+    //   return [item.mueble, item.descripcion];
+    // });
+    $scope.muebles = r;
+  });
+
+  $scope.$apply();
+},50)
       // $scope.muebles = groupBy(muebles_resolve, function (item) {
       //   return [item.especificacion, item.descripcion];
       // });
@@ -467,7 +472,7 @@ console.log(contenedor);
 
       $scope.add_mueble = function (mueble, uni) {
         var mueble_temp = {
-          mueble: mueble.descripcion,
+          mueble: mueble.mueble,
           especificacion: mueble.especificacion,
           descripcion: "",
           ancho: Number(mueble.ancho),
@@ -491,6 +496,7 @@ console.log(contenedor);
 
       $scope.add_otros = function (campo, mueble, ancho, largo, alto, cant, descripcion, otro) {
         if (ancho !== undefined && largo !== undefined && alto !== undefined && mueble) {
+          console.log(mueble);
           var otro = {
             id: campo.id,
             mueble: mueble,

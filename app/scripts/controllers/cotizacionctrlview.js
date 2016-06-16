@@ -55,7 +55,7 @@ app.service('BackendCotizacion', function () {
         i = 0;
 
     while (!enc) {
-      
+
       if (cotizaciones[i].id === Number(ID)) {
         enc = true;
         return cotizaciones[i];
@@ -265,6 +265,10 @@ app.controller('ShowCtrl', ['$scope', '$stateParams', 'BackendCotizacion', funct
   $scope.muebles_temp = cotizacion_total.cotizacionmuebles;
 
   $scope.cliente = cotizacion_total.cliente;
+
+  $scope.unidades_muebles = calcular_totales(cotizacion_total.cotizacionmuebles, "cantidad");
+
+  $scope.unidades_contenedores = calcular_totales(cotizacion_total.cotizacioncontenedores, "cantidad");
 
   $scope.metros3_contenedores = calcular_totales(cotizacion_total.cotizacioncontenedores, "punto") / 10;
 
