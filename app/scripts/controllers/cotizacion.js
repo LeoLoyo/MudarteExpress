@@ -75,7 +75,7 @@
       var cotizacion = {
         numero_cotizacion: '',
         cliente: '',
-        cotizador: 1,
+        cotizador: {id:""},
         quien_llamo: '',
         quien_cotizo: '',
         fuente: '',
@@ -242,7 +242,7 @@
       function buscar_mueble(ms_tmp, m) {
         var l = ms_tmp.length;
         for (var i = 0; i < l; i++) {
-          if (m.mueble === ms_tmp[i].mueble && m.espeficicacion === ms_tmp[i].espeficicacion) {
+          if (m.mueble === ms_tmp[i].mueble && m.especificacion === ms_tmp[i].especificacion) {
             if (Number(m.cantidad) > 0) {
               ms_tmp[i].cantidad = m.cantidad;
               ms_tmp[i].total_punto = m.total_punto;
@@ -301,13 +301,18 @@
           return groups[group];
         });
       }
-      Mueble.all().then(function (r) {
-        $scope.muebles = groupBy(r, function (item) {
-          return [item.espeficicacion, item.descripcion];
-        });
-      });
+setTimeout(function(){
+  Mueble.all().then(function (r) {
+    // $scope.muebles = groupBy(r, function (item) {
+    //   return [item.mueble, item.descripcion];
+    // });
+    $scope.muebles = r;
+  });
+
+  $scope.$apply();
+},50)
       // $scope.muebles = groupBy(muebles_resolve, function (item) {
-      //   return [item.espeficicacion, item.descripcion];
+      //   return [item.especificacion, item.descripcion];
       // });
 
       // $scope.mater=materiales_resolve;
@@ -467,8 +472,8 @@ console.log(contenedor);
 
       $scope.add_mueble = function (mueble, uni) {
         var mueble_temp = {
-          mueble: mueble.descripcion,
-          espeficicacion: mueble.especificacion,
+          mueble: mueble.mueble,
+          especificacion: mueble.especificacion,
           descripcion: "",
           ancho: Number(mueble.ancho),
           largo: Number(mueble.largo),
@@ -491,10 +496,12 @@ console.log(contenedor);
 
       $scope.add_otros = function (campo, mueble, ancho, largo, alto, cant, descripcion, otro) {
         if (ancho !== undefined && largo !== undefined && alto !== undefined && mueble) {
+          console.log(mueble);
           var otro = {
             id: campo.id,
             mueble: mueble,
             descripcion: descripcion,
+            especificacion: "",
             ancho: Number(ancho),
             largo: Number(largo),
             alto: Number(alto),
@@ -562,8 +569,8 @@ console.log(contenedor);
             var cotizacion_temp = {
 
               "numero_cotizacion": self.numero_cotizacion,
-              "cliente": $scope.cliente.id,
-              "cotizador": self.cotizador.id,
+              "clienteId": $scope.cliente.id,
+              "cotizadorId": self.cotizador.id,
               "fuente": self.fuente,
               "cp_pv": self.cp_pv,
               "tipo_cliente": self.tipo_cliente,

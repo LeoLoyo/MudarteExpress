@@ -280,7 +280,7 @@
               <th style="width:80px; padding:10px; padding-left:30px;">m<sup>3</sup></th>
             </tr>
             <tr ng-repeat="item in muebles_temp">
-              <td>{{item.mueble}} {{item.espeficicacion}}</td><!-- cambio leo -->
+              <td>{{item.mueble}} {{item.especificacion}} {{item.descripcion}}</td><!-- cambio leo -->
               <td align="center">{{item.ancho}}x{{item.largo}}x{{item.alto}}</td>
               <td align="center">{{item.cantidad}}</td>
               <td align="center">{{item.total_punto/10|number:2}}</td>
@@ -307,7 +307,7 @@
             </tr>
             <tr>
               <td class="paddingNone tdResumen" style="padding:0;display:flex;width:100px">
-                <span ng-if="nav==='7'" ng-show="nav==='7'" style="flex:10%;margin-top:auto;margin-bottom:auto;">{{cotizacion.porcentaje_margen}} %</span>
+                <span ng-if="nav==='7'" ng-show="nav==='7'" style="flex:10%;padding-top:9px;height:34px;text-align:center;">{{cotizacion.porcentaje_margen}} %</span>
                 <input ng-if="nav==='6'" ng-show="nav==='6'" type="number" class="form-control" style="flex:90%;border-radius:0;border:none;" min="0" ng-change="$emit('change_margen')" ng-model="cotizacion.porcentaje_margen"><span ng-if="nav==='6'" ng-show="nav==='6'" style="flex:10%;margin-top:auto;margin-bottom:auto;"> %</span>
               </td>
               <th class="tdResumen">Margen</th>
@@ -597,7 +597,7 @@
                <th>m<sup>3</sup></th>
              </tr>
              <tr ng-repeat="item in muebles_temp">
-               <td  ng-if="item.mueble != ''">{{item.mueble}} {{item.espeficicacion}}</td><!-- cambio leo -->
+               <td  ng-if="item.mueble != ''">{{item.mueble}} {{item.especificacion}}</td><!-- cambio leo -->
                <td align="center">{{item.ancho}}x{{item.largo}}x{{item.alto}}</td>
                <td align="center">{{item.cantidad}}</td>
                <td align="center">{{item.total_punto/10|number:2}}</td>
