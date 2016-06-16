@@ -802,6 +802,13 @@ console.log(contenedor);
         $scope.update_presupuesto();
       };
 
+      $scope.cancelar = function(){
+        setTimeout(function(){
+          $state.go('list');
+          $scope.$apply();
+        },500)
+      }
+
   }]);
 
   app.filter('unique', function () {
