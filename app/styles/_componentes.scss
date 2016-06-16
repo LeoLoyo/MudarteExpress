@@ -40,7 +40,7 @@ form.formulario, div.formulario {
 .btnSeleccion{
   background: #eee;
   display: inline-flex;
-  width: 250px;
+  width: 330px;
   height: 50px;
   text-align: center;
   border: 1px solid #dedede;
@@ -48,10 +48,18 @@ form.formulario, div.formulario {
   margin-left: 10px;
   margin-bottom: 10px;
   span.boton {
-    flex: 70%;
+    flex: 50%;
     padding: 13px;
     margin: 8px;
     line-height: 15px;
+  }
+  span.boton1 {
+    flex: 10%;
+    padding: 14px 5px;
+    &:hover {
+      background-color: $colorNavbar;
+      color: $colorTextoNavbar;
+    }
   }
   span.classContenedores {
     margin-top: auto;

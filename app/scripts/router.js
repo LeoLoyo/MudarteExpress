@@ -31,6 +31,8 @@
 
     }).state('list', {
 
+      cache:true,
+
       url: '/list',
 
       views: {
@@ -63,6 +65,8 @@
 
       url: '/show/:id_cotizacion',
 
+      cache:true,
+
       views: {
 
         "maincontent": {
@@ -89,6 +93,8 @@
         }
       }
     }).state('cotizacion', {
+
+      cache:true,
 
       url: '/cotizacion',
 
