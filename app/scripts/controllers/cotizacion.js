@@ -44,15 +44,15 @@
 
       $scope.cantidades = angular.copy(BackendCotizacion.getCant());
 
-      $scope.cant_otros = [];
+      $scope.cant_otros = angular.copy(BackendCotizacion.getCant_Otros());
 
-      function numeros_otros() {
-        for (var i = 30; i < 300; i+=10) {
-          var cant = { num: i, cantidad: i };
-          $scope.cant_otros.push(cant);
-        }
-        // return $scope.cant_otros;
-      }
+      // function numeros_otros() {
+      //   for (var i = 30; i < 300; i+=10) {
+      //     var cant = { num: i, cantidad: i };
+      //     $scope.cant_otros.push(cant);
+      //   }
+      //   // return $scope.cant_otros;
+      // }
 
       //objecto cliente
       $scope.cliente = {
@@ -313,7 +313,6 @@
             $scope.todoscontenedores = contenedores;
           });
         } else {
-
           Material.all().then(function (r) {
             var out = [];
             angular.forEach(r, function (v, k) {
@@ -364,6 +363,7 @@
 
       init();
 
+        
       $rootScope.total_m3 = Number($scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros);
 
       $rootScope.margen = Number($scope.cotizacion.porcentaje_margen);
