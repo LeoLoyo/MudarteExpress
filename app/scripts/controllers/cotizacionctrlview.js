@@ -14,7 +14,8 @@ app.service('BackendCotizacion', function () {
 
   var self = this;
 
-  var cotizaciones = [];
+  var cotizaciones = [],
+      cantidades = [];
 
   self.all = function () {
 
@@ -63,6 +64,25 @@ app.service('BackendCotizacion', function () {
       i++;
     }
     return null;
+  };
+  self.LoadCant = function () {
+
+    for (var i = 0; i < 100; i++) {
+
+      var cant = { num: i, cantidad: i };
+
+      cantidades.push(cant);
+
+    }
+
+    return cantidades;
+
+  };
+
+  self.getCant = function () {
+
+    return cantidades;
+
   };
 
   return self;
@@ -210,6 +230,8 @@ app.controller('CotizacionViewCtrl', ['$scope', '$state', 'Cotizacion', 'Backend
     Cotizacion.all().then(function (r) {
 
       $scope.cotizaciones_totales = r;
+
+      BackendCotizacion.LoadCant();
 
       BackendCotizacion.setCotizaciones(angular.copy($scope.cotizaciones_totales));
 

@@ -17,7 +17,7 @@
     'Material',
     'Bulto',
     'Cliente',
-    'setting', function (Session, $interval, $rootScope, $state, $scope, Users, Direccion, Cotizacion, Contenedor, Mueble, Material, Bulto, Cliente, setting) {
+    'setting', 'BackendCotizacion',function (Session, $interval, $rootScope, $state, $scope, Users, Direccion, Cotizacion, Contenedor, Mueble, Material, Bulto, Cliente, setting, BackendCotizacion) {
 
       var select = function () {
 
@@ -41,23 +41,17 @@
       }, 0);
 
       $('.btnsCotizacion').removeClass('hidden');
-      $scope.cantidades = [];
-      function numeros() {
 
-        for (var i = 0; i < 100; i++) {
-          $scope.cantidades.push({ num: i, cantidad: i });
-        }
-        return $scope.cantidades;
-      }
+      $scope.cantidades = angular.copy(BackendCotizacion.getCant());
 
       $scope.cant_otros = [];
+
       function numeros_otros() {
-        var i = 40;
-        while (i <= 300) {
-          $scope.cant_otros.push({ num: i, cantidad: i });
-          i += 10;
+        for (var i = 30; i < 300; i+=10) {
+          var cant = { num: i, cantidad: i };
+          $scope.cant_otros.push(cant);
         }
-        return $scope.cant_otros;
+        // return $scope.cant_otros;
       }
 
       //objecto cliente
@@ -135,22 +129,22 @@
 
       $scope.cotizacion = angular.copy(cotizacion);
 
-      $scope.cotizadores = [];
-      $scope.cotizadores = null;
+      // $scope.cotizadores = [];
+      // $scope.cotizadores = null;
+      //
+      // $scope.telefonistas = [];
+      // $scope.telefonistas = null;
+      //
+      // $scope.contenedores = [];
+      // $scope.contenedores = null;
+      //
+      // $scope.todoscontenedores = [];
+      // $scope.todoscontenedores = null;
+      //
+      // $scope.tipo_muebles = [];
+      // $scope.tipo_muebles = null;
 
-      $scope.telefonistas = [];
-      $scope.telefonistas = null;
-
-      $scope.contenedores = [];
-      $scope.contenedores = null;
-
-      $scope.todoscontenedores = [];
-      $scope.todoscontenedores = null;
-
-      $scope.tipo_muebles = [];
-      $scope.tipo_muebles = null;
-
-      $scope.barrio_provincias = [];
+      // $scope.barrio_provincias = [];
       // $scope.barrio_provincias = null;
 
 
@@ -277,7 +271,6 @@
       }
     //Controlador para generar PDF
       $scope.exportAction = function(event){
-        console.log(event)
       switch(event){
           case "pdf": $scope.$broadcast("export-pdf", {});
                       break;
@@ -289,28 +282,24 @@
        }
       }
 
-      function groupBy(array, f) {
-        var groups = {};
-        array.forEach(function (o) {
-          var group = JSON.stringify(f(o));
-
-          groups[group] = groups[group] || [];
-          groups[group].push(o);
-        });
-        return Object.keys(groups).map(function (group) {
-          return groups[group];
-        });
-      }
-setTimeout(function(){
+      // function groupBy(array, f) {
+      //   var groups = {};
+      //   array.forEach(function (o) {
+      //     var group = JSON.stringify(f(o));
+      //
+      //     groups[group] = groups[group] || [];
+      //     groups[group].push(o);
+      //   });
+      //   return Object.keys(groups).map(function (group) {
+      //     return groups[group];
+      //   });
+      // }
   Mueble.all().then(function (r) {
     // $scope.muebles = groupBy(r, function (item) {
     //   return [item.mueble, item.descripcion];
     // });
     $scope.muebles = r;
   });
-
-  $scope.$apply();
-},50)
       // $scope.muebles = groupBy(muebles_resolve, function (item) {
       //   return [item.especificacion, item.descripcion];
       // });
@@ -324,8 +313,6 @@ setTimeout(function(){
             $scope.todoscontenedores = contenedores;
           });
         } else {
-          numeros();
-          numeros_otros();
 
           Material.all().then(function (r) {
             var out = [];
@@ -354,7 +341,9 @@ setTimeout(function(){
           });
 
           Mueble.tipo_mueble().then(function (muebles) {
+
             $scope.tipo_muebles = muebles;
+
           }).catch(function () {
             $scope.tipo_muebles = [];
           });
@@ -391,7 +380,8 @@ setTimeout(function(){
       $scope.check = function (n) {
         n = Number(n) + 1;
         // n === '0' ? n = '1' : n = '0';
-        return n.toString();
+        // return n.toString();
+        return n;
       };
       $scope.checkc = function (n) {
         n === '0' ? n = '1' : n = '0';
@@ -429,10 +419,7 @@ setTimeout(function(){
       function check_material(contenedor){
         angular.forEach($scope.materiales, function(v,k){
           var mat = angular.copy(v);
-console.log(contenedor);
-// console.log();
           if(Number(mat.contenedor) === Number(contenedor.contenedor)){
-                      console.log("mat");
             setTimeout(function(){
               mat.cantidad = contenedor.cantidad;
               mat.iscontenedor = true;
@@ -496,7 +483,6 @@ console.log(contenedor);
 
       $scope.add_otros = function (campo, mueble, ancho, largo, alto, cant, descripcion, otro) {
         if (ancho !== undefined && largo !== undefined && alto !== undefined && mueble) {
-          console.log(mueble);
           var otro = {
             id: campo.id,
             mueble: mueble,
@@ -672,7 +658,7 @@ console.log(contenedor);
                   // $('.btnSeleccionado').children('.classContenedores').click();
                   $scope.limpiarM = true;
                   $scope.$apply();
-                }, 0);
+                }, 100);
               }
             }).catch(function(){
                 alert('ocurrio un error con el servidor');
@@ -715,22 +701,16 @@ console.log(contenedor);
       //temploral de material
       $scope.materiales_temp = [];
 
-      $scope.getIndexFromValue = function(value) {
-       for(var i=0; i<$scope.cantidades.length; i++) {
-           if($scope.cantidades[i].num === value) return i;
-       }
-      };
-      $scope.filtrado = function(cantidad){
-        return function (item) {
-
-        //  if ((item.num) !== Number(cantidad))
-        //  {          console.log(cantidad);
-        //          console.log(item);
-        //       return true;
-        // }
-        return false;
-    };
-      }
+    //   $scope.filtrado = function(cantidad){
+    //     return function (item) {
+    //
+    //     //  if ((item.num) !== Number(cantidad))
+    //     //  {
+    //     //       return true;
+    //     // }
+    //     return false;
+    // };
+      // }
       $scope.check_object = function(cantidad){
 
         if(typeof(cantidad) === 'object'){
@@ -757,7 +737,6 @@ console.log(contenedor);
 
         }
 
-        console.log(cant);
 
         var material_temp = {
           // id: 1,
