@@ -307,7 +307,7 @@
             </tr>
             <tr>
               <td class="paddingNone tdResumen" style="padding:0;display:flex;width:100px">
-                <span ng-if="nav==='7'" ng-show="nav==='7'" style="flex:10%;margin-top:auto;margin-bottom:auto;">{{cotizacion.porcentaje_margen}} %</span>
+                <span ng-if="nav==='7'" ng-show="nav==='7'" style="flex:10%;padding-top:9px;height:34px;text-align:center;">{{cotizacion.porcentaje_margen}} %</span>
                 <input ng-if="nav==='6'" ng-show="nav==='6'" type="number" class="form-control" style="flex:90%;border-radius:0;border:none;" min="0" ng-change="$emit('change_margen')" ng-model="cotizacion.porcentaje_margen"><span ng-if="nav==='6'" ng-show="nav==='6'" style="flex:10%;margin-top:auto;margin-bottom:auto;"> %</span>
               </td>
               <th class="tdResumen">Margen</th>
