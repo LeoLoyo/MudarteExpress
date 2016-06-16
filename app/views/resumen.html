@@ -1,80 +1,289 @@
-<div class="row">
+<div>
     <div class="col-md-12">
-      <h1>Resumen</h1>
-      <div class="panel panel-default hidden">
-        <div class="col-md-12"><h2>{{cliente.nombre}}</h2></div>
-        <div class="panel-body">
+      <div class="">
+        <br>
+        <table class="tablaResumen" style="max-width:100%!important;">
+          <tr>
+            <td rowspan="3">
+              <p><strong>4701-1177<strong></p>
+              <p><strong>WWW.MUDARTE.COM.AR<strong></p>
+              <p>info@mudarte.com.ar </p>
+              <p>3 de Febrero 3455 / Nuñez</p>
+            </td>
+            <td rowspan="3">
+              <h2>Cotización</h2>
+            </td>
+            <td rowspan="3" colspan="2">
+              <img src="img/LogoMudarte.png" alt="">
+            </td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>N° Cotiz.</td>
+            <td>{{cotizacion.numero_cotizacion}}</td>
+          </tr>
+          <tr>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Fuente</td>
+            <td>{{cotizacion.fuente}}</td>
+          </tr>
+          <tr>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Particular</td>
+            <td><strong ng-if="cotizacion.tipo_cliente ==='Particular'">X</strong></td>
+          </tr>
+          <tr>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Nombre y Apellido:</td>
+            <td colspan="3">{{cliente.nombre}}</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Empresa</td>
+            <td><strong ng-if="cotizacion.tipo_cliente ==='Empresa'">X</strong></td>
+          </tr>
+          <tr>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Teléfono:</td>
+            <td colspan="3">{{cliente.telefono}}</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Gobierno</td>
+            <td><strong ng-if="cotizacion.tipo_cliente ==='Gobierno'">X</strong></td>
+          </tr>
+          <tr>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Correo electronico:</td>
+            <td colspan="3">{{cliente.email}}</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Cargo</td>
+            <td>{{cotizacion.cargo}}</td>
+          </tr>
+          <tr>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Nombre de la empresa: </td>
+            <td colspan="3">{{cotizacion.cp_pv}}</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Cotizador</td>
+            <td>{{cotizacion.cotizador.first_name}} {{cotizacion.cotizador.last_name}}</td>
+          </tr>
+          <!-- <tr>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Fecha en que se cargó:</td>
+            <td>{{cotizacion.fecha_de_carga | date:'dd-MM-yyyy'}}</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Hora:</td>
+            <td>{{cotizacion.hora_de_carga | date:'HH:mm'}}</td>
 
-        <h3>{{cliente.nombre}}</h3>
-          <div class="col-md-12 col-lg-4">
-            <p><strong>Email:</strong>
-              {{cliente.email}}
-            </p>
-            <p><strong>Telefono:</strong>
-               {{cliente.telefono}}
-            </p>
-
-          </div>
-          <div class="col-md-12 col-lg-4">
-
-          </div>
-          <div class="col-md-12 col-lg-4">
-            <p>
-              <strong>N° Cotización: </strong>{{cotizacion.numero}}
-            </p>
-            <p>
-              <strong>Responsable: </strong>{{cotizacion.responsable}}
-            </p>
-        </div>
-        <p><strong>Dirección:</strong>{{cliente.direccion}}</p>
-      </div>
-    </div>
-        <form class="formulario">
+          </tr> -->
+          <tr>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Fecha estimada de mudanza:</td>
+            <td>{{cotizacion.fecha_estimada_mudanza | date:'dd-MM-yyyy'}}</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Hora:</td>
+            <td style="border-right:1px solid #dedede;">{{cotizacion.hora_estimada_mudanza | date:'HH:mm'}}</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Forma pago</td>
+            <td class="" style="border-bottom: 1px solid #dedede;">{{cotizacion.forma_pago}}</td>
+          </tr>
+          <tr>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Fecha en que se cotizó:</td>
+            <td>{{cotizacion.fecha_de_cotizacion | date:'dd-MM-yyyy'}}</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Hora:</td>
+            <td style="border-right:1px solid #dedede;">{{cotizacion.hora_de_cotizacion | date:'HH:mm'}}</td>
+          </tr>
+          <!-- <tr>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Fecha en que se avisó:</td>
+            <td>{{cotizacion.fecha_de_aviso | date:'dd-MM-yyyy'}}</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Hora:</td>
+            <td>{{cotizacion.hora_de_aviso | date:'HH:mm'}}</td>
+          </tr> -->
+          <!-- <tr>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Fecha en que se cerró:</td>
+            <td>{{cotizacion.fecha_de_cierre | date:'dd-MM-yyyy'}}</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Hora:</td>
+            <td>{{cotizacion.hora_de_cierre | date:'HH:mm'}}</td>
+          </tr> -->
+          <!-- <tr>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Fecha real de mudanza:</td>
+            <td>{{cotizacion.fecha_real_mudanza | date:'dd-MM-yyyy'}}</td>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Hora:</td>
+            <td>{{cotizacion.hora_real_mudanza | date:'HH:mm'}}</td>
+          </tr> -->
+          <!-- <tr>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Nombre de quien pasó la cotización:</td>
+            <td>
+              {{cotizacion.quien_cotizo}}
+            </td>
+            <td class="tdResumen" colspan="4"></td>
+          </tr>
+          <tr>
+            <td style="background-color: #fff;" class="tdResumen" align=center>Nombre de quien llamó al cliente:</td>
+            <td>{{cotizacion.quien_llamo}}</td>
+            <td class="tdResumen" colspan="4"></td>
+          </tr> -->
+          <tr>
+            <th style="background-color: #fff; border-right: 1px solid #dedede;" class="tdResumen" colspan="2" align=center >Domicilio de Origen:</th>
+            <th style="background-color: #fff;align=center;"  class="tdResumen" colspan="4">Barrio/Provincia:</th>
+          </tr>
+          <tr>
+            <td colspan="2" style="border-right: 1px solid #dedede;">{{cotizacion.direccion_origen}}</td>
+            <td>{{cotizacion.barrio_provincia_origen}}</td>
+          </tr>
+          <tr>
+            <th style="background-color: #fff;" class="tdResumen" align=center colspan="6">Observaciones de Origen:</th>
+          </tr>
+          <tr>
+            <td colspan="6">{{cotizacion.observacion_origen}}</td>
+          </tr>
+          <tr>
+            <th style="background-color: #fff; border-right: 1px solid #dedede;" class="tdResumen" align=center colspan="2">Domicilio de Destino:</th>
+            <th style="background-color: #fff;" class="tdResumen" align=center colspan="4">Barrio/Provincia:</th>
+          </tr>
+          <tr>
+            <td colspan="2" style="border-right: 1px solid #dedede;">{{cotizacion.direccion_destino}}</td>
+            <td>{{cotizacion.barrio_provincia_destino}}</td>
+          </tr>
+          <tr>
+            <th style="background-color: #fff;" class="tdResumen" align=center colspan="6">Observaciones de Destino:</th>
+          </tr>
+          <tr>
+            <td colspan="6">{{cotizacion.observacion_destino}}</td>
+          </tr>
+        </table>
+        <legend></legend>
+        <h2>Detalle de mudanza</h2>
+        <table class="tablaResumen">
+          <tr>
+            <td class="tdResumen" align="center">km</td>
+            <td>{{cotizacion.recorrido_km}}</td>
+            <td align="center" class="tdResumen">{{cotizacion.precio_km|currency}}</td>
+            <td align="center" class="tdResumen">{{cotizacion.monto_km|currency}}</td>
+          </tr>
+          <tr>
+            <td class="tdResumen" align="center">Tiempo de carga</td>
+            <td align="center" colspan="2" class="tdResumen">{{cotizacion.tiempo_de_carga}}</td>
+          </tr>
+          <tr>
+            <td class="tdResumen" align="center">Tiempo de descarga</td>
+            <td align="center" colspan="2" class="tdResumen">{{cotizacion.tiempo_de_descarga}}</td>
+          </tr>
+          <tr>
+            <td class="tdResumen" align="center">Camión</td>
+            <td align="center" colspan="2" class="tdResumen">{{cotizacion.numero_camion}}</td>
+          </tr>
+          <tr>
+            <td class="tdResumen" align="center">Ayudantes</td>
+            <td align="center" colspan="2" class="tdResumen">{{cotizacion.numero_ayudante.num}}</td>
+          </tr>
+          <tr>
+            <td class="tdResumen" align="center">Seguro</td>
+            <td align="center" colspan="2" class="tdResumen">{{cotizacion.seguro}}</td>
+          </tr>
+          <tr>
+            <td class="tdResumen" align="center">Desarme de Muebles</td>
+            <td align="center" colspan="2" class="tdResumen">{{cotizacion.desarme_mueble}}</td>
+          </tr>
+          <tr>
+            <td class="tdResumen" align="center">Ambiente</td>
+            <td align="center" colspan="2" class="tdResumen">{{cotizacion.ambiente.num}}</td>
+          </tr>
+          <tr>
+            <td class="tdResumen" align="center">Rampa</td>
+            <td align="center" colspan="2" class="tdResumen">{{cotizacion.rampa}}</td>
+          </tr>
+        </table>
+        <legend></legend>
+        <h2>Materiales</h2>
+        <table class="tablaResumen">
+          <tr class="active">
+            <th>Material</th>
+            <th style="text-align:center!important;">Cantidad</th>
+            <th width="200" style="text-align:center!important;">Precio unit.</th>
+            <th width="200" style="text-align:right!important;">Totales</th>
+          </tr>
+          <tr ng-repeat="item in materiales_temp">
+            <td>{{item.material}}</td>
+            <td style="text-align:center!important;">{{item.cantidad}}</td>
+            <td style="text-align:center!important;">{{item.precio_unitario}}</td>
+            <td style="text-align:right!important;" >{{item.total|currency}}</td>
+          </tr>
+          <tr class="active">
+            <td colspan="3" style="text-align:right!important;border-right: 1px solid #dedede;"><strong>Total:</strong></td>
+            <td style="text-align:right!important;"><strong>{{cotizacion.materiales|currency}}</strong></td>
+          </tr>
+        </table>
+        <legend></legend>
+        <h2>Presupuesto</h2>
+        <table class="tablaResumen">
+          <tr class="active">
+            <th  class="tdResumen">Descripción</th>
+            <th  class="tdResumen" style="width:400px;">Montos $</th>
+          </tr>
+          <tr>
+            <td  class="tdResumen" width="40px;" >Mudanza</td>
+            <td style="text-align:right!important;">{{cotizacion.mudanza|currency}}</td>
+          </tr>
+          <tr>
+            <td  class="tdResumen" width="20%">Soga</td>
+            <td style="text-align:right!important;">{{cotizacion.soga|currency}}</td>
+          </tr>
+          <tr>
+            <td  class="tdResumen" width="20%">Embalaje</td>
+            <td style="text-align:right!important;">{{cotizacion.embalaje|currency}}</td>
+          </tr>
+          <tr>
+            <td  class="tdResumen" width="20%">Desembalaje</td>
+            <td style="text-align:right!important;">{{cotizacion.desembalaje|currency}}</td>
+          </tr>
+          <tr>
+            <td  class="tdResumen" width="20%">Materiales</td>
+            <td style="text-align:right!important;">{{cotizacion.materiales|currency}}</td>
+          </tr>
+          <tr>
+            <td class="tdResumen" width="20%">km</td>
+            <td style="text-align:right!important;">{{cotizacion.monto_km|currency}}</td>
+          </tr>
+          <tr>
+            <td  class="tdResumen" width="20%">Piano/C.fuerte</td>
+            <td style="text-align:right!important;">{{cotizacion.piano_cajafuerte|currency}}</td>
+          </tr>
+          <tr class="active">
+            <td  class="tdResumen" width="80%">Sub total</td>
+            <td style="text-align:right!important;">{{cotizacion.subtotal1|currency}}</td>
+          </tr>
+          <tr>
+            <td  class="tdResumen" width="80%">Ajuste</td>
+            <td><span style="text-align:start;">
+              % {{cotizacion.porcentaje_ajuste|number:2}}</span> <span style="float:right!important;"> {{cotizacion.ajuste|currency}}</span></td>
+          </tr>
+          <tr class="active">
+            <td  class="tdResumen" width="80%">Sub total</td>
+            <td style="text-align:right!important;">{{cotizacion.subtotal2|currency}}</td>
+          </tr>
+          <tr class="active">
+            <td  class="tdResumen" width="80%">IVA</td>
+            <td><span style="text-align:start;">% {{cotizacion.porcentaje_iva|number:2}}</span>
+              <span style="float:right!important;">{{cotizacion.iva|currency}}</span></td>
+          </tr>
+          <tr class="active">
+            <th  class="tdResumen" width="80%" style="text-align:right!important;border-right: 1px solid #dedede;">Total:</th>
+            <td style="text-align:right!important;"><strong>{{cotizacion.total_monto|currency}}</strong></td>
+          </tr>
+        </table>
+        <legend></legend>
           <h2>Contenedores</h2>
-          <table class="table table-bordered">
-              <tr class="info">
+          <table class="tablaResumen">
+              <tr class="tdResumen active">
                 <th>Contenedor</th>
                 <th style="width:80px; padding:10px;">Cantidad</th>
                 <th style="width:80px; padding:10px; padding-left:30px;">m<sup>3</sup></th>
               </tr>
               <tr ng-repeat="item in contenedores_temp">
-                <td>{{item.contenedor}}</td>
-                <td align="center">{{item.unidad}}</td>
+                <td >{{item.descripcion}}</td>
+                <td align="center">{{item.cantidad}}</td>
                 <td align="center">{{item.punto/10|number:2}}</td>
               </tr>
               <tr class="active">
-                <td><strong>Total</strong></td>
+                <td style="text-align:right!important;border-right: 1px solid #dedede;"><strong>Total:</strong></td>
                 <td align="center"><strong>{{unidades_contenedores}}</strong></td>
                 <td align="center"><strong>{{metros3_contenedores|number:2}}</strong></td>
               </tr>
           </table>
-
+          <legend></legend>
           <h2>Muebles</h2>
-          <table class="table table-bordered">
-            <tr class="info">
+          <table class="tablaResumen">
+            <tr class="tdResumen active">
               <th>Mueble</th>
+              <th style="text-align:center;">Dimensión</th>
               <th style="width:80px; padding:10px;">Cantidad</th>
               <th style="width:80px; padding:10px; padding-left:30px;">m<sup>3</sup></th>
             </tr>
             <tr ng-repeat="item in muebles_temp">
-              <td>{{item.mueble}}</td>
+              <td>{{item.mueble}} {{item.especificacion}} {{item.descripcion}}</td><!-- cambio leo -->
+              <td align="center">{{item.ancho}}x{{item.largo}}x{{item.alto}}</td>
               <td align="center">{{item.cantidad}}</td>
               <td align="center">{{item.total_punto/10|number:2}}</td>
-            </tr>
-            <tr class="active">
-              <td><strong>Total</strong></td>
-              <td align="center"><strong>{{unidades_muebles}}</strong></td>
-              <td align="center"><strong>{{metros3_muebles|number:2}}</strong></td>
-            </tr>
-          </table>
-
-          <h2>Otros</h2>
-          <table class="table table-bordered">
-            <tr class="info">
-              <th>Descripción</th>
-              <th style="width:80px; padding:10px;">Dimension</th>
-              <th style="width:80px; padding:10px;">Cantidad</th>
-              <th style="width:80px; padding:10px; padding-left:30px;">m<sup>3</sup></th>
             </tr>
             <tr ng-repeat="item in otros_temp">
               <td ng-if="item.mueble == 'Otros'">Otros-{{item.descripcion}}</td>
@@ -84,131 +293,380 @@
               <td align="center">{{item.total_punto/10|number:2}}</td>
             </tr>
             <tr class="active">
-              <td colspan="2"><strong>Total</strong></td>
-              <td align="center"><strong>{{unidades_otros}}</strong></td>
-              <td align="center"><strong>{{metros3_otros|number:2}}</strong></td>
+              <td colspan="2" style="text-align:right!important;border-right: 1px solid #dedede;"><strong>Total:</strong></td>
+              <td align="center"><strong>{{unidades_muebles + unidades_otros}}</strong></td>
+              <td align="center"><strong>{{metros3_muebles + metros3_otros|number:2}}</strong></td>
             </tr>
           </table>
-
+          <legend></legend>
           <h2>Totales</h2>
-          <table style="width:200px;" class="table table-bordered">
+          <table style="width:200px;" class="tablaResumen">
             <tr>
-              <th class="info">Total Contenido</th>
-              <td align="center"><strong>{{unidades_contenedores+unidades_muebles+unidades_otros}}</strong></td>
+              <th colspan="2" class="tdResumen">Total m<sup>3</sup>:</th>
+              <td align="center" class="tdResumen"><strong style="display:flex;"><span style="flex:10%;margin-top:auto;margin-bottom:auto;">{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}</span><span style="flex:10%;margin-top:auto;margin-bottom:auto;"> m<sup>3</sup></span></strong></td>
             </tr>
             <tr>
-              <th class="info">Total m<sup>3</sup></th>
-              <td align="center"><strong>{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}</strong></td>
+              <td class="paddingNone tdResumen" style="padding:0;display:flex;width:100px">
+                <span ng-if="nav==='7'" ng-show="nav==='7'" style="flex:10%;padding-top:9px;height:34px;text-align:center;">{{cotizacion.porcentaje_margen}} %</span>
+                <input ng-if="nav==='6'" ng-show="nav==='6'" type="number" class="form-control" style="flex:90%;border-radius:0;border:none;" min="0" ng-change="$emit('change_margen')" ng-model="cotizacion.porcentaje_margen"><span ng-if="nav==='6'" ng-show="nav==='6'" style="flex:10%;margin-top:auto;margin-bottom:auto;"> %</span>
+              </td>
+              <th class="tdResumen">Margen</th>
+              <td class="tdResumen"><strong style="display:flex;"><span style="flex:90%;border-radius:0;border:none;">{{(metros3_contenedores+metros3_muebles+metros3_otros)*(1+(cotizacion.porcentaje_margen/100))|number:2}}</span> <span style="flex:10%;margin-top:auto;margin-bottom:auto;">m<sup>3</sup></span></strong></td>
             </tr>
           </table>
-          <button type="submit" ng-disabled="otros_temp.length === 0 && contenedores_temp.length === 0 && muebles_temp.length === 0" class="btn btn-success" onclick="descargarExcel()" ng-click="save(cotizacion,cliente)">Exportar</button>
-        </form>
+           <button type="submit" ng-disabled="otros_temp.length === 0 && contenedores_temp.length === 0 && muebles_temp.length === 0" class="btn btn-success hidden" ng-click="exportAction('pdf')">Exportar</button>
     </div>
 
     <div id="divExportar" class="col-md-12 hidden">
-        <h1>Resumen</h1>
-            <!-- <table border=1 id="tablaTotal" class="hidden">
-              <tr>
-                <th style="background-color: #d9edf7">Nro. Cotizacion</th>
-                <td>{{cotizacion.numero}}</td>
-              </tr>
-              <tr>
-                <th style="background-color: #d9edf7">Cliente</th>
-                <td>{{cliente.nombre}}</td>
-              </tr>
-              <tr>
-                <th style="background-color: #d9edf7">Responsable</th>
-                <td>{{cliente.responsable}}</td>
-              </tr>
-            </table> -->
+      <h1 style="color:#fff">Resumen</h1>
+          <table border=1 style="width:1450;" id="prueba">
+            <thead>
+             <tr>
+              <td rowspan=8 colspan=6>
+                <pre><font rowspan=2 size=5 face="verdana"><strong>      4701-1177                                                                  <strong></font><u><font rowspan=2 align=rigth color="#CC6202" size=7 face="verdana"><i>M</i></font><font size=7 face="verdana"><i><b>udarte<b></i></font></u></pre>
+                <pre><font size=3 face="verdana"><strong>  WWW.MUDARTE.COM.AR               <strong></font><font size=6 face="verdana">     Cotización            </font><font size=2 face="verdana">  mudanzas, embalajes, guardamuebles</font></pre>
+                <pre><font size=3 face="verdana">      info@mudarte.com.ar</font></pre>
+                <pre><font size=3 face="verdana">  3 de Febrero 3455 / Nuñez</font></pre>
+              </td>
+                <th rowspan=2>N° Cotiz.</th>
+                <th rowspan=2 align=center>{{cotizacion.numero_cotizacion}}</th>
+             </tr>
+             <tr></tr>
+             <tr>
+               <th rowspan=2>Fuente</th>
+               <th rowspan=2 align=center>{{cotizacion.fuente}}</th>
+             </tr>
+             <tr></tr>
+             <tr>
+               <th rowspan=2>Particular</th>
+               <td rowspan=2 align=center><strong ng-if="cotizacion.tipo_cliente ==='Particular'">X</strong></td>
+             </tr>
+             <tr></tr>
+             <tr>
+               <th rowspan=2>Empresa</th>
+               <td rowspan=2 align=center><strong ng-if="cotizacion.tipo_cliente ==='Empresa'">X</strong></td>
+             </tr>
+             <tr></tr>
+             <tr>
+               <th align=left rowspan=2 colspan=1>Nombre y apellido:</th>
+               <td align=center rowspan=2 colspan=5><h2>{{cliente.nombre}}</h2></td>
+               <th rowspan=2>Gobierno</th>
+               <td rowspan=2 align=center><strong ng-if="cotizacion.tipo_cliente ==='Gobierno'">X</strong></td>
+             </tr>
+             <tr></tr>
+             <tr>
+               <th align=left rowspan=2 colspan=1>Teléfono:</th>
+               <td align=center rowspan=2 colspan=5>{{cliente.telefono}}</td>
+               <th rowspan=2>Cargo</th>
+               <td rowspan=2 align=center>{{cotizacion.cargo}}</td>
+             </tr>
+             <tr></tr>
+             <tr>
+               <th align=left rowspan=2 colspan=1>Correo electrónico:</th>
+               <td align=center rowspan=2 colspan=5>{{cliente.email}}</td>
+               <th rowspan=2>Cotizador</th>
+               <td rowspan=2 align=center>{{cotizacion.cotizador.first_name}} {{cotizacion.cotizador.last_name}}</td>
+             </tr>
+             <tr></tr>
+             <tr>
+               <th align=left rowspan=2 colspan=1>Nombre de la empresa:</th>
+               <td align=center rowspan=2 colspan=5>{{cotizacion.cp_pv}}</td>
+               <th rowspan=2>Forma Pago</th>
+               <td rowspan=2 align=center>{{cotizacion.forma_pago}}</td>
+             </tr>
+             <tr></tr>
+             <tr>
+               <th align=left rowspan=2 colspan=1>Fecha estimada de mudanza:</th>
+               <td align=center rowspan=2 colspan=2>{{cotizacion.fecha_estimada_mudanza | date:'dd-MM-yyyy'}}</td>
+               <th rowspan=2 colspan=1>Hora:</th>
+               <td rowspan=2 colspan=2 align=center>{{cotizacion.hora_estimada_mudanza | date: 'HH:mm'}}</td>
+             </tr>
+             <tr></tr>
+             </thead>
+             <tbody>
+             <tr>
+               <th align=left rowspan=2 colspan=1>Fecha en que se cotizó:</th>
+               <td align=center rowspan=2 colspan=2>{{cotizacion.fecha_de_cotizacion | date:'dd-MM-yyyy'}}</td>
+               <th rowspan=2 colspan=1>Hora:</th>
+               <td rowspan=2 colspan=2 align=center>{{cotizacion.hora_de_cotizacion | date: 'HH:mm'}}</td>
+             </tr>
+             <tr></tr>
+             <tr>
+               <th rowspan=2 colspan=4>Domicilio de Origen:</th>
+               <th rowspan=2 colspan=2>Barrio/Provincia:</th>
+             </tr>
+             <tr></tr>
+             <tr>
+               <td align=center rowspan=3 colspan=4>{{cotizacion.direccion_origen}}</td>
+               <td align=center rowspan=3 colspan=2>{{cotizacion.barrio_provincia_origen}}</td>
+             </tr>
+             <tr></tr>
+             <tr></tr>
+             <tr>
+               <th rowspan=2 colspan=6>Observaciones de Origen:</th>
+             </tr>
+             <tr></tr>
+             <tr>
+               <td align=center rowspan=6 colspan=6>{{cotizacion.observacion_origen}}</td>
+             </tr>
+             <tr></tr>
+             <tr></tr>
+             <tr></tr>
+             <tr></tr>
+             <tr></tr>
+             <tr>
+               <th rowspan=2 colspan=4>Domicilio de Destino:</th>
+               <th rowspan=2 colspan=2>Barrio/Provincia:</th>
+             </tr>
+             <tr></tr>
+             <tr>
+               <td align=center rowspan=3 colspan=4>{{cotizacion.direccion_destino}}</td>
+               <td align=center rowspan=3 colspan=2>{{cotizacion.barrio_provincia_destino}}</td>
+             </tr>
+             <tr></tr>
+             <tr></tr>
+             <tr>
+               <th rowspan=2 colspan=6>Observaciones de Destino:</th>
+             </tr>
+             <tr></tr>
+             <tr>
+               <td align=center rowspan=6 colspan=6>{{cotizacion.observacion_destino}}</td>
+             </tr>
 
-          <h2>Contenedores</h2>
-            <legend></legend>
-            <table border=1 id="tablaContenedor">
+             <tr></tr>
+             <tr></tr>
+             <tr></tr>
+             <tr></tr>
+           </tbody>
+           </table>
+           <br>
+           <br>
+           <br>
+           <br>
+         <h2>Detalle de mudanza</h2>
+         <table border=1 id="tablaMateriales">
+         <tbody>
+             <tr>
+               <th rowspan=2 colspan=1>Km</th>
+               <td rowspan=2 align=center>{{cotizacion.recorrido_km}}</td>
+               <td rowspan=2 align=center>{{cotizacion.precio_km|currency}}</td>
+               <td rowspan=2 colspan=2 align=center>{{cotizacion.monto_km|currency}}</td>
+               <th rowspan=2 colspan=1>Mudanza</th>
+               <td rowspan=2 colspan=2 align=center>{{cotizacion.mudanza}}</td>
+             </tr>
+             <tr></tr>
+             <tr>
+               <th rowspan=2 colspan=1>Tiempo de carga</th>
+               <td rowspan=2 colspan=2 align=center>{{cotizacion.tiempo_de_carga}}</td>
+               <td rowspan=2 colspan=2 align=center></td>
+               <th rowspan=2 colspan=1>Soga</th>
+               <td rowspan=2 colspan=2 align=center>{{cotizacion.soga}}</td>
+             </tr>
+             <tr></tr>
+             <tr>
+               <th rowspan=2 colspan=1>Tiempo de descarga</th>
+               <td rowspan=2 colspan=2 align=center>{{cotizacion.tiempo_de_descarga}}</td>
+               <td rowspan=2 colspan=2 align=center></td>
+               <th rowspan=2 colspan=1>Embalaje</th>
+               <td rowspan=2 colspan=2 align=center>{{cotizacion.embalaje}}</td>
+             </tr>
+             <tr></tr>
+             <tr>
+               <th rowspan=2 colspan=1>Camión N°</th>
+               <td rowspan=2 colspan=2 align=center>{{cotizacion.numero_camion}}</td>
+               <td rowspan=2 colspan=2 align=center></td>
+               <th rowspan=2 colspan=1>Desembalaje</th>
+               <td rowspan=2 colspan=2 align=center>{{cotizacion.desembalaje}}</td>
+             </tr>
+             <tr></tr>
+             <tr>
+               <th rowspan=2 colspan=1>Ayudantes</th>
+               <td rowspan=2 colspan=2 align=center>{{cotizacion.numero_ayudante.num}}</td>
+               <td rowspan=2 colspan=2 align=center></td>
+               <th rowspan=2 colspan=1>Materiales</th>
+               <td rowspan=2 colspan=2 align=center>{{cotizacion.materiales}}</td>
+             </tr>
+             <tr></tr>
+             <tr>
+               <th rowspan=2 colspan=1>Seguro</th>
+               <td rowspan=2 colspan=2 align=center>{{cotizacion.seguro}}</td>
+               <td rowspan=2 colspan=2 align=center></td>
+               <th rowspan=2 colspan=1>Piano/C.fuerte</th>
+               <td rowspan=2 colspan=2 align=center>{{cotizacion.piano_cajafuerte}}</td>
+             </tr>
+             <tr></tr>
+             <tr>
+               <th rowspan=2 colspan=1>Desarme de Muebles</th>
+               <td rowspan=2 colspan=2 align=center>{{cotizacion.desarme_mueble}}</td>
+               <td rowspan=2 colspan=2 align=center></td>
+               <th rowspan=2 colspan=1>Sub total</th>
+               <td rowspan=2 colspan=2 align=center>{{cotizacion.subtotal1}}</td>
+             </tr>
+             <tr></tr>
+             <tr>
+               <th rowspan=2 colspan=1>Ambientes</th>
+               <td rowspan=2 colspan=2 align=center>{{cotizacion.ambiente.num}}</td>
+               <td rowspan=2 colspan=2 align=center></td>
+               <th rowspan=2 colspan=1>Ajuste</th>
+               <td rowspan=2 colspan=1 align=center>% {{cotizacion.porcentaje_ajuste|number:2}}</td>
+               <td rowspan=2 colspan=1 align=center>{{cotizacion.ajuste|currency}}</td>
+             </tr>
+             <tr></tr>
+             <tr>
+               <th rowspan=2 colspan=1>Rampa</th>
+               <td rowspan=2 colspan=2 align=center>{{cotizacion.rampa}}</td>
+               <td rowspan=2 colspan=2 align=center></td>
+               <th rowspan=2 colspan=1>Sub total</th>
+               <td rowspan=2 colspan=2 align=center>{{cotizacion.subtotal2|currency}}</td>
+             </tr>
+             <tr></tr>
+             <tr>
+               <th rowspan=4 colspan=5></th>
+               <th rowspan=2 colspan=1>IVA</th>
+               <td rowspan=2 colspan=1 align=center>% {{cotizacion.porcentaje_iva|number:2}}</td>
+               <td rowspan=2 colspan=1 align=center>{{cotizacion.iva|currency}}</td>
+             </tr>
+             <tr></tr>
               <tr>
-                <th style="background-color: #d9edf7;">Contenedor</th>
-                <th style="background-color: #d9edf7;">Cantidad</th>
-                <th style="background-color: #d9edf7;">m<sup>3</sup></th>
-              </tr>
-              <tr ng-repeat="item in contenedores_temp">
-                <td>{{item.contenedor}}</td>
-                <td>{{item.unidad}}</td>
-                <td>{{item.punto/10|number:2}}</td>
-              </tr>
-              <tr style="background-color: #f5f5f5">
-                <th class="estiloUno">Total</th>
-                <td><strong>{{unidades_contenedores}}</strong></td>
-                <td><strong>{{metros3_contenedores|number:2}}</strong></td>
-              </tr>
-            </table>
+               <th rowspan=2 colspan=1 style="background-color: #A9A9A9;">Total</th>
+               <th rowspan=2 colspan=2 style="background-color: #A9A9A9;" align=center>{{cotizacion.total_monto|currency}}</th>
+             </tr>
+             <tr></tr>
+           </tbody>
+           </tr>
+           </table>
+           <br>
+           <br>
+           <br>
+           <h2>Materiales</h2>
+           <table border=1 id="tablaMateriales">
+             <thead>
+             <tr style="height:35px;">
+               <th width=50>Materiales</th>
+               <th width=60>Cantidad</th>
+               <th width=70>Precio unit.</th>
+               <th width=80 colspan="2">Totales</th>
+             </tr>
+             </thead>
+             <tbody>
+             <tr height=35 ng-repeat="item in materiales_temp">
+               <td align=center>{{item.material}}</td>
+               <td align=center>{{item.cantidad}}</td>
+               <td align=center>{{item.precio_unitario}}</td>
+               <td align=center colspan="2">{{item.total|currency}}</td>
+             </tr>
+             <tr height=35 style="background-color: #A9A9A9;">
+               <th colspan="3">Total:</th>
+               <th colspan="2"><strong>{{cotizacion.materiales|currency}}</strong></th>
+             </tr>
+           </table>
+           <br>
+           <br>
+           <h2>Contenedores</h2>
+           <legend></legend>
+           <table border=1 id="tablaContenedor">
+             <thead>
+             <tr style="height:35px;">
+               <th width=50>Contenedor</th>
+               <th width=60>Cantidad</th>
+               <th width=70>m<sup>3</sup></th>
+             </tr>
+             </thead>
+             <tbody>
+             <tr ng-repeat="item in contenedores_temp">
+               <td height=35 align=center>{{item.descripcion}}</td>
+               <td align=center>{{item.cantidad}}</td>
+               <td align=center>{{item.punto/10|number:2}}</td>
+             </tr>
+             <tr height=35 style="background-color: #A9A9A9;">
+               <th>Total</th>
+               <th align=center><strong>{{unidades_contenedores}}</strong></th>
+               <th align=center><strong>{{metros3_contenedores|number:2}}</strong></th>
+             </tr>
 
-            <h2>Muebles</h2>
-            <legend></legend>
-            <table border=1 id="tablaMueble">
-              <tr>
-                <th style="background-color: #d9edf7">Mueble</th>
-                <th style="background-color: #d9edf7">Cantidad</th>
-                <th style="background-color: #d9edf7">m<sup>3</sup></th>
-              </tr>
-              <tr ng-repeat="item in muebles_temp">
-                <td>{{item.mueble}}</td>
-                <td>{{item.cantidad}}</td>
-                <td>{{item.total_punto/10|number:2}}</td>
-              </tr>
-              <tr style="background-color: #f5f5f5">
-                <th class="estiloUno">Total</th>
-              <td><strong>{{unidades_muebles}}</strong></td>
-              <td><strong>{{metros3_muebles|number:2}}</strong></td>
-              </tr>
-            </table>
-
-            <h2>Otros</h2>
-            <legend></legend>
-            <table border=1 id="tablaOtro">
-              <tr>
-                <th style="background-color: #d9edf7">Descripcion</th>
-                <th style="background-color: #d9edf7">Dimension</th>
-                <th style="background-color: #d9edf7">Cantidad</th>
-                <th style="background-color: #d9edf7">m<sup>3</sup></th>
-              </tr>
-              <tr ng-repeat="item in otros_temp">
-                <td ng-if="item.mueble == 'Otros'">Otros-{{item.descripcion}}
-                <td ng-if="item.mueble != 'Otros'">{{item.mueble}}</td>
-                <td>{{item.ancho}}x{{item.largo}}x{{item.alto}}</td>
-                <td>{{item.cantidad}}</td>
-                <td>{{item.total_punto/10|number:2}}</td>
-              </tr>
-              <tr style="background-color: #f5f5f5">
-              <th colspan="2" class="estiloUno">Total</th>
-              <td><strong>{{unidades_otros}}</strong></td>
-              <td><strong>{{metros3_otros|number:2}}</strong></td>
-              </tr>
-            </table>
-
-            <h2>Totales</h2>
-            <legend></legend>
-            <table border=1 id="tablaTotal">
-              <tr>
-                <th style="background-color: #d9edf7">Total Contenido</th>
-                <th><strong>{{unidades_contenedores+unidades_muebles+unidades_otros}}</strong></th>
-              </tr>
-              <tr>
-                <th style="background-color: #d9edf7">Total m<sup>3</sup></th>
-                <th><strong>{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}</strong></th>
-              </tr>
-            </table>
-    </div>
+           </table>
+           <br>
+           <br>
+           <h2>Muebles</h2>
+           <legend></legend>
+           <table border=1 id="tablaMueble">
+             <tr style="height:35px;">
+               <th>Mueble</th>
+               <th>Medidas Aprox.</th>
+               <th>Cantidad</th>
+               <th>m<sup>3</sup></th>
+             </tr>
+             <tr ng-repeat="item in muebles_temp">
+               <td  ng-if="item.mueble != ''">{{item.mueble}} {{item.especificacion}}</td><!-- cambio leo -->
+               <td align="center">{{item.ancho}}x{{item.largo}}x{{item.alto}}</td>
+               <td align="center">{{item.cantidad}}</td>
+               <td align="center">{{item.total_punto/10|number:2}}</td>
+             </tr>
+             <tr ng-repeat="item in otros_temp">
+               <td ng-if="item.mueble == 'Otros'">Otros-{{item.descripcion}}</td>
+               <td ng-if="item.mueble != 'Otros'">{{item.mueble}}</td>
+               <td align="center">{{item.ancho}}x{{item.largo}}x{{item.alto}}</td>
+               <td align="center">{{item.cantidad}}</td>
+               <td align="center">{{item.total_punto/10|number:2}}</td>
+             </tr>
+             <tr style="height:35px; background-color: #A9A9A9;">
+               <th colspan=2>Total</th>
+               <th align=center><strong>{{unidades_muebles + unidades_otros}}</strong></th>
+               <th align=center><strong>{{metros3_muebles + metros3_otros|number:2}}</strong></th>
+             </tr>
+           </table>
+         <h2>Totales</h2>
+         <table border=1 id="tablaTotal">
+           <tr style="height:35px; background-color: #A9A9A9;">
+             <th colspan="2">Total m<sup>3</sup></th>
+             <th align="center"><strong>{{metros3_contenedores+metros3_muebles+metros3_otros|number:2}}</strong></th>
+           </tr>
+           <tr style="height:35px;">
+             <th>{{cotizacion.porcentaje_margen}}</th>
+             <th>Margen</th>
+             <th>{{(metros3_contenedores+metros3_muebles+metros3_otros)*(1+(cotizacion.porcentaje_margen/100))|number:2}}</th>
+           </tr>
+         </table>
+        <br>
+        <br>
+        <br>
+         <table border=1 id="tablaObs">
+           <tr style="height:35px; background-color: #A9A9A9;">
+             <th rowspan=2 colspan=7>Observaciones</th>
+           </tr>
+           <tr></tr>
+           <tr>
+             <th rowspan=3 colspan=7></th>
+           </tr>
+           <tr></tr>
+           <tr></tr>
+           <tr>
+             <td align="center" rowspan=1 colspan=7>El valor de este trabajo es teniendo en cuenta lo detallado y proporcionado por usted. Si al momento de la realización existe alguna variación, el valor será modificado indefectiblemente.</td>
+           </tr>
+           <tr></tr>
+           <tr>
+             <td align="center" rowspan=8 colspan=7>Los precios cotizados no incluyen el I.V.A., que será adicionado en oportunidad de la factura. Los canastos y las cajas, serán entregados 2 días antes de la fecha de trabajo. Los canastos tendrán que ser devueltos luego de tres días de finalizado el trabajo. Pasados estos, el cliente deberá abonar la suma de $30,00 por canasto por día, más $500 por el servicio de retiro. La cantidad de materiales cotizados son estimados. Lo que significa que puede variar la cantidad y por consecuencia, el precio. (Los percheros se entregan y se retiran el día de la mudanza. Atención: los trabajos que sean realizados al interior o a alguna provincia que supere los 70km de Capital Federal, deberán hacer entrega de los canastos al finalizar el mismo. O bien pagar un canon por su retiro que lo dispondrá la empresa. Si en destino hubiera que subir algún tipo de mueble por medio de sogas y no fue cotizado en la visita, se deja explícitamente aclarado que el valor queda por fuera de este presupuesto. Y el precio del mismo se definirá teniendo en cuenta la complejidad y la cantidad de elementos a elevar. Una vez que el camión y el personal de MUDARTE se retiran del domicilio final, no se aceptaran reclamos de ningún tipo. El cliente deberá firmar el comprobante de conformidad. La cotización tiene una validez de 15 días, cumplido el plazo, el cliente deberá ponerse en contacto con MUDARTE para una Recotización.</td>
+           </tr>
+           <tr></tr>
+           <tr></tr>
+           <tr></tr>
+           <tr></tr>
+           <tr></tr>
+           <tr></tr>
+           <tr></tr>
+           <tr>
+             <th rowspan=2 colspan=7></th>
+           </tr>
+           <tr></tr>
+         </table>
+   </div>
 </div>
 
 <script>
 function descargarExcel(){
-        var tmpElemento = document.createElement('a');
-        var data_type = 'data:application/vnd.ms-excel; charset=utf-8';
-        var tabla_div = document.getElementById('divExportar');
-        var tabla_html = tabla_div.outerHTML.replace(/ /g, '%20');
-        tmpElemento.href = data_type + ', ' + tabla_html;
-        //Asignamos el nombre a nuestro EXCEL
-        tmpElemento.download = 'Resumen.xls';
-        tmpElemento.click();
-    }
+ var table= document.getElementById('divExportar');
+ var html = table.outerHTML;
+ window.open('data:application/vnd.ms-excel,' + escape(html));
+   }
 </script>
+</div>
