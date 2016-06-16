@@ -23,7 +23,23 @@ app.service('BackendCotizacion', function () {
 
   self.setCotizaciones = function (data) {
 
-    cotizaciones = data;
+    cotizaciones = [];
+
+    angular.forEach(data, function(value, key){
+
+      (value.seguro)? value.seguro = 'Si': value.seguro='No';
+
+      (value.desarme_mueble)? value.desarme_mueble = 'Si':value.desarme_mueble='No';
+
+      (value.rampa)? value.rampa = 'Si':value.rampa='No';
+
+      value.numero_ayudante = {num:value.numero_ayudante};
+
+      value.ambiente = {num:value.ambiente};
+
+      cotizaciones.push(value);
+
+    },cotizaciones);
 
     return cotizaciones;
   };
@@ -34,11 +50,13 @@ app.service('BackendCotizacion', function () {
   };
 
   self.getById = function (ID) {
+
     var enc = false,
         i = 0;
 
     while (!enc) {
-      if (cotizaciones[i].cotizacion.id === Number(ID)) {
+      
+      if (cotizaciones[i].id === Number(ID)) {
         enc = true;
         return cotizaciones[i];
       }
@@ -50,139 +68,162 @@ app.service('BackendCotizacion', function () {
   return self;
 });
 
-app.controller('CotizacionViewCtrl', ['$scope', '$state', 'Cotizacion', 'Cliente', 'Users', 'BackendCotizacion', function ($scope, $state, Cotizacion, Cliente, Users, BackendCotizacion) {
-  var cotizaciones = [],
-      clientes = [],
-      muebles = [],
-      contenedores = [],
-      materiales = [],
-      cotizadores = [];
+// app.controller('CotizacionViewCtrl', ['$scope', '$state', 'Cotizacion', 'Cliente', 'Users', 'BackendCotizacion', function ($scope, $state, Cotizacion, Cliente, Users, BackendCotizacion) {
+app.controller('CotizacionViewCtrl', ['$scope', '$state', 'Cotizacion', 'BackendCotizacion', function ($scope, $state, Cotizacion, BackendCotizacion) {
 
-  Users.all(1).then(function (r) {
+  // var cotizaciones = [],
+  //     clientes = [],
+  //     muebles = [],
+  //     contenedores = [],
+  //     materiales = [],
+  //     cotizadores = [];
+  //
+  // Users.all(1).then(function (r) {
+  //
+  //   cotizadores = r;
+  // });
 
-    cotizadores = r;
-  });
 
-  Cotizacion.all().then(function (r) {
+  // Cotizacion.all().then(function (r) {
 
-    cotizaciones = r;
-  });
+    // cotizaciones = r;
 
-  Cliente.all().then(function (r) {
+  // });
 
-    clientes = r;
-  });
+  // Cliente.all().then(function (r) {
+  //
+  //   clientes = r;
+  // });
+  //
+  // Cotizacion.muebles().then(function (r) {
+  //
+  //   muebles = r;
+  // });
+  //
+  // Cotizacion.materiales().then(function (r) {
+  //
+  //   materiales = r;
+  // });
+  //
+  // Cotizacion.contenedores().then(function (r) {
+  //
+  //   contenedores = r;
+  // });
+  //
+  // $scope.cotizacion_total = {
+  //
+  //   cotizacion: {},
+  //
+  //   cliente: {},
+  //
+  //   muebles: [],
+  //
+  //   materiales: [],
+  //
+  //   contenedores: []
+  //
+  // };
 
-  Cotizacion.muebles().then(function (r) {
+  // $scope.cotizaciones_totales = [];
 
-    muebles = r;
-  });
+  // function init() {
+  //   setTimeout(function () {
+  //
+  //     angular.forEach(cotizaciones, function (cotizacion, key_cotizacion) {
+  //
+  //       var cotizacion_temp = angular.copy($scope.cotizacion_total);
+  //
+  //       cotizacion_temp.cotizacion = cotizacion;
+  //
+  //       (cotizacion_temp.cotizacion.seguro)?cotizacion_temp.cotizacion.seguro = 'Si':cotizacion_temp.cotizacion.seguro='No';
+  //
+  //       (cotizacion_temp.cotizacion.desarme_mueble)?cotizacion_temp.cotizacion.desarme_mueble = 'Si':cotizacion_temp.cotizacion.desarme_mueble='No';
+  //
+  //       (cotizacion_temp.cotizacion.rampa)?cotizacion_temp.cotizacion.rampa = 'Si':cotizacion_temp.cotizacion.rampa='No';
+  //
+  //       cotizacion_temp.cotizacion.numero_ayudante = {num:cotizacion_temp.cotizacion.numero_ayudante};
+  //
+  //       cotizacion_temp.cotizacion.ambiente = {num:cotizacion_temp.cotizacion.ambiente};
+  //
+  //       angular.forEach(cotizadores, function (cotizador, key_cotizador) {
+  //
+  //         if (cotizacion_temp.cotizacion.cotizador === cotizador.id) {
+  //
+  //           cotizacion_temp.cotizacion.cotizador = cotizador;
+  //         }
+  //       });
+  //
+  //       angular.forEach(contenedores, function (contenedor, key_contenedor) {
+  //
+  //         if (cotizacion_temp.cotizacion.id === contenedor.cotizacion) {
+  //
+  //           cotizacion_temp.contenedores.push(contenedor);
+  //         }
+  //       });
+  //
+  //       angular.forEach(materiales, function (material, key_material) {
+  //
+  //         if (cotizacion_temp.cotizacion.id === material.cotizacion) {
+  //
+  //           cotizacion_temp.materiales.push(material);
+  //         }
+  //       });
+  //
+  //       angular.forEach(muebles, function (mueble, key_muebles) {
+  //
+  //         if (cotizacion_temp.cotizacion.id === mueble.cotizacion) {
+  //
+  //           cotizacion_temp.muebles.push(mueble);
+  //         }
+  //       });
+  //
+  //       angular.forEach(clientes, function (cliente, key_cliente) {
+  //
+  //         if (cotizacion_temp.cotizacion.cliente === cliente.id) {
+  //
+  //           cotizacion_temp.cliente = cliente;
+  //         }
+  //       });
+  //
+  //       $scope.cotizaciones_totales.push(cotizacion_temp);
+  //     });
+  //
+  //     BackendCotizacion.setCotizaciones(angular.copy($scope.cotizaciones_totales));
+  //
+  //     $scope.$apply();
+  //   }, 10);
+  // };
 
-  Cotizacion.materiales().then(function (r) {
-
-    materiales = r;
-  });
-
-  Cotizacion.contenedores().then(function (r) {
-
-    contenedores = r;
-  });
-
-  $scope.cotizacion_total = {
-
-    cotizacion: {},
-
-    cliente: {},
-
-    muebles: [],
-
-    materiales: [],
-
-    contenedores: []
-
-  };
+  // setTimeout(function () {
+  //
+  //   init();
+  //
+  //   $scope.$apply();
+  // }, 500);
 
   $scope.cotizaciones_totales = [];
 
-  function init() {
-    setTimeout(function () {
-
-      angular.forEach(cotizaciones, function (cotizacion, key_cotizacion) {
-
-        var cotizacion_temp = angular.copy($scope.cotizacion_total);
-
-        cotizacion_temp.cotizacion = cotizacion;
-
-        (cotizacion_temp.cotizacion.seguro)?cotizacion_temp.cotizacion.seguro = 'Si':cotizacion_temp.cotizacion.seguro='No';
-
-        (cotizacion_temp.cotizacion.desarme_mueble)?cotizacion_temp.cotizacion.desarme_mueble = 'Si':cotizacion_temp.cotizacion.desarme_mueble='No';
-
-        (cotizacion_temp.cotizacion.rampa)?cotizacion_temp.cotizacion.rampa = 'Si':cotizacion_temp.cotizacion.rampa='No';
-
-        cotizacion_temp.cotizacion.numero_ayudante = {num:cotizacion_temp.cotizacion.numero_ayudante};
-
-        cotizacion_temp.cotizacion.ambiente = {num:cotizacion_temp.cotizacion.ambiente};
-
-        angular.forEach(cotizadores, function (cotizador, key_cotizador) {
-
-          if (cotizacion_temp.cotizacion.cotizador === cotizador.id) {
-
-            cotizacion_temp.cotizacion.cotizador = cotizador;
-          }
-        });
-
-        angular.forEach(contenedores, function (contenedor, key_contenedor) {
-
-          if (cotizacion_temp.cotizacion.id === contenedor.cotizacion) {
-
-            cotizacion_temp.contenedores.push(contenedor);
-          }
-        });
-
-        angular.forEach(materiales, function (material, key_material) {
-
-          if (cotizacion_temp.cotizacion.id === material.cotizacion) {
-
-            cotizacion_temp.materiales.push(material);
-          }
-        });
-
-        angular.forEach(muebles, function (mueble, key_muebles) {
-
-          if (cotizacion_temp.cotizacion.id === mueble.cotizacion) {
-
-            cotizacion_temp.muebles.push(mueble);
-          }
-        });
-
-        angular.forEach(clientes, function (cliente, key_cliente) {
-
-          if (cotizacion_temp.cotizacion.cliente === cliente.id) {
-
-            cotizacion_temp.cliente = cliente;
-          }
-        });
-
-        $scope.cotizaciones_totales.push(cotizacion_temp);
-      });
-
-      BackendCotizacion.setCotizaciones(angular.copy($scope.cotizaciones_totales));
-
-      $scope.$apply();
-    }, 10);
-  };
 
   setTimeout(function () {
 
-    init();
+
+    Cotizacion.all().then(function (r) {
+
+      $scope.cotizaciones_totales = r;
+
+      BackendCotizacion.setCotizaciones(angular.copy($scope.cotizaciones_totales));
+
+    });
 
     $scope.$apply();
-  }, 500);
 
-  $scope.GoCotizacion = function (ID) {
+  }, 1);
 
-    $state.go('show', { id_cotizacion: ID });
-  };
+
+  // $scope.GoCotizacion = function (ID) {
+  //
+  //   $state.go('show', { id_cotizacion: ID });
+  // };
 }]);
 
 app.controller('ShowCtrl', ['$scope', '$stateParams', 'BackendCotizacion', function ($scope, $stateParams, BackendCotizacion) {
@@ -195,24 +236,42 @@ app.controller('ShowCtrl', ['$scope', '$stateParams', 'BackendCotizacion', funct
     return result;
   }
 
-  var cotizacion_total = BackendCotizacion.getById($stateParams.id_cotizacion);
+  var cotizacion_total = BackendCotizacion.getById(Number($stateParams.id_cotizacion));
 
-  $scope.cotizacion = cotizacion_total.cotizacion;
+  // $scope.cotizacion = cotizacion_total.cotizacion;
+  //
+  // $scope.materiales_temp = cotizacion_total.materiales;
+  //
+  // $scope.contenedores_temp = cotizacion_total.contenedores;
+  //
+  // $scope.muebles_temp = cotizacion_total.muebles;
+  //
+  // $scope.cliente = cotizacion_total.cliente;
+  //
+  // $scope.metros3_contenedores = calcular_totales(cotizacion_total.contenedores, "punto") / 10;
+  //
+  // $scope.metros3_muebles = calcular_totales(cotizacion_total.muebles, "punto") / 10;
+  //
+  // $scope.subtotal1 = cotizacion_total.cotizacion.subtotal1;
+  //
+  // $scope.subtotal2 = cotizacion_total.cotizacion.subtotal2;
 
-  $scope.materiales_temp = cotizacion_total.materiales;
+  $scope.cotizacion = cotizacion_total;
 
-  $scope.contenedores_temp = cotizacion_total.contenedores;
+  $scope.materiales_temp = cotizacion_total.cotizacionmateriales;
 
-  $scope.muebles_temp = cotizacion_total.muebles;
+  $scope.contenedores_temp = cotizacion_total.cotizacioncontenedores;
+
+  $scope.muebles_temp = cotizacion_total.cotizacionmuebles;
 
   $scope.cliente = cotizacion_total.cliente;
 
-  $scope.metros3_contenedores = calcular_totales(cotizacion_total.contenedores, "punto") / 10;
+  $scope.metros3_contenedores = calcular_totales(cotizacion_total.cotizacioncontenedores, "punto") / 10;
 
-  $scope.metros3_muebles = calcular_totales(cotizacion_total.muebles, "punto") / 10;
+  $scope.metros3_muebles = calcular_totales(cotizacion_total.cotizacionmuebles, "punto") / 10;
 
-  $scope.subtotal1 = cotizacion_total.cotizacion.subtotal1;
+  $scope.subtotal1 = cotizacion_total.subtotal1;
 
-  $scope.subtotal2 = cotizacion_total.cotizacion.subtotal2;
+  $scope.subtotal2 = cotizacion_total.subtotal2;
 
 }]);
