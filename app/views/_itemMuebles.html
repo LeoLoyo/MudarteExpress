@@ -3,8 +3,8 @@
   <td>
       <span ng-repeat="c in group.especificacionmuebles" class="btnSeleccionMueble" ng-class="{btnSeleccionado:m.num>0}" ng-init="m.num='0'">
           <span class="classMuebles boton" ng-click="m.num=check(m.num);add_mueble(c,m.num)">{{c.especificacion}}</span>
-            <select ng-focus="scrollAnime($event)" ng-model="m.num" ng-change="add_mueble(c,m.num)">
-              <option  ng-repeat="m in cantidades">{{m.num}}</option>
+            <select ng-focus="scrollAnime($event)" ng-model="m.num" ng-change="add_mueble(c,m.num)" ng-init="m.num=cantidades[0].num" ng-options="m.num as m.num for m in cantidades">
+              <!-- <option  ng-repeat="m in cantidades">{{m.num}}</option> -->
             </select>
             <div>
                 <span class="remover" ng-show="m.num>0" ng-click="m.num='0';add_mueble(c,m.num);" title="Remover"><b>X</b></span>
