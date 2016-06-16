@@ -12,7 +12,7 @@
           <tr>
             <td align="center">km</td>
             <td class="paddingNone" colspan="2">
-              <input type="number" style="text-align:center!important;font-weight:bold;" name="recorrido_km" ng-model="cotizacion.recorrido_km" ng-change="add_parcial1()">
+              <input type="number" min="0" style="text-align:center!important;font-weight:bold;" name="recorrido_km" ng-model="cotizacion.recorrido_km" ng-change="add_parcial1()">
             </td>
             <td align="center" class="paddingNone">
               <select class="selectMoneda" name="precio_km" id="precio_km" ng-init="cotizacion.precio_km = '30'"ng-model="cotizacion.precio_km" ng-change="add_parcial1()">
@@ -30,7 +30,7 @@
           <tr>
             <td align="center">Tiempo de carga</td>
             <td align="center" colspan="2" class="paddingNone">
-              <input type="number" ng-model="cotizacion.tiempo_de_carga" style="text-align-last: center;font-weight: bold;">
+              <input type="number" min="0" ng-model="cotizacion.tiempo_de_carga" style="text-align-last: center;font-weight: bold;">
               <!-- <select ng-focus="scrollAnime($event)" ng-model="cotizacion.tiempo_de_carga" ng-options="m.num for m in cantidades" ng-init="cotizacion.tiempo_de_carga=cantidades[0]" style="text-align-last: center;">
               </select> -->
 
@@ -38,7 +38,7 @@
           <tr>
             <td align="center">Tiempo de descarga</td>
             <td align="center" colspan="2" class="paddingNone">
-              <input type="number" ng-model="cotizacion.tiempo_de_descarga" style="text-align-last: center;font-weight: bold;">
+              <input type="number" min="0" ng-model="cotizacion.tiempo_de_descarga" style="text-align-last: center;font-weight: bold;">
               <!-- <select ng-focus="scrollAnime($event)" ng-model="cotizacion.tiempo_de_descarga" ng-options="m.num for m in cantidades" ng-init="cotizacion.tiempo_de_descarga=cantidades[0]" style="text-align-last: center;">
               </select> -->
 
@@ -46,7 +46,7 @@
           <tr>
             <td align="center">Camión</td>
             <td align="center" colspan="2" class="paddingNone">
-              <input type="text" ng-model="cotizacion.numero_camion" style="text-align-last: center;padding-right:17px;font-weight: bold;">
+              <input type="text" min="0" ng-model="cotizacion.numero_camion" style="text-align-last: center;padding-right:17px;font-weight: bold;">
               <!-- <select ng-focus="scrollAnime($event)" ng-model="cotizacion.numero_camion" ng-options="m.num for m in cantidades" ng-init="cotizacion.numero_camion=cantidades[0]" style="text-align-last: center;">
               </select> -->
 

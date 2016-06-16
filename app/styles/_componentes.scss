@@ -2,6 +2,20 @@
  @import "../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
  //@import url(../../bower_components/bootstrap-sass/assets/fonts/bootstrap/Roboto-Medium.ttf);
  //@import url(https://fonts.googleapis.com/css?family=Roboto:400,300);
+ //variables
+ //lista de cotización--------------------------
+$colorBgList:           #fff;
+$colorBgFecha:          $colorNavbar;
+$colorTxFecha:          #000;
+$colorTxDetalle:        #fff;
+@mixin transicion($time) {
+  -webkit-transition: all $time ease-in-out;
+  -moz-transition: all $time ease-in-out;
+  -ms-transition: all $time ease-in-out;
+  -o-transition: all $time ease-in-out;
+  transition: all $time ease-in-out;
+}
+//fin lista de cotización-----------------------
 // estilos generales
 @font-face {
 font-family: Roboto;
@@ -26,17 +40,76 @@ form.formulario, div.formulario {
 .btnSeleccion{
   background: #eee;
   display: inline-flex;
-  width: 200px;
+  width: 330px;
   height: 50px;
   text-align: center;
   border: 1px solid #dedede;
   font-size: 1em;
   margin-left: 10px;
   margin-bottom: 10px;
-  span {
-    flex: 70%;
+  span.boton {
+    flex: 50%;
     padding: 13px;
     margin: 8px;
+    line-height: 15px;
+  }
+  span.boton1 {
+    flex: 10%;
+    padding: 14px 5px;
+    &:hover {
+      background-color: $colorNavbar;
+      color: $colorTextoNavbar;
+    }
+  }
+  span.classContenedores {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+  select {
+    flex: 10%;
+    padding: 3px;
+    border-color: transparent;
+    color: $colorTexto_2;
+  }
+  div {
+    flex: 20%;
+    background: #fff;
+    height: 100%;
+    span {
+      font-size: 20px;
+      margin-top: 10px;
+      margin-bottom: auto;
+      color: #000;
+      display: block;
+      visibility: hidden;
+      cursor: pointer;
+    }
+    &:hover > span {
+
+    }
+  }
+  &:hover {
+    box-shadow: $sombra_1;
+  }
+  &:hover > div > span {
+    visibility: visible;
+  }
+}
+.btnSeleccionMueble {
+  background: #eee;
+  display: inline-flex;
+  width: 160px;
+  height: 50px;
+  text-align: center;
+  border: 1px solid #dedede;
+  font-size: 1em;
+  margin-right: 20px;
+  margin-bottom: 3px;
+  margin-top: 3px;
+  span.boton {
+    flex: 70%;
+    padding: 13px 0;
+    margin: 3px;
     line-height: 15px;
   }
   span.classContenedores {
@@ -44,13 +117,40 @@ form.formulario, div.formulario {
     margin-bottom: auto;
   }
   select {
-    flex: 30%;
-    padding: 3px;
+    flex: 10%;
+    padding: 0;
     border-color: transparent;
     color: $colorTexto_2;
   }
+  div {
+    flex: 20%;
+    background: #fff;
+    height: 100%;
+    span {
+      font-size: 20px;
+      margin-top: 10px;
+      margin-bottom: auto;
+      color: #000;
+      display: block;
+      visibility: hidden;
+      cursor: pointer;
+    }
+    &:hover > span {
+
+    }
+  }
   &:hover {
     box-shadow: $sombra_1;
+  }
+  &:hover > div > span {
+    visibility: visible;
+  }
+}
+.conMueble {
+  padding: 3px;
+  &:hover {
+    background: rgba(0,0,0,.4);
+    color: #000;
   }
 }
 .btnSeleccionado {
@@ -90,6 +190,7 @@ form.formulario, div.formulario {
 }
 .btnsPaginacion {
   @extend .container-fluid;
+  margin-bottom: 20px;
   div {
     @extend .row;
     div {
@@ -270,7 +371,10 @@ table.tablaResumen {
     }
     padding-left: 210px;
 }
-#modalConfirmacion, #modalConfirmacionExportar {
+#modalConfirmacion,
+#modalConfirmacionExportar,
+#modalCancel,
+.modalMudarte {
   div.modal-dialog {
     div.modal-content {
       border-radius:0;
@@ -296,10 +400,6 @@ table.tablaResumen {
 // estilos sidebar
 #wrapper {
   padding-left: 0;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
 }
 
 #wrapper.toggled {
@@ -318,10 +418,6 @@ table.tablaResumen {
   background: $colorSidebar;
   border-right: 0px solid #dedede;
   box-shadow: $sombra_2;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
   div {
     display: block;
     position: absolute;
@@ -359,10 +455,6 @@ table.tablaResumen {
   position: absolute;
   height: calc(100% - 75px);
   overflow-y: scroll;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
 }
 
 #wrapper.toggled #page-content-wrapper {
@@ -484,3 +576,224 @@ table.tablaResumen {
   visibility: hidden!important;
 }
 @import "bootstrap-select.scss";
+.cargando {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  z-index: 1100;
+  p {
+    display: block;
+    margin-top: 23%;
+    text-align: center;
+    display: block;
+    color: $colorNavbar;
+    font-size: 30px;
+    }
+  span {
+    display: block;
+    position: absolute;
+    top: 42%;
+    left: 45%;
+    font-size: 30px;
+    color: $colorNavbar;
+  }
+}
+.totalm3 {
+  padding: 5px;
+  color: $colorTextoNavbar;
+    border-color: $colorTextoNavbar;
+    background-color: #363636;
+  *background-color: #222222;
+  background-image: -moz-linear-gradient(top, #444444, #222222);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#444444), to(#222222));
+  background-image: -webkit-linear-gradient(top, #444444, #222222);
+  background-image: -o-linear-gradient(top, #444444, #222222);
+  background-image: linear-gradient(to bottom, #444444, #222222);
+  background-repeat: repeat-x;
+  border-color: #222222 #222222 #000000;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff444444', endColorstr='#ff222222', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+  table {
+    width: 100%;
+    font-size: 12px;
+    tr {
+      border-bottom: 1px solid $colorTextoNavbar;
+      td.montos {
+        text-align: right;
+      }
+    }
+  }
+}
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 47%;
+  font-size: 10px;
+  text-indent: -9999em;
+  width: 5em;
+  height: 5em;
+  border-radius: 50%;
+  background: $colorNavbar;
+  background: -moz-linear-gradient(left, $colorNavbar 10%, rgba(255, 255, 255, 0) 42%);
+  background: -webkit-linear-gradient(left, $colorNavbar 10%, rgba(255, 255, 255, 0) 42%);
+  background: -o-linear-gradient(left, $colorNavbar 10%, rgba(255, 255, 255, 0) 42%);
+  background: -ms-linear-gradient(left, $colorNavbar 10%, rgba(255, 255, 255, 0) 42%);
+  background: linear-gradient(to right, $colorNavbar 10%, rgba(255, 255, 255, 0) 42%);
+  position: relative;
+  -webkit-animation: load3 1.4s infinite linear;
+  animation: load3 1.4s infinite linear;
+}
+.loader:before {
+  width: 50%;
+  height: 50%;
+  background: #FFF;
+  border-radius: 100% 0 0 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+}
+.loader:after {
+  background: #fff;
+  width: 75%;
+  height: 75%;
+  border-radius: 50%;
+  content: '';
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+@-webkit-keyframes load3 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load3 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.listCotizacion {
+  background: $colorBgList;
+  box-shadow: $sombra_1;
+  margin-bottom: 20px;
+  div {
+    margin: 0;
+    div {
+      padding: 0;
+      div.fecha {
+        display: block;
+        background: $colorBgFecha;
+        height: 110px;
+        border-right: 1px solid #dedede;
+        overflow: hidden;
+        p.fecha1{
+          font-size: 40px;
+          text-align: center;
+          margin-bottom: 0px;
+          color: $colorTxFecha!important;
+          @include transicion(500ms);
+        }
+        p.fecha2 {
+          text-align: center;
+          font-size: 20px;
+          padding: 0;
+          margin: 0;
+          color: $colorTxFecha!important;
+          @include transicion(500ms);
+        }
+        p.fecha3 {
+          text-align: center;
+          color: $colorTxFecha!important;
+          @include transicion(500ms);
+        }
+          .detalle {
+          background: rgba(0,0,0,.0);
+          position: absolute;
+          top: 0;
+          height: 100%;
+          width: calc(100%);
+          display: block;
+          @include transicion(500ms);
+          a {
+            @extend .btn;
+            @extend .btn-default;
+            @extend .btn-lg;
+            @extend .btn-block;
+            background-color: transparent;
+            border: 2px solid $colorTxDetalle;
+            color: $colorTxDetalle;
+            position: absolute;
+            border-radius: 0;
+            top: 45%;
+            display: block;
+            opacity: 0;
+            margin-left: 5px;
+            width: calc(100% - 10px)!important;
+            padding: 5px!important;
+            cursor: pointer;
+            @include transicion(500ms);
+          }
+        }
+      }
+    }
+    div {
+        div.cotiza {
+          display: block;
+          background: transparent;
+          height: 100%;
+          padding: 7px;
+          @include transicion(500ms);
+          p.cotiza1 {
+            font-size: 20px;
+            text-align: left;
+          }
+        }
+      }
+  }
+  &:hover .fecha div.detalle {
+    display: block;
+    top: 0;
+    background: rgba(0,0,0,.3);
+  }
+  &:hover .fecha div.detalle a {
+    display: block;
+    top:30%;
+    opacity: 1;
+  }
+  &:hover div.cotiza {
+    opacity: .5;
+  }
+  &:hover div.fecha p.fecha1 {
+    font-size:350%!important;
+    @include transicion(500ms);
+  }
+  &:hover div.fecha p.fecha2 {
+    font-size:200%!important;
+    @include transicion(500ms);
+  }
+  &:hover div.fecha p.fecha3 {
+    font-size:150%!important;
+    @include transicion(500ms);
+  }
+}
+.buscar {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

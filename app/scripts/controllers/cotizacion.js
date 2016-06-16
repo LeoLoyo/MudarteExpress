@@ -2,11 +2,36 @@
   'use strict';
 
   var app = angular.module('cotizacionExpressApp');
-  app.controller('CotizacionCtrl', ['Session', 'contenedores_resolve', 'muebles_resolve', '$interval', '$rootScope', '$state', '$scope', 'Users', 'Direccion', 'Material', 'Cotizacion', 'Contenedor', 'Mueble', 'Bulto', 'Cliente', '$http', 'setting', function (Session, contenedores_resolve, muebles_resolve, $interval, $rootScope, $state, $scope, Users, Direccion, Material, Cotizacion, Contenedor, Mueble, Bulto, Cliente, $http, setting) {
-    var today = new Date().toDateString();
-    if (!Session.get()) {
-      $state.go('login');
-    } else {
+
+  app.controller('CotizacionCtrl', [
+    'Session',
+    '$interval',
+    '$rootScope',
+    '$state',
+    '$scope',
+    'Users',
+    'Direccion',
+    'Cotizacion',
+    'Contenedor',
+    'Mueble',
+    'Material',
+    'Bulto',
+    'Cliente',
+    'setting', 'BackendCotizacion',function (Session, $interval, $rootScope, $state, $scope, Users, Direccion, Cotizacion, Contenedor, Mueble, Material, Bulto, Cliente, setting, BackendCotizacion) {
+
+      var select = function () {
+
+
+         setTimeout(function(){
+          //  $('select.selectPicker').selectpicker();
+           $('select.selectPicker').selectpicker('destroy');
+          //  $('select.selectPicker').selectpicker('destroy');
+           $('select.selectPicker').selectpicker();
+           $scope.$apply();
+         },50);
+
+      }
+
       $rootScope.session = Session.set(true);
       $scope.limpiarM = true;
       angular.element('#ncotizacion').focus();
@@ -16,24 +41,18 @@
       }, 0);
 
       $('.btnsCotizacion').removeClass('hidden');
-      $scope.cantidades = [];
-      function numeros() {
 
-        for (var i = 0; i < 100; i++) {
-          $scope.cantidades.push({ num: i });
-        }
-        return $scope.cantidades;
-      }
+      $scope.cantidades = angular.copy(BackendCotizacion.getCant());
 
-      $scope.cant_otros = [];
-      function numeros_otros() {
-        var i = 40;
-        while (i <= 300) {
-          $scope.cant_otros.push({ num: i });
-          i += 10;
-        }
-        return $scope.cant_otros;
-      }
+      $scope.cant_otros = angular.copy(BackendCotizacion.getCant_Otros());
+
+      // function numeros_otros() {
+      //   for (var i = 30; i < 300; i+=10) {
+      //     var cant = { num: i, cantidad: i };
+      //     $scope.cant_otros.push(cant);
+      //   }
+      //   // return $scope.cant_otros;
+      // }
 
       //objecto cliente
       $scope.cliente = {
@@ -43,11 +62,14 @@
         direccion: ''
       };
 
+
+
       // objecto direccion
+
       var cotizacion = {
         numero_cotizacion: '',
         cliente: '',
-        cotizador: 2,
+        cotizador: {id:""},
         quien_llamo: '',
         quien_cotizo: '',
         fuente: '',
@@ -60,7 +82,7 @@
         fecha_estimada_mudanza: '',
         hora_estimada_mudanza: '',
         fecha_de_cotizacion: new Date(),
-        hora_de_cotizacion: '',
+        hora_de_cotizacion: new Date(),
         fecha_de_aviso:new Date(),
         hora_de_aviso: '',
         fecha_de_cierre:'',
@@ -79,10 +101,10 @@
         tiempo_de_carga: Number(0),
         tiempo_de_descarga: Number(0),
         numero_camion: Number(0),
-        numero_ayudante: Number(0),
+        numero_ayudante: {num:'0'},
         seguro: 'No',
         desarme_mueble: 'No',
-        ambiente: Number(0),
+        ambiente: {num:'0'},
         rampa: 'No',
         mudanza: Number(0),
         soga: Number(0),
@@ -90,9 +112,9 @@
         desembalaje: Number(0),
         materiales: Number(0),
         piano_cajafuerte: Number(0),
-        subTotal1:Number(0),
+        subtotal1:Number(0),
         porcentaje_ajuste: Number(0),
-        subTotal2: Number(0),
+        subtotal2: Number(0),
         porcentaje_iva: Number(0),
         ajuste: Number(0),
         iva: Number(0),
@@ -107,32 +129,24 @@
 
       $scope.cotizacion = angular.copy(cotizacion);
 
-      $scope.cotizadores = [];
-      $scope.cotizadores = null;
+      // $scope.cotizadores = [];
+      // $scope.cotizadores = null;
+      //
+      // $scope.telefonistas = [];
+      // $scope.telefonistas = null;
+      //
+      // $scope.contenedores = [];
+      // $scope.contenedores = null;
+      //
+      // $scope.todoscontenedores = [];
+      // $scope.todoscontenedores = null;
+      //
+      // $scope.tipo_muebles = [];
+      // $scope.tipo_muebles = null;
 
-      $scope.telefonistas = [];
-      $scope.telefonistas = null;
+      // $scope.barrio_provincias = [];
+      // $scope.barrio_provincias = null;
 
-      $scope.materiales = [];
-      $scope.materiales = null;
-
-      $scope.contenedores = [];
-      $scope.contenedores = null;
-
-      $scope.todoscontenedores = [];
-      $scope.todoscontenedores = null;
-
-      $scope.tipo_muebles = [];
-      $scope.tipo_muebles = null;
-
-      $scope.barrio_provincias = [];
-      $scope.barrio_provincias = null;
-
-      $scope.mueble = [];
-      $scope.mueble = null;
-
-      $scope.muebles_group = [];
-      $scope.muebles_group = null;
 
       $scope.contenedores_temp = [];
       $scope.muebles_temp = [];
@@ -174,11 +188,11 @@
         var punto = 0,
             resta = angular.copy(object),
             l = a_query.length;
-        if (Number(object.unidad) > 0) {
+        if (Number(object.cantidad) > 0) {
           for (var j = 0; j < l; j++) {
-            if (Number(object.unidad) >= Number(a_query[j].unidad)) {
+            if (Number(object.cantidad) >= Number(a_query[j].cantidad)) {
               punto += a_query[j].punto;
-              resta.unidad = Number(object.unidad) - Number(a_query[j].unidad);
+              resta.cantidad = Number(object.cantidad) - Number(a_query[j].cantidad);
               return punto += recur_punto(a_query, resta);
             }
           }
@@ -208,8 +222,8 @@
         var l = cs_tmp.length;
         for (var i = 0; i < l; i++) {
           if (cont.contenedor === cs_tmp[i].contenedor) {
-            if (cont.unidad > 0) {
-              cs_tmp[i].unidad = cont.unidad;
+            if (cont.cantidad > 0) {
+              cs_tmp[i].cantidad = cont.cantidad;
             } else {
               cs_tmp.splice(cs_tmp.indexOf(cs_tmp[i]), 1);
             }
@@ -222,9 +236,10 @@
       function buscar_mueble(ms_tmp, m) {
         var l = ms_tmp.length;
         for (var i = 0; i < l; i++) {
-          if (m.mueble === ms_tmp[i].mueble && m.espeficicacion === ms_tmp[i].espeficicacion) {
-            if (m.cantidad > 0) {
+          if (m.mueble === ms_tmp[i].mueble && m.especificacion === ms_tmp[i].especificacion) {
+            if (Number(m.cantidad) > 0) {
               ms_tmp[i].cantidad = m.cantidad;
+              ms_tmp[i].total_punto = m.total_punto;
             } else {
               ms_tmp.splice(ms_tmp.indexOf(ms_tmp[i]), 1);
             }
@@ -254,23 +269,43 @@
         }
         return false;
       }
-
-      function groupBy(array, f) {
-        var groups = {};
-        array.forEach(function (o) {
-          var group = JSON.stringify(f(o));
-
-          groups[group] = groups[group] || [];
-          groups[group].push(o);
-        });
-        return Object.keys(groups).map(function (group) {
-          return groups[group];
-        });
+    //Controlador para generar PDF
+      $scope.exportAction = function(event){
+      switch(event){
+          case "pdf": $scope.$broadcast("export-pdf", {});
+                      break;
+          case "excel": $scope.$broadcast("export-excel", {});
+                      break;
+          case "doc": $scope.$broadcast("export-doc", {});
+                      break;
+          default: console.log("no event caught");
+       }
       }
 
-      $scope.muebles = groupBy(muebles_resolve, function (item) {
-        return [item.espeficicacion, item.descripcion];
-      });
+      // function groupBy(array, f) {
+      //   var groups = {};
+      //   array.forEach(function (o) {
+      //     var group = JSON.stringify(f(o));
+      //
+      //     groups[group] = groups[group] || [];
+      //     groups[group].push(o);
+      //   });
+      //   return Object.keys(groups).map(function (group) {
+      //     return groups[group];
+      //   });
+      // }
+  Mueble.all().then(function (r) {
+    // $scope.muebles = groupBy(r, function (item) {
+    //   return [item.mueble, item.descripcion];
+    // });
+    $scope.muebles = r;
+  });
+      // $scope.muebles = groupBy(muebles_resolve, function (item) {
+      //   return [item.especificacion, item.descripcion];
+      // });
+
+      // $scope.mater=materiales_resolve;
+      // $scope.materiales = angular.copy(materiales_resolve);
 
       function init(contenedor) {
         if (contenedor !== undefined) {
@@ -278,14 +313,15 @@
             $scope.todoscontenedores = contenedores;
           });
         } else {
-          numeros();
-          numeros_otros();
-
           Material.all().then(function (r) {
             var out = [];
-            angular.forEach(r, function (value, key) {
-              value.precio = Number(value.precio);
-              out.push(value);
+            angular.forEach(r, function (v, k) {
+              var m = angular.copy(v);
+              m.precio = Number(m.precio);
+              m.cantidad = 0;
+              m.ncontenedor = 0;
+              m.iscontenedor = false;
+              out.push(m);
             }, out);
             $scope.materiales = out;
           });
@@ -299,19 +335,20 @@
           Direccion.all().then(function (r) {
             $scope.barrio_provincias = r;
           });
-
-          $scope.contenedores = contenedores_resolve;
+          Contenedor.all().then(function (contenedores) {
+            $scope.contenedores = contenedores;
+          });
 
           Mueble.tipo_mueble().then(function (muebles) {
+
             $scope.tipo_muebles = muebles;
+
           }).catch(function () {
             $scope.tipo_muebles = [];
           });
           $scope.fuentes = Cotizacion.all_fuentes();
 
-          setTimeout(function () {
-         $('select.selectPicker').selectpicker();
-       }, 50);
+
         }
 
         $rootScope.$on('change', function (event) {
@@ -321,44 +358,92 @@
             $rootScope.resumen = true;
           }
         });
+        select();
       };
 
       init();
 
+        
+      $rootScope.total_m3 = Number($scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros);
+
+      $rootScope.margen = Number($scope.cotizacion.porcentaje_margen);
+
+      $scope.$on('change_margen',function(){
+        setTimeout(function(){
+          $rootScope.margen = Number($scope.cotizacion.porcentaje_margen);
+          $scope.$apply();
+        },0)
+      })
+
+
       //Methods
       $scope.check = function (n) {
+        n = Number(n) + 1;
+        // n === '0' ? n = '1' : n = '0';
+        // return n.toString();
+        return n;
+      };
+      $scope.checkc = function (n) {
         n === '0' ? n = '1' : n = '0';
         return n;
       };
 
-      $scope.add_contenedor = function (descripcion, uni) {
+      $scope.add_contenedor = function (contenedor, uni) {
         var contenedor_temp = {
-          contenedor: descripcion,
-          unidad: Number(uni),
+          descripcion: contenedor.contenedor,
+          contenedor: contenedor.id,
+          cantidad: Number(uni),
           punto: 0
         };
 
-        init(descripcion).then(function () {
+        init(contenedor.id).then(function () {
           if (!buscar_contenedor($scope.contenedores_temp, contenedor_temp)) {
-            if (Number(contenedor_temp.unidad) > 0) {
+            if (Number(contenedor_temp.cantidad) > 0) {
               $scope.contenedores_temp.push(contenedor_temp);
             }
           }
+
+          //chequear que no sea un material
+
+
           $scope.contenedores_temp = cal_punto($scope.contenedores_temp, $scope.todoscontenedores);
           $scope.metros3_contenedores = calcular_totales($scope.contenedores_temp, "punto") / 10;
-          $scope.unidades_contenedores = calcular_totales($scope.contenedores_temp, "unidad");
+          $scope.unidades_contenedores = calcular_totales($scope.contenedores_temp, "cantidad");
+          check_material(contenedor_temp);
+          $rootScope.total_m3 = Number($scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros);
+          $scope.update_presupuesto()
         });
+
       };
+
+      function check_material(contenedor){
+        angular.forEach($scope.materiales, function(v,k){
+          var mat = angular.copy(v);
+          if(Number(mat.contenedor) === Number(contenedor.contenedor)){
+            setTimeout(function(){
+              mat.cantidad = contenedor.cantidad;
+              mat.iscontenedor = true;
+              mat.ncontenedor = contenedor.cantidad;
+              $scope.materiales.splice($scope.materiales.indexOf(v),1);
+              $scope.materiales.push(mat);
+              $scope.add_material(mat);
+                $scope.$apply();
+            },0);
+
+      return true;
+          }
+        })
+      }
 
       $rootScope.limpiar = function () {
         setTimeout(function(){
-          $('.btnSeleccionado').children('.classContenedores').click();
+          $('.btnSeleccionado').children('div').children('span.remover').click();
+          $('.btnSeleccionado').children('.classContenedores').children('span.remover').click();
           $scope.contenedores_temp = [];
           $scope.muebles_temp = [];
           $scope.otros_temp = [];
           $scope.otros_temp_campo = [];
           $scope.materiales_temp = [];
-          $scope.cotizacion = {};
 
           // //Variables De Totales
           $scope.metros3_contenedores = 0;
@@ -368,40 +453,41 @@
           $scope.metros3_otros = 0;
           $scope.unidades_otros = 0;
           $scope.$apply();
-        },50);
+        },0);
 
       };
 
       $scope.add_mueble = function (mueble, uni) {
         var mueble_temp = {
-          mueble: mueble.descripcion,
-          espeficicacion: mueble.especificacion,
+          mueble: mueble.mueble,
+          especificacion: mueble.especificacion,
           descripcion: "",
           ancho: Number(mueble.ancho),
           largo: Number(mueble.largo),
           alto: Number(mueble.alto),
           cantidad: Number(uni),
           punto: Number(mueble.punto),
-          total_punto: Number(uni * mueble.punto),
+          total_punto: Number(Number(uni) * Number(mueble.punto)),
           estado: "activo"
         };
 
         if (buscar_mueble($scope.muebles_temp, mueble_temp) !== true) {
-          if (mueble_temp.cantidad > 0) {
+          if (Number(mueble_temp.cantidad) > 0) {
             $scope.muebles_temp.push(mueble_temp);
           }
         }
         $scope.metros3_muebles = calcular_totales($scope.muebles_temp, "total_punto") / 10;
         $scope.unidades_muebles = calcular_totales($scope.muebles_temp, "cantidad");
+        $rootScope.total_m3 = Number($scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros);
       };
 
       $scope.add_otros = function (campo, mueble, ancho, largo, alto, cant, descripcion, otro) {
-        console.log(mueble);
         if (ancho !== undefined && largo !== undefined && alto !== undefined && mueble) {
           var otro = {
             id: campo.id,
             mueble: mueble,
             descripcion: descripcion,
+            especificacion: "",
             ancho: Number(ancho),
             largo: Number(largo),
             alto: Number(alto),
@@ -430,9 +516,11 @@
           }
           $scope.metros3_otros = calcular_totales($scope.otros_temp, "total_punto") / 10;
           $scope.unidades_otros = calcular_totales($scope.otros_temp, "cantidad");
+          $rootScope.total_m3 = Number($scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros);
         } else {
           alert('Seleccione primero la descripción');
         }
+
       };
 
       $scope.add_campo = function () {
@@ -448,7 +536,13 @@
         }
         $scope.otros_temp_campo.splice($scope.otros_temp_campo.indexOf(campo), 1);
       };
-
+    $rootScope.actFecha = function(){
+      setTimeout(function(){
+        $scope.cotizacion.hora_de_cotizacion = new Date();
+        $scope.cotizacion.fecha_de_cotizacion = new Date();
+        $scope.$apply();
+      },0);
+    }
       $rootScope.save = function() {
         var self = $scope.cotizacion;
 
@@ -461,8 +555,8 @@
             var cotizacion_temp = {
 
               "numero_cotizacion": self.numero_cotizacion,
-              "cliente": $scope.cliente.id,
-              "cotizador": 2,
+              "clienteId": $scope.cliente.id,
+              "cotizadorId": self.cotizador.id,
               "fuente": self.fuente,
               "cp_pv": self.cp_pv,
               "tipo_cliente": self.tipo_cliente,
@@ -495,8 +589,12 @@
               "desembalaje": Number(self.desembalaje).toFixed(2),
               "materiales": Number(self.materiales).toFixed(2),
               "piano_cajafuerte": Number(self.piano_cajafuerte).toFixed(2),
+              "porcentaje_ajuste":Number(self.porcentaje_ajuste).toFixed(2),
+              "porcentaje_iva":Number(self.porcentaje_iva).toFixed(2),
               "ajuste": Number(self.ajuste).toFixed(2),
               "iva": Number(self.iva).toFixed(2),
+              "subtotal1":Number(self.subtotal1).toFixed(2),
+              "subtotal2":Number(self.subtotal2).toFixed(2),
               "total_monto": Number(self.total_monto).toFixed(2),
               "observacion": self.observacion,
               "total_cantidad": Number($scope.unidades_contenedores + $scope.unidades_muebles + $scope.unidades_otros),
@@ -505,7 +603,7 @@
               "total_margen": self.total_margen,
               "estado": "activo"
             };
-console.log(cotizacion_temp.total_m3);
+
             if(self.seguro === 'Si'){
               cotizacion_temp.seguro = true;
             }else{
@@ -539,24 +637,28 @@ console.log(cotizacion_temp.total_m3);
                     Cotizacion.save_materiales($scope.materiales_temp[i],cot.data.id);
                 }
 
-                $rootScope.nav = '1';
+                // $rootScope.nav = '1';
+                $state.go('list');
                 $scope.limpiar();
 
                 $scope.cotizacion = {};
+                select();
                 $scope.cliente = {};
                 $scope.materiales_temp = null;
                 $scope.materiales_temp = [];
+                // $scope.materiales = [];
                 // $scope.cotizacion = angular.copy(cotizacion);
                 $('#ncotizacion').focus();
                 $scope.limpiarM = false;
                 setTimeout(function () {
+                  // $scope.materiales = angular.copy(materiales_resolve);
                   $scope.cotizacion = angular.copy(cotizacion);
                   $scope.cotizacion.numero_ayudante ={num:0};
                   $scope.cotizacion.ambiente ={num:0};
                   // $('.btnSeleccionado').children('.classContenedores').click();
                   $scope.limpiarM = true;
                   $scope.$apply();
-                }, 1000);
+                }, 100);
               }
             }).catch(function(){
                 alert('ocurrio un error con el servidor');
@@ -571,43 +673,78 @@ console.log(cotizacion_temp.total_m3);
       }
       $scope.calcular_ajuste  = function () {
         var resultado=0;
-        resultado=($scope.cotizacion.ajuste/$scope.cotizacion.subTotal1)*100;
-        if (isNaN(parseFloat(resultado))) {
-          resultado=0;
-        }
+        resultado=($scope.cotizacion.ajuste/$scope.cotizacion.subtotal1)*100;
         $scope.cotizacion.porcentaje_ajuste = resultado;
-        $scope.cotizacion.subTotal2 = Number($scope.cotizacion.subTotal1 + $scope.cotizacion.ajuste)
-        $scope.cotizacion.total_monto = Number($scope.cotizacion.subTotal2 + $scope.cotizacion.iva)
+        $scope.cotizacion.subtotal2 = Number($scope.cotizacion.subtotal1 + $scope.cotizacion.ajuste)
+        $scope.cotizacion.total_monto = Number($scope.cotizacion.subtotal2 + $scope.cotizacion.iva)
       }
 
       $scope.calcular_iva  = function () {
         var resultado=0;
-        resultado=Number(($scope.cotizacion.subTotal2*$scope.cotizacion.porcentaje_iva)/100);
-        if (isNaN(parseFloat(resultado))) {
-          resultado=0;
-        }
+        resultado=Number(($scope.cotizacion.subtotal2*$scope.cotizacion.porcentaje_iva)/100);
         $scope.cotizacion.iva = resultado;
-        $scope.cotizacion.total_monto = Number($scope.cotizacion.subTotal2 + $scope.cotizacion.iva)
+        $scope.cotizacion.total_monto = Number($scope.cotizacion.subtotal2 + $scope.cotizacion.iva)
       }
 
       $scope.update_presupuesto = function () {
-        $scope.cotizacion.subTotal1 = Number($scope.cotizacion.mudanza + $scope.cotizacion.soga + $scope.cotizacion.embalaje + $scope.cotizacion.desembalaje + $scope.cotizacion.materiales + $scope.cotizacion.piano_cajafuerte)
-        $scope.calcular_ajuste();
-        $scope.calcular_iva();
+        setTimeout(function(){
+            $scope.cotizacion.subtotal1 = $scope.cotizacion.mudanza + $scope.cotizacion.soga + $scope.cotizacion.embalaje + $scope.cotizacion.desembalaje + $scope.cotizacion.materiales + $scope.cotizacion.piano_cajafuerte + $scope.cotizacion.monto_km;
+            $scope.calcular_ajuste();
+            $scope.calcular_iva();
+            $scope.$apply();
+        },0);
+
 
       }
       angular.element('#nCotizacion').focus();
 
       //temploral de material
       $scope.materiales_temp = [];
-      $scope.add_material = function (material, uni, precio) {
+
+    //   $scope.filtrado = function(cantidad){
+    //     return function (item) {
+    //
+    //     //  if ((item.num) !== Number(cantidad))
+    //     //  {
+    //     //       return true;
+    //     // }
+    //     return false;
+    // };
+      // }
+      $scope.check_object = function(cantidad){
+
+        if(typeof(cantidad) === 'object'){
+
+          return true;
+
+        }else{
+
+          return false;
+
+        }
+
+      }
+      $scope.add_material = function (material) {
+
+
+        if(typeof(material.cantidad) === 'object'){
+
+          var cant =   angular.copy(material.cantidad.num);
+
+        }else{
+
+          var cant =   angular.copy(material.cantidad);
+
+        }
+
+
         var material_temp = {
           // id: 1,
           // cotizacion: 1,
           material: material.descripcion,
-          cantidad: Number(uni),
-          precio_unitario: Number(precio),
-          total: Number(uni * precio),
+          cantidad: Number(cant),
+          precio_unitario: Number(material.precio),
+          total: Number(cant * material.precio),
           estado: "activo"
         };
 
@@ -617,8 +754,8 @@ console.log(cotizacion_temp.total_m3);
           }
         }
         $scope.cotizacion.materiales = calcular_totales($scope.materiales_temp, "total");
-        // console.log($scope.materiales_temp);
-      $scope.cotizacion.subTotal1 = $scope.cotizacion.mudanza + $scope.cotizacion.soga + $scope.cotizacion.embalaje + $scope.cotizacion.desembalaje + $scope.cotizacion.materiales + $scope.cotizacion.piano_cajafuerte
+        $scope.update_presupuesto();
+
           };
 
       function buscar_material(ms_tmp, m) {
@@ -640,10 +777,17 @@ console.log(cotizacion_temp.total_m3);
       // temporal parcial_1
       // $scope.parcial1_temp = {};
       $scope.add_parcial1 = function () {
-        // console.log($scope.cotizacion);
         $scope.cotizacion.monto_km = Number($scope.cotizacion.recorrido_km * $scope.cotizacion.precio_km);
+        $scope.update_presupuesto();
       };
-    }
+
+      $scope.cancelar = function(){
+        setTimeout(function(){
+          $state.go('list');
+          $scope.$apply();
+        },500)
+      }
+
   }]);
 
   app.filter('unique', function () {
@@ -686,4 +830,5 @@ console.log(cotizacion_temp.total_m3);
       return items;
     };
   });
+
 })();

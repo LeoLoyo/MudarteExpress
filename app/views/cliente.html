@@ -1,16 +1,11 @@
-<div ng-show="nav==='1'" ng-if="nav==='1'" >
+<div ng-show="nav==='1'" >
   <div class="col-md-12">
   <br>
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-4">
       <h2 style="display:inline;">Datos del cliente</h2>
       </div>
-
-
-  </div>
-  <br>
-<div class="row">
-  <div class="col-md-12 col-lg-4 col-sm-12">
+      <div class="col-md-4">
         <div class="btn-group grupoRadio">
           <label class="btn btn-default" ng-class="{btnSeleccionado:cotizacion.tipo_cliente==='Particular'}">
               <input type="radio"  ng-model="cotizacion.tipo_cliente"  value="Particular" /> Particular
@@ -24,23 +19,15 @@
         </div>
         <br><br>
       </div>
-  <div class="col-md-12 col-lg-4 col-sm-12">
+      <div class="col-md-4">
         <div class="form-group">
-      <div class="input-group">
-      <div class="input-group-addon btnSeleccionado">Fecha de carga</div>
-      <input type="text" class="form-control" placeholder="{{cotizacion.fecha_de_carga| date:'dd-MM-yyyy HH:mm'}}" readonly style="background:#fff;" >
-    </div>
-  </div>
-      </div>
-      <div class="col-md-12 col-lg-4 col-sm-12">
-           <div class="form-group">
       <div class="input-group">
       <div class="input-group-addon btnSeleccionado">N° de cotización</div>
       <input type="text" ng-model="cotizacion.numero_cotizacion" class="form-control" id="ncotizacion" placeholder="000" autofocus>
     </div>
   </div>
       </div>
-</div>
+  </div>
   <form action="" class="formulario">
     <div class="row">
   <div class="col-md-3 form-group">
@@ -57,7 +44,7 @@
   </div>
   <div class="col-md-3 form-group">
     <label for="id_promocion">Fuente de promoción:</label>
-    <select class="form-control selectPicker show-tick" data-live-search="true" data-size="10" title="Seleccione fuente de promoción" ng-model="cotizacion.fuente" id="id_promocion">
+    <select  class="form-control selectPicker show-tick" data-live-search="true" data-size="10" title="Seleccione fuente de promoción" ng-model="cotizacion.fuente" id="id_promocion">
       <option value=""></option>
       <option  ng-repeat="item in fuentes">{{item}}</option></select>
   </div>
@@ -76,7 +63,7 @@
   </div>
   <div class="col-md-3 form-group">
     <label for="id_cotizador">Cotizador:</label>
-    <select class="form-control" ng-model="cotizacion.cotizador" id="id_cotizador"><option ng-value="{{item}}" ng-repeat="item in cotizadores">{{item.first_name}} {{item.last_name}}</option></select>
+    <select class="form-control" ng-model="cotizacion.cotizador" ng-options="item as (item.first_name +' ' +item.last_name) for item in cotizadores"></select>
   </div>
   <div class="col-md-3 form-group">
     <label for="id_cotizador">Forma de pago:</label>

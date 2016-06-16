@@ -5,38 +5,39 @@
 
     $rootScope.session = Session_resolve;
 
-    $('.btnsCotizacion').addClass('hidden');
-
-    // $rootScope.session = Session.get();
-
     $scope.ingresar = function (user) {
-      var response;
-      response = Auth.valid(user);
+
+      var response = Auth.valid(user);
+
       if (response[0].status) {
+
         $scope.messages = 'Bienvenido';
 
-        setTimeout(function () {
-          $rootScope.$apply(function () {
-            $state.go('cotizacion')
-            Session.set(true);
-            // $('.btnsCotizacion').removeClass('hidden');
-            angular.element('.btnsCotizacion').removeClass('hidden');
-            angular.element('.dropdown-toggle').text('').append('<i class="glyphicon glyphicon-user"></i> ' + response[0].user.name + '<span class="caret"></span>');
-            // $('.dropdown-toggle').text('').append('<i class="glyphicon glyphicon-user"></i> ' + response[0].user.name + '<span class="caret"></span>');
-          });
-        }, 500);
+        $state.go('list');
+
+        Session.set(true);
+
       } else {
+
         $scope.messages = 'Usuario o contraseña invalido';
-        // $('.spanErrorUser').removeClass('hidden');
       }
+
     };
 
-    $rootScope.logout = function () {
-      $rootScope.nav = '1';
-      Session.set(false);
-      $('.dropdown-toggle').text('Login').append('<span class="caret"></span>');
-      $state.go('login');
-    };
+    $rootScope.Go = function(state){
+
+      $state.go(state);
+
+    }
+
+    // $rootScope.logout = function () {
+    //   $('.cargando').removeClass('hidden');
+    //   $rootScope.nav = '1';
+    //   Session.set(false);
+    //   $('.dropdown-toggle').text('Login').append('<span class="caret"></span>');
+    //   $state.go('login');
+    // };
+
     angular.element('#cUsuario').focus();
   }]);
 })();
