@@ -371,7 +371,10 @@ table.tablaResumen {
     }
     padding-left: 210px;
 }
-#modalConfirmacion, #modalConfirmacionExportar {
+#modalConfirmacion,
+#modalConfirmacionExportar,
+#modalCancel,
+.modalMudarte {
   div.modal-dialog {
     div.modal-content {
       border-radius:0;
