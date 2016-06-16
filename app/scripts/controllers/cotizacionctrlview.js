@@ -243,7 +243,6 @@ app.controller('CotizacionViewCtrl', ['$scope', '$state', 'Cotizacion', 'Backend
 
   // $scope.cotizaciones_totales = [];
 
-
   setTimeout(function () {
 
 

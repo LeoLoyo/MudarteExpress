@@ -28,7 +28,7 @@
           //  $('select.selectPicker').selectpicker('destroy');
            $('select.selectPicker').selectpicker();
            $scope.$apply();
-         },50);
+         },100);
 
       }
 
@@ -359,11 +359,12 @@
           }
         });
         select();
+
       };
 
       init();
 
-        
+
       $rootScope.total_m3 = Number($scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros);
 
       $rootScope.margen = Number($scope.cotizacion.porcentaje_margen);
