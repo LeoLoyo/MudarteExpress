@@ -325,7 +325,24 @@ app.controller('ShowCtrl', ['$rootScope','$scope', '$state', '$stateParams', 'Ba
 
 }]);
 
-app.controller('EditCtrl',edit);
-function edit($state, $stateParams){
-  console.log($stateParams.id_cotizacion);
+app.controller('EditCtrl',['$scope', '$state', '$stateParams', 'BackendCotizacion', edit]);
+
+function edit($scope, $state, $stateParams, Backend){
+
+  var cotizacion = Backend.getById(Number($stateParams.id_cotizacion));
+
+  cotizacion.fecha_estimada_mudanza = new Date(cotizacion.fecha_estimada_mudanza);
+
+  cotizacion.hora_estimada_mudanza = new Date(cotizacion.hora_estimada_mudanza);
+
+  cotizacion.fecha_de_cotizacion = new Date(cotizacion.fecha_de_cotizacion);
+
+  cotizacion.hora_de_cotizacion = new Date(cotizacion.hora_de_cotizacion);
+
+
+  setTimeout(function(){
+    $scope.cotizacion = cotizacion;
+    console.log($scope.cotizacion.fecha_estimada_mudanza);
+    $scope.$apply();
+  },2000)
 }
