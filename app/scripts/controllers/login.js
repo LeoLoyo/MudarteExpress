@@ -30,13 +30,13 @@
 
     }
 
-    $rootScope.logout = function () {
-      $('.cargando').removeClass('hidden');
-      $rootScope.nav = '1';
-      Session.set(false);
-      $('.dropdown-toggle').text('Login').append('<span class="caret"></span>');
-      $state.go('login');
-    };
+    // $rootScope.logout = function () {
+    //   $('.cargando').removeClass('hidden');
+    //   $rootScope.nav = '1';
+    //   Session.set(false);
+    //   $('.dropdown-toggle').text('Login').append('<span class="caret"></span>');
+    //   $state.go('login');
+    // };
 
     angular.element('#cUsuario').focus();
   }]);

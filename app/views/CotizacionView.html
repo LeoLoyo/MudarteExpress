@@ -19,14 +19,9 @@
           <p class="fecha1">{{cotizacion.fecha_de_cotizacion | date:"dd"}}</p>
           <p class="fecha2">{{cotizacion.fecha_de_cotizacion | date:"MMMM"}}</p>
           <p class="fecha3">  {{cotizacion.fecha_de_cotizacion | date:"yyyy"}}</p>
-          <!-- <p class="fecha1">{{cotizacion.cotizacion.fecha_de_cotizacion | date:"dd"}}</p>
-          <p class="fecha2">{{cotizacion.cotizacion.fecha_de_cotizacion | date:"MMMM"}}</p>
-          <p class="fecha3">  {{cotizacion.cotizacion.fecha_de_cotizacion | date:"yyyy"}}</p> -->
           <div class="detalle">
 
             <a tabindex="-1" ui-sref="show({id_cotizacion:cotizacion.id})">Ver</a>
-            <!-- <a tabindex="-1" ng-click="GoCotizacion(cotizacion.id)">Ver</a> -->
-            <!-- <a tabindex="-1" ng-click="GoCotizacion(cotizacion.cotizacion.id)">Ver</a> -->
 
           </div>
         </div>
@@ -35,10 +30,8 @@
         <div class="col-md-9 col-sm-12 col-xs-12">
           <div class="cotiza">
           <p class="cotiza1">Cotización n°: <b>{{cotizacion.numero_cotizacion}}</b></p>
-          <!-- <p class="cotiza1">Cotización n°: <b>{{cotizacion.cotizacion.numero_cotizacion}}</b></p> -->
           <p class="cotiza2">{{cotizacion.cliente.nombre}} </p>
           <p class="cotiza3">{{cotizacion.total_m3}} m3</p>
-          <!-- <p class="cotiza3">{{cotizacion.cotizacion.total_m3}} m3</p> -->
         </div>
         </div>
       </div>
@@ -46,3 +39,4 @@
   </div>
 </div>
 </div>
+<h3 ng-if="cotizaciones_totales.length === 0">No hay cotizaciones realizadas.</h3>

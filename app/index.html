@@ -27,13 +27,17 @@
                     <span class="icon-bar"></span>
                 </button> -->
                 <div class="volver btnsCotizacion hidden">
-                    <a  ng-if="nav!=='7'" ng-show="nav!=='7' && session" ui-sref="list" href="#/list"></a>
-                </div>
+                   <a  ng-show="nav==='4' && session" ng-click="nav='1'"></a>
+                   <a  ng-show="nav==='5' && session" ng-click="nav='4'"></a>
+                   <a  ng-show="nav==='2' && session" ng-click="nav='5'"></a>
+                   <a  ng-show="nav==='3' && session" ng-click="nav='2'"></a>
+                   <a  ng-show="nav==='6' && session" ng-click="nav='3'"></a>
+               </div>
             </div>
 
 <ul>
 </ul>
-<ul class="Right">
+<!-- <ul class="Right">
     <li class="dropdown">
         <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true" tabindex="-1">Login
         </a>
@@ -41,7 +45,7 @@
             <li><a  ng-click="logout()">Cerrar sesión</a></li>
         </ul>
     </li>
-</ul>
+</ul> -->
 </nav>
 </div>
 
@@ -88,8 +92,9 @@
                 <button class="btn btn-lg btn-block btn-outline" ng-click="Go('cotizacion')">Nueva</button>
               </li>
             </ul>
-            <ul class="btnAccion btnsCotizacion">
-                <li ng-show="resumen" class="totalm3 btnsCotizacion">
+            <ul class="btnAccion btnsCotizacion hidden">
+
+                <li ng-show="resumen" ng-show="nav!=='6'" ng-if="nav!=='6'" class="totalm3 btnsCotizacion">
                     <table>
                         <tr>
                             <td>Total:</td>
@@ -111,13 +116,13 @@
                     </label> -->
                 </li>
 
-
                 <li ng-show="nav==='4' && resumen" ng-if="nav==='4' && resumen">
                     <button type="button" class="btn btn-limpiar btn-lg btn-block"  ng-click="limpiar()" title="Limpiar">
                     <!-- <button type="button" class="btn btn-limpiar btn-lg btn-block" onclick="limpiar()" ng-click="limpiar()" title="Limpiar"> -->
                     Limpiar
                     </button>
                 </li>
+
                 <li ng-show="nav==='6'" ng-if="nav==='6'">
                     <!-- <button type="submit" ng-disabled="otros_temp.length === 0 && contenedores_temp.length === 0 && muebles_temp.length === 0" class="btn btn-outline btn-lg btn-block" onclick="descargarExcel()" ng-click="save(cotizacion,cliente)">Exportar</button> -->
                     <button type="submit" ng-disabled="otros_temp.length === 0 && contenedores_temp.length === 0 && muebles_temp.length === 0" class="btn btn-outline btn-lg btn-block" data-toggle="modal" data-target="#modalConfirmacionExportar">Exportar</button>
@@ -125,6 +130,10 @@
                 <li ng-show="nav==='6'" ng-if="nav==='6'">
                     <!-- <button type="submit" ng-disabled="otros_temp.length === 0 && contenedores_temp.length === 0 && muebles_temp.length === 0" class="btn btn-outline btn-lg btn-block" ng-click="save(cotizacion,cliente)" data-toggle="modal" data-target="#myModal">Procesar</button> -->
                     <button type="submit" ng-disabled="otros_temp.length === 0 && contenedores_temp.length === 0 && muebles_temp.length === 0" class="btn btn-outline btn-lg btn-block"  data-toggle="modal" data-target="#modalConfirmacion">Procesar</button>
+
+                </li>
+                <li >
+                  <button class="btn btn-lg btn-block btn-outline" data-toggle="modal" data-target="#modalCancel">Ver Lista</button>
                 </li>
             </ul>
             <div>Derechos reservados @2016</div>

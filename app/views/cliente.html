@@ -63,11 +63,11 @@
   </div>
   <div class="col-md-3 form-group">
     <label for="id_cotizador">Cotizador:</label>
-    <select class="form-control" ng-model="cotizacion.cotizador" ng-options="item as (item.first_name +' ' +item.last_name) for item in cotizadores"></select>
+    <select class="form-control selectPicker" ng-model="cotizacion.cotizador" title="Seleccione un cotizador" ng-options="item as (item.first_name +' ' +item.last_name) for item in cotizadores"></select>
   </div>
   <div class="col-md-3 form-group">
     <label for="id_cotizador">Forma de pago:</label>
-    <select class="form-control" ng-model="cotizacion.forma_pago"id="id_cotizador">
+    <select class="form-control selectPicker" title="Seleccione una" ng-model="cotizacion.forma_pago"id="id_cotizador">
       <option value="Efectivo">Efectivo</option>
       <option value="Cheque">Cheque</option>
       <option value="Transferencia">Transferencia</option>
