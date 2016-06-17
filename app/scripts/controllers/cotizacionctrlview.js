@@ -267,7 +267,7 @@ app.controller('CotizacionViewCtrl', ['$scope', '$state', 'Cotizacion', 'Backend
   // };
 }]);
 
-app.controller('ShowCtrl', ['$scope', '$stateParams', 'BackendCotizacion', function ($scope, $stateParams, BackendCotizacion) {
+app.controller('ShowCtrl', ['$rootScope','$scope', '$state', '$stateParams', 'BackendCotizacion', function ($rootScope, $scope, $state, $stateParams, BackendCotizacion) {
 
   function calcular_totales(array, attr) {
     var result = 0;
@@ -319,4 +319,13 @@ app.controller('ShowCtrl', ['$scope', '$stateParams', 'BackendCotizacion', funct
 
   $scope.subtotal2 = cotizacion_total.subtotal2;
 
+  $rootScope.Go = function(){
+    $state.go('edit', {id_cotizacion:$stateParams.id_cotizacion})
+  }
+
 }]);
+
+app.controller('EditCtrl',edit);
+function edit($state, $stateParams){
+  console.log($stateParams.id_cotizacion);
+}
