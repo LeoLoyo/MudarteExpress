@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="styles/style.css">
     <!-- endbuild -->
 </head>
-<body>
+<body tabindex="-1">
 <!--[if lte IE 8]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
@@ -23,15 +23,15 @@
                 <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse-navbar" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>onbeforeunload="return false;"
                     <span class="icon-bar"></span>
                 </button> -->
                 <div class="volver btnsCotizacion hidden">
-                   <a  ng-show="nav==='4' && session" ng-click="nav='1'"></a>
-                   <a  ng-show="nav==='5' && session" ng-click="nav='4'"></a>
-                   <a  ng-show="nav==='2' && session" ng-click="nav='5'"></a>
-                   <a  ng-show="nav==='3' && session" ng-click="nav='2'"></a>
-                   <a  ng-show="nav==='6' && session" ng-click="nav='3'"></a>
+                   <a  ng-show="nav==='4' && session" ng-click="nav='1'" tabindex="-1"></a>
+                   <a  ng-show="nav==='5' && session" ng-click="nav='4'" tabindex="-1"></a>
+                   <a  ng-show="nav==='2' && session" ng-click="nav='5'" tabindex="-1"></a>
+                   <a  ng-show="nav==='3' && session" ng-click="nav='2'" tabindex="-1"></a>
+                   <a  ng-show="nav==='6' && session" ng-click="nav='3'" tabindex="-1"></a>
                </div>
             </div>
 
@@ -55,7 +55,7 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                   <img src="logo.png" alt="">
+                   <img src="logo.png" alt="" tabindex="-1">
                 </li>
                 <li>
                 </li>
@@ -148,13 +148,13 @@
         <div class="btnsPaginacion">
             <div>
                 <div class="btnsCotizacion hidden">
-                    <button class="btnAnterior" ng-show="nav==='4' && session"  ng-click="nav='1'" onclick="scroll0();">Anterior</button>
+                    <button class="btnAnterior" ng-show="nav==='4' && session" ng-click="nav='1'" onclick="scroll0();">Anterior</button>
                     <button class="btnAnterior" ng-show="nav==='5' && session"  ng-click="nav='4'" onclick="scroll0();">Anterior</button>
                     <button class="btnAnterior" ng-show="nav==='2' && session"  ng-click="nav='5'" onclick="scroll0();">Anterior</button>
                     <button class="btnAnterior" ng-show="nav==='3' && session"  ng-click="nav='2'" onclick="scroll0();">Anterior</button>
                     <button class="btnAnterior" ng-show="nav==='6' && session && resumen" ng-click="nav='3'" onclick="scroll0();">Anterior</button>
 
-                   <button class="btnSiguiente" ng-show="nav==='1' && session" ng-click="nav='4'" onclick="scroll0();">Siguiente</button>
+                   <button class="btnSiguiente" ng-show="nav==='1' && session"  ng-click="nav='4'" onclick="scroll0();">Siguiente</button>
                    <button class="btnSiguiente" ng-show="nav==='4' && session"  ng-click="nav='5'" onclick="scroll0();">Siguiente</button>
                    <button class="btnSiguiente" ng-show="nav==='5' && session"  ng-click="nav='2'" onclick="scroll0();">Siguiente</button>
                    <button class="btnSiguiente" ng-show="nav==='2' && session"  ng-click="nav='3'" onclick="scroll0();">Siguiente</button>
@@ -206,13 +206,34 @@
 <script>
 $(function(){
     var rx = /INPUT|SELECT|TEXTAREA/i;
-    $(document).bind("keydown keypress", function(e){
-        if( e.which == 8 ){ // 8 == backspace
-            if(!rx.test(e.target.tagName) || e.target.disabled || e.target.readOnly ){
-                e.preventDefault();
-            }
-        }
-    });
+     $(document).bind("keydown keypress", function(e){
+         if( e.which == 8 ){ // 8 == backspace
+             if(!rx.test(e.target.tagName) || e.target.disabled || e.target.readOnly ){
+                 e.preventDefault();
+             }
+         }
+     });
+     if (typeof window.event == 'undefined'){
+    document.onkeypress = function(e){
+     var test_var=e.target.nodeName.toUpperCase();
+     if (e.target.type) var test_type=e.target.type.toUpperCase();
+     if ((test_var == '/INPUT' && test_type == 'TEXT' || test_type == 'PASSWORD'  || test_type == 'EMAIL') || test_var == 'TEXTAREA'){
+       return e.keyCode;
+     }else if (e.keyCode == 8){
+       e.preventDefault();
+     }
+    }
+  }else{
+    document.onkeydown = function(){
+     var test_var=event.srcElement.tagName.toUpperCase();
+     if (event.srcElement.type) var test_type=event.srcElement.type.toUpperCase();
+     if ((test_var == 'INPUT' && test_type == 'TEXT'  || test_type == 'PASSWORD'  || test_type == 'EMAIL') || test_var == 'TEXTAREA'){
+       return event.keyCode;
+     }else if (event.keyCode == 8){
+       event.returnValue=false;
+     }
+    }
+  }
 });
 </script>
 </body>
