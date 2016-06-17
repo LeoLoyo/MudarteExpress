@@ -267,7 +267,7 @@ app.controller('CotizacionViewCtrl', ['$scope', '$state', 'Cotizacion', 'Backend
   // };
 }]);
 
-app.controller('ShowCtrl', ['$rootScope','$scope', '$state', '$stateParams', 'BackendCotizacion', function ($rootScope, $scope, $state, $stateParams, BackendCotizacion) {
+app.controller('ShowCtrl', ['$scope', '$state', '$stateParams', 'BackendCotizacion', '$rootScope', function ($scope, $state, $stateParams, BackendCotizacion, $rootScope) {
 
   function calcular_totales(array, attr) {
     var result = 0;
@@ -299,6 +299,8 @@ app.controller('ShowCtrl', ['$rootScope','$scope', '$state', '$stateParams', 'Ba
 
   $scope.cotizacion = cotizacion_total;
 
+  $rootScope.id_cotizacion = angular.copy(cotizacion_total.id);
+
   $scope.materiales_temp = cotizacion_total.cotizacionmateriales;
 
   $scope.contenedores_temp = cotizacion_total.cotizacioncontenedores;
@@ -319,9 +321,6 @@ app.controller('ShowCtrl', ['$rootScope','$scope', '$state', '$stateParams', 'Ba
 
   $scope.subtotal2 = cotizacion_total.subtotal2;
 
-  $rootScope.Go = function(){
-    $state.go('edit', {id_cotizacion:$stateParams.id_cotizacion})
-  }
 
 }]);
 
@@ -344,5 +343,5 @@ function edit($scope, $state, $stateParams, Backend){
     $scope.cotizacion = cotizacion;
     console.log($scope.cotizacion.fecha_estimada_mudanza);
     $scope.$apply();
-  },2000)
+  },0)
 }

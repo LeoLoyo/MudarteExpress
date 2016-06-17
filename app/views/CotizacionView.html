@@ -21,7 +21,8 @@
           <p class="fecha3">  {{cotizacion.fecha_de_cotizacion | date:"yyyy"}}</p>
           <div class="detalle">
 
-            <a tabindex="-1" ui-sref="show({id_cotizacion:cotizacion.id})">Ver</a>
+            <!-- <a tabindex="-1" ui-sref="show({id_cotizacion:cotizacion.id})">Ver</a> -->
+            <a tabindex="-1" ng-click="Go('show',cotizacion.id)">Ver</a>
 
           </div>
         </div>
