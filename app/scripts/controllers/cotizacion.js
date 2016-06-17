@@ -28,7 +28,7 @@
           //  $('select.selectPicker').selectpicker('destroy');
            $('select.selectPicker').selectpicker();
            $scope.$apply();
-         },200);
+         },400);
 
       }
 
@@ -313,6 +313,7 @@
             $scope.todoscontenedores = contenedores;
           });
         } else {
+            select();
           Material.all().then(function (r) {
             var out = [];
             angular.forEach(r, function (v, k) {
@@ -358,7 +359,7 @@
             $rootScope.resumen = true;
           }
         });
-        select();
+
 
       };
 

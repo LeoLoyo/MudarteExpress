@@ -344,5 +344,5 @@ function edit($scope, $state, $stateParams, Backend){
     $scope.cotizacion = cotizacion;
     console.log($scope.cotizacion.fecha_estimada_mudanza);
     $scope.$apply();
-  },2000)
+  },0)
 }
