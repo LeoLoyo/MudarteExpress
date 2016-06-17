@@ -28,7 +28,7 @@
           //  $('select.selectPicker').selectpicker('destroy');
            $('select.selectPicker').selectpicker();
            $scope.$apply();
-         },100);
+         },200);
 
       }
 

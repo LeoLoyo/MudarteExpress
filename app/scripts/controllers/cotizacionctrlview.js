@@ -267,7 +267,7 @@ app.controller('CotizacionViewCtrl', ['$scope', '$state', 'Cotizacion', 'Backend
   // };
 }]);
 
-app.controller('ShowCtrl', ['$scope', '$stateParams', 'BackendCotizacion', function ($scope, $stateParams, BackendCotizacion) {
+app.controller('ShowCtrl', ['$rootScope','$scope', '$state', '$stateParams', 'BackendCotizacion', function ($rootScope, $scope, $state, $stateParams, BackendCotizacion) {
 
   function calcular_totales(array, attr) {
     var result = 0;
@@ -319,4 +319,30 @@ app.controller('ShowCtrl', ['$scope', '$stateParams', 'BackendCotizacion', funct
 
   $scope.subtotal2 = cotizacion_total.subtotal2;
 
+  $rootScope.Go = function(){
+    $state.go('edit', {id_cotizacion:$stateParams.id_cotizacion})
+  }
+
 }]);
+
+app.controller('EditCtrl',['$scope', '$state', '$stateParams', 'BackendCotizacion', edit]);
+
+function edit($scope, $state, $stateParams, Backend){
+
+  var cotizacion = Backend.getById(Number($stateParams.id_cotizacion));
+
+  cotizacion.fecha_estimada_mudanza = new Date(cotizacion.fecha_estimada_mudanza);
+
+  cotizacion.hora_estimada_mudanza = new Date(cotizacion.hora_estimada_mudanza);
+
+  cotizacion.fecha_de_cotizacion = new Date(cotizacion.fecha_de_cotizacion);
+
+  cotizacion.hora_de_cotizacion = new Date(cotizacion.hora_de_cotizacion);
+
+
+  setTimeout(function(){
+    $scope.cotizacion = cotizacion;
+    console.log($scope.cotizacion.fecha_estimada_mudanza);
+    $scope.$apply();
+  },2000)
+}

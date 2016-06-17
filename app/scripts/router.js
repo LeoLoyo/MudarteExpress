@@ -61,6 +61,37 @@
 
       }
 
+    }).state('edit', {
+
+      url: '/edit/:id_cotizacion',
+
+      cache:true,
+
+      views: {
+
+        "maincontent": {
+
+          templateUrl: 'views/cliente.html',
+
+          controller: 'EditCtrl',
+
+          resolve: {
+            Session_resolve: function (Session, $state, $rootScope) {
+
+              if(Session.get()){
+                $('.btnsCotizacion').removeClass('hidden');
+                  $rootScope.nav = '10'
+
+              }else{
+                $state.go('login');
+              }
+
+              return Session.get();
+            }
+          }
+
+        }
+      }
     }).state('show', {
 
       url: '/show/:id_cotizacion',
@@ -80,7 +111,7 @@
 
               if(Session.get()){
                 $('.btnsCotizacion').addClass('hidden');
-                  $rootScope.nav = '7';
+                  $rootScope.nav = '8';
 
               }else{
                 $state.go('login');
