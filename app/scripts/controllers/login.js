@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   var app = angular.module('cotizacionExpressApp');
-  app.controller('LoginCtrl',['$rootScope', '$scope', '$state', 'Auth','Session_resolve', 'Session', function ($rootScope, $scope, $state, Auth, Session_resolve, Session) {
+  app.controller('LoginCtrl',['$rootScope', '$scope', '$state', 'Auth','Session_resolve', 'Session', '$stateParams', function ($rootScope, $scope, $state, Auth, Session_resolve, Session, $stateParams) {
 
     $rootScope.session = Session_resolve;
 
@@ -24,11 +24,12 @@
 
     };
 
-    $rootScope.Go = function(state){
+    $rootScope.Go = function(state,params){
+console.log(state);
+console.log(params);
+      $state.go(state, {id_cotizacion:params});
 
-      $state.go(state);
-
-    }
+    };
 
     // $rootScope.logout = function () {
     //   $('.cargando').removeClass('hidden');
