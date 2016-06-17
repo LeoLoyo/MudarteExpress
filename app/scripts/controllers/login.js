@@ -25,9 +25,21 @@
     };
 
     $rootScope.Go = function(state,params){
-console.log(state);
-console.log(params);
-      $state.go(state, {id_cotizacion:params});
+
+        setTimeout(function(){
+
+          if(typeof params === 'undefined'){
+
+            $state.go(state);
+
+          }else{
+
+            $state.go(state, {id_cotizacion:params});
+
+          }
+          $scope.$apply();
+
+        },500);
 
     };
 
