@@ -3,7 +3,7 @@
   <h2>Muebles</h2>
   <div class="formulario" style="padding:0!important;">
     <table>
-      <div ng-repeat="group in muebles" class="conMueble">
+      <div ng-repeat="group in muebles  | orderBy:'descripcion'" class="conMueble">
 
 
         <item-muebles group="group" cantidades="cantidades"></item-muebles>
