@@ -258,7 +258,7 @@ app.controller('CotizacionViewCtrl', ['$scope', '$state', 'Cotizacion', 'Backend
 
     $scope.$apply();
 
-  }, 100);
+  }, 0);
 
 
   // $scope.GoCotizacion = function (ID) {
@@ -315,18 +315,19 @@ app.controller('ShowCtrl', ['$scope', '$state', '$stateParams', 'BackendCotizaci
 
   $scope.metros3_contenedores = calcular_totales(cotizacion_total.cotizacioncontenedores, "punto") / 10;
 
-  $scope.metros3_muebles = calcular_totales(cotizacion_total.cotizacionmuebles, "punto") / 10;
+  $scope.metros3_muebles = calcular_totales(cotizacion_total.cotizacionmuebles, "total_punto") / 10;
 
   $scope.subtotal1 = cotizacion_total.subtotal1;
 
   $scope.subtotal2 = cotizacion_total.subtotal2;
-
 
 }]);
 
 app.controller('EditCtrl',['$scope', '$state', '$stateParams', 'BackendCotizacion', edit]);
 
 function edit($scope, $state, $stateParams, Backend){
+  $scope.cotizacion = {};
+  $scope.cotizacion = null;
 
   var cotizacion = Backend.getById(Number($stateParams.id_cotizacion));
 
@@ -341,7 +342,6 @@ function edit($scope, $state, $stateParams, Backend){
 
   setTimeout(function(){
     $scope.cotizacion = cotizacion;
-    console.log($scope.cotizacion.fecha_estimada_mudanza);
     $scope.$apply();
   },0)
 }
