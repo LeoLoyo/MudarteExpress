@@ -243,7 +243,6 @@ app.controller('CotizacionViewCtrl', ['$scope', '$state', 'Cotizacion', 'Backend
 
   // $scope.cotizaciones_totales = [];
 
-
   setTimeout(function () {
 
 
@@ -259,7 +258,7 @@ app.controller('CotizacionViewCtrl', ['$scope', '$state', 'Cotizacion', 'Backend
 
     $scope.$apply();
 
-  }, 100);
+  }, 0);
 
 
   // $scope.GoCotizacion = function (ID) {
@@ -268,7 +267,7 @@ app.controller('CotizacionViewCtrl', ['$scope', '$state', 'Cotizacion', 'Backend
   // };
 }]);
 
-app.controller('ShowCtrl', ['$scope', '$stateParams', 'BackendCotizacion', function ($scope, $stateParams, BackendCotizacion) {
+app.controller('ShowCtrl', ['$scope', '$state', '$stateParams', 'BackendCotizacion', '$rootScope', function ($scope, $state, $stateParams, BackendCotizacion, $rootScope) {
 
   function calcular_totales(array, attr) {
     var result = 0;
@@ -300,6 +299,8 @@ app.controller('ShowCtrl', ['$scope', '$stateParams', 'BackendCotizacion', funct
 
   $scope.cotizacion = cotizacion_total;
 
+  $rootScope.id_cotizacion = angular.copy(cotizacion_total.id);
+
   $scope.materiales_temp = cotizacion_total.cotizacionmateriales;
 
   $scope.contenedores_temp = cotizacion_total.cotizacioncontenedores;
@@ -314,10 +315,33 @@ app.controller('ShowCtrl', ['$scope', '$stateParams', 'BackendCotizacion', funct
 
   $scope.metros3_contenedores = calcular_totales(cotizacion_total.cotizacioncontenedores, "punto") / 10;
 
-  $scope.metros3_muebles = calcular_totales(cotizacion_total.cotizacionmuebles, "punto") / 10;
+  $scope.metros3_muebles = calcular_totales(cotizacion_total.cotizacionmuebles, "total_punto") / 10;
 
   $scope.subtotal1 = cotizacion_total.subtotal1;
 
   $scope.subtotal2 = cotizacion_total.subtotal2;
 
 }]);
+
+app.controller('EditCtrl',['$scope', '$state', '$stateParams', 'BackendCotizacion', edit]);
+
+function edit($scope, $state, $stateParams, Backend){
+  $scope.cotizacion = {};
+  $scope.cotizacion = null;
+
+  var cotizacion = Backend.getById(Number($stateParams.id_cotizacion));
+
+  cotizacion.fecha_estimada_mudanza = new Date(cotizacion.fecha_estimada_mudanza);
+
+  cotizacion.hora_estimada_mudanza = new Date(cotizacion.hora_estimada_mudanza);
+
+  cotizacion.fecha_de_cotizacion = new Date(cotizacion.fecha_de_cotizacion);
+
+  cotizacion.hora_de_cotizacion = new Date(cotizacion.hora_de_cotizacion);
+
+
+  setTimeout(function(){
+    $scope.cotizacion = cotizacion;
+    $scope.$apply();
+  },0)
+}
