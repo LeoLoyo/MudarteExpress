@@ -48,7 +48,7 @@ form.formulario, div.formulario {
   margin-left: 10px;
   margin-bottom: 10px;
   span.boton {
-    flex: 50%;
+    flex: 40%;
     padding: 13px;
     margin: 8px;
     line-height: 15px;
@@ -66,13 +66,13 @@ form.formulario, div.formulario {
     margin-bottom: auto;
   }
   select {
-    flex: 10%;
+    flex: 30%;
     padding: 3px;
     border-color: transparent;
     color: $colorTexto_2;
   }
   div {
-    flex: 20%;
+    flex: 10%;
     background: #fff;
     height: 100%;
     span {
@@ -117,7 +117,7 @@ form.formulario, div.formulario {
     margin-bottom: auto;
   }
   select {
-    flex: 10%;
+    width: 56px;
     padding: 0;
     border-color: transparent;
     color: $colorTexto_2;
@@ -433,6 +433,7 @@ table.tablaResumen {
     border-top: 1px solid #fff;
   }
   ul.btnAccion {
+    list-style: none;
     position: absolute;
     bottom: 50px;
     background: $colorSidebar;
@@ -440,9 +441,13 @@ table.tablaResumen {
     padding: 0 10px;
     width: 100%;
     margin-bottom: 10px;
-    button {
+    li {
+      margin-bottom: 10px;
+      button {
       border-radius: 0;
+     }
     }
+
   }
 }
 #wrapper.toggled #sidebar-wrapper {
