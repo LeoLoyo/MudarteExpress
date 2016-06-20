@@ -172,7 +172,6 @@
       var url = setting.url + "contenedordescripcion/?format=json";
       // var url = 'scripts/json/contenedordescripcion.json'
       if (contenedor !== undefined) {
-        console.log(contenedor);
         url = setting.url + "contenedor/?format=json&contenedor=" + contenedor;
         // url = 'scripts/json/contenedor.json';
       }
