@@ -159,6 +159,8 @@ select.selectpicker {
       overflow: hidden;
       width: 100%;
       text-align: left;
+      font-weight: $fontWeight;
+      color: $colorTxtInput!important;
     }
 
     .caret {
