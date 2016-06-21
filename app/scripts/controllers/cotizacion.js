@@ -69,7 +69,7 @@
       var cotizacion = {
         numero_cotizacion: '',
         cliente: '',
-        cotizador: {id:""},
+        cotizador: '',
         quien_llamo: '',
         quien_cotizo: '',
         fuente: '',
