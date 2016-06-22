@@ -10,6 +10,24 @@
 
 var app = angular.module('Backend', ['Express.services']);
 
+app.service('tools',function(){
+
+  var self = this;
+
+  self.scope_time = function (time){
+
+    var str = angular.copy(time);
+
+    var res = str.split(":",2);
+
+    var d = new Date(1,1,1,res[0],res[1]);
+
+    return d;
+
+  };
+
+  return self;
+})
 app.service('BackendCotizacion', function () {
 
   var self = this;
@@ -323,25 +341,28 @@ app.controller('ShowCtrl', ['$scope', '$state', '$stateParams', 'BackendCotizaci
 
 }]);
 
-app.controller('EditCtrl',['$scope', '$state', '$stateParams', 'BackendCotizacion', edit]);
+app.controller('EditCtrl',['$scope', '$state', '$stateParams', 'BackendCotizacion', 'tools', edit]);
 
-function edit($scope, $state, $stateParams, Backend){
-  $scope.cotizacion = {};
-  $scope.cotizacion = null;
+function edit($scope, $state, $stateParams, Backend, tools){
+
+  $scope.cotizacion = undefined;
 
   var cotizacion = Backend.getById(Number($stateParams.id_cotizacion));
 
   cotizacion.fecha_estimada_mudanza = new Date(cotizacion.fecha_estimada_mudanza);
 
-  cotizacion.hora_estimada_mudanza = new Date(cotizacion.hora_estimada_mudanza);
+  cotizacion.hora_estimada_mudanza = tools.scope_time(cotizacion.hora_estimada_mudanza);
 
   cotizacion.fecha_de_cotizacion = new Date(cotizacion.fecha_de_cotizacion);
-
-  cotizacion.hora_de_cotizacion = new Date(cotizacion.hora_de_cotizacion);
-
+  
+  cotizacion.hora_de_cotizacion = tools.scope_time(cotizacion.hora_de_cotizacion);
 
   setTimeout(function(){
+
     $scope.cotizacion = cotizacion;
+
+    $scope.cliente = cotizacion.cliente;
+
     $scope.$apply();
   },0)
 }
