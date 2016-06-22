@@ -7105,7 +7105,7 @@ form.formulario, div.formulario {
   margin-left: 10px;
   margin-bottom: 10px; }
   .btnSeleccion span.boton {
-    flex: 50%;
+    flex: 40%;
     padding: 13px;
     margin: 8px;
     line-height: 15px; }
@@ -7119,12 +7119,12 @@ form.formulario, div.formulario {
     margin-top: auto;
     margin-bottom: auto; }
   .btnSeleccion select {
-    flex: 10%;
+    flex: 30%;
     padding: 3px;
     border-color: transparent;
     color: #000; }
   .btnSeleccion div {
-    flex: 20%;
+    flex: 10%;
     background: #fff;
     height: 100%; }
     .btnSeleccion div span {
@@ -7160,7 +7160,7 @@ form.formulario, div.formulario {
     margin-top: auto;
     margin-bottom: auto; }
   .btnSeleccionMueble select {
-    flex: 10%;
+    width: 56px;
     padding: 0;
     border-color: transparent;
     color: #000; }
@@ -7380,6 +7380,7 @@ table.tablaResumen {
     font-size: 0.8em;
     border-top: 1px solid #fff; }
   #sidebar-wrapper ul.btnAccion {
+    list-style: none;
     position: absolute;
     bottom: 50px;
     background: #BAB9B9;
@@ -7387,8 +7388,10 @@ table.tablaResumen {
     padding: 0 10px;
     width: 100%;
     margin-bottom: 10px; }
-    #sidebar-wrapper ul.btnAccion button {
-      border-radius: 0; }
+    #sidebar-wrapper ul.btnAccion li {
+      margin-bottom: 10px; }
+      #sidebar-wrapper ul.btnAccion li button {
+        border-radius: 0; }
 
 #wrapper.toggled #sidebar-wrapper {
   width: 210px;

@@ -5,16 +5,16 @@
         <div>
           <span class="spanErrorUser" style="color:red;">{{messages}}</span><br>
           <label for="" class="control-label">Usuario:</label>
-          <input type="text" id="cUsuario" ng-model="user.name" placeholder="e.g: Juan01" class="form-control" required>
+          <input type="text" id="cUsuario" ng-model="user.name" placeholder="e.g: Juan01" class="form-control" required tabindex="1">
         </div>
         <div>
           <label for="" class="control-label">Contraseña:</label>
-          <input type="password" ng-model="user.pass" placeholder="e.g: xxxxx" class="form-control" required>
+          <input type="password" ng-model="user.pass" placeholder="e.g: xxxxx" class="form-control" required tabindex="2">
           <span class="spanErrorPass hidden">Contraseña invalida</span>
         </div>
 
         <a class="hidden">Recuperar Contraseña</a>
-        <button ng-click="ingresar(user,user.pass)">Ingresar</button>
+        <button ng-click="ingresar(user,user.pass)" tabindex="3">Ingresar</button>
 
     </div>
   </div>

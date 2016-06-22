@@ -28,7 +28,7 @@
           //  $('select.selectPicker').selectpicker('destroy');
            $('select.selectPicker').selectpicker();
            $scope.$apply();
-         },50);
+         },400);
 
       }
 
@@ -69,7 +69,7 @@
       var cotizacion = {
         numero_cotizacion: '',
         cliente: '',
-        cotizador: {id:""},
+        cotizador: '',
         quien_llamo: '',
         quien_cotizo: '',
         fuente: '',
@@ -313,6 +313,7 @@
             $scope.todoscontenedores = contenedores;
           });
         } else {
+            select();
           Material.all().then(function (r) {
             var out = [];
             angular.forEach(r, function (v, k) {
@@ -358,12 +359,13 @@
             $rootScope.resumen = true;
           }
         });
-        select();
+
+
       };
 
       init();
 
-        
+
       $rootScope.total_m3 = Number($scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros);
 
       $rootScope.margen = Number($scope.cotizacion.porcentaje_margen);
