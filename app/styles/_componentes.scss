@@ -8,6 +8,8 @@ $colorBgList:           #fff;
 $colorBgFecha:          $colorNavbar;
 $colorTxFecha:          #000;
 $colorTxDetalle:        #fff;
+$fontWeight:            900;
+$colorTxtInput:         #777;
 @mixin transicion($time) {
   -webkit-transition: all $time ease-in-out;
   -moz-transition: all $time ease-in-out;
@@ -31,6 +33,18 @@ body {
     border-color: red;
   }
 }
+.form-group {
+  label {
+  display:block;
+  font-family: inherit;
+  font: inherit;
+  }
+  input, select, textarea {
+    color: $colorTxtInput!important;
+    font-weight: $fontWeight;
+  }
+}
+
 form.formulario, div.formulario {
   background: #fff;
   padding: 10px;
