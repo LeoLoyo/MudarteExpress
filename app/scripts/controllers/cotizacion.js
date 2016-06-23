@@ -367,7 +367,6 @@
           }
         });
 
-
       };
 
       init();
@@ -751,20 +750,18 @@
       }
       $scope.add_material = function (material) {
 
-
         if(typeof(material.cantidad) === 'object'){
 
-          var cant =   angular.copy(material.cantidad.num);
+          var cant = angular.copy(material.cantidad.num);
 
         }else{
 
-          var cant =   angular.copy(material.cantidad);
+          var cant = angular.copy(material.cantidad);
 
         }
 
-
         var material_temp = {
-          // id: 1,
+           id: material.id,
           // cotizacion: 1,
           material: material.descripcion,
           cantidad: Number(cant),

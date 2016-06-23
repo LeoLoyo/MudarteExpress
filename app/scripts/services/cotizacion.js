@@ -107,6 +107,7 @@
     self.save_materiales = function (material, id_cotizacion) {
       var data = {};
       data.cotizacion = id_cotizacion;
+      data.materialid = material.id;
       data.material = material.material;
       data.cantidad = material.cantidad;
       data.precio_unitario = material.precio_unitario;

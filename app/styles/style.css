@@ -7088,6 +7088,14 @@ body {
 .error input {
   border-color: red; }
 
+.form-group label, .login div.cuerpo div label {
+  display: block;
+  font-family: inherit;
+  font: inherit; }
+.form-group input, .login div.cuerpo div input, .form-group select, .login div.cuerpo div select, .form-group textarea, .login div.cuerpo div textarea {
+  color: #777 !important;
+  font-weight: 900; }
+
 form.formulario, div.formulario {
   background: #fff;
   padding: 10px;
@@ -7583,7 +7591,9 @@ select.selectpicker {
   display: inline-block;
   overflow: hidden;
   width: 100%;
-  text-align: left; }
+  text-align: left;
+  font-weight: 900;
+  color: #777 !important; }
 .bootstrap-select.btn-group .dropdown-toggle .caret, .bootstrap-select.btn-group .cabecera nav ul.Right li a.dropdown-toggle span, .cabecera nav ul.Right li .bootstrap-select.btn-group a.dropdown-toggle span {
   position: absolute;
   top: 50%;
