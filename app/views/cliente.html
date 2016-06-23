@@ -1,6 +1,4 @@
-<pre>{{contenedores_for_delete}}</pre>
-<pre>{{contenedores_temp}}</pre>
-<pre>{{unidades_contenedores}}</pre>
+<pre>{{muebles_temp}}</pre>
 <div ng-show="nav==='1' || nav==='10'" >
   <div class="col-md-12">
   <br>
@@ -179,7 +177,7 @@
 </div>
 </div>
 
-<div ng-include='"views/material.html"'></div>
+<div ng-show="nav==='5'||nav==='10'" ng-include='"views/material.html"'></div>
 <div ng-include='"views/cotizacion.html"'></div>
 <div ng-include='"views/parcial_1.html"'></div>
 <div ng-include='"views/presupuesto.html"'></div>

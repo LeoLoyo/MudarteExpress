@@ -29,7 +29,7 @@ app.service('tools',function(){
   return self;
 })
 
-app.service('BackendCotizacion', function (Contenedor,$rootScope) {
+app.service('BackendCotizacion', ['Contenedor', 'Mueble', 'Material', '$rootScope', function (Contenedor, Mueble, Material, $rootScope) {
 
   var self = this;
 
@@ -37,7 +37,9 @@ app.service('BackendCotizacion', function (Contenedor,$rootScope) {
       cantidades = [],
       cantidades_otros = [],
       contenedores_for_delete =[],
-      contenedores_temp = [];
+      contenedores_temp = [],
+      muebles_for_delete =[],
+      muebles_temp = [];
 
   function recur_punto(a_query, object) {
     var punto = 0,
@@ -182,7 +184,7 @@ app.service('BackendCotizacion', function (Contenedor,$rootScope) {
 
       contenedores_temp =  self.getById(ID).cotizacioncontenedores;
 
-      angular.forEach(self.getById(ID).cotizacioncontenedores, function (v,k) {
+      angular.forEach(contenedores_temp, function (v,k) {
         v.action = 'PUT';
       },contenedores_temp);
 
@@ -203,7 +205,7 @@ app.service('BackendCotizacion', function (Contenedor,$rootScope) {
           } else {
             if (cs_tmp[i].action === 'PUT'){
 
-              $rootScope.$emit('change_for_delete');
+              $rootScope.$emit('change:data');
 
               contenedores_for_delete.push(cs_tmp[i]);
 
@@ -225,7 +227,7 @@ app.service('BackendCotizacion', function (Contenedor,$rootScope) {
 
             contenedores_for_delete.splice(contenedores_for_delete.indexOf(contenedores_for_delete[i]), 1);
 
-            $rootScope.$emit('change_for_delete');
+            $rootScope.$emit('change:data');
 
           }
 
@@ -266,7 +268,7 @@ app.service('BackendCotizacion', function (Contenedor,$rootScope) {
 
     }
 
-    $rootScope.$emit('change_for_delete');
+    $rootScope.$emit('change:data');
 
     return contenedores_temp;
 
@@ -315,11 +317,79 @@ app.service('BackendCotizacion', function (Contenedor,$rootScope) {
 
       self.CalPunto(contenedor.detallecontenedores);
 
-      $rootScope.$emit('change_for_delete');
+      $rootScope.$emit('change:data');
   }
+
+  self.getMuebles = function(collection){
+
+    return Mueble.all().then(function (muebles) {
+      var out = [];
+
+      angular.forEach(muebles, function (v, k) {
+
+        var m = angular.copy(v);
+
+        angular.forEach(m.especificacionmuebles, function (v1,k1 ){
+
+          v1.cantidad = 0;
+
+        });
+
+        out.push(m);
+
+      }, out);
+
+
+
+      angular.forEach(collection, function(v,id_key){
+
+        angular.forEach(out,function (obj, key) {
+
+          if(obj.id === v.muebleid){
+
+            angular.forEach(obj.especificacionmuebles,function (esp, key_esp) {
+
+              if(esp.id === v.especificacionid){
+
+                esp.cantidad = v.cantidad;
+
+              }
+
+            });
+
+          }
+
+        });
+
+      },out);
+
+      return out;
+
+    });
+
+  };
+
+  self.getMuebles_temp = function (ID){
+
+    if(typeof ID !== 'undefined'){
+
+      muebles_temp =  self.getById(ID).cotizacionmuebles;
+
+      angular.forEach(muebles_temp, function (v,k) {
+
+        v.action = 'PUT';
+
+      },muebles_temp);
+
+    }
+
+    return muebles_temp;
+
+  };
+
   return self;
 
-});
+}]);
 
 // app.controller('CotizacionViewCtrl', ['$scope', '$state', 'Cotizacion', 'Cliente', 'Users', 'BackendCotizacion', function ($scope, $state, Cotizacion, Cliente, Users, BackendCotizacion) {
 app.controller('CotizacionViewCtrl', ['$scope', '$state', 'Cotizacion', 'BackendCotizacion', function ($scope, $state, Cotizacion, BackendCotizacion) {
@@ -546,15 +616,15 @@ function edit($rootScope, $scope, $state, $stateParams, Backend, tools, Contened
 
   $scope.muebles_for_delete = [];
 
-  $rootScope.$on('change_for_delete', function (){
+  $rootScope.$on('change:data', function (){
 
     $scope.contenedores_for_delete = Backend.getContenedores_for_delete();
 
     $scope.contenedores_temp = Backend.getContenedores_temp();
 
-    $scope.materiales_temp = Backend.getContenedores_temp();
+    // $scope.materiales_temp = Backend.getMateriales_temp();
 
-    // $scope.muebles_temp = Backend.getContenedores_temp();
+    $scope.muebles_temp = Backend.getMuebles_temp();
 
     $scope.metros3_contenedores = Backend.CalcularTotales($scope.contenedores_temp, "punto") / 10;
 
@@ -588,7 +658,18 @@ function edit($rootScope, $scope, $state, $stateParams, Backend, tools, Contened
 
       $scope.contenedores_temp = Backend.getContenedores_temp(Number($stateParams.id_cotizacion));
 
-      $rootScope.$emit('change_for_delete');
+      $rootScope.$emit('change:data');
+
+
+    });
+
+    Backend.getMuebles(cotizacion.cotizacionmuebles).then(function (response) {
+console.log(response);
+      $scope.muebles = response;
+
+      $scope.muebles_temp = Backend.getMuebles_temp(Number($stateParams.id_cotizacion));
+
+      $rootScope.$emit('change:data');
 
 
     });
