@@ -287,6 +287,36 @@ app.service('BackendCotizacion', function (Contenedor,$rootScope) {
 
   };
 
+  self.AddContenedor = function (contenedor, cantidad){
+
+    var contenedor_temp = {
+
+      descripcion: contenedor.contenedor,
+
+      contenedor: contenedor.id,
+
+      cantidad: Number(cantidad),
+
+      punto: 0,
+
+      action:'POST'
+
+    };
+
+      if (!self.findContenedor(contenedores_temp, contenedor_temp)) {
+
+        if (Number(contenedor_temp.cantidad) > 0) {
+
+          contenedores_temp.push(contenedor_temp);
+
+        }
+
+      }
+
+      self.CalPunto(contenedor.detallecontenedores);
+
+      $rootScope.$emit('change_for_delete');
+  }
   return self;
 
 });
@@ -512,11 +542,19 @@ function edit($rootScope, $scope, $state, $stateParams, Backend, tools, Contened
 
   $scope.contenedores_for_delete = [];
 
+  $scope.materiales_for_delete = [];
+
+  $scope.muebles_for_delete = [];
+
   $rootScope.$on('change_for_delete', function (){
 
     $scope.contenedores_for_delete = Backend.getContenedores_for_delete();
 
     $scope.contenedores_temp = Backend.getContenedores_temp();
+
+    $scope.materiales_temp = Backend.getContenedores_temp();
+
+    // $scope.muebles_temp = Backend.getContenedores_temp();
 
     $scope.metros3_contenedores = Backend.CalcularTotales($scope.contenedores_temp, "punto") / 10;
 
@@ -528,7 +566,7 @@ function edit($rootScope, $scope, $state, $stateParams, Backend, tools, Contened
 
 
   function initCotizacion(){
-    
+
     $scope.cantidades = Backend.getCant();
 
 
@@ -555,39 +593,26 @@ function edit($rootScope, $scope, $state, $stateParams, Backend, tools, Contened
 
     });
 
+
+
     $scope.check = function (n){
 
       return Backend.clic_contenedor(n);
 
     };
 
-    $scope.add_contenedor = function (contenedor, uni) {
+    $scope.add_contenedor = function (contenedor, cantidad) {
 
-      var contenedor_temp = {
-        descripcion: contenedor.contenedor,
-        contenedor: contenedor.id,
-        cantidad: Number(uni),
-        punto: 0,
-        action:'POST'
-      };
+      Backend.AddContenedor(contenedor, cantidad);
 
-        if (!Backend.findContenedor($scope.contenedores_temp, contenedor_temp)) {
-          if (Number(contenedor_temp.cantidad) > 0) {
-            $scope.contenedores_temp.push(contenedor_temp);
-          }
-        }
+      $scope.metros3_contenedores = Backend.CalcularTotales($scope.contenedores_temp, "punto") / 10;
 
-        Backend.CalPunto(contenedor.detallecontenedores);
-
-        $scope.metros3_contenedores = Backend.CalcularTotales($scope.contenedores_temp, "punto") / 10;
-
-        $scope.unidades_contenedores = Backend.CalcularTotales($scope.contenedores_temp, "cantidad");
+      $scope.unidades_contenedores = Backend.CalcularTotales($scope.contenedores_temp, "cantidad");
 
         // check_material(contenedor_temp);
         // $rootScope.total_m3 = Number($scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros);
         // $scope.update_presupuesto();
       // });
-
     };
 
     setTimeout(function(){
