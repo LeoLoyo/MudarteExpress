@@ -123,8 +123,12 @@
     self.save_muebles = function (muebles, id_cotizacion) {
       var data = {};
       var url = setting.url + "mueblecotizacion/";
+
       data.cotizacion = id_cotizacion;
+      data.muebleid = muebles.mueble_id;
+      data.tipo_muebleid = muebles.tipo_mueble_id;
       data.mueble = muebles.mueble;
+      data.especificacionid = muebles.especificacion_id;
       data.especificacion = muebles.especificacion;
       data.descripcion = muebles.descripcion;
       data.alto = muebles.alto;
