@@ -475,24 +475,6 @@
 
     var cotizacion_total = BackendCotizacion.getById(Number($stateParams.id_cotizacion));
 
-    // $scope.cotizacion = cotizacion_total.cotizacion;
-    //
-    // $scope.materiales_temp = cotizacion_total.materiales;
-    //
-    // $scope.contenedores_temp = cotizacion_total.contenedores;
-    //
-    // $scope.muebles_temp = cotizacion_total.muebles;
-    //
-    // $scope.cliente = cotizacion_total.cliente;
-    //
-    // $scope.metros3_contenedores = calcular_totales(cotizacion_total.contenedores, "punto") / 10;
-    //
-    // $scope.metros3_muebles = calcular_totales(cotizacion_total.muebles, "punto") / 10;
-    //
-    // $scope.subtotal1 = cotizacion_total.cotizacion.subtotal1;
-    //
-    // $scope.subtotal2 = cotizacion_total.cotizacion.subtotal2;
-
     $scope.cotizacion = cotizacion_total;
 
     $rootScope.id_cotizacion = angular.copy(cotizacion_total.id);
