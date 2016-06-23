@@ -8,9 +8,7 @@
     <!-- <select ng-focus="scrollAnime($event)" ng-model="n.num"  ng-change="add_contenedor(c,n.num)">
       <option  ng-repeat="n in cantidades">{{n.num}}</option>
     </select> -->
-    <select ng-focus="scrollAnime($event)" ng-model="n.num" ng-change="add_contenedor(c,n.num)" ng-init="n.num=cantidades[0].num"ng-options="n.num as n.num for n in cantidades">
-      <!-- <option  ng-repeat="m in cantidades">{{m.num}}</option> -->
-    </select>
+    <select ng-focus="scrollAnime($event)" ng-model="n.num" ng-change="add_contenedor(c,n.num)" ng-init="n.num=c.cantidad"ng-options="n.num as n.num for n in cantidades"></select>
     <div>
     <span class="remover" ng-show="n.num>0" ng-click="n.num=0;add_contenedor(c,n.num);" title="Remover"><b>X</b></span>
     </div>

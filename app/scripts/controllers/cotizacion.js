@@ -337,7 +337,14 @@
             $scope.barrio_provincias = r;
           });
           Contenedor.all().then(function (contenedores) {
-            $scope.contenedores = contenedores;
+            var out = [];
+            angular.forEach(contenedores, function (v, k) {
+              var m = angular.copy(v);
+              m.cantidad = 0;
+              out.push(m);
+            }, out);
+            $scope.contenedores = out;
+            console.log($scope.contenedores);
           });
 
           Mueble.tipo_mueble().then(function (muebles) {
@@ -391,6 +398,7 @@
       };
 
       $scope.add_contenedor = function (contenedor, uni) {
+
         var contenedor_temp = {
           descripcion: contenedor.contenedor,
           contenedor: contenedor.id,
