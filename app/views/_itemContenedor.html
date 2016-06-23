@@ -1,10 +1,10 @@
 <!-- <div class="btnSeleccion" ng-init="n.num='0'" ng-class="{btnSeleccionado:n.num>0}" > -->
 <div class="btnSeleccion"  ng-class="{btnSeleccionado:n.num>0}" >
-    <span class="classContenedores boton" ng-click="n.num=check(n.num);add_contenedor(c,n.num)" >{{c.contenedor}}</span>
-    <span class="classContenedores boton1" ng-click="n.num=check(c.propuesto1-1);add_contenedor(c,c.propuesto1)" >{{c.propuesto1}}</span>
-   <span class="classContenedores boton1" ng-click="n.num=check(c.propuesto2-1);add_contenedor(c,c.propuesto2)" >{{c.propuesto2}}</span>
-   <span class="classContenedores boton1" ng-click="n.num=check(c.propuesto3-1);add_contenedor(c,c.propuesto3)" >{{c.propuesto3}}</span>
-   <span class="classContenedores boton1" ng-click="n.num=check(c.propuesto4-1);add_contenedor(c,c.propuesto4)" >{{c.propuesto4}}</span>
+  <span class="classContenedores boton" ng-click="n.num=check(n.num);add_contenedor(c,n.num)" >{{c.contenedor}}</span>
+  <span style="border-left:0.05px solid;border-right:0.05px solid"  class="classContenedores boton1" ng-click="n.num=check(c.propuesto1-1);add_contenedor(c,c.propuesto1)" >{{c.propuesto1}}</span>
+  <span style="border-right:0.05px solid"  class="classContenedores boton1" ng-click="n.num=check(c.propuesto2-1);add_contenedor(c,c.propuesto2)" >{{c.propuesto2}}</span>
+  <span style="border-right:0.05px solid"  class="classContenedores boton1" ng-click="n.num=check(c.propuesto3-1);add_contenedor(c,c.propuesto3)" >{{c.propuesto3}}</span>
+  <span style="border-right:0.05px solid"  class="classContenedores boton1" ng-click="n.num=check(c.propuesto4-1);add_contenedor(c,c.propuesto4)" >{{c.propuesto4}}</span>
     <!-- <select ng-focus="scrollAnime($event)" ng-model="n.num"  ng-change="add_contenedor(c,n.num)">
       <option  ng-repeat="n in cantidades">{{n.num}}</option>
     </select> -->
