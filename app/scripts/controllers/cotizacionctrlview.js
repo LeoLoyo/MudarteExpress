@@ -27,9 +27,10 @@ app.service('tools',function(){
   };
 
   return self;
+
 })
 
-app.service('BackendCotizacion', function (Contenedor,$rootScope) {
+app.service('BackendCotizacion', function (Contenedor,Material,$rootScope) {
 
   var self = this;
 
@@ -37,7 +38,11 @@ app.service('BackendCotizacion', function (Contenedor,$rootScope) {
       cantidades = [],
       cantidades_otros = [],
       contenedores_for_delete =[],
-      contenedores_temp = [];
+      contenedores_temp = [],
+      materiales = [],
+      materiales_for_delete = [],
+      materiales_temp = [];
+
 
   function recur_punto(a_query, object) {
     var punto = 0,
@@ -278,12 +283,11 @@ app.service('BackendCotizacion', function (Contenedor,$rootScope) {
 
     for (var i = 0; i < array.length; i++) {
 
-      result += array[i][attr];
+      result += Number(array[i][attr]);
 
     }
 
     return result;
-
 
   };
 
@@ -315,8 +319,196 @@ app.service('BackendCotizacion', function (Contenedor,$rootScope) {
 
       self.CalPunto(contenedor.detallecontenedores);
 
+      self.CheckMaterial(contenedor_temp);
+
       $rootScope.$emit('change_for_delete');
-  }
+  };
+
+  self.getMateriales = function (collection) {
+
+    return Material.all().then(function (r) {
+      var out = [];
+      angular.forEach(r, function (v, k) {
+        var m = angular.copy(v);
+        m.precio = Number(m.precio);
+        m.cantidad = 0;
+        m.ncontenedor = 0;
+        m.iscontenedor = false;
+        out.push(m);
+      }, out);
+
+      angular.forEach(collection, function(mat_coti,id_key){
+
+        angular.forEach(out,function (mat, key) {
+
+          if(mat.id === mat_coti.materialid){
+
+            mat.cantidad = mat_coti.cantidad;
+          }
+
+        });
+
+      });
+
+      materiales = out;
+
+      return out;
+    });
+
+  };
+
+  self.getMateriales_temp = function (ID){
+
+    if(typeof ID !== 'undefined'){
+
+      materiales_temp =  self.getById(ID).cotizacionmateriales;
+
+      angular.forEach(self.getById(ID).cotizacionmateriales, function (v,k) {
+        v.action = 'PUT';
+      },materiales_temp);
+
+    }
+
+    return materiales_temp;
+
+  };
+
+  self.findMaterial = function(ms_tmp, m){
+
+    var l = ms_tmp.length;
+
+    for (var i = 0; i < l; i++) {
+
+      if (m.material === ms_tmp[i].material) {
+        if (m.cantidad > 0) {
+          ms_tmp[i].cantidad = m.cantidad;
+          ms_tmp[i].precio_unitario = m.precio_unitario;
+          ms_tmp[i].total = m.total;
+        } else {
+          if (ms_tmp[i].action === 'PUT'){
+
+            $rootScope.$emit('change_for_delete');
+            materiales_for_delete.push(ms_tmp[i]);
+          }
+
+          ms_tmp.splice(ms_tmp.indexOf(ms_tmp[i]), 1);
+        }
+
+        return true;
+      }
+    }
+
+    for (var i = 0; i < materiales_for_delete.length; i++) {
+
+      if (m.material === materiales_for_delete[i].material) {
+
+        if (m.cantidad > 0) {
+
+          materiales_for_delete[i].cantidad = m.cantidad;
+
+          materiales_temp.push(materiales_for_delete[i]);
+
+          materiales_for_delete.splice(materiales_for_delete.indexOf(materiales_for_delete[i]), 1);
+
+          $rootScope.$emit('change_for_delete');
+
+          }
+
+          return true;
+
+        }
+
+      }
+
+      return false;
+  };
+
+  self.getMateriales_for_delete = function () {
+
+    return materiales_for_delete;
+
+  };
+
+  self.AddMaterial = function (material){
+
+    if(typeof(material.cantidad) === 'object'){
+
+      var cant = angular.copy(material.cantidad.num);
+
+    }else{
+
+      var cant = angular.copy(material.cantidad);
+
+    }
+
+    var material_temp = {
+
+      id: material.id,
+
+      // cotizacion: 1,
+      material: material.descripcion,
+
+      cantidad: Number(cant),
+
+      precio_unitario: Number(material.precio),
+
+      total: Number(cant * material.precio),
+
+      estado: "activo",
+
+      action:'POST'
+
+    };
+
+    if (self.findMaterial(materiales_temp, material_temp) !== true) {
+
+      if (Number(material_temp.cantidad) > 0) {
+
+        materiales_temp.push(material_temp);
+
+      }
+
+    }
+
+    //$scope.update_presupuesto();
+    $rootScope.$emit('change_for_delete');
+
+  };
+
+  self.CheckMaterial = function (contenedor){
+
+    angular.forEach(materiales, function(v,k){
+
+      var mat = angular.copy(v);
+
+      if(Number(mat.contenedor) === Number(contenedor.contenedor)){
+
+        setTimeout(function(){
+
+          mat.cantidad = contenedor.cantidad;
+
+          mat.iscontenedor = true;
+
+          mat.ncontenedor = contenedor.cantidad;
+
+          materiales.splice(materiales.indexOf(v),1);
+
+          materiales.push(mat);
+
+          self.AddMaterial(mat);
+
+          $rootScope.$apply();
+
+        },0);
+
+        return true;
+
+      }
+
+    })
+
+  };
+
   return self;
 
 });
@@ -536,41 +728,26 @@ app.controller('ShowCtrl', ['$scope', '$state', '$stateParams', 'BackendCotizaci
 
 }]);
 
-app.controller('EditCtrl',['$rootScope','$scope', '$state', '$stateParams', 'BackendCotizacion', 'tools', 'Contenedor', edit]);
+app.controller('EditCtrl',['$rootScope','$scope', '$state', '$stateParams', 'BackendCotizacion', 'tools', 'Contenedor', 'Material', edit]);
 
-function edit($rootScope, $scope, $state, $stateParams, Backend, tools, Contenedor){
+function edit($rootScope, $scope, $state, $stateParams, Backend, tools, Contenedor, Material){
 
-  $scope.contenedores_for_delete = [];
+  // $scope.contenedores_for_delete = [];
 
-  $scope.materiales_for_delete = [];
+  // $scope.materiales_for_delete = [];
 
-  $scope.muebles_for_delete = [];
+  // $scope.muebles_for_delete = [];
 
-  $rootScope.$on('change_for_delete', function (){
+  // $scope.cotizacion = undefined;
 
-    $scope.contenedores_for_delete = Backend.getContenedores_for_delete();
-
-    $scope.contenedores_temp = Backend.getContenedores_temp();
-
-    $scope.materiales_temp = Backend.getContenedores_temp();
-
-    // $scope.muebles_temp = Backend.getContenedores_temp();
-
-    $scope.metros3_contenedores = Backend.CalcularTotales($scope.contenedores_temp, "punto") / 10;
-
-    $scope.unidades_contenedores = Backend.CalcularTotales($scope.contenedores_temp, "cantidad");
-
-  });
-
-  $scope.cotizacion = undefined;
-
+  var cotizacion = {};
 
   function initCotizacion(){
 
+
     $scope.cantidades = Backend.getCant();
 
-
-    var cotizacion = Backend.getById(Number($stateParams.id_cotizacion));
+    cotizacion = Backend.getById(Number($stateParams.id_cotizacion));
 
     cotizacion.fecha_estimada_mudanza = new Date(cotizacion.fecha_estimada_mudanza);
 
@@ -579,6 +756,10 @@ function edit($rootScope, $scope, $state, $stateParams, Backend, tools, Contened
     cotizacion.fecha_de_cotizacion = new Date(cotizacion.fecha_de_cotizacion);
 
     cotizacion.hora_de_cotizacion = tools.scope_time(cotizacion.hora_de_cotizacion);
+
+    $scope.cotizacion = cotizacion;
+
+    $scope.cliente = cotizacion.cliente;
 
     //carga inicial
 
@@ -592,8 +773,6 @@ function edit($rootScope, $scope, $state, $stateParams, Backend, tools, Contened
 
 
     });
-
-
 
     $scope.check = function (n){
 
@@ -609,26 +788,52 @@ function edit($rootScope, $scope, $state, $stateParams, Backend, tools, Contened
 
       $scope.unidades_contenedores = Backend.CalcularTotales($scope.contenedores_temp, "cantidad");
 
-        // check_material(contenedor_temp);
         // $rootScope.total_m3 = Number($scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros);
         // $scope.update_presupuesto();
       // });
     };
 
-    setTimeout(function(){
+    Backend.getMateriales(cotizacion.cotizacionmateriales).then(function (c) {
 
-      $scope.cotizacion = cotizacion;
+      $scope.materiales = c;
 
-      $scope.cliente = cotizacion.cliente;
+      $scope.materiales_temp = Backend.getMateriales_temp(Number($stateParams.id_cotizacion));
 
-      $scope.$apply();
-    },0)
+      $rootScope.$emit('change_for_delete');
+
+    });
+
+    $scope.add_material = function (material) {
+
+      Backend.AddMaterial(material);
+
+      $scope.cotizacion.materiales = Backend.CalcularTotales($scope.materiales_temp, "total");
+      //$scope.update_presupuesto();
+
+    };
 
   };
 
   initCotizacion();
 
+  $rootScope.$on('change_for_delete', function (){
 
+    $scope.contenedores_for_delete = Backend.getContenedores_for_delete();
 
+    $scope.contenedores_temp = Backend.getContenedores_temp();
+
+    $scope.materiales_for_delete = Backend.getMateriales_for_delete();
+
+    $scope.materiales_temp = Backend.getMateriales_temp();
+
+    // $scope.muebles_temp = Backend.getContenedores_temp();
+
+    $scope.metros3_contenedores = Backend.CalcularTotales($scope.contenedores_temp, "punto") / 10;
+
+    $scope.unidades_contenedores = Backend.CalcularTotales($scope.contenedores_temp, "cantidad");
+
+    $scope.cotizacion.materiales = Backend.CalcularTotales($scope.materiales_temp, "total");
+
+  });
 
 }
