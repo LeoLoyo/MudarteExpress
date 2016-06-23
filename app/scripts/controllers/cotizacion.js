@@ -298,7 +298,14 @@
     // $scope.muebles = groupBy(r, function (item) {
     //   return [item.mueble, item.descripcion];
     // });
-    $scope.muebles = r;
+  angular.forEach(r, function (v, k) {
+
+    v.cantidad = 0;
+
+  },r);
+
+  $scope.muebles = r;
+
   });
       // $scope.muebles = groupBy(muebles_resolve, function (item) {
       //   return [item.especificacion, item.descripcion];
