@@ -90,9 +90,11 @@
     };
 
     self.save_contenedores = function (contenedor, id_cotizacion) {
+      console.log(contenedor);
       var data = {};
       data.cotizacion = id_cotizacion;
       data.descripcion = contenedor.descripcion;
+      data.contenedor = contenedor.contenedor;
       data.cantidad = contenedor.cantidad;
       data.punto = contenedor.punto;
       data.estado = 'activo';
@@ -170,10 +172,8 @@
     var self = this;
     self.all = function (contenedor) {
       var url = setting.url + "contenedordescripcion/?format=json";
-      // var url = 'scripts/json/contenedordescripcion.json'
       if (contenedor !== undefined) {
         url = setting.url + "contenedor/?format=json&contenedor=" + contenedor;
-        // url = 'scripts/json/contenedor.json';
       }
       return API.query(url).then(function (result) {
         return API.getAll(result);

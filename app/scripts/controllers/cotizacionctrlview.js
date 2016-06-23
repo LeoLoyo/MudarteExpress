@@ -28,13 +28,32 @@ app.service('tools',function(){
 
   return self;
 })
-app.service('BackendCotizacion', function () {
+
+app.service('BackendCotizacion', function (Contenedor,$rootScope) {
 
   var self = this;
 
   var cotizaciones = [],
       cantidades = [],
-      cantidades_otros = [];
+      cantidades_otros = [],
+      contenedores_for_delete =[],
+      contenedores_temp = [];
+
+  function recur_punto(a_query, object) {
+    var punto = 0,
+        resta = angular.copy(object),
+        l = a_query.length;
+    if (Number(object.cantidad) > 0) {
+      for (var j = 0; j < l; j++) {
+        if (Number(object.cantidad) >= Number(a_query[j].cantidad)) {
+          punto += a_query[j].punto;
+          resta.cantidad = Number(object.cantidad) - Number(a_query[j].cantidad);
+          return punto += recur_punto(a_query, resta);
+        }
+      }
+    }
+    return Number(punto);
+  };
 
   self.all = function () {
 
@@ -84,8 +103,11 @@ app.service('BackendCotizacion', function () {
     }
     return null;
   };
+
   self.LoadCant = function () {
     var res = [];
+
+    cantidades = [];
 
     for (var i = 0; i < 100; i++) {
 
@@ -123,7 +145,150 @@ app.service('BackendCotizacion', function () {
 
   };
 
+  self.getContenedores = function (collection) {
+
+    return Contenedor.all().then(function (contenedores) {
+
+      var out = [];
+
+      angular.forEach(contenedores, function (v, k) {
+        var m = angular.copy(v);
+        m.cantidad = 0;
+        out.push(m);
+      }, out);
+
+      angular.forEach(collection, function(cont_coti,id_key){
+
+        angular.forEach(out,function (cont, key) {
+
+          if(cont.id === cont_coti.contenedor){
+
+            cont.cantidad = cont_coti.cantidad;
+          }
+
+        });
+
+      });
+
+      return out;
+
+    });
+
+  };
+
+  self.getContenedores_temp = function (ID){
+
+    if(typeof ID !== 'undefined'){
+
+      contenedores_temp =  self.getById(ID).cotizacioncontenedores;
+
+      angular.forEach(self.getById(ID).cotizacioncontenedores, function (v,k) {
+        v.action = 'PUT';
+      },contenedores_temp);
+
+    }
+
+    return contenedores_temp;
+
+  };
+
+  self.findContenedor = function(cs_tmp, cont){
+
+      var l = cs_tmp.length;
+
+      for (var i = 0; i < l; i++) {
+        if (cont.contenedor === cs_tmp[i].contenedor) {
+          if (cont.cantidad > 0) {
+            cs_tmp[i].cantidad = cont.cantidad;
+          } else {
+            if (cs_tmp[i].action === 'PUT'){
+
+              $rootScope.$emit('change_for_delete');
+
+              contenedores_for_delete.push(cs_tmp[i]);
+
+            }
+            cs_tmp.splice(cs_tmp.indexOf(cs_tmp[i]), 1);
+
+          }
+          return true;
+        }
+      }
+
+      for (var i = 0; i < contenedores_for_delete.length; i++) {
+        if (cont.contenedor === contenedores_for_delete[i].contenedor) {
+          if (cont.cantidad > 0) {
+
+            contenedores_for_delete[i].cantidad = cont.cantidad;
+
+            contenedores_temp.push(contenedores_for_delete[i]);
+
+            contenedores_for_delete.splice(contenedores_for_delete.indexOf(contenedores_for_delete[i]), 1);
+
+            $rootScope.$emit('change_for_delete');
+
+          }
+
+          return true;
+
+        }
+
+      }
+
+      return false;
+    };
+
+  self.getContenedores_for_delete = function () {
+
+    return contenedores_for_delete;
+
+  };
+
+  self.clic_contenedor = function (n) {
+
+    n = Number(n) + 1;
+
+    return n;
+
+  };
+
+  self.CalPunto = function (todos){
+
+    todos.reverse();
+
+    for (var i = 0; i < contenedores_temp.length; i++) {
+
+      if (todos[0].contenedor === contenedores_temp[i].contenedor) {
+
+        contenedores_temp[i].punto = recur_punto(todos, contenedores_temp[i]);
+
+      }
+
+    }
+
+    $rootScope.$emit('change_for_delete');
+
+    return contenedores_temp;
+
+  };
+
+  self.CalcularTotales = function (array, attr) {
+
+    var result = 0;
+
+    for (var i = 0; i < array.length; i++) {
+
+      result += array[i][attr];
+
+    }
+
+    return result;
+
+
+  };
+
   return self;
+
 });
 
 // app.controller('CotizacionViewCtrl', ['$scope', '$state', 'Cotizacion', 'Cliente', 'Users', 'BackendCotizacion', function ($scope, $state, Cotizacion, Cliente, Users, BackendCotizacion) {
@@ -341,28 +506,104 @@ app.controller('ShowCtrl', ['$scope', '$state', '$stateParams', 'BackendCotizaci
 
 }]);
 
-app.controller('EditCtrl',['$scope', '$state', '$stateParams', 'BackendCotizacion', 'tools', edit]);
+app.controller('EditCtrl',['$rootScope','$scope', '$state', '$stateParams', 'BackendCotizacion', 'tools', 'Contenedor', edit]);
 
-function edit($scope, $state, $stateParams, Backend, tools){
+function edit($rootScope, $scope, $state, $stateParams, Backend, tools, Contenedor){
+
+  $scope.contenedores_for_delete = [];
+
+  $rootScope.$on('change_for_delete', function (){
+
+    $scope.contenedores_for_delete = Backend.getContenedores_for_delete();
+
+    $scope.contenedores_temp = Backend.getContenedores_temp();
+
+    $scope.metros3_contenedores = Backend.CalcularTotales($scope.contenedores_temp, "punto") / 10;
+
+    $scope.unidades_contenedores = Backend.CalcularTotales($scope.contenedores_temp, "cantidad");
+
+  });
 
   $scope.cotizacion = undefined;
 
-  var cotizacion = Backend.getById(Number($stateParams.id_cotizacion));
 
-  cotizacion.fecha_estimada_mudanza = new Date(cotizacion.fecha_estimada_mudanza);
+  function initCotizacion(){
+    
+    $scope.cantidades = Backend.getCant();
 
-  cotizacion.hora_estimada_mudanza = tools.scope_time(cotizacion.hora_estimada_mudanza);
 
-  cotizacion.fecha_de_cotizacion = new Date(cotizacion.fecha_de_cotizacion);
-  
-  cotizacion.hora_de_cotizacion = tools.scope_time(cotizacion.hora_de_cotizacion);
+    var cotizacion = Backend.getById(Number($stateParams.id_cotizacion));
 
-  setTimeout(function(){
+    cotizacion.fecha_estimada_mudanza = new Date(cotizacion.fecha_estimada_mudanza);
 
-    $scope.cotizacion = cotizacion;
+    cotizacion.hora_estimada_mudanza = tools.scope_time(cotizacion.hora_estimada_mudanza);
 
-    $scope.cliente = cotizacion.cliente;
+    cotizacion.fecha_de_cotizacion = new Date(cotizacion.fecha_de_cotizacion);
 
-    $scope.$apply();
-  },0)
+    cotizacion.hora_de_cotizacion = tools.scope_time(cotizacion.hora_de_cotizacion);
+
+    //carga inicial
+
+    Backend.getContenedores(cotizacion.cotizacioncontenedores).then(function (c) {
+
+      $scope.contenedores = c;
+
+      $scope.contenedores_temp = Backend.getContenedores_temp(Number($stateParams.id_cotizacion));
+
+      $rootScope.$emit('change_for_delete');
+
+
+    });
+
+    $scope.check = function (n){
+
+      return Backend.clic_contenedor(n);
+
+    };
+
+    $scope.add_contenedor = function (contenedor, uni) {
+
+      var contenedor_temp = {
+        descripcion: contenedor.contenedor,
+        contenedor: contenedor.id,
+        cantidad: Number(uni),
+        punto: 0,
+        action:'POST'
+      };
+
+        if (!Backend.findContenedor($scope.contenedores_temp, contenedor_temp)) {
+          if (Number(contenedor_temp.cantidad) > 0) {
+            $scope.contenedores_temp.push(contenedor_temp);
+          }
+        }
+
+        Backend.CalPunto(contenedor.detallecontenedores);
+
+        $scope.metros3_contenedores = Backend.CalcularTotales($scope.contenedores_temp, "punto") / 10;
+
+        $scope.unidades_contenedores = Backend.CalcularTotales($scope.contenedores_temp, "cantidad");
+
+        // check_material(contenedor_temp);
+        // $rootScope.total_m3 = Number($scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros);
+        // $scope.update_presupuesto();
+      // });
+
+    };
+
+    setTimeout(function(){
+
+      $scope.cotizacion = cotizacion;
+
+      $scope.cliente = cotizacion.cliente;
+
+      $scope.$apply();
+    },0)
+
+  };
+
+  initCotizacion();
+
+
+
+
 }
