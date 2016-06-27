@@ -298,9 +298,13 @@
     // $scope.muebles = groupBy(r, function (item) {
     //   return [item.mueble, item.descripcion];
     // });
-  angular.forEach(r, function (v, k) {
+  angular.forEach(r, function (a, b) {
+
+    angular.forEach(a.especificacionmuebles, function (v, k) {
 
     v.cantidad = 0;
+
+  },r);
 
   },r);
 
@@ -501,13 +505,19 @@
         $rootScope.total_m3 = Number($scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros);
       };
 
-      $scope.add_otros = function (campo, mueble, ancho, largo, alto, cant, descripcion, otro) {
+      $scope.add_otros = function (campo, mueble, ancho, largo, alto, cant, descripcion) {
+        console.log(campo);
+        console.log(mueble);
+
         if (ancho !== undefined && largo !== undefined && alto !== undefined && mueble) {
           var otro = {
             id: campo.id,
-            mueble: mueble,
+            mueble_id:'',
+            tipo_mueble_id:mueble.id,
+            mueble: mueble.tipo_mueble,
+            especificacion_id:'',
+            especificacion: '',
             descripcion: descripcion,
-            especificacion: "",
             ancho: Number(ancho),
             largo: Number(largo),
             alto: Number(alto),
