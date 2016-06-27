@@ -62,6 +62,24 @@
       return Number(punto);
     };
 
+    self.init =  function (){
+
+      contenedores_for_delete =[];
+
+      contenedores_temp = [];
+
+      muebles_for_delete =[];
+
+      muebles_temp = [];
+
+      materiales = [];
+
+      materiales_for_delete = [];
+
+      materiales_temp = [];
+
+    }
+
     self.all = function () {
 
       return cotizaciones;
@@ -409,8 +427,7 @@
         var l = muebles_temp.length;
 
         for (var i = 0; i < l; i++) {
-          console.log(mueble);
-          console.log(muebles_temp[i]);
+
           if (mueble.especificacion_id === muebles_temp[i].especificacion_id) {
 
             if (mueble.cantidad > 0) {
@@ -703,6 +720,8 @@
 
     function initCotizacion(){
 
+      Backend.init();
+
       $scope.cantidades = Backend.getCant();
 
       cotizacion = Backend.getById(Number($stateParams.id_cotizacion));
@@ -850,7 +869,13 @@
 
       $scope.unidades_contenedores = Backend.CalcularTotales($scope.contenedores_temp, "cantidad");
 
+      $scope.metros3_muebles = Backend.CalcularTotales($scope.muebles_temp, "total_punto") / 10;
+
+      $scope.unidades_muebles = Backend.CalcularTotales($scope.muebles_temp, "cantidad");
+
       $scope.cotizacion.materiales = Backend.CalcularTotales($scope.materiales_temp, "total");
+
+      $rootScope.total_m3 = Number( $scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros );
 
     });
 
