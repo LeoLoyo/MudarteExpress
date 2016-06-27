@@ -90,9 +90,11 @@
     };
 
     self.save_contenedores = function (contenedor, id_cotizacion) {
+      console.log(contenedor);
       var data = {};
       data.cotizacion = id_cotizacion;
       data.descripcion = contenedor.descripcion;
+      data.contenedor = contenedor.contenedor;
       data.cantidad = contenedor.cantidad;
       data.punto = contenedor.punto;
       data.estado = 'activo';
@@ -105,6 +107,7 @@
     self.save_materiales = function (material, id_cotizacion) {
       var data = {};
       data.cotizacion = id_cotizacion;
+      data.materialid = material.id;
       data.material = material.material;
       data.cantidad = material.cantidad;
       data.precio_unitario = material.precio_unitario;
@@ -120,8 +123,12 @@
     self.save_muebles = function (muebles, id_cotizacion) {
       var data = {};
       var url = setting.url + "mueblecotizacion/";
+
       data.cotizacion = id_cotizacion;
+      data.muebleid = muebles.mueble_id;
+      data.tipo_muebleid = muebles.tipo_mueble_id;
       data.mueble = muebles.mueble;
+      data.especificacionid = muebles.especificacion_id;
       data.especificacion = muebles.especificacion;
       data.descripcion = muebles.descripcion;
       data.alto = muebles.alto;
@@ -170,10 +177,8 @@
     var self = this;
     self.all = function (contenedor) {
       var url = setting.url + "contenedordescripcion/?format=json";
-      // var url = 'scripts/json/contenedordescripcion.json'
       if (contenedor !== undefined) {
         url = setting.url + "contenedor/?format=json&contenedor=" + contenedor;
-        // url = 'scripts/json/contenedor.json';
       }
       return API.query(url).then(function (result) {
         return API.getAll(result);
