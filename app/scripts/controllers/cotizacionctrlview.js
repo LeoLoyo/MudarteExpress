@@ -93,6 +93,32 @@
 
       angular.forEach(data, function(value, key){
 
+        value.mudanza = Number(value.mudanza);
+
+        value.soga = Number(value.soga);
+
+        value.embalaje = Number(value.embalaje);
+
+        value.desembalaje = Number(value.desembalaje);
+
+        value.monto_km = Number(value.monto_km);
+
+        value.piano_cajafuerte = Number(value.piano_cajafuerte);
+
+        value.ajuste = Number(value.ajuste);
+
+        value.iva = Number(value.iva);
+
+        value.porcentaje_iva = Number(value.porcentaje_iva);
+
+        value.precio_km = Number(value.precio_km);
+
+        value.recorrido_km = Number(value.recorrido_km);
+
+        value.porcentaje_margen = Number(value.porcentaje_margen);
+        
+        value.total_margen = Number(value.total_margen);
+
         (value.seguro)? value.seguro = 'Si': value.seguro='No';
 
         (value.desarme_mueble)? value.desarme_mueble = 'Si':value.desarme_mueble='No';
@@ -564,7 +590,7 @@
           }
 
           otros_temp.splice(otros_temp.indexOf(otros_temp[i]), 1);
-          
+
         }
 
       }
@@ -716,8 +742,6 @@
         }
 
       }
-
-      //$scope.update_presupuesto();
       $rootScope.$emit('change_for_delete');
 
     };
@@ -805,7 +829,7 @@
 
     var cotizacion = undefined;
 
-    function initCotizacion(){
+    function initCotizacion() {
 
       Backend.init();
 
@@ -883,7 +907,6 @@
       Backend.AddMaterial(material);
 
       $scope.cotizacion.materiales = Backend.CalcularTotales($scope.materiales_temp, "total");
-      //$scope.update_presupuesto();
 
     };
 
@@ -1023,10 +1046,8 @@
     $scope.delete_campo = function (campo) {
 
       Backend.deleteCampo(campo);
+
       $scope.otros_temp_campo.splice($scope.otros_temp_campo.indexOf(campo), 1);
-      // }
-
-
 
     };
 
@@ -1052,6 +1073,34 @@
 
     };
 
+    $scope.calcular_ajuste  = function () {
+      var resultado=0;
+      resultado=($scope.cotizacion.ajuste/$scope.cotizacion.subtotal1)*100;
+      $scope.cotizacion.porcentaje_ajuste = resultado;
+      $scope.cotizacion.subtotal2 = Number($scope.cotizacion.subtotal1 + $scope.cotizacion.ajuste)
+      $scope.cotizacion.total_monto = Number($scope.cotizacion.subtotal2 + $scope.cotizacion.iva)
+    };
+
+    $scope.calcular_iva  = function () {
+      var resultado=0;
+      resultado=Number(($scope.cotizacion.subtotal2*$scope.cotizacion.porcentaje_iva)/100);
+      $scope.cotizacion.iva = resultado;
+      $scope.cotizacion.total_monto = Number($scope.cotizacion.subtotal2 + $scope.cotizacion.iva)
+    };
+
+    $scope.update_presupuesto = function () {
+      setTimeout(function(){
+          $scope.cotizacion.subtotal1 = $scope.cotizacion.mudanza + $scope.cotizacion.soga + $scope.cotizacion.embalaje + $scope.cotizacion.desembalaje + $scope.cotizacion.materiales + $scope.cotizacion.piano_cajafuerte + $scope.cotizacion.monto_km;
+          $scope.calcular_ajuste();
+          $scope.calcular_iva();
+          $scope.$apply();
+      },0);
+    };
+
+    $scope.add_parcial1 = function () {
+      $scope.cotizacion.monto_km = Number($scope.cotizacion.recorrido_km * $scope.cotizacion.precio_km);
+      $scope.update_presupuesto();
+    };
     initCotizacion();
 
     $rootScope.$on('change:data', function (){
@@ -1092,7 +1141,7 @@
 
     });
 
-  }
+  };
 
   app.controller('CotizacionViewCtrl', function ($scope, $state, Cotizacion, BackendCotizacion) {
 
