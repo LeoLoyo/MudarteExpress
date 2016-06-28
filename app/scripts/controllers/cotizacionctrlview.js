@@ -36,6 +36,7 @@
     var self = this;
 
     var cotizaciones = [],
+        precio_km = [{precio:30},{precio:33},{precio:37},{precio:41}],
         cantidades = [],
         cantidades_otros = [],
         contenedores_for_delete =[],
@@ -169,6 +170,11 @@
     self.getCant_Otros = function () {
 
       return cantidades_otros;
+
+    };
+    self.getPrecio_km = function(){
+
+      return precio_km;
 
     };
 
@@ -809,6 +815,8 @@
 
       $scope.cant_otros = Backend.getCant_Otros();
 
+      $scope.precios_kms = Backend.getPrecio_km();
+
       Mueble.tipo_mueble().then(function (muebles) {
 
         $scope.tipo_muebles = muebles;
@@ -867,15 +875,15 @@
       $rootScope.resumen = true;
 
       Users.all(1).then(function (r) {
-            $scope.cotizadores = r;
-          });
-          Users.all(2).then(function (r) {
-            $scope.telefonista = r;
-          });
-          Direccion.all().then(function (r) {
-            $scope.barrio_provincias = r;
-          });
-          $scope.fuentes = Cotizacion.all_fuentes();
+        $scope.cotizadores = r;
+      });
+      Users.all(2).then(function (r) {
+        $scope.telefonista = r;
+      });
+      Direccion.all().then(function (r) {
+        $scope.barrio_provincias = r;
+      });
+      $scope.fuentes = Cotizacion.all_fuentes();
 
     };
 
@@ -1037,22 +1045,26 @@
 
     };
 
-    $scope.getIndexFromValue = function(attr,value,bool) {
+    $scope.getIndexFromValue = function(attr,value,n) {
 
       var array = [];
 
-      if(bool){
+        switch(n){
+          case 1:
+          array = $scope.tipo_muebles;
+          break;
+          case 2:
+          array = $scope.cant_otros;
+          break;
+          case 3:
+          array = $scope.precios_kms;
+          value = Number(value);
+          break;
 
-        array = $scope.tipo_muebles;
+        };
 
-      }else{
-
-        array = $scope.cant_otros;
-
-      }
 
       for(var i=0; i<array.length; i++) {
-
         if(array[i][attr] === value) return i;
 
       }

@@ -46,6 +46,8 @@
 
       $scope.cant_otros = angular.copy(BackendCotizacion.getCant_Otros());
 
+      $scope.precios_kms = angular.copy(BackendCotizacion.getPrecio_km());
+
       // function numeros_otros() {
       //   for (var i = 30; i < 300; i+=10) {
       //     var cant = { num: i, cantidad: i };
@@ -503,17 +505,27 @@
         $scope.unidades_muebles = calcular_totales($scope.muebles_temp, "cantidad");
         $rootScope.total_m3 = Number($scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros);
       };
-      $scope.getIndexFromValue = function(attr,value,bool) {
-        console.log(bool);
+      $scope.getIndexFromValue = function(attr,value,n) {
+
         var array = [];
-        if(bool){
+
+        switch(n){
+          case 1:
           array = $scope.tipo_muebles;
-        }else{
+          break;
+          case 2:
           array = $scope.cant_otros;
-        }
+          break;
+          case 3:
+          array = $scope.precios_kms;
+          break;
+
+        };
+
         for(var i=0; i<array.length; i++) {
           if(array[i][attr] === value) return i;
         }
+
       };
 
       $scope.add_otros = function (campo, mueble, ancho, largo, alto, cant, descripcion) {
