@@ -808,38 +808,55 @@
 
     self.updateMuebles = function (cotizacionID){
 
-      angular.forEach(muebles_temp, function(v,k){
+      addmueble(muebles_temp);
 
-        if(v.action === 'PUT'){
+      addmueble(otros_temp);
 
-          Cotizacion.update_mueble(v).then(function(r){
+      function addmueble(array){
 
-            console.log("Actualizacion en el mueble : "+r.data.descripcion);
+        if(array.length > 0){
+
+          angular.forEach(array, function(v,k){
+
+            if(v.action === 'PUT'){
+
+              Cotizacion.update_mueble(v).then(function(r){
+
+                console.log("Actualizacion en el mueble : "+r.data.descripcion);
+
+              });
+
+            }else{
+
+              Cotizacion.save_muebles(v,cotizacionID).then(function(r){
+
+                console.log("Agregare el Mueble : "+r);
+
+                v.action = 'PUT'
+
+                return v;
+              });
+            }
 
           });
-
-        }else{
-
-          Cotizacion.save_muebles(v,cotizacionID).then(function(r){
-
-            console.log("Agregare el Mueble : "+r);
-
-          });
-          console.log("nuevo ");
         }
 
-      });
+      }
+
+
 
     };
 
     self.updateContenedores = function (cotizacionID){
+
+      if(contenedores_temp.length > 0){
 
       angular.forEach(contenedores_temp, function(v,k){
 
         if(v.action === 'PUT'){
 
           Cotizacion.update_contenedor(v).then(function(r){
-console.log(r);
+
             console.log("Actualizacion en el Contenedor : "+r.data.descripcion);
 
           });
@@ -848,12 +865,13 @@ console.log(r);
           Cotizacion.save_contenedores(v,cotizacionID).then(function(r){
 
             console.log("Agregare el Contenedor : "+r);
-
+            v.action = 'PUT'
           });
           console.log("nuevo ");
         }
 
       });
+    }
 
     };
     self.deleteContenedores = function (){
@@ -865,6 +883,7 @@ console.log(r);
             Cotizacion.delete_contenedor(v).then(function(r){
 
               console.log("Eliminare el Contenedor : "+r.data.descripcion);
+              contenedores_for_delete.splice(contenedores_for_delete.indexOf(v),1);
 
             });
 
@@ -893,7 +912,7 @@ console.log(r);
               Cotizacion.delete_mueble(v).then(function(r){
 
                 console.log("item eliminado : "+r.data.descripcion);
-
+                array.splice(array.indexOf(v),1);
               });
 
           });
