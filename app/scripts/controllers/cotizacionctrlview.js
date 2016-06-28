@@ -31,7 +31,7 @@
     return self;
   })
 
-  app.service('BackendCotizacion', ['Contenedor', 'Mueble', 'Material', '$rootScope', function (Contenedor, Mueble, Material, $rootScope) {
+  app.service('BackendCotizacion', ['Cotizacion', 'Contenedor', 'Mueble', 'Material', 'Cliente', '$rootScope', function (Cotizacion, Contenedor, Mueble, Material, Cliente, $rootScope) {
 
     var self = this;
 
@@ -74,13 +74,17 @@
 
       muebles_temp = [];
 
+      otros_for_delete = [];
+
+      otros_temp = [];
+
       materiales = [];
 
       materiales_for_delete = [];
 
       materiales_temp = [];
 
-    }
+    };
 
     self.all = function () {
 
@@ -116,7 +120,7 @@
         value.recorrido_km = Number(value.recorrido_km);
 
         value.porcentaje_margen = Number(value.porcentaje_margen);
-        
+
         value.total_margen = Number(value.total_margen);
 
         (value.seguro)? value.seguro = 'Si': value.seguro='No';
@@ -597,6 +601,7 @@
       return true;
 
     };
+
     self.getMateriales = function (collection) {
 
       return Material.all().then(function (r) {
@@ -777,6 +782,127 @@
         }
 
       })
+
+    };
+
+    self.updateCotizacion = function (cotizacionID){
+
+      alert("guardare");
+    };
+
+    self.updateCliente = function (cliente){
+
+      Cliente.update(cliente).then(function(r){
+
+        if(r.status === 200){
+
+          console.log("actulize al cliente");
+
+        }
+
+      });
+
+    };
+
+    self.updateMuebles = function (cotizacionID){
+
+      angular.forEach(muebles_temp, function(v,k){
+
+        if(v.action === 'PUT'){
+
+          Cotizacion.update_mueble(v).then(function(r){
+
+            console.log("Actualizacion en el mueble : "+r.data.descripcion);
+
+          });
+
+        }else{
+
+          Cotizacion.save_muebles(v,cotizacionID).then(function(r){
+
+            console.log("Agregare el Mueble : "+r);
+
+          });
+          console.log("nuevo ");
+        }
+
+      });
+
+    };
+
+    self.updateContenedores = function (cotizacionID){
+
+      angular.forEach(contenedores_temp, function(v,k){
+
+        if(v.action === 'PUT'){
+
+          Cotizacion.update_contenedor(v).then(function(r){
+console.log(r);
+            console.log("Actualizacion en el Contenedor : "+r.data.descripcion);
+
+          });
+
+        }else if(v.action === 'POST'){
+          Cotizacion.save_contenedores(v,cotizacionID).then(function(r){
+
+            console.log("Agregare el Contenedor : "+r);
+
+          });
+          console.log("nuevo ");
+        }
+
+      });
+
+    };
+    self.deleteContenedores = function (){
+
+      if(contenedores_for_delete.length > 0){
+
+        angular.forEach(contenedores_for_delete, function(v,k){
+
+            Cotizacion.delete_contenedor(v).then(function(r){
+
+              console.log("Eliminare el Contenedor : "+r.data.descripcion);
+
+            });
+
+        });
+
+      }else {
+
+        console.log("Ningun Contenedor a Eliminar");
+
+      };
+
+    };
+
+    self.deleteMuebles = function (){
+
+      _delete(muebles_for_delete);
+
+      _delete(otros_for_delete);
+
+      function _delete(array){
+
+        if(array.length > 0){
+
+          angular.forEach(array, function(v,k){
+
+              Cotizacion.delete_mueble(v).then(function(r){
+
+                console.log("item eliminado : "+r.data.descripcion);
+
+              });
+
+          });
+
+        }else {
+
+          console.log("Ningun Item a Eliminar");
+
+        };
+
+      }
 
     };
 
@@ -974,6 +1100,7 @@
         }
 
       }
+      $rootScope.$emit('change:data');
 
     };
 
@@ -1112,6 +1239,7 @@
       $scope.cotizacion.monto_km = Number($scope.cotizacion.recorrido_km * $scope.cotizacion.precio_km);
       $scope.update_presupuesto();
     };
+
     initCotizacion();
 
     $rootScope.$on('change:data', function (){
@@ -1150,8 +1278,36 @@
 
       $rootScope.total_m3 = Number( $scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros );
 
+      $rootScope.margen = Number($scope.cotizacion.porcentaje_margen);
+
+      $scope.$on('change_margen',function(){
+        setTimeout(function(){
+          $rootScope.margen = Number($scope.cotizacion.porcentaje_margen);
+          $scope.$apply();
+        },0)
+      })
+
     });
 
+    $scope.save = function () {
+
+      Backend.updateCliente($scope.cliente);
+
+      Backend.updateContenedores($scope.cotizacion.id);
+
+      Backend.updateMuebles($scope.cotizacion.id);
+      //
+      // Backend.updatemateriales($scope.cotizacion.id);
+
+      Backend.deleteContenedores();
+      Backend.deleteMuebles();
+
+      setTimeout(function(){
+        $state.go('list');
+      },1000);
+
+
+    };
   };
 
   app.controller('CotizacionViewCtrl', function ($scope, $state, Cotizacion, BackendCotizacion) {

@@ -54,7 +54,7 @@
           <tr>
             <td align="center">Ayudantes</td>
             <td align="center" colspan="2" class="paddingNone">
-              <select ng-focus="scrollAnime($event)" ng-model="cotizacion.numero_ayudante" ng-options="m.num for m in cantidades" ng-init="cotizacion.numero_ayudante=cantidades[0]" style="text-align-last: center;">
+              <select ng-focus="scrollAnime($event)" ng-model="cotizacion.numero_ayudante" ng-options="m.num for m in cantidades" ng-init="cotizacion.numero_ayudante = cantidades[cotizacion.numero_ayudante.num] || cantidades[0]" style="text-align-last: center;">
               </select>
 
           </tr>
@@ -79,7 +79,7 @@
           <tr>
             <td align="center">Ambientes</td>
             <td align="center" colspan="2" class="paddingNone">
-              <select ng-focus="scrollAnime($event)" ng-model="cotizacion.ambiente" ng-options="m.num for m in cantidades" ng-init="cotizacion.ambiente=cantidades[0]" style="text-align-last: center;">
+              <select ng-focus="scrollAnime($event)" ng-model="cotizacion.ambiente" ng-options="m.num for m in cantidades" ng-init="cotizacion.ambiente= cantidades[cotizacion.ambiente.num] ||cantidades[0]" style="text-align-last: center;">
               </select>
 
           </tr>
