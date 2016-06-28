@@ -823,9 +823,9 @@
 
   }]);
 
-  app.controller('EditCtrl',['$rootScope','$scope', '$state', '$stateParams', 'BackendCotizacion', 'tools', 'Mueble', edit]);
+  app.controller('EditCtrl',['$rootScope','$scope', '$state', '$stateParams', 'BackendCotizacion', 'tools', 'Mueble', 'Users', 'Direccion', 'Cotizacion', edit]);
 
-  function edit($rootScope, $scope, $state, $stateParams, Backend, tools, Mueble){
+  function edit($rootScope, $scope, $state, $stateParams, Backend, tools, Mueble, Users, Direccion, Cotizacion){
 
     var cotizacion = undefined;
 
@@ -893,6 +893,17 @@
       });
 
       $rootScope.resumen = true;
+
+      Users.all(1).then(function (r) {
+            $scope.cotizadores = r;
+          });
+          Users.all(2).then(function (r) {
+            $scope.telefonista = r;
+          });
+          Direccion.all().then(function (r) {
+            $scope.barrio_provincias = r;
+          });
+          $scope.fuentes = Cotizacion.all_fuentes();
 
     };
 

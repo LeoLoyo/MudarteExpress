@@ -261,6 +261,7 @@
               ms_tmp[i].cantidad = m.cantidad;
               ms_tmp[i].descripcion = m.descripcion;
               ms_tmp[i].total_punto = m.punto * m.cantidad;
+              ms_tmp[i].punto = m.punto;
             } else {
               ms_tmp.splice(ms_tmp.indexOf(ms_tmp[i]), 1);
             }
@@ -298,9 +299,13 @@
     // $scope.muebles = groupBy(r, function (item) {
     //   return [item.mueble, item.descripcion];
     // });
-  angular.forEach(r, function (v, k) {
+  angular.forEach(r, function (a, b) {
+
+    angular.forEach(a.especificacionmuebles, function (v, k) {
 
     v.cantidad = 0;
+
+  },r);
 
   },r);
 
@@ -514,6 +519,7 @@
       };
 
       $scope.add_otros = function (campo, mueble, ancho, largo, alto, cant, descripcion) {
+
         console.log(descripcion);
         if(mueble.tipo_mueble === 'Otros'){
           if (descripcion === undefined ) {

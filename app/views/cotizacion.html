@@ -10,6 +10,7 @@
     <br><br>
                   <h2 style="padding-left:10px;">Otros <a class="agregarOtro" titulo="Agregar otro" ng-click="add_campo()"></a>
                   </h2>
+
     <div ng-repeat="campo in otros_temp_campo" style="padding-left:10px;">
       <form name="form_otro">
         <div class="row">
@@ -90,6 +91,7 @@
       </div>
     </form>
     </div>
+
 <legend></legend>
                 <a ng-if="otros_temp_campo!=''" class="agregarOtro" titulo="Agregar otro" ng-click="add_campo()" style="padding-left:10px;">
                 </a>
