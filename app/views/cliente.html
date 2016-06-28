@@ -63,7 +63,12 @@
   </div>
   <div class="col-md-3 form-group">
     <label for="id_cotizador">Cotizador:</label>
-    <select class="form-control selectPicker show-tick" ng-model="cotizacion.cotizador" data-live-search="true" title="Seleccione un cotizador" ng-options="item as (item.first_name +' ' +item.last_name) for item in cotizadores"></select>
+    <select class="form-control selectPicker show-tick"
+    ng-model="cotizacion.cotizador"
+    data-live-search="true"
+    title="Seleccione un cotizador"
+    ng-options="item as (item.first_name +' ' +item.last_name) for item in cotizadores track by item.id">
+  </select>
   </div>
   <div class="col-md-3 form-group">
     <label for="id_cotizador">Forma de pago:</label>

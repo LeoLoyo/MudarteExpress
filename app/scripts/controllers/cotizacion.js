@@ -505,20 +505,68 @@
         $scope.unidades_muebles = calcular_totales($scope.muebles_temp, "cantidad");
         $rootScope.total_m3 = Number($scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros);
       };
+      $scope.getIndexFromValue = function(attr,value,bool) {
+        console.log(bool);
+        var array = [];
+        if(bool){
+          array = $scope.tipo_muebles;
+        }else{
+          array = $scope.cant_otros;
+        }
+        for(var i=0; i<array.length; i++) {
+          if(array[i][attr] === value) return i;
+        }
+      };
 
       $scope.add_otros = function (campo, mueble, ancho, largo, alto, cant, descripcion) {
-        console.log(campo);
-        console.log(mueble);
 
-        if (ancho !== undefined && largo !== undefined && alto !== undefined && mueble) {
+        console.log(descripcion);
+        if(mueble.tipo_mueble === 'Otros'){
+          if (descripcion === undefined ) {
+            alert('Indique la descripción');
+          }else{
+            var otro = {
+              id: campo.id,
+              mueble_id: '',
+              tipo_mueble_id:mueble.id,
+              mueble : mueble.tipo_mueble,
+              especificacion_id:'',
+              especificacion: '',
+              descripcion : descripcion,
+              ancho: Number(ancho),
+              largo: Number(largo),
+              alto: Number(alto),
+              cantidad: Number(cant),
+              punto: 0,
+              total_punto: 0,
+              estado: "activo"
+            };
+            console.log(otro);
+            var mult_dimension = otro.ancho * otro.largo * otro.alto;
+
+            otro.punto = Math.round(otro.ancho * otro.largo * otro.alto / 100000);
+            if (otro.punto === 0) {
+              otro.punto = 1;
+            }
+            otro.total_punto = otro.punto * otro.cantidad;
+            if (buscar_otros($scope.otros_temp, otro) !== true) {
+              if (otro.cantidad > 0) {
+                $scope.otros_temp.push(otro);
+              }
+            }
+            $scope.metros3_otros = calcular_totales($scope.otros_temp, "total_punto") / 10;
+            $scope.unidades_otros = calcular_totales($scope.otros_temp, "cantidad");
+            $rootScope.total_m3 = Number($scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros);
+          }
+        }else{
           var otro = {
             id: campo.id,
-            mueble_id:'',
+            mueble_id: '',
             tipo_mueble_id:mueble.id,
-            mueble: mueble.tipo_mueble,
+            mueble : mueble.tipo_mueble,
             especificacion_id:'',
             especificacion: '',
-            descripcion: descripcion,
+            descripcion : descripcion,
             ancho: Number(ancho),
             largo: Number(largo),
             alto: Number(alto),
@@ -527,14 +575,8 @@
             total_punto: 0,
             estado: "activo"
           };
+          console.log(otro);
           var mult_dimension = otro.ancho * otro.largo * otro.alto;
-
-          if (mueble === 'Otros') {
-            otro.descripcion = descripcion;
-          } else {
-            otro.descripcion = mueble;
-          }
-
           otro.punto = Math.round(otro.ancho * otro.largo * otro.alto / 100000);
           if (otro.punto === 0) {
             otro.punto = 1;
@@ -548,9 +590,8 @@
           $scope.metros3_otros = calcular_totales($scope.otros_temp, "total_punto") / 10;
           $scope.unidades_otros = calcular_totales($scope.otros_temp, "cantidad");
           $rootScope.total_m3 = Number($scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros);
-        } else {
-          alert('Seleccione primero la descripción');
         }
+
 
       };
 
