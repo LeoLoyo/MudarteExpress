@@ -261,6 +261,7 @@
               ms_tmp[i].cantidad = m.cantidad;
               ms_tmp[i].descripcion = m.descripcion;
               ms_tmp[i].total_punto = m.punto * m.cantidad;
+              ms_tmp[i].punto = m.punto;
             } else {
               ms_tmp.splice(ms_tmp.indexOf(ms_tmp[i]), 1);
             }
