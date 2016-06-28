@@ -220,7 +220,7 @@ $(function(){
     document.onkeypress = function(e){
      var test_var=e.target.nodeName.toUpperCase();
      if (e.target.type) var test_type=e.target.type.toUpperCase();
-     if ((test_var == '/INPUT' && test_type == 'TEXT' || test_type == 'PASSWORD'  || test_type == 'EMAIL') || test_var == 'TEXTAREA'){
+     if ((test_var == '/INPUT' && test_type == 'TEXT' || test_type == 'PASSWORD'  || test_type == 'EMAIL' || test_type == 'SEARCH' || test_type == 'TIME' || test_type == 'DATE') || test_var == 'TEXTAREA'){
        return e.keyCode;
      }else if (e.keyCode == 8){
        e.preventDefault();
@@ -230,7 +230,7 @@ $(function(){
     document.onkeydown = function(){
      var test_var=event.srcElement.tagName.toUpperCase();
      if (event.srcElement.type) var test_type=event.srcElement.type.toUpperCase();
-     if ((test_var == 'INPUT' && test_type == 'TEXT'  || test_type == 'PASSWORD'  || test_type == 'EMAIL') || test_var == 'TEXTAREA'){
+     if ((test_var == 'INPUT' && test_type == 'TEXT'  || test_type == 'PASSWORD'  || test_type == 'EMAIL' || test_type == 'SEARCH' || test_type == 'TIME' || test_type == 'DATE') || test_var == 'TEXTAREA'){
        return event.keyCode;
      }else if (event.keyCode == 8){
        event.returnValue=false;
