@@ -26,12 +26,30 @@
       return d;
 
     };
+    self.fecha_format = function (f){
+
+      f = new Date(f);
+
+      var fecha = ""+f.getFullYear()+ "-" + (f.getMonth() +1) + "-" + f.getDate()+"";
+
+      return fecha;
+    };
+
+    self.hora_format =  function (f){
+
+      f = new Date(f);
+
+      var hora = f.getHours()+":"+f.getMinutes()+":"+f.getSeconds();
+
+      return hora;
+
+    };
 
 
     return self;
   })
 
-  app.service('BackendCotizacion', ['Cotizacion', 'Contenedor', 'Mueble', 'Material', 'Cliente', '$rootScope', function (Cotizacion, Contenedor, Mueble, Material, Cliente, $rootScope) {
+  app.service('BackendCotizacion', ['Cotizacion', 'Contenedor', 'Mueble', 'Material', 'Cliente', '$rootScope', 'tools', function (Cotizacion, Contenedor, Mueble, Material, Cliente, $rootScope, tools) {
 
     var self = this;
 
@@ -787,9 +805,35 @@
 
     };
 
-    self.updateCotizacion = function (cotizacionID){
+    self.updateCotizacion = function (cotizacion){
+      var temp = angular.copy(cotizacion);
 
-      alert("guardare");
+      (temp.seguro==='Si')? temp.seguro = true: temp.seguro = false;
+
+      (temp.desarme_mueble==='Si')? temp.desarme_mueble = true: temp.desarme_mueble = false;
+
+      (temp.rampa==='Si')? temp.rampa = true: temp.rampa = false;
+
+      temp.ambiente = temp.ambiente.num;
+      temp.numero_ayudante = temp.numero_ayudante.num;
+      temp.clienteId = temp.cliente.id;
+      temp.cotizadorId = temp.cotizador.id;
+      temp.fecha_de_cotizacion = tools.fecha_format(temp.fecha_de_cotizacion);
+      temp.fecha_estimada_mudanza = tools.fecha_format(temp.fecha_estimada_mudanza);
+      temp.hora_de_cotizacion = tools.hora_format(temp.hora_de_cotizacion);
+      temp.hora_estimada_mudanza = tools.hora_format(temp.hora_estimada_mudanza);
+
+      console.log(temp);
+
+      Cotizacion.update(temp).then(function(r){
+
+        if(r.status === 200){
+
+          console.log("actulize al cotizacion");
+
+        }
+
+      });
     };
 
     self.updateCliente = function (cliente){
@@ -1317,6 +1361,8 @@
     });
 
     $scope.save = function () {
+
+      Backend.updateCotizacion($scope.cotizacion);
 
       Backend.updateCliente($scope.cliente);
 

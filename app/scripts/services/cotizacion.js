@@ -105,6 +105,16 @@
       });
     };
 
+    self.update = function (cotizacion) {
+      var url = setting.url + "cotizacion/"+ cotizacion.id +"/?format=json";
+      return $http.put(url, cotizacion).success(function (responde) {
+        console.log(responde);
+        return responde;
+      }).error(function (e) {
+        return e;
+      });
+    };
+
     self.save_contenedores = function (contenedor, id_cotizacion) {
       var data = {};
       data.cotizacion = id_cotizacion;
