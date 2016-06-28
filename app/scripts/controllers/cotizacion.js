@@ -439,14 +439,12 @@
 
       function check_material(contenedor){
         angular.forEach($scope.materiales, function(v,k){
-          var mat = angular.copy(v);
+          var mat = v;
           if(Number(mat.contenedor) === Number(contenedor.contenedor)){
             setTimeout(function(){
               mat.cantidad = contenedor.cantidad;
               mat.iscontenedor = true;
               mat.ncontenedor = contenedor.cantidad;
-              $scope.materiales.splice($scope.materiales.indexOf(v),1);
-              $scope.materiales.push(mat);
               $scope.add_material(mat);
                 $scope.$apply();
             },0);

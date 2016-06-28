@@ -726,7 +726,7 @@
 
       angular.forEach(materiales, function(v,k){
 
-        var mat = angular.copy(v);
+        var mat = v;
 
         if(Number(mat.contenedor) === Number(contenedor.contenedor)){
 
@@ -737,10 +737,6 @@
             mat.iscontenedor = true;
 
             mat.ncontenedor = contenedor.cantidad;
-
-            materiales.splice(materiales.indexOf(v),1);
-
-            materiales.push(mat);
 
             self.AddMaterial(mat);
 
