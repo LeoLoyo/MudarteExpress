@@ -36,6 +36,7 @@
     var self = this;
 
     var cotizaciones = [],
+        precio_km = [{precio:30},{precio:33},{precio:37},{precio:41}],
         cantidades = [],
         cantidades_otros = [],
         contenedores_for_delete =[],
@@ -199,6 +200,11 @@
     self.getCant_Otros = function () {
 
       return cantidades_otros;
+
+    };
+    self.getPrecio_km = function(){
+
+      return precio_km;
 
     };
 
@@ -755,7 +761,7 @@
 
       angular.forEach(materiales, function(v,k){
 
-        var mat = angular.copy(v);
+        var mat = v;
 
         if(Number(mat.contenedor) === Number(contenedor.contenedor)){
 
@@ -766,10 +772,6 @@
             mat.iscontenedor = true;
 
             mat.ncontenedor = contenedor.cantidad;
-
-            materiales.splice(materiales.indexOf(v),1);
-
-            materiales.push(mat);
 
             self.AddMaterial(mat);
 
@@ -963,6 +965,8 @@ console.log(r);
 
       $scope.cant_otros = Backend.getCant_Otros();
 
+      $scope.precios_kms = Backend.getPrecio_km();
+
       Mueble.tipo_mueble().then(function (muebles) {
 
         $scope.tipo_muebles = muebles;
@@ -1021,15 +1025,15 @@ console.log(r);
       $rootScope.resumen = true;
 
       Users.all(1).then(function (r) {
-            $scope.cotizadores = r;
-          });
-          Users.all(2).then(function (r) {
-            $scope.telefonista = r;
-          });
-          Direccion.all().then(function (r) {
-            $scope.barrio_provincias = r;
-          });
-          $scope.fuentes = Cotizacion.all_fuentes();
+        $scope.cotizadores = r;
+      });
+      Users.all(2).then(function (r) {
+        $scope.telefonista = r;
+      });
+      Direccion.all().then(function (r) {
+        $scope.barrio_provincias = r;
+      });
+      $scope.fuentes = Cotizacion.all_fuentes();
 
     };
 
@@ -1189,22 +1193,26 @@ console.log(r);
 
     };
 
-    $scope.getIndexFromValue = function(attr,value,bool) {
+    $scope.getIndexFromValue = function(attr,value,n) {
 
       var array = [];
 
-      if(bool){
+        switch(n){
+          case 1:
+          array = $scope.tipo_muebles;
+          break;
+          case 2:
+          array = $scope.cant_otros;
+          break;
+          case 3:
+          array = $scope.precios_kms;
+          value = Number(value);
+          break;
 
-        array = $scope.tipo_muebles;
+        };
 
-      }else{
-
-        array = $scope.cant_otros;
-
-      }
 
       for(var i=0; i<array.length; i++) {
-
         if(array[i][attr] === value) return i;
 
       }
