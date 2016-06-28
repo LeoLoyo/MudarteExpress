@@ -843,37 +843,35 @@
 
       }
 
-
-
     };
 
     self.updateContenedores = function (cotizacionID){
 
       if(contenedores_temp.length > 0){
 
-      angular.forEach(contenedores_temp, function(v,k){
+        angular.forEach(contenedores_temp, function(v,k){
 
-        if(v.action === 'PUT'){
+          if(v.action === 'PUT'){
 
-          Cotizacion.update_contenedor(v).then(function(r){
+            Cotizacion.update_contenedor(v).then(function(r){
 
-            console.log("Actualizacion en el Contenedor : "+r.data.descripcion);
+              console.log("Actualizacion en el Contenedor : "+r.data.descripcion);
 
-          });
+            });
 
-        }else if(v.action === 'POST'){
-          Cotizacion.save_contenedores(v,cotizacionID).then(function(r){
+          }else if(v.action === 'POST'){
+              Cotizacion.save_contenedores(v,cotizacionID).then(function(r){
 
-            console.log("Agregare el Contenedor : "+r);
-            v.action = 'PUT'
-          });
-          console.log("nuevo ");
-        }
+                v.action = 'PUT'
+              });
+            
+          }
 
-      });
-    }
+        });
+      }
 
     };
+
     self.deleteContenedores = function (){
 
       if(contenedores_for_delete.length > 0){
