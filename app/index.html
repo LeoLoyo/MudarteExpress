@@ -84,6 +84,7 @@
                     <label for="id_presupuesto" ng-class="{activo:nav==='3'}" onclick="scroll0();">Presupuesto</label>
                     <input id="id_presupuesto" type="radio" ng-model="nav" value="3">
                 </li>
+
                 <li class="btnsCotizacion hidden" ng-show="resumen" ng-click="checked=false">
                     <label for="id_resumen" ng-class="{activo:nav==='6'}" onclick="scroll0();" ng-click="actFecha();">Resumen</label>
                      <input id="id_resumen" type="radio" ng-model="nav" value="6">
@@ -96,7 +97,7 @@
               <li ng-show="nav==='7'" ng-if=" nav==='7'">
                 <button class="btn btn-lg btn-block btn-outline" ng-click="Go('cotizacion')">Nueva</button>
               </li>
-              <li class="hidden" ng-show="nav==='8' || nav==='10'" ng-if="nav==='8' || nav==='10'">
+              <li class="" ng-show="nav==='8' || nav==='10'" ng-if="nav==='8' || nav==='10'">
                 <button class="btn btn-lg btn-block btn-outline" ng-click="Go('edit',id_cotizacion)">Editar</button>
               </li>
             </ul>
@@ -227,7 +228,7 @@ $(function(){
     document.onkeypress = function(e){
      var test_var=e.target.nodeName.toUpperCase();
      if (e.target.type) var test_type=e.target.type.toUpperCase();
-     if ((test_var == '/INPUT' && test_type == 'TEXT' || test_type == 'PASSWORD'  || test_type == 'EMAIL' || test_type == 'SEARCH' || test_type == 'TIME' || test_type == 'DATE') || test_var == 'TEXTAREA'){
+     if ((test_var == '/INPUT' && test_type == 'TEXT' || test_type == 'PASSWORD' || test_type == 'NUMBER'  || test_type == 'EMAIL' || test_type == 'SEARCH' || test_type == 'TIME' || test_type == 'DATE') || test_var == 'TEXTAREA'){
        return e.keyCode;
      }else if (e.keyCode == 8){
        e.preventDefault();
@@ -237,7 +238,7 @@ $(function(){
     document.onkeydown = function(){
      var test_var=event.srcElement.tagName.toUpperCase();
      if (event.srcElement.type) var test_type=event.srcElement.type.toUpperCase();
-     if ((test_var == 'INPUT' && test_type == 'TEXT'  || test_type == 'PASSWORD'  || test_type == 'EMAIL' || test_type == 'SEARCH' || test_type == 'TIME' || test_type == 'DATE') || test_var == 'TEXTAREA'){
+     if ((test_var == 'INPUT' && test_type == 'TEXT'  || test_type == 'PASSWORD' || test_type == 'NUMBER'  || test_type == 'EMAIL' || test_type == 'SEARCH' || test_type == 'TIME' || test_type == 'DATE') || test_var == 'TEXTAREA'){
        return event.keyCode;
      }else if (event.keyCode == 8){
        event.returnValue=false;

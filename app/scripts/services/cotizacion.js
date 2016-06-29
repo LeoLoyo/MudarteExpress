@@ -2,6 +2,7 @@
   'use strict';
 
   var app = angular.module('Express.services', []);
+
   app.factory('API',['$http', '$q', function ($http, $q) {
     var self = this;
 
@@ -26,6 +27,19 @@
       return output;
     };
 
+    self.putOne = function (url, parameters) {
+      parameters = parameters || [];
+      var q = $q.defer();
+
+      $http.put(url, parameter).then(function (result) {
+        q.resolve(result);
+      }).catch(function (error) {
+        console.warn(error);
+        q.reject(error);
+      });
+      return q.promise;
+    };
+
     // // Proces a single result
     // self.getById = function(result) {
     //   var output = null;
@@ -35,6 +49,7 @@
 
     return self;
   }]);
+
   app.service('Auth', function () {
     var self = this;
     var users = [{
@@ -70,7 +85,8 @@
     };
   });
 
-  app.service('Cotizacion',['$http', 'setting','API', function ($http, setting,API) {
+  app.service('Cotizacion', ['$http', 'setting','API', function ($http, setting,API) {
+
     var self = this;
 
     self.all = function () {
@@ -93,6 +109,7 @@
       var data = {};
       data.cotizacion = id_cotizacion;
       data.descripcion = contenedor.descripcion;
+      data.contenedor = contenedor.contenedor;
       data.cantidad = contenedor.cantidad;
       data.punto = contenedor.punto;
       data.estado = 'activo';
@@ -102,9 +119,11 @@
         return false;
       });
     };
+
     self.save_materiales = function (material, id_cotizacion) {
       var data = {};
       data.cotizacion = id_cotizacion;
+      data.materialid = material.id;
       data.material = material.material;
       data.cantidad = material.cantidad;
       data.precio_unitario = material.precio_unitario;
@@ -117,11 +136,16 @@
         return false;
       });
     };
+
     self.save_muebles = function (muebles, id_cotizacion) {
       var data = {};
       var url = setting.url + "mueblecotizacion/";
+
       data.cotizacion = id_cotizacion;
+      data.muebleid = muebles.mueble_id;
+      data.tipo_muebleid = muebles.tipo_mueble_id;
       data.mueble = muebles.mueble;
+      data.especificacionid = muebles.especificacion_id;
       data.especificacion = muebles.especificacion;
       data.descripcion = muebles.descripcion;
       data.alto = muebles.alto;
@@ -143,18 +167,21 @@
       var collection = ['Internet Otro buscador','Internet Banner','Cartel Vía Pública','Recomendado Cliente','Cliente','Volante diario/revista','Volante vía publica','Volante en casa','Volante en evento','Publicidad Diario/revista','Publicidad Email','Publicidad Vía Pública','Publicidad TV','Publicidad Radio','Publicidad Cine','Camión Mudarte','Telemercadeo','Depósito Belgrano','Inmobiliaria','Tarjeta descuento','Otros','My Home Planners'];
       return collection;
     };
+
     self.materiales = function () {
       var url = setting.url + "materialcotizacion/?format=json";
       return API.query(url).then(function (result) {
         return API.getAll(result);
       });
     };
+
     self.contenedores = function () {
       var url = setting.url + "contenedorcotizacion/?format=json";
       return API.query(url).then(function (result) {
         return API.getAll(result);
       });
     };
+
     self.muebles = function () {
       var url = setting.url + "mueblecotizacion/?format=json";
       return API.query(url).then(function (result) {
@@ -162,18 +189,81 @@
       });
     };
 
+    self.update_contenedor = function (contenedor) {
+
+      var url = setting.url + "contenedorcotizacion/"+contenedor.id+"/?format=json";
+
+      return $http.put(url, contenedor).success(function(responde){
+
+        return responde.id;
+
+      }).error(function(e){
+
+          return e;
+
+      });
+
+    };
+
+    self.update_mueble = function (mueble) {
+
+      var url = setting.url + "mueblecotizacion/"+mueble.id+"/?format=json";
+
+      return $http.put(url, mueble).success(function(responde){
+
+        return responde.id;
+
+      }).error(function(e){
+
+          return e;
+
+      });
+
+    };
+
+    self.delete_contenedor = function (contenedor) {
+
+      var url = setting.url + "contenedorcotizacion/"+contenedor.id+"/?format=json";
+
+      return $http.delete(url).success(function(responde){
+
+        return responde;
+
+      }).error(function(e){
+
+          return e;
+
+      });
+
+    };
+
+    self.delete_mueble = function (mueble) {
+
+      var url = setting.url + "mueblecotizacion/"+mueble.id+"/?format=json";
+
+      return $http.delete(url).success(function(responde){
+
+        return responde;
+
+      }).error(function(e){
+
+          return e;
+
+      });
+
+    };
+
 
     return self;
+
   }]);
 
   app.factory('Contenedor',['API', 'setting', function (API, setting) {
     var self = this;
     self.all = function (contenedor) {
       var url = setting.url + "contenedordescripcion/?format=json";
-      // var url = 'scripts/json/contenedordescripcion.json'
       if (contenedor !== undefined) {
         url = setting.url + "contenedor/?format=json&contenedor=" + contenedor;
-        // url = 'scripts/json/contenedor.json';
       }
       return API.query(url).then(function (result) {
         return API.getAll(result);
@@ -255,6 +345,14 @@
         return e;
       });
     };
+    self.update = function (cliente){
+      var url = setting.url + "cliente/"+cliente.id+"/?format=json";
+      return $http.put(url,cliente).success(function(responde){
+        return responde.id;
+      }).error(function(e){
+        return e;
+      });
+    }
   }]);
 
   app.service('Users',['$http', 'setting', function ($http, setting) {

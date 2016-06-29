@@ -4,64 +4,99 @@
   <div class="formulario" style="padding:0!important;">
     <table>
       <div ng-repeat="group in muebles  | orderBy:'descripcion'" class="conMueble">
-
-
         <item-muebles group="group" cantidades="cantidades"></item-muebles>
-
       </div>
     </table>
     <br><br>
                   <h2 style="padding-left:10px;">Otros <a class="agregarOtro" titulo="Agregar otro" ng-click="add_campo()"></a>
                   </h2>
-                  <div ng-repeat="campo in otros_temp_campo" style="padding-left:10px;">
-                    <form name="form_otro">
-                      <div class="row">
-                        <div class="form-group col-md-3">
-                          <label for="id_descripcion">Descripción</label>
-                          <select class="form-control" ng-init="otro='Otros'" ng-focus="scrollAnime($event)"  ng-model="otro" ng-change="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion,campo)">
-                            <option value="Otros">Otros</option>
-                            <option ng-repeat="m in tipo_muebles">{{m.tipo_mueble}}</option>
-                          </select>
 
-                      </div>
-                      <div class="col-md-3" ng-class="{hidden:otro !='Otros',error:!descripcion}">
-                        <label for="id_descripcione">Descripción</label>
-                        <input type="text" autofocus  placeholder="Descripción requerida" ng-model="descripcion" ng-blur="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion,campo)" class="form-control">
-                      </div>
+    <div ng-repeat="campo in otros_temp_campo" style="padding-left:10px;">
+      <form name="form_otro">
+        <div class="row">
+          <!-- <div class="form-group col-md-3">
+            <label for="id_descripcion">Descripción</label>
+            <select class="form-control" ng-options="m.tipo_mueble for m in tipo_muebles" ng-init="otro='Otros'" ng-focus="scrollAnime($event)"  ng-model="otro" ng-change="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion)">
+            <select  ng-if="campo.cotizacion === undefined" class="form-control" ng-options="m as m.tipo_mueble for m in tipo_muebles track by m.id"  ng-focus="scrollAnime($event)"  ng-init="otro=tipo_muebles[getIndexFromValue('tipo_mueble', 'Otros',true)]" ng-model="otro" ng-change="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion)"></select>
+            <select ng-if="campo.cotizacion !== undefined" class="form-control" ng-options=" m as m.tipo_mueble for m in tipo_muebles"  ng-focus="scrollAnime($event)"  ng-init="otro=tipo_muebles[getIndexFromValue('tipo_mueble', campo.mueble,true)]" ng-model="otro" ng-change="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion)"></select>
+              </div> -->
+              <div class="form-group col-md-3">
 
-                      <div class="form-group col-md-1">
-                        <label for="">Ancho</label>
+                <label for="id_descripcion">Descripción</label>
 
-                        <select class="form-control " style="padding-left:1px;" ng-model="ancho" ng-focus="scrollAnime($event)" ng-init="ancho = cant_otros[0]" ng-options="b.num for b in cant_otros" ng-change="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion,campo)"></select>
-                      </div>
+                <select
 
-                      <div class="form-group col-md-1">
-                        <label for="">Largo</label>
-                        <select class="form-control" style="padding-left:1px;"  ng-focus="scrollAnime($event)" ng-model="largo" ng-init="largo = cant_otros[0]" ng-options="b.num for b in cant_otros" ng-change="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion,campo)"></select>
+                class="form-control"
 
-                      </div>
+                ng-focus="scrollAnime($event)"
 
-                      <div class="form-group col-md-1">
-                        <label for="">Alto</label>
-                        <select class="form-control" style="padding-left:1px;" ng-focus="scrollAnime($event)" ng-model="alto" ng-init="alto = cant_otros[0]" ng-options="b.num for b in cant_otros" ng-change="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion,campo)"></select>
+                ng-init="otro=tipo_muebles[getIndexFromValue('tipo_mueble', campo.mueble || 'Otros',1)]"
 
+                ng-model="otro"
 
-                      </div>
+                ng-options="m as m.tipo_mueble for m in tipo_muebles"
 
-                      <div class="form-group col-md-1">
-                        <label for="">Cantidad</label>
-                        <select ng-model="cant" style="padding-left:1px;" ng-disabled="!(ancho.num && otro && largo.num && alto.num)" class="form-control" ng-init="cant = cantidades[1]" ng-change="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion,campo)" ng-options=" cant.num for cant in cantidades"></select>
-                      </div>
-                      <div class="form-group col-md-1">
-                        <a ng-click="delete_campo(campo)" class="glyphicon glyphicon-remove" style="font-size:25px;margin-top:30px;cursor:pointer;"></a>
-                      </div>
-                    </div>
-                  </form>
-                </div>
+                ng-change="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion)">
+
+                 ></select>
+
+              </div>
+
+        <div class="col-md-3" ng-class="{hidden:otro.tipo_mueble !='Otros',error:!descripcion}">
+          <label for="id_descripcione">Descripción</label>
+          <input type="text"  placeholder="Descripción requerida" ng-init="descripcion = campo.descripcion" ng-model="descripcion" ng-blur="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion)" class="form-control">
+        </div>
+
+        <div class="form-group col-md-1">
+
+          <label for="">Ancho</label>
+
+          <select
+
+          class="form-control"
+
+          style="padding-left:1px;"
+
+          ng-model="ancho"
+
+          ng-focus="scrollAnime($event)"
+
+          ng-init="ancho = cant_otros[getIndexFromValue('num',campo.ancho,2)] || cant_otros[0]"
+
+          ng-options="b.num for b in cant_otros"
+
+          ng-change="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion)">
+
+          </select>
+
+        </div>
+
+        <div class="form-group col-md-1">
+          <label for="">Largo</label>
+          <select class="form-control" style="padding-left:1px;"  ng-focus="scrollAnime($event)" ng-model="largo" ng-init="largo = cant_otros[getIndexFromValue('num',campo.largo,2)] || cant_otros[0]" ng-options="b.num for b in cant_otros" ng-change="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion)"></select>
+        </div>
+
+        <div class="form-group col-md-1">
+          <label for="">Alto</label>
+          <select class="form-control" style="padding-left:1px;" ng-focus="scrollAnime($event)" ng-model="alto" ng-init="alto = cant_otros[getIndexFromValue('num',campo.alto,2)] || cant_otros[0]" ng-options="b.num for b in cant_otros" ng-change="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion)"></select>
+        </div>
+
+        <div class="form-group col-md-1">
+          <label for="">Cantidad</label>
+          <select ng-model="cant" style="padding-left:1px;"  class="form-control" ng-init="cant = cantidades[campo.cantidad] || cantidades[1] " ng-change="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion)" ng-options=" cant.num for cant in cantidades"></select>
+        </div>
+        <div class="form-group col-md-1">
+          <a ng-click="delete_campo(campo)" class="glyphicon glyphicon-remove" style="font-size:25px;margin-top:30px;cursor:pointer;"></a>
+        </div>
+      </div>
+    </form>
+    </div>
+
 <legend></legend>
                 <a ng-if="otros_temp_campo!=''" class="agregarOtro" titulo="Agregar otro" ng-click="add_campo()" style="padding-left:10px;">
                 </a>
                 <br><br><br>
+
                 <h2 style="padding-left:10px;">Contenedores</h2>
     <div ng-repeat="c in contenedores" style="display:inline-block;padding-left:10px;">
 

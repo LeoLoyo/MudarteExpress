@@ -15,14 +15,21 @@
               <input type="number" min="0" style="text-align:center!important;font-weight:bold;" name="recorrido_km" ng-model="cotizacion.recorrido_km" ng-change="add_parcial1()">
             </td>
             <td align="center" class="paddingNone">
-              <select class="selectMoneda" name="precio_km" id="precio_km" ng-init="cotizacion.precio_km = '30'"ng-model="cotizacion.precio_km" ng-change="add_parcial1()">
+              <select class="selectMoneda"
+              ng-model="cotizacion.precio_km"
+              ng-init="cotizacion.precio_km = precios_kms[getIndexFromValue('precio', cotizacion.precio_km, 3)].precio || precios_kms[0]"
+              ng-options=" b.precio as b.precio for b in precios_kms"
+              ng-change="add_parcial1()">
+              </select>
+
+             <!--  <select class="selectMoneda" name="precio_km" id="precio_km" ng-init="cotizacion.precio_km = cotizacion.precio_km" ng-model="cotizacion.precio_km" ng-change="add_parcial1()">
 
                 <option value="30">$30.00</option>
                 <option value="33">$33.00</option>
                 <option value="37">$37.00</option>
                 <option value="41">$41.00</option>
 
-              </select>
+              </select> -->
             </td>
             <td align="center" class="ancho "><strong>{{cotizacion.monto_km|currency}}</strong></td>
 
@@ -54,8 +61,8 @@
           <tr>
             <td align="center">Ayudantes</td>
             <td align="center" colspan="2" class="paddingNone">
-              <select ng-focus="scrollAnime($event)" ng-model="cotizacion.numero_ayudante" ng-options="m.num for m in cantidades" ng-init="cotizacion.numero_ayudante=cantidades[0]" style="text-align-last: center;">
-              </select>
+
+              <select ng-focus="scrollAnime($event)" ng-model="cotizacion.numero_ayudante" ng-options="m.num for m in cantidades" ng-init="cotizacion.numero_ayudante=cantidades[cotizacion.numero_ayudante.num] || cantidades[0]" style="text-align-last: center;"></select>
 
           </tr>
           <tr>
@@ -79,7 +86,7 @@
           <tr>
             <td align="center">Ambientes</td>
             <td align="center" colspan="2" class="paddingNone">
-              <select ng-focus="scrollAnime($event)" ng-model="cotizacion.ambiente" ng-options="m.num for m in cantidades" ng-init="cotizacion.ambiente=cantidades[0]" style="text-align-last: center;">
+              <select ng-focus="scrollAnime($event)" ng-init="cotizacion.ambiente= cantidades[cotizacion.ambiente.num] || cantidades[0]" ng-model="cotizacion.ambiente" ng-options="m.num for m in cantidades"  style="text-align-last: center;">
               </select>
 
           </tr>

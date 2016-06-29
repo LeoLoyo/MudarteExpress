@@ -1,4 +1,4 @@
-<div ng-show="nav==='5'" ng-if="limpiarM">
+<div ng-show="nav==='5'" ng-if="limpiarM || nav==='5'">
     <div class="col-md-12">
       <h2>Materiales de la mudanza</h2>
         <table class="tabla">
@@ -8,7 +8,7 @@
             <th width="200">Precio unit.</th>
             <th width="200">Totales</th>
           </tr>
-          <tr ng-repeat="item in materiales">
+          <tr ng-repeat="item in materiales | orderBy : id">
             <td>{{item.descripcion}}</td>
             <td align="center" class="paddingNone">
 
