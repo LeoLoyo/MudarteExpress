@@ -33,6 +33,7 @@ module.exports = function(config) {
       'bower_components/angular-ui-router/release/angular-ui-router.js',
       'bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
       'bower_components/bootstrap-select/dist/js/bootstrap-select.js',
+      'bower_components/bootstrap-toggle/js/bootstrap-toggle.min.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',
