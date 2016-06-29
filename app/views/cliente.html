@@ -46,7 +46,7 @@
     <label for="id_promocion">Fuente de promoción:</label>
     <select  class="form-control selectPicker show-tick" data-live-search="true" data-size="10" title="Seleccione fuente de promoción" ng-model="cotizacion.fuente" id="id_promocion">
       <option value=""></option>
-      <option  ng-repeat="item in fuentes">{{item}}</option></select>
+      <option  ng-repeat="item in fuentes" ng-selected="{{cotizacion.fuente===item}}">{{item}}</option></select>
   </div>
 
   <div class="col-md-3 form-group">
@@ -75,9 +75,9 @@
     <label for="id_formaPago">Forma de pago:</label>
     <select class="form-control selectPicker show-tick" data-live-search="true" data-size="10" title="Seleccione forma de pago" ng-model="cotizacion.forma_pago" id="id_formaPago">
       <option value=""></option>
-      <option value="Efectivo">Efectivo</option>
-      <option value="Cheque">Cheque</option>
-      <option value="Transferencia">Transferencia</option>
+      <option value="Efectivo" selected="{{cotizacion.forma_pago==='Efectivo'}}">Efectivo</option>
+      <option value="Cheque" selected="{{cotizacion.forma_pago==='Cheque'}}">Cheque</option>
+      <option value="Transferencia" selected="{{cotizacion.forma_pago==='Transferencia'}}">Transferencia</option>
     </select>
   </div>
   <legend></legend>
@@ -156,7 +156,7 @@
     <label for="">Barrio/Provincia</label>
     <select name="" ng-model="cotizacion.barrio_provincia_origen" class="form-control selectPicker show-tick" data-live-search="true" data-size="10" title="Seleccione barrio">
       <option value=""></option>
-      <option ng-repeat="item in barrio_provincias">{{item.descripcion}}</option>
+      <option ng-repeat="item in barrio_provincias" ng-selected="{{cotizacion.barrio_provincia_origen===item.descripcion}}">{{item.descripcion}}</option>
     </select>
   </div>
   <div class="col-md-12 form-group">
@@ -171,7 +171,7 @@
     <label for="">Barrio/Provincia</label>
     <select name="" ng-model="cotizacion.barrio_provincia_destino" class="form-control selectPicker show-tick" data-live-search="true" data-size="10" title="Seleccione barrio">
       <option value=""></option>
-      <option ng-repeat="item in barrio_provincias">{{item.descripcion}}</option>
+      <option ng-repeat="item in barrio_provincias" ng-selected="{{cotizacion.barrio_provincia_destino===item.descripcion}}">{{item.descripcion}}</option>
     </select>
   </div>
   <div class="col-md-12 form-group">

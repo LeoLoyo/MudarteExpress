@@ -174,7 +174,7 @@
     };
 
     self.all_fuentes = function () {
-      var collection = ['Internet Otro buscador','Internet Banner','Cartel Vía Pública','Recomendado Cliente','Cliente','Volante diario/revista','Volante vía publica','Volante en casa','Volante en evento','Publicidad Diario/revista','Publicidad Email','Publicidad Vía Pública','Publicidad TV','Publicidad Radio','Publicidad Cine','Camión Mudarte','Telemercadeo','Depósito Belgrano','Inmobiliaria','Tarjeta descuento','Otros','My Home Planners'];
+      var collection = ['Internet Google', 'Internet Otro buscador','Internet Banner','Cartel Vía Pública','Recomendado Cliente','Cliente','Volante diario/revista','Volante vía publica','Volante en casa','Volante en evento','Publicidad Diario/revista','Publicidad Email','Publicidad Vía Pública','Publicidad TV','Publicidad Radio','Publicidad Cine','Camión Mudarte','Telemercadeo','Depósito Belgrano','Inmobiliaria','Tarjeta descuento','Otros','My Home Planners'];
       return collection;
     };
 

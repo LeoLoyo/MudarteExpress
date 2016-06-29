@@ -205,7 +205,7 @@
 
       cantidades = [];
 
-      for (var i = 0; i < 100; i++) {
+      for (var i = 0; i <= 100; i++) {
 
         var cant = { num: i, cantidad: i };
 
@@ -213,7 +213,7 @@
 
       }
 
-      for (var i = 30; i < 300; i+=10) {
+      for (var i = 30; i <= 300; i+=10) {
 
         var cant = { num: i, cantidad: i };
 
@@ -1042,7 +1042,13 @@
 
       Backend.init();
 
-      $rootScope.resumen = true;
+      setTimeout(function(){
+
+        $rootScope.resumen = true;
+
+        $rootScope.$apply();
+
+      },1);
 
       tools.select();
 

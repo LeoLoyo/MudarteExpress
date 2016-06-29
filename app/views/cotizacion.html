@@ -89,7 +89,7 @@
 
         <div class="form-group col-md-1">
           <label for="">Cantidad</label>
-          <select ng-model="cant" style="padding-left:1px;"  class="form-control" ng-init="cant = cantidades[campo.cantidad] || cantidades[1] " ng-change="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion)" ng-options=" cant.num for cant in cantidades"></select>
+          <select ng-model="cant" style="padding-left:1px;"  class="form-control" ng-init="cant = cantidades[campo.cantidad] || cantidades[1] " ng-change="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion)" ng-options=" cant.num for cant in cantidades | filter: '!0' "></select>
         </div>
         <div class="form-group col-md-1">
           <a ng-click="delete_campo(campo)" class="glyphicon glyphicon-remove" style="font-size:25px;margin-top:30px;cursor:pointer;"></a>
