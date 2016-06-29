@@ -928,7 +928,7 @@
 
                 v.action = 'PUT'
               });
-            
+
           }
 
         });
@@ -1041,6 +1041,8 @@
     function initCotizacion() {
 
       Backend.init();
+
+      $rootScope.resumen = true;
 
       tools.select();
 
@@ -1223,6 +1225,7 @@
           if (Backend.findOtros(otro) !== true) {
             if (otro.cantidad > 0) {
               $scope.otros_temp.push(otro);
+              $rootScope.$emit('change:data');
             }
           }
         }
@@ -1250,9 +1253,9 @@
         }
         otro.total_punto = otro.punto * otro.cantidad;
         if (Backend.findOtros(otro) !== true) {
-          console.log(Backend.findOtros(otro));
           if (otro.cantidad > 0) {
             $scope.otros_temp.push(otro);
+            $rootScope.$emit('change:data');
           }
         }
       }
@@ -1378,7 +1381,30 @@
         },0)
       })
 
+
     });
+    $rootScope.limpiar = function () {
+      setTimeout(function(){
+        $('.btnSeleccionado').children('div').children('span.remover').click();
+        $('.btnSeleccionado').children('.classContenedores').children('span.remover').click();
+        $('.removeOtros').click();
+        // $scope.contenedores_temp = [];
+        // $scope.muebles_temp = [];
+        // $scope.otros_temp = [];
+        // $scope.otros_temp_campo = [];
+        // $scope.materiales_temp = [];
+        //
+        // // //Variables De Totales
+        // $scope.metros3_contenedores = 0;
+        // $scope.unidades_contenedores = 0;
+        // $scope.metros3_muebles = 0;
+        // $scope.unidades_muebles = 0;
+        // $scope.metros3_otros = 0;
+        // $scope.unidades_otros = 0;
+        $scope.$apply();
+      },0);
+
+    };
 
     $scope.save = function () {
 
@@ -1403,9 +1429,12 @@
     };
   };
 
-  app.controller('CotizacionViewCtrl', function ($scope, $state, Cotizacion, BackendCotizacion) {
+  app.controller('CotizacionViewCtrl', function (Session, $rootScope, $scope, $state, Cotizacion, BackendCotizacion) {
+
 
     setTimeout(function () {
+
+      $rootScope.session = Session.set(true);
 
       Cotizacion.all().then(function (r) {
 

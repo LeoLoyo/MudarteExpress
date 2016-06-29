@@ -37,7 +37,7 @@
             $state.go(state, {id_cotizacion:params});
 
           }
-          $scope.$apply();
+          $rootScope.$apply();
 
         },1000);
 

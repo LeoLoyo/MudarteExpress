@@ -34,7 +34,6 @@
                    <a  ng-show="nav==='6' && session" ng-click="nav='3'" tabindex="-1"></a>
                </div>
             </div>
-
 <ul class="Right">
     <li>
         <label for="filtroRapido" style="padding-top:15%;"  ng-show="nav==='4' && session && resumen">
@@ -92,13 +91,13 @@
             </ul>
             <ul class="btnAccion">
               <li ng-show="nav==='8'" ng-if="nav==='8'">
-                <button class="btn btn-lg btn-block btn-outline" ng-click="Go('list')">Ver Lista</button>
+                <button class="btn btn-lg btn-block btn-outline" ng-click="Go('list')" onclick="scroll0();">Ver Lista</button>
               </li>
               <li ng-show="nav==='7'" ng-if=" nav==='7'">
-                <button class="btn btn-lg btn-block btn-outline" ng-click="Go('cotizacion')">Nueva</button>
+                <button class="btn btn-lg btn-block btn-outline" ng-click="Go('cotizacion')" onclick="scroll0();">Nueva</button>
               </li>
               <li class="" ng-show="nav==='8' || nav==='10'" ng-if="nav==='8' || nav==='10'">
-                <button class="btn btn-lg btn-block btn-outline" ng-click="Go('edit',id_cotizacion)">Editar</button>
+                <button class="btn btn-lg btn-block btn-outline" ng-click="Go('edit',id_cotizacion)" onclick="scroll0();">Editar</button>
               </li>
             </ul>
             <ul class="btnAccion btnsCotizacion hidden">
@@ -142,7 +141,7 @@
 
                 </li>
                 <li >
-                  <button class="btn btn-lg btn-block btn-outline" data-toggle="modal" data-target="#modalCancel">Ver Lista</button>
+                  <button class="btn btn-lg btn-block btn-outline" data-toggle="modal" data-target="#modalCancel" onclick="scroll0();">Ver Lista</button>
                 </li>
             </ul>
             <div>Derechos reservados @2016</div>
@@ -257,6 +256,10 @@ $(function(){
     $(parent).css('display','block');
 }
 
-  }
+  };
+    function scroll0(){
+     var scroll = angular.element('#page-content-wrapper');
+          $(scroll).animate({ scrollTop: 0 }, 0);
+    };
 </script>
 </body>
