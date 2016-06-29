@@ -7425,7 +7425,9 @@ table.tablaResumen {
   width: 210px;
   margin: 0;
   padding: 0;
-  list-style: none; }
+  list-style: none;
+  z-index: 1000;
+  background: #BAB9B9; }
   .sidebar-nav li {
     text-indent: 20px;
     line-height: 40px; }
@@ -7738,6 +7740,164 @@ select.selectpicker {
   margin-bottom: 0;
   width: 100%;
   float: none; }
+
+/*! ========================================================================
+ * Bootstrap Toggle: bootstrap-toggle.css v2.2.0
+ * http://www.bootstraptoggle.com
+ * ========================================================================
+ * Copyright 2014 Min Hur, The New York Times Company
+ * Licensed under MIT
+ * ======================================================================== */
+.checkbox label .toggle, .checkbox-inline .toggle {
+  margin-left: -20px;
+  margin-right: 5px; }
+
+.toggle {
+  position: relative;
+  overflow: hidden; }
+
+.toggle input[type=checkbox] {
+  display: none; }
+
+.toggle-group {
+  position: absolute;
+  width: 200%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  transition: left .35s;
+  -webkit-transition: left .35s;
+  -moz-user-select: none;
+  -webkit-user-select: none; }
+
+.toggle.off .toggle-group {
+  left: -100%; }
+
+.toggle-on {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 50%;
+  margin: 0;
+  border: 0;
+  border-radius: 0; }
+
+.toggle-off {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  right: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0; }
+
+.toggle-handle {
+  position: relative;
+  margin: 0 auto;
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 100%;
+  width: 0;
+  border-width: 0 1px; }
+
+.toggle.btn, .btnsPaginacion div div button.toggle.btnSiguiente, .btnsPaginacion div div button.toggle.btnAnterior, .login div.cuerpo button.toggle, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button.toggle,
+#modalConfirmacionExportar div.modal-dialog div.modal-content div.modal-footer button.toggle,
+#modalCancel div.modal-dialog div.modal-content div.modal-footer button.toggle,
+.modalMudarte div.modal-dialog div.modal-content div.modal-footer button.toggle, .listCotizacion div div div.fecha .detalle a.toggle {
+  min-width: 59px;
+  min-height: 34px; }
+
+.toggle-on.btn, .btnsPaginacion div div button.toggle-on.btnSiguiente, .btnsPaginacion div div button.toggle-on.btnAnterior, .login div.cuerpo button.toggle-on, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button.toggle-on,
+#modalConfirmacionExportar div.modal-dialog div.modal-content div.modal-footer button.toggle-on,
+#modalCancel div.modal-dialog div.modal-content div.modal-footer button.toggle-on,
+.modalMudarte div.modal-dialog div.modal-content div.modal-footer button.toggle-on, .listCotizacion div div div.fecha .detalle a.toggle-on {
+  padding-right: 24px; }
+
+.toggle-off.btn, .btnsPaginacion div div button.toggle-off.btnSiguiente, .btnsPaginacion div div button.toggle-off.btnAnterior, .login div.cuerpo button.toggle-off, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer button.toggle-off,
+#modalConfirmacionExportar div.modal-dialog div.modal-content div.modal-footer button.toggle-off,
+#modalCancel div.modal-dialog div.modal-content div.modal-footer button.toggle-off,
+.modalMudarte div.modal-dialog div.modal-content div.modal-footer button.toggle-off, .listCotizacion div div div.fecha .detalle a.toggle-off {
+  padding-left: 24px; }
+
+.toggle.btn-lg, .btn-group-lg > .toggle.btn, .login div.cuerpo .btn-group-lg > button.toggle, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-lg > button.toggle,
+#modalConfirmacionExportar div.modal-dialog div.modal-content div.modal-footer .btn-group-lg > button.toggle,
+#modalCancel div.modal-dialog div.modal-content div.modal-footer .btn-group-lg > button.toggle,
+.modalMudarte div.modal-dialog div.modal-content div.modal-footer .btn-group-lg > button.toggle, .btnsPaginacion div div button.toggle.btnSiguiente, .btnsPaginacion div div button.toggle.btnAnterior, .listCotizacion div div div.fecha .detalle a.toggle {
+  min-width: 79px;
+  min-height: 45px; }
+
+.toggle-on.btn-lg, .btn-group-lg > .toggle-on.btn, .login div.cuerpo .btn-group-lg > button.toggle-on, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-lg > button.toggle-on,
+#modalConfirmacionExportar div.modal-dialog div.modal-content div.modal-footer .btn-group-lg > button.toggle-on,
+#modalCancel div.modal-dialog div.modal-content div.modal-footer .btn-group-lg > button.toggle-on,
+.modalMudarte div.modal-dialog div.modal-content div.modal-footer .btn-group-lg > button.toggle-on, .btnsPaginacion div div button.toggle-on.btnSiguiente, .btnsPaginacion div div button.toggle-on.btnAnterior, .listCotizacion div div div.fecha .detalle a.toggle-on {
+  padding-right: 31px; }
+
+.toggle-off.btn-lg, .btn-group-lg > .toggle-off.btn, .login div.cuerpo .btn-group-lg > button.toggle-off, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-lg > button.toggle-off,
+#modalConfirmacionExportar div.modal-dialog div.modal-content div.modal-footer .btn-group-lg > button.toggle-off,
+#modalCancel div.modal-dialog div.modal-content div.modal-footer .btn-group-lg > button.toggle-off,
+.modalMudarte div.modal-dialog div.modal-content div.modal-footer .btn-group-lg > button.toggle-off, .btnsPaginacion div div button.toggle-off.btnSiguiente, .btnsPaginacion div div button.toggle-off.btnAnterior, .listCotizacion div div div.fecha .detalle a.toggle-off {
+  padding-left: 31px; }
+
+.toggle-handle.btn-lg, .btn-group-lg > .toggle-handle.btn, .login div.cuerpo .btn-group-lg > button.toggle-handle, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-lg > button.toggle-handle,
+#modalConfirmacionExportar div.modal-dialog div.modal-content div.modal-footer .btn-group-lg > button.toggle-handle,
+#modalCancel div.modal-dialog div.modal-content div.modal-footer .btn-group-lg > button.toggle-handle,
+.modalMudarte div.modal-dialog div.modal-content div.modal-footer .btn-group-lg > button.toggle-handle, .btnsPaginacion div div button.toggle-handle.btnSiguiente, .btnsPaginacion div div button.toggle-handle.btnAnterior, .listCotizacion div div div.fecha .detalle a.toggle-handle {
+  width: 40px; }
+
+.toggle.btn-sm, .btn-group-sm > .toggle.btn, .btnsPaginacion div div .btn-group-sm > button.toggle.btnSiguiente, .btnsPaginacion div div .btn-group-sm > button.toggle.btnAnterior, .login div.cuerpo .btn-group-sm > button.toggle, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-sm > button.toggle,
+#modalConfirmacionExportar div.modal-dialog div.modal-content div.modal-footer .btn-group-sm > button.toggle,
+#modalCancel div.modal-dialog div.modal-content div.modal-footer .btn-group-sm > button.toggle,
+.modalMudarte div.modal-dialog div.modal-content div.modal-footer .btn-group-sm > button.toggle, .listCotizacion div div div.fecha .detalle .btn-group-sm > a.toggle {
+  min-width: 50px;
+  min-height: 30px; }
+
+.toggle-on.btn-sm, .btn-group-sm > .toggle-on.btn, .btnsPaginacion div div .btn-group-sm > button.toggle-on.btnSiguiente, .btnsPaginacion div div .btn-group-sm > button.toggle-on.btnAnterior, .login div.cuerpo .btn-group-sm > button.toggle-on, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-sm > button.toggle-on,
+#modalConfirmacionExportar div.modal-dialog div.modal-content div.modal-footer .btn-group-sm > button.toggle-on,
+#modalCancel div.modal-dialog div.modal-content div.modal-footer .btn-group-sm > button.toggle-on,
+.modalMudarte div.modal-dialog div.modal-content div.modal-footer .btn-group-sm > button.toggle-on, .listCotizacion div div div.fecha .detalle .btn-group-sm > a.toggle-on {
+  padding-right: 20px; }
+
+.toggle-off.btn-sm, .btn-group-sm > .toggle-off.btn, .btnsPaginacion div div .btn-group-sm > button.toggle-off.btnSiguiente, .btnsPaginacion div div .btn-group-sm > button.toggle-off.btnAnterior, .login div.cuerpo .btn-group-sm > button.toggle-off, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-sm > button.toggle-off,
+#modalConfirmacionExportar div.modal-dialog div.modal-content div.modal-footer .btn-group-sm > button.toggle-off,
+#modalCancel div.modal-dialog div.modal-content div.modal-footer .btn-group-sm > button.toggle-off,
+.modalMudarte div.modal-dialog div.modal-content div.modal-footer .btn-group-sm > button.toggle-off, .listCotizacion div div div.fecha .detalle .btn-group-sm > a.toggle-off {
+  padding-left: 20px; }
+
+.toggle.btn-xs, .btn-group-xs > .toggle.btn, .btnsPaginacion div div .btn-group-xs > button.toggle.btnSiguiente, .btnsPaginacion div div .btn-group-xs > button.toggle.btnAnterior, .login div.cuerpo .btn-group-xs > button.toggle, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-xs > button.toggle,
+#modalConfirmacionExportar div.modal-dialog div.modal-content div.modal-footer .btn-group-xs > button.toggle,
+#modalCancel div.modal-dialog div.modal-content div.modal-footer .btn-group-xs > button.toggle,
+.modalMudarte div.modal-dialog div.modal-content div.modal-footer .btn-group-xs > button.toggle, .listCotizacion div div div.fecha .detalle .btn-group-xs > a.toggle {
+  min-width: 35px;
+  min-height: 22px; }
+
+.toggle-on.btn-xs, .btn-group-xs > .toggle-on.btn, .btnsPaginacion div div .btn-group-xs > button.toggle-on.btnSiguiente, .btnsPaginacion div div .btn-group-xs > button.toggle-on.btnAnterior, .login div.cuerpo .btn-group-xs > button.toggle-on, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-xs > button.toggle-on,
+#modalConfirmacionExportar div.modal-dialog div.modal-content div.modal-footer .btn-group-xs > button.toggle-on,
+#modalCancel div.modal-dialog div.modal-content div.modal-footer .btn-group-xs > button.toggle-on,
+.modalMudarte div.modal-dialog div.modal-content div.modal-footer .btn-group-xs > button.toggle-on, .listCotizacion div div div.fecha .detalle .btn-group-xs > a.toggle-on {
+  padding-right: 12px; }
+
+.toggle-off.btn-xs, .btn-group-xs > .toggle-off.btn, .btnsPaginacion div div .btn-group-xs > button.toggle-off.btnSiguiente, .btnsPaginacion div div .btn-group-xs > button.toggle-off.btnAnterior, .login div.cuerpo .btn-group-xs > button.toggle-off, #modalConfirmacion div.modal-dialog div.modal-content div.modal-footer .btn-group-xs > button.toggle-off,
+#modalConfirmacionExportar div.modal-dialog div.modal-content div.modal-footer .btn-group-xs > button.toggle-off,
+#modalCancel div.modal-dialog div.modal-content div.modal-footer .btn-group-xs > button.toggle-off,
+.modalMudarte div.modal-dialog div.modal-content div.modal-footer .btn-group-xs > button.toggle-off, .listCotizacion div div div.fecha .detalle .btn-group-xs > a.toggle-off {
+  padding-left: 12px; }
+
+.btn-toggleColor {
+  background: transparent;
+  color: #000;
+  border: 1px solid #000; }
+
+.btn-toggleColor:hover {
+  color: #fff;
+  background: #000; }
+
+.toggle.android {
+  border-radius: 0px; }
+
+.toggle.android .toggle-handle {
+  border-radius: 0px; }
 
 .cargando {
   position: absolute;

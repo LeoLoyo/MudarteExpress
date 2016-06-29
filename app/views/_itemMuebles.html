@@ -2,7 +2,7 @@
     <th style="width:150px;text-align:center;">{{group.descripcion}}: </th>
   <td>
       <span ng-repeat="c in group.especificacionmuebles" class="btnSeleccionMueble" ng-class="{btnSeleccionado:m.num>0}" ng-init="m.num='0'">
-          <span class="classMuebles boton" ng-click="m.num=check(m.num);add_mueble(c,m.num,group)">{{c.especificacion}}</span>
+          <span class="classMuebles boton" ng-class="{btnFiltro:m.num>0}" ng-click="m.num=check(m.num);add_mueble(c,m.num,group)">{{c.especificacion}}</span>
             <select ng-focus="scrollAnime($event)" ng-model="m.num" ng-change="add_mueble(c,m.num,group)" ng-init="m.num=c.cantidad" ng-options="m.num as m.num for m in cantidades">
               <!-- <option  ng-repeat="m in cantidades">{{m.num}}</option> -->
             </select>
@@ -15,3 +15,4 @@
   </tr>
 
 <script ng-if="$last">$('.cargando').addClass('hidden');$('#ncotizacion').focus();</script>
+

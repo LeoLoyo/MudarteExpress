@@ -35,7 +35,12 @@
                </div>
             </div>
 
-<ul>
+<ul class="Right">
+    <li>
+        <label for="filtroRapido" style="padding-top:15%;"  ng-show="nav==='4' && session && resumen">
+            <input  type="checkbox" ng-model="filtroRapido" data-width="120" onchange="filtroRapido();scroll0();" onclick="" id="filtroRapido" data-on="Todos" data-off="Seleccionados" data-style="android" data-onstyle="toggleColor" data-offstyle="toggleColor">
+        </label>
+    </li>
 </ul>
 <!-- <ul class="Right">
     <li class="dropdown">
@@ -79,7 +84,7 @@
                     <label for="id_presupuesto" ng-class="{activo:nav==='3'}" onclick="scroll0();">Presupuesto</label>
                     <input id="id_presupuesto" type="radio" ng-model="nav" value="3">
                 </li>
-                
+
                 <li class="btnsCotizacion hidden" ng-show="resumen" ng-click="checked=false">
                     <label for="id_resumen" ng-class="{activo:nav==='6'}" onclick="scroll0();" ng-click="actFecha();">Resumen</label>
                      <input id="id_resumen" type="radio" ng-model="nav" value="6">
@@ -188,6 +193,7 @@
 <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
 <script src="bower_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
+<script src="bower_components/bootstrap-toggle/js/bootstrap-toggle.min.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
@@ -209,6 +215,7 @@
 </div>
 <script>
 $(function(){
+    $('#filtroRapido').bootstrapToggle();
     var rx = /INPUT|SELECT|TEXTAREA/i;
      $(document).bind("keydown keypress", function(e){
          if( e.which == 8 ){ // 8 == backspace
@@ -221,7 +228,7 @@ $(function(){
     document.onkeypress = function(e){
      var test_var=e.target.nodeName.toUpperCase();
      if (e.target.type) var test_type=e.target.type.toUpperCase();
-     if ((test_var == '/INPUT' && test_type == 'TEXT' || test_type == 'PASSWORD'  || test_type == 'EMAIL') || test_var == 'TEXTAREA'){
+     if ((test_var == '/INPUT' && test_type == 'TEXT' || test_type == 'PASSWORD' || test_type == 'NUMBER'  || test_type == 'EMAIL' || test_type == 'SEARCH' || test_type == 'TIME' || test_type == 'DATE') || test_var == 'TEXTAREA'){
        return e.keyCode;
      }else if (e.keyCode == 8){
        e.preventDefault();
@@ -231,7 +238,7 @@ $(function(){
     document.onkeydown = function(){
      var test_var=event.srcElement.tagName.toUpperCase();
      if (event.srcElement.type) var test_type=event.srcElement.type.toUpperCase();
-     if ((test_var == 'INPUT' && test_type == 'TEXT'  || test_type == 'PASSWORD'  || test_type == 'EMAIL') || test_var == 'TEXTAREA'){
+     if ((test_var == 'INPUT' && test_type == 'TEXT'  || test_type == 'PASSWORD' || test_type == 'NUMBER'  || test_type == 'EMAIL' || test_type == 'SEARCH' || test_type == 'TIME' || test_type == 'DATE') || test_var == 'TEXTAREA'){
        return event.keyCode;
      }else if (event.keyCode == 8){
        event.returnValue=false;
@@ -239,5 +246,17 @@ $(function(){
     }
   }
 });
+  function filtroRapido() {
+    var parent = $('.btnSeleccionMueble').parent().parent().parent().parent();
+    var parentS = $('.btnFiltro').parent().parent().parent().parent().parent();
+    var seleccion = $('#filtroRapido');
+    if( $(seleccion).prop('checked') ) {
+    $(parent).css('display','none');
+    $(parentS).css('display','block');
+}else{
+    $(parent).css('display','block');
+}
+
+  }
 </script>
 </body>
