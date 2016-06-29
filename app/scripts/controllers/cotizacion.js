@@ -46,6 +46,8 @@
 
       $scope.cant_otros = angular.copy(BackendCotizacion.getCant_Otros());
 
+      $scope.precios_kms = angular.copy(BackendCotizacion.getPrecio_km());
+
       // function numeros_otros() {
       //   for (var i = 30; i < 300; i+=10) {
       //     var cant = { num: i, cantidad: i };
@@ -261,6 +263,7 @@
               ms_tmp[i].cantidad = m.cantidad;
               ms_tmp[i].descripcion = m.descripcion;
               ms_tmp[i].total_punto = m.punto * m.cantidad;
+              ms_tmp[i].punto = m.punto;
             } else {
               ms_tmp.splice(ms_tmp.indexOf(ms_tmp[i]), 1);
             }
@@ -298,9 +301,13 @@
     // $scope.muebles = groupBy(r, function (item) {
     //   return [item.mueble, item.descripcion];
     // });
-  angular.forEach(r, function (v, k) {
+  angular.forEach(r, function (a, b) {
+
+    angular.forEach(a.especificacionmuebles, function (v, k) {
 
     v.cantidad = 0;
+
+  },r);
 
   },r);
 
@@ -434,14 +441,12 @@
 
       function check_material(contenedor){
         angular.forEach($scope.materiales, function(v,k){
-          var mat = angular.copy(v);
+          var mat = v;
           if(Number(mat.contenedor) === Number(contenedor.contenedor)){
             setTimeout(function(){
               mat.cantidad = contenedor.cantidad;
               mat.iscontenedor = true;
               mat.ncontenedor = contenedor.cantidad;
-              $scope.materiales.splice($scope.materiales.indexOf(v),1);
-              $scope.materiales.push(mat);
               $scope.add_material(mat);
                 $scope.$apply();
             },0);
@@ -500,20 +505,31 @@
         $scope.unidades_muebles = calcular_totales($scope.muebles_temp, "cantidad");
         $rootScope.total_m3 = Number($scope.metros3_contenedores + $scope.metros3_muebles + $scope.metros3_otros);
       };
-      $scope.getIndexFromValue = function(attr,value,bool) {
-        console.log(bool);
+      $scope.getIndexFromValue = function(attr,value,n) {
+
         var array = [];
-        if(bool){
+
+        switch(n){
+          case 1:
           array = $scope.tipo_muebles;
-        }else{
+          break;
+          case 2:
           array = $scope.cant_otros;
-        }
+          break;
+          case 3:
+          array = $scope.precios_kms;
+          break;
+
+        };
+
         for(var i=0; i<array.length; i++) {
           if(array[i][attr] === value) return i;
         }
+
       };
 
       $scope.add_otros = function (campo, mueble, ancho, largo, alto, cant, descripcion) {
+
         console.log(descripcion);
         if(mueble.tipo_mueble === 'Otros'){
           if (descripcion === undefined ) {

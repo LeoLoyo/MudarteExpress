@@ -16,6 +16,7 @@
     <br><br>
                   <h2 style="padding-left:10px;">Otros <a class="agregarOtro" titulo="Agregar otro" ng-click="add_campo()"></a>
                   </h2>
+
     <div ng-repeat="campo in otros_temp_campo" style="padding-left:10px;">
       <form name="form_otro">
         <div class="row">
@@ -35,7 +36,7 @@
 
                 ng-focus="scrollAnime($event)"
 
-                ng-init="otro=tipo_muebles[getIndexFromValue('tipo_mueble', campo.mueble || 'Otros',true)]"
+                ng-init="otro=tipo_muebles[getIndexFromValue('tipo_mueble', campo.mueble || 'Otros',1)]"
 
                 ng-model="otro"
 
@@ -66,7 +67,7 @@
 
           ng-focus="scrollAnime($event)"
 
-          ng-init="ancho = cant_otros[getIndexFromValue('num',campo.ancho,false)] || cant_otros[0]"
+          ng-init="ancho = cant_otros[getIndexFromValue('num',campo.ancho,2)] || cant_otros[0]"
 
           ng-options="b.num for b in cant_otros"
 
@@ -78,12 +79,12 @@
 
         <div class="form-group col-md-1">
           <label for="">Largo</label>
-          <select class="form-control" style="padding-left:1px;"  ng-focus="scrollAnime($event)" ng-model="largo" ng-init="largo = cant_otros[getIndexFromValue('num',campo.largo,false)] || cant_otros[0]" ng-options="b.num for b in cant_otros" ng-change="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion)"></select>
+          <select class="form-control" style="padding-left:1px;"  ng-focus="scrollAnime($event)" ng-model="largo" ng-init="largo = cant_otros[getIndexFromValue('num',campo.largo,2)] || cant_otros[0]" ng-options="b.num for b in cant_otros" ng-change="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion)"></select>
         </div>
 
         <div class="form-group col-md-1">
           <label for="">Alto</label>
-          <select class="form-control" style="padding-left:1px;" ng-focus="scrollAnime($event)" ng-model="alto" ng-init="alto = cant_otros[getIndexFromValue('num',campo.alto,false)] || cant_otros[0]" ng-options="b.num for b in cant_otros" ng-change="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion)"></select>
+          <select class="form-control" style="padding-left:1px;" ng-focus="scrollAnime($event)" ng-model="alto" ng-init="alto = cant_otros[getIndexFromValue('num',campo.alto,2)] || cant_otros[0]" ng-options="b.num for b in cant_otros" ng-change="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion)"></select>
         </div>
 
         <div class="form-group col-md-1">
@@ -96,6 +97,7 @@
       </div>
     </form>
     </div>
+
 <legend></legend>
                 <a ng-if="otros_temp_campo!=''" class="agregarOtro" titulo="Agregar otro" ng-click="add_campo()" style="padding-left:10px;">
                 </a>
