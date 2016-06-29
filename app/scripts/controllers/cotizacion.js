@@ -327,7 +327,7 @@
             $scope.todoscontenedores = contenedores;
           });
         } else {
-            select();
+
           Material.all().then(function (r) {
             var out = [];
             angular.forEach(r, function (v, k) {
@@ -341,12 +341,18 @@
             $scope.materiales = out;
           });
 
-          Users.all(1).then(function (r) {
-            $scope.cotizadores = r;
-          });
-          Users.all(2).then(function (r) {
-            $scope.telefonista = r;
-          });
+          setTimeout(function(){
+            Users.all(1).then(function (r) {
+              $scope.cotizadores = r;
+            });
+            Users.all(2).then(function (r) {
+              $scope.telefonista = r;
+                          select();
+            });
+            $scope.$apply();
+          },1);
+
+
           Direccion.all().then(function (r) {
             $scope.barrio_provincias = r;
           });
