@@ -168,6 +168,10 @@
 
         value.ambiente = {num:value.ambiente};
 
+        value.subtotal2 = Number(value.subtotal2);
+
+        value.subtotal1 = Number(value.subtotal1);
+
         cotizaciones.push(value);
 
       },cotizaciones);
@@ -1300,17 +1304,17 @@
 
     $scope.calcular_ajuste  = function () {
       var resultado=0;
-      resultado=($scope.cotizacion.ajuste/$scope.cotizacion.subtotal1)*100;
+      resultado=Number($scope.cotizacion.ajuste/$scope.cotizacion.subtotal1)*100;
       $scope.cotizacion.porcentaje_ajuste = resultado;
-      $scope.cotizacion.subtotal2 = Number($scope.cotizacion.subtotal1 + $scope.cotizacion.ajuste)
-      $scope.cotizacion.total_monto = Number($scope.cotizacion.subtotal2 + $scope.cotizacion.iva)
+      $scope.cotizacion.subtotal2 = Number($scope.cotizacion.subtotal1) + Number($scope.cotizacion.ajuste);
+      $scope.cotizacion.total_monto = Number($scope.cotizacion.subtotal2) + Number($scope.cotizacion.iva);
     };
 
     $scope.calcular_iva  = function () {
       var resultado=0;
-      resultado=Number(($scope.cotizacion.subtotal2*$scope.cotizacion.porcentaje_iva)/100);
+      resultado=Number($scope.cotizacion.subtotal2*$scope.cotizacion.porcentaje_iva)/100;
       $scope.cotizacion.iva = resultado;
-      $scope.cotizacion.total_monto = Number($scope.cotizacion.subtotal2 + $scope.cotizacion.iva)
+      $scope.cotizacion.total_monto = Number($scope.cotizacion.subtotal2) + Number($scope.cotizacion.iva)
     };
 
     $scope.update_presupuesto = function () {
