@@ -1,15 +1,15 @@
 <div ng-show="nav==='4'"  class="col-md-12">
   <div class="col-md-3 form-group hidden">
-    <label for="id_mueble">Busqueda:</label>
-    <select class="form-control selectPicker show-tick" data-live-search="true" data-size="10" title="..." ng-model="coti" id="id_mueble" ng-change="BusquedaScroll(coti)">
-      <option value=""></option>
-      <option  ng-repeat="item in muebles" value="{{item.id}}">{{item.descripcion}}</option></select>
-  </div>
+   <label for="id_mueble">Busqueda:</label>
+   <select class="form-control selectPicker show-tick" data-live-search="true" data-size="10" title="..." ng-model="coti" id="id_mueble" ng-change="BusquedaScroll(coti)">
+     <option value=""></option>
+     <option  ng-repeat="item in muebles" value="{{item.id}}">{{item.descripcion}}</option></select>
+ </div>
   <!-- Muebles y contenedores -->
   <h2>Muebles</h2>
   <div class="formulario" style="padding:0!important;">
     <table>
-      <div ng-repeat="group in muebles  | orderBy:'descripcion'" class="conMueble" id="{{group.id}}">
+      <div ng-repeat="group in muebles  | orderBy:'descripcion'" class="conMueble">
         <item-muebles group="group" cantidades="cantidades"></item-muebles>
       </div>
     </table>
@@ -92,7 +92,7 @@
           <select ng-model="cant" style="padding-left:1px;"  class="form-control" ng-init="cant = cantidades[campo.cantidad] || cantidades[1] " ng-change="add_otros(campo,otro,ancho.num,largo.num,alto.num,cant.num,descripcion)" ng-options=" cant.num for cant in cantidades"></select>
         </div>
         <div class="form-group col-md-1">
-          <a ng-click="delete_campo(campo)" class="glyphicon glyphicon-remove" style="font-size:25px;margin-top:30px;cursor:pointer;"></a>
+          <a ng-click="delete_campo(campo)" class="glyphicon glyphicon-remove removeOtros" style="font-size:25px;margin-top:30px;cursor:pointer;"></a>
         </div>
       </div>
     </form>
@@ -118,9 +118,5 @@
 
           </script>
 </div>
-<div id="div_resumen"  ng-hide="checked"  ng-show="nav==='6'" ng-if="nav==='6'" ng-include='"views/resumen.html"'></div>
+<div ng-hide="checked"  ng-show="nav==='6'" ng-if="nav==='6'" ng-include='"views/resumen.html"'></div>
 <div ng-hide="checked" ng-include='"views/_confirmarCotizacion.html"'></div>
-<script type="text/javascript">
-
-
-</script>
