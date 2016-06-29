@@ -776,6 +776,14 @@
         $scope.cotizacion.total_monto = Number($scope.cotizacion.subtotal2 + $scope.cotizacion.iva)
       }
 
+      $scope.BusquedaScroll  = function (id_mueble) {
+      var posicion = $('#'+id_mueble).offset().top;
+      var scroll = angular.element('#page-content-wrapper');
+       $(scroll).animate({
+        scrollTop: posicion - 75
+      }, 250);
+      }
+
       $scope.calcular_iva  = function () {
         var resultado=0;
         resultado=Number(($scope.cotizacion.subtotal2*$scope.cotizacion.porcentaje_iva)/100);

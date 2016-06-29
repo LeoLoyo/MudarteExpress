@@ -72,8 +72,9 @@
   </select>
   </div>
   <div class="col-md-3 form-group">
-    <label for="id_cotizador">Forma de pago:</label>
-    <select class="form-control selectPicker show-tick" title="Seleccione forma de pago" data-live-search="true" title="Seleccione un una forma de pago"ng-model="cotizacion.forma_pago"id="id_cotizador">
+    <label for="id_formaPago">Forma de pago:</label>
+    <select class="form-control selectPicker show-tick" data-live-search="true" data-size="10" title="Seleccione forma de pago" ng-model="cotizacion.forma_pago" id="id_formaPago">
+      <option value=""></option>
       <option value="Efectivo">Efectivo</option>
       <option value="Cheque">Cheque</option>
       <option value="Transferencia">Transferencia</option>
