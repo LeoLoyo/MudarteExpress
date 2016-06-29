@@ -1,11 +1,8 @@
 <div>
     <div class="col-md-12">
-      <div id="id_divContenedor" class="">
+      <div class="">
         <br>
-
-        <div id="div1">
-          <br>
-        <table id="tabla1" class="tablaResumen" style="max-width:100%!important;">
+        <table class="tablaResumen" style="max-width:100%!important;">
           <tr>
             <td rowspan="3">
               <p><strong>4701-1177<strong></p>
@@ -14,7 +11,7 @@
               <p>3 de Febrero 3455 / Nuñez</p>
             </td>
             <td rowspan="3">
-              <h2>Cotización<a href="javascript:schemeOrgPdf()">Download PDF</a></h2>
+              <h2>Cotización</h2>
             </td>
             <td rowspan="3" colspan="2">
               <img src="img/LogoMudarte.png" alt="">
@@ -59,7 +56,6 @@
             <td>{{cotizacion.fecha_de_carga | date:'dd-MM-yyyy'}}</td>
             <td style="background-color: #fff;" class="tdResumen" align=center>Hora:</td>
             <td>{{cotizacion.hora_de_carga | date:'HH:mm'}}</td>
-
           </tr> -->
           <tr>
             <td style="background-color: #fff;" class="tdResumen" align=center>Fecha estimada de mudanza:</td>
@@ -135,9 +131,8 @@
           </tr>
         </table>
         <legend></legend>
-        <br>
         <h2>Detalle de mudanza</h2>
-        <table id="tabla2" class="tablaResumen">
+        <table class="tablaResumen">
           <tr>
             <td class="tdResumen" align="center">km</td>
             <td>{{cotizacion.recorrido_km}}</td>
@@ -178,7 +173,6 @@
           </tr>
         </table>
         <legend></legend>
-        <br>
         <h2>Materiales</h2>
         <table class="tablaResumen">
           <tr class="active">
@@ -199,7 +193,6 @@
           </tr>
         </table>
         <legend></legend>
-        <br>
         <h2>Presupuesto</h2>
         <table class="tablaResumen">
           <tr class="active">
@@ -258,7 +251,6 @@
           </tr>
         </table>
         <legend></legend>
-        <br>
           <h2>Contenedores</h2>
           <table class="tablaResumen">
               <tr class="tdResumen active">
@@ -278,7 +270,6 @@
               </tr>
           </table>
           <legend></legend>
-          <br>
           <h2>Muebles</h2>
           <table class="tablaResumen">
             <tr class="tdResumen active">
@@ -307,7 +298,6 @@
             </tr>
           </table>
           <legend></legend>
-          <br>
           <h2>Totales</h2>
           <table style="width:200px;" class="tablaResumen">
             <tr>
@@ -316,48 +306,15 @@
             </tr>
             <tr>
               <td class="paddingNone tdResumen" style="padding:0;display:flex;width:100px">
-                <span ng-if="nav==='7'" ng-show="nav==='7'" style="flex:10%;padding-top:9px;height:34px;text-align:center;">{{cotizacion.porcentaje_margen}} %</span>
+                <span ng-if="nav==='7' || nav==='8'" ng-show="nav==='7' || nav==='8'" style="flex:10%;padding-top:9px;height:34px;text-align:center;">{{cotizacion.porcentaje_margen}} %</span>
                 <input ng-if="nav==='6'" ng-show="nav==='6'" type="number" class="form-control" style="flex:90%;border-radius:0;border:none;" min="0" ng-change="$emit('change_margen')" ng-model="cotizacion.porcentaje_margen"><span ng-if="nav==='6'" ng-show="nav==='6'" style="flex:10%;margin-top:auto;margin-bottom:auto;"> %</span>
               </td>
               <th class="tdResumen">Margen</th>
               <td class="tdResumen"><strong style="display:flex;"><span style="flex:90%;border-radius:0;border:none;">{{(metros3_contenedores+metros3_muebles+metros3_otros)*(1+(cotizacion.porcentaje_margen/100))|number:2}}</span> <span style="flex:10%;margin-top:auto;margin-bottom:auto;">m<sup>3</sup></span></strong></td>
             </tr>
           </table>
-          <legend></legend>
-          <table class="tablaResumen">
-            <tr>
-             <td align="center" rowspan=2 colspan=7 class="active"><strong>Observaciones</strong></td>
-           </tr>
-           <tr></tr>
-           <tr>
-             <th rowspan=3 colspan=7></th>
-           </tr>
-           <tr></tr>
-           <tr></tr>
-           <tr>
-             <td align="center" rowspan=1 colspan=7>El valor de este trabajo es teniendo en cuenta lo detallado y proporcionado por usted. Si al momento de la realización existe alguna variación, el valor será modificado indefectiblemente.</td>
-           </tr>
-           <tr></tr>
-           <tr>
-             <td align="center" rowspan=8 colspan=7>Los precios cotizados no incluyen el I.V.A., que será adicionado en oportunidad de la factura. Los canastos y las cajas, serán entregados 2 días antes de la fecha de trabajo. Los canastos tendrán que ser devueltos luego de tres días de finalizado el trabajo. Pasados estos, el cliente deberá abonar la suma de $30,00 por canasto por día, más $500 por el servicio de retiro. La cantidad de materiales cotizados son estimados. Lo que significa que puede variar la cantidad y por consecuencia, el precio. (Los percheros se entregan y se retiran el día de la mudanza. Atención: los trabajos que sean realizados al interior o a alguna provincia que supere los 70km de Capital Federal, deberán hacer entrega de los canastos al finalizar el mismo. O bien pagar un canon por su retiro que lo dispondrá la empresa. Si en destino hubiera que subir algún tipo de mueble por medio de sogas y no fue cotizado en la visita, se deja explícitamente aclarado que el valor queda por fuera de este presupuesto. Y el precio del mismo se definirá teniendo en cuenta la complejidad y la cantidad de elementos a elevar. Una vez que el camión y el personal de MUDARTE se retiran del domicilio final, no se aceptaran reclamos de ningún tipo. El cliente deberá firmar el comprobante de conformidad. La cotización tiene una validez de 15 días, cumplido el plazo, el cliente deberá ponerse en contacto con MUDARTE para una Recotización.</td>
-           </tr>
-           <tr></tr>
-           <tr></tr>
-           <tr></tr>
-           <tr></tr>
-           <tr></tr>
-           <tr></tr>
-           <tr></tr>
-           <tr>
-             <th rowspan=2 colspan=7></th>
-           </tr>
-           <tr></tr>
-           </table>
-      </div>
-           <button type="submit" ng-disabled="otros_temp.length === 0 && contenedores_temp.length === 0 && muebles_temp.length === 0" class="btn btn-success" ng-click="demoFromHTML()">Exportar</button>
-
+           <button type="submit" ng-disabled="otros_temp.length === 0 && contenedores_temp.length === 0 && muebles_temp.length === 0" class="btn btn-success hidden" ng-click="exportAction('pdf')">Exportar</button>
     </div>
-
     <div id="divExportar" class="col-md-12 hidden">
       <h1 style="color:#fff">Resumen</h1>
           <table border=1 style="width:1450;" id="prueba">
@@ -703,117 +660,11 @@
    </div>
 </div>
 
-<script type="text/javascript" src="jspdf.min.js"></script>
-<script type="text/javascript" src="jspdf.debug.js"></script>
-<script type="text/javascript" src="addimage.js"></script>
-<script type="text/javascript" src="jspdf.plugin.table.js"></script>
-<script type="text/javascript" src="html2canvas.js"></script>
-<script type="text/javascript" src="canvas.js"></script>
-
 <script>
-
-var tamanoDiv = $('#id_divContenedor').outerHeight();
-var tamanoT1 = $('#tabla1').height();
-var tamanoT2 = $('#tabla2').height();
-console.log(tamanoT1);
-console.log(tamanoT2);
-var tamanoT2 = $('#tabla2').outerHeight();
-var pantalla = $(window).outerHeight();
-var tamanoInicial = (pantalla - 75);
-//$('#page-content-wrapper').height(pantalla);
-//$('#id_divContenedor').height('5000px');
-
- function schemeOrgPdf() {
-  $('#page-content-wrapper').height(8000+'px');
-                var canvasShiftImg = function(img, shiftAmt, scale, pageHeight, pageWidth) {
-                    var c = document.createElement('canvas'),
-                            ctx = c.getContext('2d'),
-                            shifter = Number(shiftAmt || 0);
-                    c.style.background = "#fff";
-                    if (contPage < 1) {
-                        if (img.height - (-shifter) < 1069) {
-                            canvasHeight = ctx.canvas.height = img.height - (-shifter);
-                        } else {
-                            canvasHeight = ctx.canvas.height = 1069;
-                        }
-                    } else {
-                        if (img.height - (-shifter) < 1069) {
-                            canvasHeight = ctx.canvas.height = img.height - (-shifter);
-                        } else {
-                            canvasHeight = ctx.canvas.height = 1069;
-                        }
-                    }
-                    ctx.canvas.background = "white";
-                    ctx.canvas.width = img.width;
-                    ctx.drawImage(img, 0, -shifter, ctx.canvas.width, ctx.canvas.height, 0, 0, ctx.canvas.width, ctx.canvas.height);
-                    return c;
-                };
-                var canvasToImg = function(canvas, loaded, error) {
-                    var dataURL = canvas.toDataURL('image/jpeg', 1.0),
-                            img = new Image();
-                    img.onload = loaded;
-                    img.onerror = error;
-                    img.style.background = "#FFF";
-                    img.src = dataURL;
-                };
-                var img;
-                var imageToPdf = function() {
-                    // can't pass any parameters or else "this" won't be the img element
-                    img = this;
-                    var pdf = new jsPDF("p", "px", "letter"),
-                            pdfcanvas = pdf.canvas,
-                            pdfInternals = pdf.internal,
-                            pdfPageSize = pdfInternals.pageSize,
-                            pdfScaleFactor = pdfInternals.scaleFactor,
-                            pdfPageWidth = pdfPageSize.width,
-                            pdfPageHeight = pdfPageSize.height,
-                            pdfPageWidthPx = (pdfPageWidth) * pdfScaleFactor,
-                            pdfPageHeightPx = 554,
-                            imgScaleFactor = Math.min(pdfPageWidthPx / img.width, 1),
-                            imgScaledHeight = img.height,
-                            shiftAmt = 0,
-                            done = false;
-                            contPage=0;
-
-                    while (!done) {
-
-                        var newCanvas = canvasShiftImg(img, shiftAmt, imgScaleFactor, pdfPageHeightPx, 419);
-
-                          if(contPage==0){
-                            pdf.addImage(newCanvas, 'JPEG', 20, 35, 419, Math.round(canvasHeight / 2.16606498195));
-                          }
-                          else{
-                            pdf.addImage(newCanvas, 'JPEG', 20, 20, 419, Math.round(canvasHeight / 2.16606498195));
-                          }
-                            shiftAmt -= 1069;
-
-                        contPage += 1;
-                        if (-1 * shiftAmt < imgScaledHeight) {
-                           pdf.addPage();
-
-                        } else {
-                            done = true;
-                        }
-                    }
-
-                    pdf.save('Resumen.pdf');
-                };
-                var imageLoadError = function() {
-                    alert('there was an image load error :(');
-                };
-
-
-                html2canvas(document.getElementById('div1'), {
-                    background: "#FFF",
-                    onrendered: function(canvas) {
-                        // params: canvas, onload, onerror
-                        canvasToImg(canvas, imageToPdf, imageLoadError);
-                    }
-                });
-                $('#page-content-wrapper').height(tamanoInicial+'px');
-            }
-
-
-
+function descargarExcel(){
+ var table= document.getElementById('divExportar');
+ var html = table.outerHTML;
+ window.open('data:application/vnd.ms-excel,' + escape(html));
+   }
 </script>
 </div>
