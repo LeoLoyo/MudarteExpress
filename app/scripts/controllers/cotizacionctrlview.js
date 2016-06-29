@@ -11,9 +11,24 @@
 
   var app = angular.module('Backend', ['Express.services']);
 
-  app.service('tools',function(){
+  app.service('tools',function($rootScope){
 
     var self = this;
+
+    var select = function () {
+
+
+       setTimeout(function(){
+
+         $('select.selectPicker').selectpicker('destroy');
+
+         $('select.selectPicker').selectpicker();
+
+         $rootScope.$apply();
+
+       },400);
+
+    }
 
     self.scope_time = function (time){
 
@@ -45,6 +60,7 @@
 
     };
 
+    self.select = select;
 
     return self;
   })
@@ -1021,6 +1037,8 @@
     function initCotizacion() {
 
       Backend.init();
+
+      tools.select();
 
       $scope.cantidades = Backend.getCant();
 
