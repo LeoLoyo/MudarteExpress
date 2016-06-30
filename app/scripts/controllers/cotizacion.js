@@ -327,7 +327,7 @@
             $scope.todoscontenedores = contenedores;
           });
         } else {
-
+            select();
           Material.all().then(function (r) {
             var out = [];
             angular.forEach(r, function (v, k) {
@@ -341,18 +341,12 @@
             $scope.materiales = out;
           });
 
-          setTimeout(function(){
-            Users.all(1).then(function (r) {
-              $scope.cotizadores = r;
-            });
-            Users.all(2).then(function (r) {
-              $scope.telefonista = r;
-                          select();
-            });
-            $scope.$apply();
-          },1);
-
-
+          Users.all(1).then(function (r) {
+            $scope.cotizadores = r;
+          });
+          Users.all(2).then(function (r) {
+            $scope.telefonista = r;
+          });
           Direccion.all().then(function (r) {
             $scope.barrio_provincias = r;
           });
@@ -381,8 +375,9 @@
 
         $rootScope.$on('change', function (event) {
           if ($scope.contenedores_temp.length === 0 && $scope.otros_temp.length === 0 && $scope.muebles_temp.length === 0) {
+
             $rootScope.resumen = false;
-          } else {
+          } else{
             $rootScope.resumen = true;
           }
         });

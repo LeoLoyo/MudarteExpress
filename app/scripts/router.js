@@ -82,7 +82,6 @@
                 $('.btnsCotizacion').removeClass('hidden');
                 $('.cargando').removeClass('hidden');
                   $rootScope.nav = '10'
-
               }else{
                 $state.go('login');
               }

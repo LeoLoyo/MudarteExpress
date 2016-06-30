@@ -17,7 +17,6 @@
 
     var select = function () {
 
-
        setTimeout(function(){
 
          $('select.selectPicker').selectpicker('destroy');
@@ -41,6 +40,7 @@
       return d;
 
     };
+
     self.fecha_format = function (f){
 
       f = new Date(f);
@@ -1042,16 +1042,6 @@
 
       Backend.init();
 
-      setTimeout(function(){
-
-        $rootScope.resumen = true;
-
-        $rootScope.$apply();
-
-      },1);
-
-      tools.select();
-
       $scope.cantidades = Backend.getCant();
 
       $scope.cant_otros = Backend.getCant_Otros();
@@ -1063,7 +1053,9 @@
         $scope.tipo_muebles = muebles;
 
       }).catch(function () {
+
         $scope.tipo_muebles = [];
+
       });
 
 
@@ -1113,18 +1105,27 @@
 
       });
 
-      $rootScope.resumen = true;
-
       Users.all(1).then(function (r) {
+
         $scope.cotizadores = r;
+
       });
+
       Users.all(2).then(function (r) {
+
         $scope.telefonista = r;
+
       });
+
       Direccion.all().then(function (r) {
+
         $scope.barrio_provincias = r;
+
       });
+
       $scope.fuentes = Cotizacion.all_fuentes();
+
+      tools.select();
 
     };
 
@@ -1340,7 +1341,9 @@
       $scope.update_presupuesto();
     };
 
-    initCotizacion();
+      initCotizacion();
+
+
 
     $rootScope.$on('change:data', function (){
 
@@ -1382,10 +1385,21 @@
 
       $scope.$on('change_margen',function(){
         setTimeout(function(){
+
           $rootScope.margen = Number($scope.cotizacion.porcentaje_margen);
+
           $scope.$apply();
-        },0)
-      })
+
+        },0);
+
+      });
+      setTimeout(function handleInterval() {
+        $rootScope.$broadcast("change");
+      }, 1);
+
+      $rootScope.$on('change', function (event) {
+          $rootScope.resumen = true;
+      });
 
 
     });
@@ -1394,19 +1408,6 @@
         $('.btnSeleccionado').children('div').children('span.remover').click();
         $('.btnSeleccionado').children('.classContenedores').children('span.remover').click();
         $('.removeOtros').click();
-        // $scope.contenedores_temp = [];
-        // $scope.muebles_temp = [];
-        // $scope.otros_temp = [];
-        // $scope.otros_temp_campo = [];
-        // $scope.materiales_temp = [];
-        //
-        // // //Variables De Totales
-        // $scope.metros3_contenedores = 0;
-        // $scope.unidades_contenedores = 0;
-        // $scope.metros3_muebles = 0;
-        // $scope.unidades_muebles = 0;
-        // $scope.metros3_otros = 0;
-        // $scope.unidades_otros = 0;
         $scope.$apply();
       },0);
 
@@ -1428,6 +1429,7 @@
       Backend.deleteMuebles();
 
       setTimeout(function(){
+        Backend.init();
         $state.go('list');
       },1000);
 
