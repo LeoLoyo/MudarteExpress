@@ -108,7 +108,6 @@
     self.update = function (cotizacion) {
       var url = setting.url + "cotizacion/"+ cotizacion.id +"/?format=json";
       return $http.put(url, cotizacion).success(function (responde) {
-        console.log(responde);
         return responde;
       }).error(function (e) {
         return e;
@@ -264,7 +263,6 @@
     };
 
     self.delete_materiales = function (material) {
-console.log(material);
       var url = setting.url + "materialcotizacion/"+material.id+"/?format=json";
 
       return $http.delete(url).success(function(responde){
@@ -279,17 +277,19 @@ console.log(material);
 
     };
 
-    self.update_materiales = function (material, id_cotizacion) {
+    self.update_materiales = function (material) {
+      console.log(material);
+      var url = setting.url + "materialcotizacion/"+material.id+"/?format=json";
       var data = {};
-      data.cotizacion = id_cotizacion;
-      data.materialid = material.id;
+      data.cotizacion = material.cotizacion;
+      data.materialid = material.materialid;
       data.material = material.material;
       data.cantidad = material.cantidad;
       data.precio_unitario = material.precio_unitario;
       data.total = material.total;
       data.estado = 'activo';
 
-      return $http.put(setting.url + "materialcotizacion/", data).success(function () {
+      return $http.put(url, data).success(function () {
         return true;
       }).error(function () {
         return false;

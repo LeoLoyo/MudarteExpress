@@ -709,8 +709,9 @@
           } else {
             if (ms_tmp[i].action === 'PUT'){
 
-              $rootScope.$emit('change_for_delete');
+
               materiales_for_delete.push(ms_tmp[i]);
+              $rootScope.$emit('change_for_delete');
             }
 
             ms_tmp.splice(ms_tmp.indexOf(ms_tmp[i]), 1);
@@ -785,7 +786,6 @@
       if (self.findMaterial(materiales_temp, material_temp) !== true) {
 
         if (Number(material_temp.cantidad) > 0) {
-
           materiales_temp.push(material_temp);
 
         }
@@ -842,8 +842,6 @@
       temp.fecha_estimada_mudanza = tools.fecha_format(temp.fecha_estimada_mudanza);
       temp.hora_de_cotizacion = tools.hora_format(temp.hora_de_cotizacion);
       temp.hora_estimada_mudanza = tools.hora_format(temp.hora_estimada_mudanza);
-
-      console.log(temp);
 
       Cotizacion.update(temp).then(function(r){
 
@@ -939,21 +937,21 @@
     self.updateMateriales = function (cotizacionID){
 
       if(materiales_temp.length > 0){
-
         angular.forEach(materiales_temp, function(v,k){
-
+console.log(v.action , v.material);
           if(v.action === 'PUT'){
 
             Cotizacion.update_materiales(v).then(function(r){
 
-              console.log("Actualizacion en materiales : "+r.data.descripcion);
+              console.log("Actualizacion en materiales : "+r.data.material);
 
             });
 
           }else if(v.action === 'POST'){
               Cotizacion.save_materiales(v,cotizacionID).then(function(r){
 
-                v.action = 'PUT'
+                // v.action = 'PUT'
+
               });
 
           }
