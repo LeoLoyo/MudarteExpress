@@ -265,6 +265,7 @@
             if(cont.id === cont_coti.contenedor){
 
               cont.cantidad = cont_coti.cantidad;
+              cont.ncontenedor = cont_coti.cantidad;
             }
 
           });
@@ -663,10 +664,23 @@
 
           angular.forEach(out,function (mat, key) {
 
-            if(mat.id === mat_coti.materialid){
 
+             if(mat.id === mat_coti.materialid){
+
+              angular.forEach(contenedores_temp, function ( vc, kc){
+                if(vc.contenedor === mat.contenedor){
+                  mat.ncontenedor = vc.cantidad;
+                  mat.iscontenedor = true;
+                  console.log(mat);
+                }
+              });
               mat.cantidad = mat_coti.cantidad;
             }
+
+
+
+
+
 
           });
 
@@ -842,6 +856,8 @@
       temp.fecha_estimada_mudanza = tools.fecha_format(temp.fecha_estimada_mudanza);
       temp.hora_de_cotizacion = tools.hora_format(temp.hora_de_cotizacion);
       temp.hora_estimada_mudanza = tools.hora_format(temp.hora_estimada_mudanza);
+      temp.porcentaje_ajuste = Number(temp.porcentaje_ajuste).toFixed(2);
+      temp.porcentaje_iva = Number(temp.porcentaje_iva).toFixed(2);
 
       Cotizacion.update(temp).then(function(r){
 
@@ -938,7 +954,6 @@
 
       if(materiales_temp.length > 0){
         angular.forEach(materiales_temp, function(v,k){
-console.log(v.action , v.material);
           if(v.action === 'PUT'){
 
             Cotizacion.update_materiales(v).then(function(r){
