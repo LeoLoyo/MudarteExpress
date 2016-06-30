@@ -1404,6 +1404,7 @@
 
 
     });
+
     $rootScope.limpiar = function () {
       setTimeout(function(){
         $('.btnSeleccionado').children('div').children('span.remover').click();
@@ -1424,7 +1425,7 @@
 
       Backend.updateMuebles($scope.cotizacion.id);
       //
-      Backend.updatemateriales($scope.cotizacion.id);
+      // Backend.updatemateriales($scope.cotizacion.id);
 
       Backend.deleteContenedores();
       Backend.deleteMuebles();
