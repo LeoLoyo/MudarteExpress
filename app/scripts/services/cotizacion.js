@@ -263,6 +263,38 @@
 
     };
 
+    self.delete_materiales = function (material) {
+console.log(material);
+      var url = setting.url + "materialcotizacion/"+material.id+"/?format=json";
+
+      return $http.delete(url).success(function(responde){
+
+        return responde;
+
+      }).error(function(e){
+
+          return e;
+
+      });
+
+    };
+
+    self.update_materiales = function (material, id_cotizacion) {
+      var data = {};
+      data.cotizacion = id_cotizacion;
+      data.materialid = material.id;
+      data.material = material.material;
+      data.cantidad = material.cantidad;
+      data.precio_unitario = material.precio_unitario;
+      data.total = material.total;
+      data.estado = 'activo';
+
+      return $http.put(setting.url + "materialcotizacion/", data).success(function () {
+        return true;
+      }).error(function () {
+        return false;
+      });
+    };
 
     return self;
 

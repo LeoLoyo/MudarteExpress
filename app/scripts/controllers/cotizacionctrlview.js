@@ -936,7 +936,56 @@
 
     };
 
-    // self.updateMateriales
+    self.updateMateriales = function (cotizacionID){
+
+      if(materiales_temp.length > 0){
+
+        angular.forEach(materiales_temp, function(v,k){
+
+          if(v.action === 'PUT'){
+
+            Cotizacion.update_materiales(v).then(function(r){
+
+              console.log("Actualizacion en materiales : "+r.data.descripcion);
+
+            });
+
+          }else if(v.action === 'POST'){
+              Cotizacion.save_materiales(v,cotizacionID).then(function(r){
+
+                v.action = 'PUT'
+              });
+
+          }
+
+        });
+      }
+
+    };
+
+    self.deleteMateriales = function (){
+
+      if(materiales_for_delete.length > 0){
+
+        angular.forEach(materiales_for_delete, function(v,k){
+
+            Cotizacion.delete_materiales(v).then(function(r){
+
+              console.log("Eliminare el Contenedor : "+r.data.descripcion);
+              materiales_for_delete.splice(materiales_for_delete.indexOf(v),1);
+
+            });
+
+        });
+
+      }else {
+
+        console.log("Ningun material a Eliminar");
+
+      };
+
+    };
+
     self.deleteContenedores = function (){
 
       if(contenedores_for_delete.length > 0){
@@ -1424,11 +1473,12 @@
       Backend.updateContenedores($scope.cotizacion.id);
 
       Backend.updateMuebles($scope.cotizacion.id);
-      //
-      // Backend.updatemateriales($scope.cotizacion.id);
+
+      Backend.updateMateriales($scope.cotizacion.id);
 
       Backend.deleteContenedores();
       Backend.deleteMuebles();
+      Backend.deleteMateriales();
 
       setTimeout(function(){
         Backend.init();
