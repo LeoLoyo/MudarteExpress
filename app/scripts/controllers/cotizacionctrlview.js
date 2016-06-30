@@ -936,6 +936,7 @@
 
     };
 
+    // self.updateMateriales
     self.deleteContenedores = function (){
 
       if(contenedores_for_delete.length > 0){
@@ -1423,7 +1424,7 @@
 
       Backend.updateMuebles($scope.cotizacion.id);
       //
-      // Backend.updatemateriales($scope.cotizacion.id);
+      Backend.updatemateriales($scope.cotizacion.id);
 
       Backend.deleteContenedores();
       Backend.deleteMuebles();
